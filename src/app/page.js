@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { MicrosoftButton } from "@/components/component/microsoft-button";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { MicrosoftButton } from "@/components/component/microsoft-button";
 
 export default function Home() {
   const { data: session, status } = useSession();
