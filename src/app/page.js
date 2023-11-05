@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { MicrosoftButton } from "@/components/component/microsoft-button";
 import Link from "next/link";
-import { Button } from "@mantine/core";
+import { Button, Alert } from "@mantine/core";
+import { AlertCircle } from "lucide-react";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -14,6 +15,10 @@ export default function Home() {
 
   return (
     <>
+      <Alert variant="light" color="blue" title="Alert title" icon={<AlertCircle />}>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. At officiis, quae tempore
+        necessitatibus placeat saepe.
+      </Alert>
       {session?.role === "admin" && <>User Role: Admin</>}
       {session?.role === "college" && <>User Role: College</>}
       {session?.role === "faculty" && <>User Role: Faculty</>}
