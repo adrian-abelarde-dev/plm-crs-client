@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { MicrosoftButton } from "@/components/component/microsoft-button";
+import Link from "next/link";
+import { Button } from "@mantine/core";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -34,6 +36,9 @@ export default function Home() {
           />
         </>
       )}
+      <Button component={Link} href="/hello">
+        Next link button
+      </Button>
     </>
   );
 }
