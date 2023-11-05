@@ -1,12 +1,12 @@
 "use client";
-import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 
 // ! Mantine Imports
 import "@mantine/core/styles.css";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { ColorSchemeScript } from "@mantine/core";
 
 import "./globals.css";
+import Providers from "./Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +22,7 @@ export default function RootLayout({ children }) {
         <ColorSchemeScript />
       </head>
       <body className={inter.className}>
-        <SessionProvider>
-          <MantineProvider>{children}</MantineProvider>
-        </SessionProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
