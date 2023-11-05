@@ -10,9 +10,6 @@ import { AlertCircle } from "lucide-react";
 export default function Home() {
   const { data: session, status } = useSession();
 
-  console.log(session);
-  console.log(status);
-
   return (
     <>
       <Alert variant="light" color="blue" title="Alert title" icon={<AlertCircle />}>
