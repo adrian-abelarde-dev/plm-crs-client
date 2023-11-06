@@ -5,7 +5,7 @@ import React from "react";
 const StudentGradesPage = () => {
   return (
     <div>
-      <Shell HeaderNavbar={<StudentNavbar />} />
+      <Shell HeaderNavbar={<StudentNavbar />} accessType={"student"} />
     </div>
   );
 };

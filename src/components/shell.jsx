@@ -5,12 +5,13 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 // ? HeaderNavbar is a prop that will be passed to Shell to defined the header
-const Shell = ({ HeaderNavbar }) => {
+// ? accessType is a prop that will be passed to Shell to defined the accessType --> "student", "faculty", etc.
+const Shell = ({ HeaderNavbar, accessType }) => {
   const { data: session, status } = useSession();
 
   // ? Handle role based routing later.125
   // ? For now, redirect to student page if unauthenticated
-  // ? For checking user role, use `session.user.role` --> displays "student" or "faculty", etc.
+  // ? For checking user access, use `session.user.role` === accessType
   useEffect(() => {
     if (status === "unauthenticated") {
       redirect("/student");

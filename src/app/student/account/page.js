@@ -5,7 +5,7 @@ import React from "react";
 const StudentAcountPage = () => {
   return (
     <div>
-      <Shell HeaderNavbar={<StudentNavbar />} />
+      <Shell HeaderNavbar={<StudentNavbar />} accessType={"student"} />
     </div>
   );
 };
