@@ -28,8 +28,9 @@ const StudentNavbar = () => {
                 key={index}
                 // added conditional for active link
                 className={cn(
-                  "px-[1.25rem] py-[0.62rem] mx-[0.40rem] text-[#0f172a] rounded-full hover:border-[0.13px]",
-                  currentPage.includes(link.path) && "bg-yellow-400 font-bold"
+                  "transition-all ease-in-out duration-200 px-5 py-2 mx-2 text-black rounded-full outline outline-1 outline-transparent hover:outline-zinc-200",
+                  currentPage.includes(link.path) &&
+                    "bg-yellow-400 font-bold hover:bg-yellow-500 hover:outline-transparent"
                 )}
                 href={link.path}
               >
