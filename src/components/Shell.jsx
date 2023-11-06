@@ -6,6 +6,9 @@ import { useEffect } from "react";
 const Shell = ({ HeaderNavbar }) => {
   const { data: session, status } = useSession();
 
+  // ? Handle role based routing later.125
+  // ? For now, redirect to student page if unauthenticated
+  // ? For checking user role, use `session.user.role` --> displays "student" or "faculty", etc.
   useEffect(() => {
     if (status === "unauthenticated") {
       redirect("/student");
@@ -13,10 +16,7 @@ const Shell = ({ HeaderNavbar }) => {
   }, [status]);
 
   if (status === "authenticated") {
-    return (
-      // ! Passed to an AppShell component to handle responsive layout in the future
-      <>{HeaderNavbar}</>
-    );
+    return HeaderNavbar;
   }
 };
 
