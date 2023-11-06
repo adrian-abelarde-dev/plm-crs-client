@@ -3,7 +3,7 @@ import Shell from "@/components/Shell";
 import StudentNavbar from "@/components/StudentNavbar";
 import React from "react";
 
-const page = () => {
+const StudentAcountPage = () => {
   return (
     <div>
       <Shell HeaderNavbar={<StudentNavbar />} />
@@ -11,4 +11,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default StudentAcountPage;

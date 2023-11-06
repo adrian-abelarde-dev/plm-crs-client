@@ -3,7 +3,7 @@ import Shell from "@/components/Shell";
 import React from "react";
 import StudentLogin from "./StudentLogin";
 
-const page = () => {
+const StudentLoginPage = () => {
   return (
     <>
       <StudentLogin />
@@ -11,4 +11,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default StudentLoginPage;

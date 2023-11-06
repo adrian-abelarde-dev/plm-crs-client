@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const StudentHomePage = () => {
   return (
     <div>
       <Shell HeaderNavbar={<StudentNavbar />} />
@@ -27,4 +27,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default StudentHomePage;
