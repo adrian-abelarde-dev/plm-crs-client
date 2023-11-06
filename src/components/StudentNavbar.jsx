@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import PLMLogo from "../assets/plm-logo.png";
+import { cn } from "@/lib/utils";
 
 const StudentNavbar = () => {
   const currentPage = usePathname();
@@ -25,9 +26,13 @@ const StudentNavbar = () => {
               <Link
                 key={index}
                 // added conditional for active link
-                className={`px-[1.25rem] py-[0.62rem] mx-[0.40rem] text-[#0f172a] rounded-full hover:border-[0.13px] ${
-                  currentPage.includes(link.path) ? "bg-[#fbbf24]" : ""
-                }`}
+                // className={`px-[1.25rem] py-[0.62rem] mx-[0.40rem] text-[#0f172a] rounded-full hover:border-[0.13px] ${
+                //   currentPage.includes(link.path) ? "bg-[#fbbf24]" : ""
+                // }`}
+                className={cn(
+                  "px-[1.25rem] py-[0.62rem] mx-[0.40rem] text-[#0f172a] rounded-full hover:border-[0.13px]",
+                  currentPage.includes(link.path) && "bg-yellow-400 font-bold"
+                )}
                 href={link.path}
               >
                 {link.label}
