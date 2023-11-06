@@ -1,3 +1,5 @@
+"use client";
+
 import { MicrosoftButton } from "@/components/component/microsoft-button";
 import { signOut, useSession, signIn } from "next-auth/react";
 import { redirect } from "next/navigation";

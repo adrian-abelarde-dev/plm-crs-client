@@ -1,4 +1,3 @@
-"use client";
 import Shell from "@/components/shell";
 import React from "react";
 import StudentLogin from "./StudentLogin";
