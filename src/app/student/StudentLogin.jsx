@@ -1,5 +1,4 @@
 import { MicrosoftButton } from "@/components/component/microsoft-button";
-import { Button } from "@mantine/core";
 import { signOut, useSession, signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
 import React, { useEffect } from "react";

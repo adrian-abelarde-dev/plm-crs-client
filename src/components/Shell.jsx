@@ -6,8 +6,6 @@ import { useEffect } from "react";
 const Shell = ({ HeaderNavbar }) => {
   const { data: session, status } = useSession();
 
-  console.log(status);
-  const isLoggedIn = status === "authenticated";
   useEffect(() => {
     if (status === "unauthenticated") {
       redirect("/student");
