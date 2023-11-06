@@ -1,4 +1,5 @@
 "use client";
+
 import Shell from "@/components/shell";
 import StudentNavbar from "@/components/layouts/student-navbar";
 import { signOut } from "next-auth/react";
@@ -10,16 +11,14 @@ const StudentHomePage = () => {
     <div>
       <Shell HeaderNavbar={<StudentNavbar />} />
       {/* remove this on the final layout of student home */}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
       <button
         onClick={() => {
           signOut();
           redirect("/student");
         }}
+        // update later when creating the layout
+        className="mt-96"
       >
         Sign out
       </button>

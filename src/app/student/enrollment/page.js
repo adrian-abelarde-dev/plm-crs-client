@@ -1,4 +1,3 @@
-"use client";
 import Shell from "@/components/shell";
 import StudentNavbar from "@/components/layouts/student-navbar";
 import React from "react";

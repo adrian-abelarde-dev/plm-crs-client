@@ -1,5 +1,6 @@
-import React from "react";
+"use client";
 
+import React from "react";
 import { linksStudents } from "../../lib/constants/links-data";
 import { Bell } from "lucide-react";
 import Link from "next/link";
@@ -26,9 +27,6 @@ const StudentNavbar = () => {
               <Link
                 key={index}
                 // added conditional for active link
-                // className={`px-[1.25rem] py-[0.62rem] mx-[0.40rem] text-[#0f172a] rounded-full hover:border-[0.13px] ${
-                //   currentPage.includes(link.path) ? "bg-[#fbbf24]" : ""
-                // }`}
                 className={cn(
                   "px-[1.25rem] py-[0.62rem] mx-[0.40rem] text-[#0f172a] rounded-full hover:border-[0.13px]",
                   currentPage.includes(link.path) && "bg-yellow-400 font-bold"
