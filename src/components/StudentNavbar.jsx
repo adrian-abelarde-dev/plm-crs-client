@@ -12,7 +12,7 @@ const StudentNavbar = () => {
 
   return (
     <>
-      <div className="w-screen flex h-[4rem] justify-between place-items-center pt-[2.25rem]">
+      <div className="w-screen flex h-16 justify-between place-items-center pt-[2.25rem]">
         <div className="pl-[2.25rem]">
           {/* 50px = 3.125rem */}
           <Image src={PLMLogo} width={50} height={50} alt="PLM Logo" />
