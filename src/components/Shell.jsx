@@ -1,15 +1,25 @@
-import { AppShell } from "@mantine/core";
-
-import React from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 // ? HeaderNavbar is a prop that will be passed to Shell to defined the header
 const Shell = ({ HeaderNavbar }) => {
-  return (
-    // ! Passed to an AppShell component to handle responsive layout in the future
-    <AppShell>
-      <AppShell.Header zIndex={100}>{HeaderNavbar}</AppShell.Header>
-    </AppShell>
-  );
+  const { data: session, status } = useSession();
+
+  console.log(status);
+  const isLoggedIn = status === "authenticated";
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/student");
+    }
+  }, [status]);
+
+  if (status === "authenticated") {
+    return (
+      // ! Passed to an AppShell component to handle responsive layout in the future
+      <>{HeaderNavbar}</>
+    );
+  }
 };
 
 export default Shell;
