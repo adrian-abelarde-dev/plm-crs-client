@@ -1,6 +1,6 @@
 "use client";
-import Shell from "@/components/Shell";
-import StudentNavbar from "@/components/StudentNavbar";
+import Shell from "@/components/shell";
+import StudentNavbar from "@/components/layouts/student-navbar";
 import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import React from "react";

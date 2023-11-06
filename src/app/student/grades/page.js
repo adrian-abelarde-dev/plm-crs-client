@@ -1,6 +1,6 @@
 "use client";
-import Shell from "@/components/Shell";
-import StudentNavbar from "@/components/StudentNavbar";
+import Shell from "@/components/shell";
+import StudentNavbar from "@/components/layouts/student-navbar";
 import React from "react";
 
 const StudentGradesPage = () => {

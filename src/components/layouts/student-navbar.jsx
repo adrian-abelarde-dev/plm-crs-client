@@ -1,11 +1,11 @@
 import React from "react";
 
-import { linksStudents } from "../app/data/linksData";
+import { linksStudents } from "../../lib/constants/links-data";
 import { Bell } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import PLMLogo from "../assets/plm-logo.png";
+import PLMLogo from "../../assets/plm-logo.png";
 import { cn } from "@/lib/utils";
 
 const StudentNavbar = () => {
