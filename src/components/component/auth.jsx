@@ -6,11 +6,16 @@ import { useEffect } from 'react';
 
 const AuthProvider = ({ children, accessType }) => {
     const { data: session, status } = useSession();
+    // ? status can be 'loading', 'authenticated' or 'unauthenticated'
 
     useEffect(() => {
-        if (
-            status === 'unauthenticated' ||
-            !session?.role.includes(accessType)
+        if (status === 'unauthenticated') {
+            // Proceeds to login
+            redirect('/');
+        } else if (
+            !session?.role.includes(accessType) &&
+            // ? on page load, status is 'loading' and session is null
+            status !== 'loading'
         ) {
             redirect('/portal');
         }
