@@ -7,11 +7,9 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import PLMLogo from '../../assets/plm-logo.png';
-import { linksStudents } from '../../lib/constants/links-data';
+import NotificationBell from './notification-bell';
 
-import NotificationBell from "./notification-bell";
-
-const StudentNavbar = () => {
+const StudentNavbar = ({ linksStudents }) => {
     const currentPage = usePathname();
 
     return (
@@ -47,13 +45,13 @@ const StudentNavbar = () => {
                     })}
                 </div>
 
-        {/* Create popup for bell */}
-        <div className="pr-[2.25rem]">
-          <NotificationBell />
-        </div>
-      </div>
-    </>
-  );
+                {/* Create popup for bell */}
+                <div className='pr-[2.25rem]'>
+                    <NotificationBell />
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default StudentNavbar;
