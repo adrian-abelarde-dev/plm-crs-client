@@ -8,12 +8,15 @@ const AuthProvider = ({ children, accessType }) => {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        if (status === 'unauthenticated') {
+        if (
+            status === 'unauthenticated' ||
+            !session?.role.includes(accessType)
+        ) {
             redirect('/');
         }
-    }, [status]);
+    }, [status, accessType, session]);
 
-    if (status === 'authenticated') {
+    if (status === 'authenticated' && session?.role.includes(accessType)) {
         return children;
     }
 };
