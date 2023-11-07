@@ -32,7 +32,7 @@ export const linksStudents = [
     },
 ];
 
-export const adminSidebarButtons = [
+export const adminSidebarLinks = [
     {
         icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
         text: 'Activities',
@@ -73,4 +73,4 @@ export const adminSidebarButtons = [
         text: 'Students',
         path: '/admin/students',
     },
-];
+]

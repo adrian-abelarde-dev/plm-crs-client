@@ -17,15 +17,14 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
-import { adminSidebarButtons } from '@/lib/constants/links-data';
 import { cn } from '@/lib/utils';
 import { LogOut } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
-export function SidebarButton({ icon, text, onClick, path, className }) {
+function SidebarButton({ icon, text, onClick, path, className }) {
     const pathname = usePathname();
 
     return (
@@ -57,10 +56,8 @@ export function SidebarButton({ icon, text, onClick, path, className }) {
     );
 }
 
-export function Sidebar() {
-    const router = useRouter();
-
-    const sidebarButtonsContent = adminSidebarButtons.map((button, index) => (
+export function Sidebar({ sidebarLinks }) {
+    const sidebarButtonsContent = sidebarLinks.map((button, index) => (
         <Link
             className='flex w-full justify-center'
             key={index}
