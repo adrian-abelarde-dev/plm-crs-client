@@ -12,7 +12,7 @@ const AuthProvider = ({ children, accessType }) => {
             status === 'unauthenticated' ||
             !session?.role.includes(accessType)
         ) {
-            redirect('/');
+            redirect('/portal');
         }
     }, [status, accessType, session]);
 
