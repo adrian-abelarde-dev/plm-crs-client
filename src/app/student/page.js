@@ -1,12 +1,13 @@
-import React from "react";
-import StudentLogin from "./StudentLogin";
+import React from 'react';
+
+import StudentLogin from './student-login';
 
 const StudentLoginPage = () => {
-  return (
-    <>
-      <StudentLogin />
-    </>
-  );
+    return (
+        <>
+            <StudentLogin />
+        </>
+    );
 };
 
 export default StudentLoginPage;
