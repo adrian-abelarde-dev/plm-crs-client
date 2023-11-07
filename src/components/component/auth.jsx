@@ -12,25 +12,30 @@ const AuthProvider = ({ children, accessType, accessLevel }) => {
     // ? status can be 'loading', 'authenticated' or 'unauthenticated'
 
     useEffect(() => {
+        // ? Authenticated
         if (status === 'authenticated') {
-            if (accessLevel === 'public') {
+            // ? Redirect to portal if user is already logged in and has multiple roles
+            if (accessLevel === 'public' && session?.role.length > 1) {
                 redirect('/portal');
             }
 
+            // ? Redirect to role page if user is already logged in and has only one role
+            if (session?.role.length === 1 && accessLevel === 'public') {
+                redirect(`/${session?.role[0]}`);
+            }
+
+            // ? Redirect to portal if user accessing a route that is not allowed for their role
             if (
                 accessLevel === 'private' &&
-                !session?.role.includes(accessType)
+                !session?.role.includes(accessType) &&
+                !pathname.includes('portal')
             ) {
-                if (!pathname.includes('portal')) {
-                    redirect('/portal');
-                }
+                redirect('/portal');
             }
-        }
 
-        if (status === 'unauthenticated') {
-            if (accessLevel === 'private') {
-                redirect('/login');
-            }
+            // ? Unauthenticated
+        } else if (status === 'unauthenticated' && accessLevel === 'private') {
+            redirect('/login');
         }
     }, [status, accessLevel, accessType, pathname, session?.role]);
 
