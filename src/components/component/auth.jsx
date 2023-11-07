@@ -10,17 +10,21 @@ const AuthProvider = ({ children, accessType, accessLevel }) => {
 
     const { data: session, status } = useSession();
     // ? status can be 'loading', 'authenticated' or 'unauthenticated'
-    console.log(pathname.includes('/login'));
+
     useEffect(() => {
+        // ? Authenticated
         if (status === 'authenticated') {
+            // ? Redirect to portal if user is already logged in and has multiple roles
             if (accessLevel === 'public' && session?.role.length > 1) {
                 redirect('/portal');
             }
 
+            // ? Redirect to role page if user is already logged in and has only one role
             if (session?.role.length === 1 && accessLevel === 'public') {
                 redirect(`/${session?.role[0]}`);
             }
 
+            // ? Redirect to portal if user accessing a route that is not allowed for their role
             if (
                 accessLevel === 'private' &&
                 !session?.role.includes(accessType) &&
@@ -28,6 +32,8 @@ const AuthProvider = ({ children, accessType, accessLevel }) => {
             ) {
                 redirect('/portal');
             }
+
+            // ? Unauthenticated
         } else if (status === 'unauthenticated' && accessLevel === 'private') {
             redirect('/login');
         }
