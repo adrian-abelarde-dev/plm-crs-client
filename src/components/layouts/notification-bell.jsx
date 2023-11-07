@@ -1,8 +1,8 @@
-import React from "react";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 import { AlertCircle, Bell } from "lucide-react";
 import { Label } from "../ui/label";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { fakeNotification } from "@/lib/constants/fake-notification-data";
 
 const NotificationBell = () => {
   return (
@@ -16,26 +16,14 @@ const NotificationBell = () => {
         </Label>
 
         {/* Notification List, display dynamically later */}
-        <NotificationMessage
-          type="SYSTEM MESSAGE"
-          message="You have successfully enlisted your subjects."
-          timePosted={"09/18/2023 11:01 AM"}
-        />
-        <NotificationMessage
-          type="SYSTEM MESSAGE"
-          message="You have successfully enlisted your subjects."
-          timePosted={"09/18/2023 11:01 AM"}
-        />
-        <NotificationMessage
-          type="SYSTEM MESSAGE"
-          message="You have successfully enlisted your subjects."
-          timePosted={"09/18/2023 11:01 AM"}
-        />
-        <NotificationMessage
-          type="SYSTEM MESSAGE"
-          message="You have successfully enlisted your subjects."
-          timePosted={"09/18/2023 11:01 AM"}
-        />
+        {fakeNotification.map((notification) => (
+          <NotificationMessage
+            key={notification.id}
+            type={notification.type}
+            message={notification.message}
+            timePosted={notification.timePosted}
+          />
+        ))}
       </PopoverContent>
     </Popover>
   );
