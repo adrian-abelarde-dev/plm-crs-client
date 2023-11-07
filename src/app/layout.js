@@ -1,6 +1,3 @@
-import { ColorSchemeScript } from '@mantine/core';
-// ! Mantine Imports
-import '@mantine/core/styles.css';
 import { Inter } from 'next/font/google';
 
 import Providers from '@/components/component/providers';
@@ -16,9 +13,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang='en'>
-            <head>
-                <ColorSchemeScript />
-            </head>
             <body className={inter.className}>
                 <Providers>{children}</Providers>
             </body>
