@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Bell } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -9,6 +8,8 @@ import React from 'react';
 
 import PLMLogo from '../../assets/plm-logo.png';
 import { linksStudents } from '../../lib/constants/links-data';
+
+import NotificationBell from "./notification-bell";
 
 const StudentNavbar = () => {
     const currentPage = usePathname();
@@ -46,13 +47,13 @@ const StudentNavbar = () => {
                     })}
                 </div>
 
-                {/* Create popup for bell */}
-                <div className='pr-[2.25rem]'>
-                    <Bell />
-                </div>
-            </div>
-        </>
-    );
+        {/* Create popup for bell */}
+        <div className="pr-[2.25rem]">
+          <NotificationBell />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default StudentNavbar;
