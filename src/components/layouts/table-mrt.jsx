@@ -14,10 +14,8 @@ import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
 // * searchPlaceholder -> string, defines the placeholder text for the search input
-// * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
-// * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
+// * isCheckBoxVisible -> boolean, defines whether the checkbox is visible or not --> default is false
 // * data -> array, defines the data for the table
-
 // * template -> array, defines the template for the table. requires the following format:
 // ? [{
 // ?     accessorKey: 'string', --> the key for the data
@@ -37,8 +35,10 @@ import { Label } from '../ui/label';
 // ?     );
 // ? },
 
-// * to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
+// * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
+// * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
 
+// ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
 
 const TableMRT = ({
@@ -46,6 +46,7 @@ const TableMRT = ({
     searchPlaceholder,
     data,
     template,
+    isCheckBoxVisible,
 
     // JSX Props
     RightButtons,
@@ -63,7 +64,7 @@ const TableMRT = ({
         enableGrouping: true,
         enablePinning: true,
         enableRowActions: RowActions ? true : false,
-        enableRowSelection: true,
+        enableRowSelection: isCheckBoxVisible ? true : false,
         initialState: { showColumnFilters: true, showGlobalFilter: true },
         paginationDisplayMode: 'pages',
         positionToolbarAlertBanner: 'bottom',
@@ -78,7 +79,16 @@ const TableMRT = ({
         selectAllMode: 'page',
         positionActionsColumn: 'last',
 
-        renderRowActionMenuItems: () => RowActions,
+        renderRowActionMenuItems: () => {
+            return (
+                <div className='flex flex-col w-[14.75rem]'>
+                    <Label className='my-[0.62rem] ml-4 font-bold'>
+                        Actions
+                    </Label>
+                    {RowActions}
+                </div>
+            );
+        },
         renderTopToolbar: ({ table }) => {
             return (
                 <Flex p='md' justify='space-between'>
