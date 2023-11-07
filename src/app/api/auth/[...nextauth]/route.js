@@ -10,7 +10,7 @@ const handler = NextAuth({
             clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
             tenantId: process.env.AZURE_AD_TENANT_ID,
             authorization: {
-                params: { scope: 'openid profile user.Read email' },
+                params: { scope: 'openid profile user.Read email api://3dc5006b-3477-4193-ae21-14aa73862216/access_as_user' },
             },
         }),
     ],
