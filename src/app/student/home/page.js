@@ -9,7 +9,7 @@ import React from 'react';
 const StudentHomePage = () => {
     return (
         <div>
-            <Shell HeaderNavbar={<StudentNavbar />} />
+            <Shell HeaderNavbar={<StudentNavbar />} accessType={"student"} />
             {/* remove this on the final layout of student home */}
 
             <button

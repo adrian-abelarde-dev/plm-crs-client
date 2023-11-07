@@ -27,7 +27,15 @@ const handler = NextAuth({
             session.idToken = token.idToken;
 
             // add api call that will lookup if the user matches the access that it needs
-            session.role = 'faculty';
+            session.role = [
+                'admin',
+                'faculty',
+                'cashier',
+                'student-grad',
+                'college-grad',
+                'student', // for undergrad students
+                'college', // for undergrad colleges
+            ];
 
             return session;
         },
