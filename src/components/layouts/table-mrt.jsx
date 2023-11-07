@@ -1,6 +1,7 @@
 'use client';
 
 import { Flex, Menu } from '@mantine/core';
+import { Loader2 } from 'lucide-react';
 import {
     MRT_GlobalFilterTextInput,
     MRT_ToggleFiltersButton,
@@ -8,8 +9,9 @@ import {
     MantineReactTable,
     useMantineReactTable,
 } from 'mantine-react-table';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
+import Loader from '../component/loader';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -54,6 +56,7 @@ const TableMRT = ({
     RowActions,
 }) => {
     const columns = useMemo(() => template, [template]);
+    const [fade, setFade] = useState(false);
 
     const table = useMantineReactTable({
         columns,
@@ -107,11 +110,21 @@ const TableMRT = ({
         },
     });
 
+    useEffect(() => {
+        setFade(true);
+    }, [fade]);
+
+    if (!fade) {
+        return <Loader />;
+    }
+
     return (
         <div className='m-4'>
             <Label className='font-[500] text-4xl'>{title}</Label>
             <div className='mt-[2.12rem]'>
-                <MantineReactTable table={table} />
+                <div className='transition-all duration-1000'>
+                    <MantineReactTable table={table} />
+                </div>
             </div>
         </div>
     );

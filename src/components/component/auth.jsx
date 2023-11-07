@@ -4,6 +4,8 @@ import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
 
+import Loader from './loader';
+
 const AuthProvider = ({ children, accessType }) => {
     const { data: session, status } = useSession();
     // ? status can be 'loading', 'authenticated' or 'unauthenticated'
@@ -20,6 +22,10 @@ const AuthProvider = ({ children, accessType }) => {
             redirect('/portal');
         }
     }, [status, accessType, session]);
+
+    if (status === 'loading') {
+        return <Loader />;
+    }
 
     if (status === 'authenticated' && session?.role.includes(accessType)) {
         return children;
