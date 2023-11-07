@@ -6,17 +6,17 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function PrivateRouteRootLayout({ children }) {
+export default function PrivateRouteRootLayoutStudent({ children }) {
     return (
         <html lang='en'>
             <body className={inter.className}>
                 {/* AuthProvider added for private routes */}
-                <AuthProvider accessType='student'>
-                    <Providers>
+                <Providers>
+                    <AuthProvider accessType='student' accessLevel="private">
                         <StudentNavbar linksStudents={linksStudents} />
                         {children}
-                    </Providers>
-                </AuthProvider>
+                    </AuthProvider>
+                </Providers>
             </body>
         </html>
     );
