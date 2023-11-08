@@ -77,7 +77,7 @@ const StudentNavbar = ({ linksStudents }) => {
         </div>
 
         {/* Create popup for bell */}
-        <div className='pr-[2.25rem]'>
+        <div className='pr-[2.25rem] z-50'>
           <NotificationBell />
         </div>
       </div>
