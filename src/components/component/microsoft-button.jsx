@@ -4,11 +4,21 @@
  */
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Noto_Sans } from 'next/font/google';
+
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+});
 
 export function MicrosoftButton({ microsoftSignIn, className }) {
   return (
     <Button
-      className={cn(`bg-[#2f2f2f] text-white`, className)}
+      className={cn(
+        `bg-[#2f2f2f] text-white rounded-none hover:bg-transparent px-[12px] font-normal`,
+        className,
+        notoSans.className,
+      )}
       variant='outline'
       onClick={microsoftSignIn}
     >

@@ -19,7 +19,7 @@ import Link from 'next/link';
 const Portal = () => {
   const { data: session, status } = useSession();
 
-  if (status === 'loading') {
+  if (status === 'loading' && !session) {
     return <Loader />;
   }
 
