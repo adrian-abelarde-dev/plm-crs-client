@@ -38,6 +38,7 @@ import {
   School,
   Wallet,
 } from 'lucide-react';
+import Link from 'next/link';
 
 const GradStudentHome = () => {
   const program = '(MIT) Master of Information Technology';
@@ -98,7 +99,13 @@ const GradStudentHome = () => {
               <Printer className='h-4 w-4 mr-2' /> Print SER
             </Button>
             <Button className='bg-[#5458AE] hover:bg-[#2e3281] md:max-xl:mt-4'>
-              <IconBrandTeams className='h-4 w-4 mr-2' /> Open Teams
+              <IconBrandTeams className='h-4 w-4 mr-2' />
+              <Link
+                href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                target='_blank'
+              >
+                Open Teams
+              </Link>
             </Button>
           </CardFooter>
         </Card>
@@ -160,12 +167,14 @@ const GradStudentHome = () => {
             </Button>
 
             <div className='max-md:flex max-md:flex-col'>
-              <Button className='bg-white border text-[#0F172A] mr-[0.62rem]  hover:bg-yellow-500 max-md:mb-3'>
-                <History className='h-4 w-4 mr-2' /> Payment History
+              <Button className='bg-white border text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500 max-md:mb-3'>
+                <History className='h-4 w-4 mr-2' />
+                <Link href='#payment-history'>Payment History</Link>
               </Button>
 
               <Button className='bg-white border text-[#0F172A] hover:bg-yellow-500 max-md:mb-3'>
-                <History className='h-4 w-4 mr-2' /> Assessment History
+                <History className='h-4 w-4 mr-2' />
+                <Link href='#assessment-history'>Assessment History</Link>
               </Button>
             </div>
           </div>
@@ -186,7 +195,7 @@ const GradStudentHome = () => {
       </div>
 
       {/* Payment History */}
-      <div className='mt-10'>
+      <div className='mt-10' id='payment-history'>
         <TableMRT
           template={gradPaymentHistoryTemplate}
           data={fakeGradPaymentHistories}
@@ -200,7 +209,7 @@ const GradStudentHome = () => {
       </div>
 
       {/* Assessment History */}
-      <div className='mt-10 mb-[6.35rem]'>
+      <div className='mt-10 mb-[6.35rem]' id='assessment-history'>
         <TableMRT
           template={gradAssessmentHistoryTemplate}
           data={fakeGradAssessmentHistories}
