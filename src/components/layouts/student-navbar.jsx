@@ -9,18 +9,20 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import { signOut } from 'next-auth/react';
+import { ChevronDown } from 'lucide-react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, usePathname } from 'next/navigation';
 import React from 'react';
 
 import PLMLogo from '../../assets/plm-logo.png';
-import { Button } from '../ui/button';
 import NotificationBell from './notification-bell';
 
 const StudentNavbar = ({ linksStudents }) => {
   const currentPage = usePathname();
+  // session
+  const { data: session, status } = useSession();
 
   return (
     <>
@@ -39,12 +41,13 @@ const StudentNavbar = ({ linksStudents }) => {
                 <DropdownMenu key={index}>
                   <DropdownMenuTrigger
                     className={cn(
-                      'mx-2 rounded-full px-5 py-2 text-black outline outline-1 outline-transparent transition-all duration-200 ease-in-out hover:outline-zinc-200',
+                      'mx-2 rounded-full px-5 py-2 text-black outline outline-1 outline-transparent transition-all duration-200 ease-in-out hover:outline-zinc-200 flex flex-row justify-between',
                       currentPage.includes(link.path) &&
                         'bg-yellow-400 font-bold hover:bg-yellow-500 hover:outline-transparent',
                     )}
                   >
                     {link.label}
+                    <ChevronDown className='h-4 w-4 text-zinc-600 mt-1 ml-2' />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     {link.subLinks.map((subLink, index) => {
@@ -108,6 +111,7 @@ const SubLinksContent = ({ subLink, key }) => {
     );
   }
 
+  // return normal sublink with path, in case sublinks has other links
   return (
     <DropdownMenuItem key={key}>
       <Link href={subLink.path}>{subLink.label}</Link>
