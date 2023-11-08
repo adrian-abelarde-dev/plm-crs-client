@@ -1,8 +1,5 @@
 const EmailPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default EmailPage;

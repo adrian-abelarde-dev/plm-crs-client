@@ -3,11 +3,11 @@
 import { Flex, Menu } from '@mantine/core';
 import { Loader2 } from 'lucide-react';
 import {
-    MRT_GlobalFilterTextInput,
-    MRT_ToggleFiltersButton,
-    MRT_ToggleFullScreenButton,
-    MantineReactTable,
-    useMantineReactTable,
+  MRT_GlobalFilterTextInput,
+  MRT_ToggleFiltersButton,
+  MRT_ToggleFullScreenButton,
+  MantineReactTable,
+  useMantineReactTable,
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -44,90 +44,88 @@ import { Label } from '../ui/label';
 // TODO: Handle checkbox selection
 
 const TableMRT = ({
-    title,
-    searchPlaceholder,
-    data,
-    template,
-    isCheckBoxVisible,
+  title,
+  searchPlaceholder,
+  data,
+  template,
+  isCheckBoxVisible,
 
-    // JSX Props
-    RightButtons,
-    LeftButtons,
-    RowActions,
+  // JSX Props
+  RightButtons,
+  LeftButtons,
+  RowActions,
 }) => {
-    const columns = useMemo(() => template, [template]);
-    const [fade, setFade] = useState(false);
+  const columns = useMemo(() => template, [template]);
+  const [fade, setFade] = useState(false);
 
-    const table = useMantineReactTable({
-        columns,
-        data: data,
-        enableColumnFilterModes: true,
-        enableColumnOrdering: true,
-        enableFacetedValues: true,
-        enableGrouping: true,
-        enablePinning: true,
-        enableRowActions: RowActions ? true : false,
-        enableRowSelection: isCheckBoxVisible ? true : false,
-        initialState: { showColumnFilters: true, showGlobalFilter: true },
-        paginationDisplayMode: 'pages',
-        positionToolbarAlertBanner: 'bottom',
-        mantinePaginationProps: {
-            radius: 'xl',
-            size: 'lg',
-            color: 'yellow',
-        },
-        mantineSearchTextInputProps: {
-            placeholder: searchPlaceholder,
-        },
-        selectAllMode: 'page',
-        positionActionsColumn: 'last',
+  const table = useMantineReactTable({
+    columns,
+    data: data,
+    enableColumnFilterModes: true,
+    enableColumnOrdering: true,
+    enableFacetedValues: true,
+    enableGrouping: true,
+    enablePinning: true,
+    enableRowActions: RowActions ? true : false,
+    enableRowSelection: isCheckBoxVisible ? true : false,
+    initialState: { showColumnFilters: true, showGlobalFilter: true },
+    paginationDisplayMode: 'pages',
+    positionToolbarAlertBanner: 'bottom',
+    mantinePaginationProps: {
+      radius: 'xl',
+      size: 'lg',
+      color: 'yellow',
+    },
+    mantineSearchTextInputProps: {
+      placeholder: searchPlaceholder,
+    },
+    selectAllMode: 'page',
+    positionActionsColumn: 'last',
 
-        renderRowActionMenuItems: () => {
-            return (
-                <div className='flex flex-col w-[14.75rem]'>
-                    <Label className='my-[0.62rem] ml-4 font-bold'>
-                        Actions
-                    </Label>
-                    {RowActions}
-                </div>
-            );
-        },
-        renderTopToolbar: ({ table }) => {
-            return (
-                <Flex p='md' justify='space-between'>
-                    <Flex gap='xs'>
-                        {/* import MRT sub-components */}
-                        <MRT_ToggleFiltersButton table={table} />
-                        <MRT_GlobalFilterTextInput table={table} />
-                        {LeftButtons}
-                    </Flex>
-                    <Flex sx={{ gap: '8px' }}>
-                        {RightButtons}
-                        <MRT_ToggleFullScreenButton table={table} />
-                    </Flex>
-                </Flex>
-            );
-        },
-    });
-
-    useEffect(() => {
-        setFade(true);
-    }, [fade]);
-
-    if (!fade) {
-        return <Loader />;
-    }
-
-    return (
-        <div className='m-4'>
-            <Label className='font-[500] text-4xl'>{title}</Label>
-            <div className='mt-[2.12rem]'>
-                <div className='transition-all duration-1000'>
-                    <MantineReactTable table={table} />
-                </div>
-            </div>
+    renderRowActionMenuItems: () => {
+      return (
+        <div className='flex flex-col w-[14.75rem]'>
+          <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
+          {RowActions}
         </div>
-    );
+      );
+    },
+    renderTopToolbar: ({ table }) => {
+      return (
+        <Flex p='md' justify='space-between'>
+          <Flex gap='xs'>
+            {/* import MRT sub-components */}
+            <MRT_ToggleFiltersButton table={table} />
+            <MRT_GlobalFilterTextInput table={table} />
+            {LeftButtons}
+          </Flex>
+          <Flex sx={{ gap: '8px' }}>
+            {RightButtons}
+            <MRT_ToggleFullScreenButton table={table} />
+          </Flex>
+        </Flex>
+      );
+    },
+  });
+
+  useEffect(() => {
+    setFade(true);
+  }, [fade]);
+
+  if (!fade) {
+    return <Loader />;
+  }
+
+  return (
+    <div className='m-4'>
+      <Label className='font-[500] text-4xl'>{title}</Label>
+      <div className='mt-[2.12rem]'>
+        <div className='transition-all duration-1000'>
+          <MantineReactTable table={table} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default TableMRT;

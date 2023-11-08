@@ -1,8 +1,5 @@
 const UsersPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default UsersPage;
