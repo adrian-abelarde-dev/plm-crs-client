@@ -90,8 +90,6 @@ export const SessionLinks = () => {
   const { data: session, status } = useSession();
   const currentPage = usePathname();
 
-  console.log(session.role.length);
-
   if (status === 'authenticated') {
     // minus 1 since you are already logged in as one role
     if (session.role.length - 1 <= 2) {
@@ -99,9 +97,11 @@ export const SessionLinks = () => {
         <>
           {session?.role.map((role, index) => {
             if (!currentPage.includes(role)) {
+              // check if path is not the same as access role, to remove role on display
               return (
                 <DropdownMenuItem key={index}>
                   <Link href={role}>
+                    {/* Displays 'Login as {role}' */}
                     Login as{' '}
                     {role
                       .replace('-', ' ')
@@ -116,6 +116,7 @@ export const SessionLinks = () => {
         </>
       );
     } else {
+      // displays portal if user has more than 3 roles
       return (
         <DropdownMenuItem>
           <Link href={'/portal'}>Portal</Link>
