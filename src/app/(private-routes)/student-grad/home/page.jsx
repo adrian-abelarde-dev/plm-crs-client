@@ -21,7 +21,9 @@ import {
 } from '@/components/ui/table';
 import {
   fakeGradClasses,
+  fakeGradPaymentHistories,
   gradClassesTemplate,
+  gradPaymentHistoryTemplate,
 } from '@/lib/constants/fake-table-data';
 import { IconBrandTeams } from '@tabler/icons-react';
 import {
@@ -184,8 +186,8 @@ const GradStudentHome = () => {
       {/* Payment History */}
       <div className='mt-10'>
         <TableMRT
-          template={gradClassesTemplate}
-          data={fakeGradClasses}
+          template={gradPaymentHistoryTemplate}
+          data={fakeGradPaymentHistories}
           title={'Payment History'}
           searchPlaceholder={'Search payment history'}
           RightButtons={<></>}

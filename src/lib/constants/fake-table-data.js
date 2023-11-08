@@ -104,7 +104,100 @@ export const fakeGradClasses = [
   },
 ];
 
+export const fakeGradPaymentHistories = [
+  {
+    paidInstallment: '1st Payment',
+    modeOfPayment: 'GCash',
+    yearTerm: '20231',
+    datePaid: '09/19/2023',
+    paidAmount: '₱ 39,999.00',
+    excess: '₱ 0.00',
+    status: 'Paid',
+  },
+  {
+    paidInstallment: '2nd Payment',
+    modeOfPayment: 'Maya',
+    yearTerm: '20231',
+    datePaid: '09/19/2023',
+    paidAmount: '₱ 39,999.00',
+    excess: '₱ 0.00',
+    status: 'Paid',
+  },
+  {
+    paidInstallment: '3rd Payment',
+    modeOfPayment: 'GCash',
+    yearTerm: '20231',
+    datePaid: '09/19/2023',
+    paidAmount: '₱ 39,999.00',
+    excess: '₱ 0.00',
+    status: 'Paid',
+  },
+  {
+    paidInstallment: '4th Payment',
+    modeOfPayment: 'Maya',
+    yearTerm: '20231',
+    datePaid: '09/19/2023',
+    paidAmount: '₱ 39,999.00',
+    excess: '₱ 0.00',
+    status: 'Paid',
+  },
+  {
+    paidInstallment: '5th Payment',
+    modeOfPayment: 'GCash',
+    yearTerm: '20231',
+    datePaid: '09/19/2023',
+    paidAmount: '₱ 39,999.00',
+    excess: '₱ 0.00',
+    status: 'Paid',
+  },
+];
+
 // Templates
+
+export const gradPaymentHistoryTemplate = [
+  {
+    accessorKey: 'paidInstallment',
+    id: 'paidInstallment',
+    header: 'Paid/Installment',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'modeOfPayment',
+    id: 'modeOfPayment',
+    header: 'Mode of Payment',
+    filterVariant: 'multi-select',
+  },
+  {
+    accessorKey: 'yearTerm',
+    id: 'yearTerm',
+    header: 'Year/Term',
+    filterVariant: 'multi-select',
+  },
+  {
+    accessorKey: 'datePaid',
+    id: 'datePaid',
+    header: 'Date Paid',
+    filterVariant: 'date',
+  },
+  {
+    accessorKey: 'paidAmount',
+    id: 'paidAmount',
+    header: 'Paid Amount',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'excess',
+    id: 'excess',
+    header: 'Excess',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'status',
+    id: 'status',
+    header: 'Status',
+    filterVariant: 'select',
+  },
+];
 
 export const gradClassesTemplate = [
   {
