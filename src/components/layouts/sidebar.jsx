@@ -84,7 +84,7 @@ export function Sidebar({ sidebarLinks }) {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              className='flex justify-between items-center'
+              className='flex justify-between items-center cursor-pointer'
               onClick={() => {
                 signOut();
               }}
