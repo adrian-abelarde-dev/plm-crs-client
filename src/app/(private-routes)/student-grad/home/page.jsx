@@ -20,8 +20,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {
+  fakeGradAssessmentHistories,
   fakeGradClasses,
   fakeGradPaymentHistories,
+  gradAssessmentHistoryTemplate,
   gradClassesTemplate,
   gradPaymentHistoryTemplate,
 } from '@/lib/constants/fake-table-data';
@@ -190,6 +192,20 @@ const GradStudentHome = () => {
           data={fakeGradPaymentHistories}
           title={'Payment History'}
           searchPlaceholder={'Search payment history'}
+          RightButtons={<></>}
+          LeftButtons={<></>}
+          RowActions={<></>}
+          isRowNumbersVisible={true}
+        />
+      </div>
+
+      {/* Assessment History */}
+      <div className='mt-10'>
+        <TableMRT
+          template={gradAssessmentHistoryTemplate}
+          data={fakeGradAssessmentHistories}
+          title={'Assessment History'}
+          searchPlaceholder={'Search assessment history'}
           RightButtons={<></>}
           LeftButtons={<></>}
           RowActions={<></>}
