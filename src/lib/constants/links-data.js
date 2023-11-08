@@ -53,6 +53,7 @@ export const linksGradStudents = [
     label: 'Account',
     path: '/student-grad/account',
     subLinks: [
+      // { label: 'Portal', path: '/portal' },
       {
         label: 'Change Password',
         path: 'https://account.activedirectory.windowsazure.com/ChangePassword.aspx',
