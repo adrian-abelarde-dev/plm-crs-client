@@ -68,7 +68,7 @@ const GradStudentHome = () => {
                   Not Enrolled
                 </Badge>
                 <div className='mt-5'>
-                  <Label className='font-[500] text-xl '>
+                  <Label className='font-[600] text-xl '>
                     Kurt Jacob Urquico
                   </Label>
                 </div>
@@ -200,7 +200,7 @@ const GradStudentHome = () => {
       </div>
 
       {/* Assessment History */}
-      <div className='mt-10'>
+      <div className='mt-10 mb-[6.35rem]'>
         <TableMRT
           template={gradAssessmentHistoryTemplate}
           data={fakeGradAssessmentHistories}
