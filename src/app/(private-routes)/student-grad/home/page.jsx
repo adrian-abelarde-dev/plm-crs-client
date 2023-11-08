@@ -1,3 +1,4 @@
+import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,10 +17,12 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  fakeGradClasses,
+  gradClassesTemplate,
+} from '@/lib/constants/fake-table-data';
 import { IconBrandTeams } from '@tabler/icons-react';
 import {
   AlertTriangle,
@@ -163,6 +166,32 @@ const GradStudentHome = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Classes Table */}
+      <div className='mt-10'>
+        <TableMRT
+          template={gradClassesTemplate}
+          data={fakeGradClasses}
+          title={'Classes'}
+          searchPlaceholder={'Search class'}
+          RightButtons={<></>}
+          LeftButtons={<></>}
+          RowActions={<></>}
+        />
+      </div>
+
+      {/* Payment History */}
+      <div className='mt-10'>
+        <TableMRT
+          template={gradClassesTemplate}
+          data={fakeGradClasses}
+          title={'Payment History'}
+          searchPlaceholder={'Search payment history'}
+          RightButtons={<></>}
+          LeftButtons={<></>}
+          RowActions={<></>}
+        />
       </div>
     </div>
   );

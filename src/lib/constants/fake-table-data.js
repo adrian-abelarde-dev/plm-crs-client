@@ -71,6 +71,68 @@ export const fakeCollegeStudentsRowActions = [
   },
 ];
 
+export const fakeGradClasses = [
+  {
+    classId: 'TW-101',
+    className: 'Thesis Writing',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    room: 'Room 101',
+  },
+  {
+    classId: 'TW-101',
+    className: 'Thesis Writing',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    room: 'Room 101',
+  },
+  {
+    classId: 'TW-101',
+    className: 'Thesis Writing',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    room: 'Room 101',
+  },
+  {
+    classId: 'TW-101',
+    className: 'Thesis Writing',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    room: 'Room 101',
+  },
+  {
+    classId: 'TW-101',
+    className: 'Thesis Writing',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    room: 'Room 101',
+  },
+];
+
+// Templates
+
+export const gradClassesTemplate = [
+  {
+    accessorKey: 'classId',
+    id: 'classId',
+    header: 'Class/Section',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'className',
+    id: 'className',
+    header: 'Class Title',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'schedule',
+    id: 'schedule',
+    header: 'Schedule',
+    filterVariant: 'date',
+  },
+  {
+    accessorKey: 'room',
+    id: 'room',
+    header: 'Room',
+    filterVariant: 'fuzzy',
+  },
+];
+
 export const template = [
   {
     accessorKey: 'studentNumber',
