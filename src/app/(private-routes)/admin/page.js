@@ -1,8 +1,5 @@
 const AdminPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default AdminPage;

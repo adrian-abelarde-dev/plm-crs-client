@@ -1,24 +1,53 @@
 'use client';
 
+import { Loader2 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+import { redirect, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
-const AuthProvider = ({ children, accessType }) => {
-    const { data: session, status } = useSession();
+const AuthProvider = ({ children, accessType, accessLevel }) => {
+  const pathname = usePathname();
 
-    useEffect(() => {
-        if (
-            status === 'unauthenticated' ||
-            !session?.role.includes(accessType)
-        ) {
-            redirect('/portal');
-        }
-    }, [status, accessType, session]);
+  const { data: session, status } = useSession();
+  // ? status can be 'loading', 'authenticated' or 'unauthenticated'
 
-    if (status === 'authenticated' && session?.role.includes(accessType)) {
-        return children;
+  useEffect(() => {
+    // ? Authenticated
+    if (status === 'authenticated') {
+      // ? Redirect to portal if user is already logged in and has multiple roles
+      if (accessLevel === 'public' && session?.role.length > 1) {
+        redirect('/portal');
+      }
+
+      // ? Redirect to role page if user is already logged in and has only one role
+      if (session?.role.length === 1 && accessLevel === 'public') {
+        redirect(`/${session?.role[0]}`);
+      }
+
+      // ? Redirect to portal if user accessing a route that is not allowed for their role
+      if (
+        accessLevel === 'private' &&
+        !session?.role.includes(accessType) &&
+        !pathname.includes('portal')
+      ) {
+        redirect('/portal');
+      }
+
+      // ? Unauthenticated
+    } else if (status === 'unauthenticated' && accessLevel === 'private') {
+      redirect('/login');
     }
+  }, [status, accessLevel, accessType, pathname, session?.role]);
+
+  if (status === 'loading') {
+    return (
+      <main className='w-full h-screen flex justify-center items-center'>
+        <Loader2 className='w-10 h-10 animate-spin' />
+      </main>
+    );
+  }
+
+  return children;
 };
 
 export default AuthProvider;

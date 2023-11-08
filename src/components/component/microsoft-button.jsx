@@ -3,27 +3,28 @@
  * @see https://v0.dev/t/ipKHqB6zrtg
  */
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
-export function MicrosoftButton({ microsoftSignIn }) {
-    return (
-        <Button
-            className='bg-[#2f2f2f] text-white'
-            variant='outline'
-            onClick={microsoftSignIn}
-        >
-            <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='21'
-                height='21'
-                viewBox='0 0 21 21'
-            >
-                <title>MS-SymbolLockup</title>
-                <rect x='1' y='1' width='9' height='9' fill='#f25022' />
-                <rect x='1' y='11' width='9' height='9' fill='#00a4ef' />
-                <rect x='11' y='1' width='9' height='9' fill='#7fba00' />
-                <rect x='11' y='11' width='9' height='9' fill='#ffb900' />
-            </svg>
-            <span style={{ marginLeft: '12px' }}>Sign in with Microsoft</span>
-        </Button>
-    );
+export function MicrosoftButton({ microsoftSignIn, className }) {
+  return (
+    <Button
+      className={cn(`bg-[#2f2f2f] text-white`, className)}
+      variant='outline'
+      onClick={microsoftSignIn}
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='21'
+        height='21'
+        viewBox='0 0 21 21'
+      >
+        <title>MS-SymbolLockup</title>
+        <rect x='1' y='1' width='9' height='9' fill='#f25022' />
+        <rect x='1' y='11' width='9' height='9' fill='#00a4ef' />
+        <rect x='11' y='1' width='9' height='9' fill='#7fba00' />
+        <rect x='11' y='11' width='9' height='9' fill='#ffb900' />
+      </svg>
+      <span style={{ marginLeft: '12px' }}>Sign in with Microsoft</span>
+    </Button>
+  );
 }

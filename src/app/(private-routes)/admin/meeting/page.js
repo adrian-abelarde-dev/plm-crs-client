@@ -1,8 +1,5 @@
 const MeetingPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default MeetingPage;

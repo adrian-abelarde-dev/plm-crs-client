@@ -1,8 +1,5 @@
 const BlocksPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default BlocksPage;

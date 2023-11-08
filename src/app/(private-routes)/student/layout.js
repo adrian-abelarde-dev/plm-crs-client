@@ -6,18 +6,24 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function PrivateRouteRootLayout({ children }) {
-    return (
-        <html lang='en'>
-            <body className={inter.className}>
-                {/* AuthProvider added for private routes */}
-                <AuthProvider accessType='student'>
-                    <Providers>
-                        <StudentNavbar linksStudents={linksStudents} />
-                        {children}
-                    </Providers>
-                </AuthProvider>
-            </body>
-        </html>
-    );
+export const metadata = {
+  title: 'PLM - CRS | Student',
+  description:
+    'PLM - CRS is a computerized registration system for the Pamantasan ng Lungsod ng Maynila. Developed by batch 2023 - 2024 BSCS 4 - 1',
+};
+
+export default function PrivateRouteRootLayoutStudent({ children }) {
+  return (
+    <html lang='en'>
+      <body className={inter.className}>
+        {/* AuthProvider added for private routes */}
+        <Providers>
+          <AuthProvider accessType='student' accessLevel='private'>
+            <StudentNavbar linksStudents={linksStudents} />
+            {children}
+          </AuthProvider>
+        </Providers>
+      </body>
+    </html>
+  );
 }

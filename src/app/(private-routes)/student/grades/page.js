@@ -1,6 +1,5 @@
-
 const StudentGradesPage = () => {
-    return <div></div>;
+  return <div></div>;
 };
 
 export default StudentGradesPage;
