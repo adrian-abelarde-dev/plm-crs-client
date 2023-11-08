@@ -10,14 +10,26 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { IconBrandTeams } from '@tabler/icons-react';
 import {
   AlertTriangle,
   Briefcase,
   CalendarCheck,
+  History,
   Info,
   Printer,
   School,
+  Wallet,
 } from 'lucide-react';
 
 const GradStudentHome = () => {
@@ -37,7 +49,8 @@ const GradStudentHome = () => {
 
       {/* Student Dashboard Content */}
       <div className='mt-10 flex'>
-        <Card className='w-[24.3125]'>
+        {/* Student Info */}
+        <Card className='w-[24.312rem]'>
           <CardHeader>
             <CardTitle>
               <div className=''>
@@ -83,11 +96,72 @@ const GradStudentHome = () => {
           </CardFooter>
         </Card>
 
-        <div className='ml-4 lg:mt-0 w-2/3'>
+        {/* Payment */}
+        <div className='ml-4 lg:mt-0 w-[49.685rem] flex flex-col justify-between'>
+          {/* Alert */}
           <Alert className='bg-[#fefce8]'>
             <AlertTriangle className='h-4 w-4 -mt-1 text-yellow-700' />
             <AlertTitle className='text-yellow-700'>{alertMessage}</AlertTitle>
           </Alert>
+
+          {/* Paayment Table */}
+          <Card>
+            <CardHeader>
+              <TableCaption className='font-bold'>
+                Payment for Academic Year 2023 - 2024 1st Trimester
+              </TableCaption>
+            </CardHeader>
+
+            <Separator className='mb-4' />
+
+            <CardContent>
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>Pay Type/Term</TableCell>
+                    <TableCell className='font-bold'>
+                      Five Partial Payment
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell>
+                      Total Amount{' '}
+                      <span className='text-zinc-500'>(Current Term)</span>
+                    </TableCell>
+                    <TableCell className='font-bold'>₱ 6,666.00</TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell>Amount to be paid for 2nd payment</TableCell>
+                    <TableCell className='font-bold'>₱ 6,666.00</TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell>Overall Balance</TableCell>
+                    <TableCell className='font-bold'>₱ 9,999.00</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          {/* Button Group */}
+          <div className='flex justify-between'>
+            <Button className='bg-yellow-400 text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500 '>
+              <Wallet className='h-4 w-4 mr-2' /> Pay Now
+            </Button>
+
+            <div>
+              <Button className='bg-white border text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500 '>
+                <History className='h-4 w-4 mr-2' /> Payment History
+              </Button>
+
+              <Button className='bg-white border text-[#0F172A] hover:bg-yellow-500 '>
+                <History className='h-4 w-4 mr-2' /> Assessment History
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
