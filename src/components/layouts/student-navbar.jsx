@@ -48,9 +48,8 @@ const StudentNavbar = ({ linksStudents }) => {
                     <ChevronDown className='h-4 w-4 text-zinc-600 mt-1 ml-2' />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className='w-56'>
-                    {/* Experimental */}
                     <SessionLinks />
-
+                    <DropdownMenuSeparator />
                     {link.subLinks.map((subLink, index) => {
                       return <SubLinksContent subLink={subLink} key={index} />;
                     })}
@@ -131,7 +130,7 @@ export const SessionLinks = () => {
 const SubLinksContent = ({ subLink }) => {
   if (subLink.label === 'Sign out') {
     return (
-      <DropdownMenuItem className='cursor-pointer flex justify-between items-center flex-row'>
+      <DropdownMenuItem className='cursor-pointer flex justify-between items-center flex-row text-red-500'>
         <a
           onClick={() => {
             signOut();
@@ -140,7 +139,7 @@ const SubLinksContent = ({ subLink }) => {
         >
           {subLink.label}
         </a>
-        <LogOut className='h-4 w-4 text-zinc-400' />
+        <LogOut className='h-4 w-4 text-red-500' />
       </DropdownMenuItem>
     );
   }
