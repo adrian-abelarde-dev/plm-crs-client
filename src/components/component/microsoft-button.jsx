@@ -3,11 +3,12 @@
  * @see https://v0.dev/t/ipKHqB6zrtg
  */
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
-export function MicrosoftButton({ microsoftSignIn }) {
+export function MicrosoftButton({ microsoftSignIn, className }) {
   return (
     <Button
-      className='bg-[#2f2f2f] text-white'
+      className={cn(`bg-[#2f2f2f] text-white`, className)}
       variant='outline'
       onClick={microsoftSignIn}
     >
