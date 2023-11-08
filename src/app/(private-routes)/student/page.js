@@ -1,5 +1,5 @@
-const StudentLoginPage = () => {
-  return <>Test</>;
+const StudentPage = () => {
+  return <></>;
 };
 
-export default StudentLoginPage;
+export default StudentPage;

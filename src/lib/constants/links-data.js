@@ -32,6 +32,36 @@ export const linksStudents = [
   },
 ];
 
+export const linksGradStudents = [
+  {
+    label: 'Home',
+    path: '/student-grad/home',
+  },
+  {
+    label: 'Enrollment',
+    path: '/student-grad/enrollment',
+  },
+  // {
+  //   label: 'Information',
+  //   path: '/student/information',
+  // },
+  {
+    label: 'Grades',
+    path: '/student-grad/grades',
+  },
+  {
+    label: 'Account',
+    path: '/student-grad/account',
+    subLinks: [
+      {
+        label: 'Change Password',
+        path: 'https://account.activedirectory.windowsazure.com/ChangePassword.aspx',
+      },
+      { label: 'Sign out', path: '#' },
+    ],
+  },
+];
+
 export const adminSidebarLinks = [
   {
     icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
