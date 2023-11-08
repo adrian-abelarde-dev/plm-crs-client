@@ -39,15 +39,18 @@ export default function Home() {
             </section>
           </CardHeader>
           <CardContent>
-            <h1 className='text-sm text-center mb-2 text-zinc-400'>
-              Log in using Single Sign-On (SSO)
-            </h1>
-            <MicrosoftButton
-              className='w-full'
-              microsoftSignIn={() => {
-                signIn();
-              }}
-            />
+            <section className='w-full flex justify-center items-center'>
+              <MicrosoftButton
+                microsoftSignIn={() => {
+                  signIn();
+                }}
+              />
+            </section>
+            <section className='w-full flex justify-center items-center'>
+              <h1 className='text-sm text-center mt-2 text-zinc-400 w-52'>
+                Single Sign-On (SSO)
+              </h1>
+            </section>
           </CardContent>
           <CardFooter className='w-full flex justify-center'>
             <p className='text-sm text-center w-80 text-zinc-400'>
