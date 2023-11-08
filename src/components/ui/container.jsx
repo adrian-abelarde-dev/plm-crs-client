@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 export const Container = forwardRef(({ children, className, ...rest }, ref) => {
   return (
     <div
-      className={cn('mx-auto w-full max-w-6xl px-2', className)}
+      className={cn('mx-auto w-full max-w-6xl px-10', className)}
       ref={ref}
       {...rest}
     >
