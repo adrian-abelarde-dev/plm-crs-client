@@ -191,6 +191,7 @@ const GradStudentHome = () => {
           RightButtons={<></>}
           LeftButtons={<></>}
           RowActions={<></>}
+          isRowNumbersVisible={true}
         />
       </div>
     </div>

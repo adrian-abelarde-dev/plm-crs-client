@@ -48,8 +48,8 @@ const TableMRT = ({
   searchPlaceholder,
   data,
   template,
-  isCheckBoxVisible = false,
-  isRowNumbersVisible = false,
+  isCheckBoxVisible,
+  isRowNumbersVisible,
 
   // JSX Props
   RightButtons,
