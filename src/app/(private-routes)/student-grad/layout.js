@@ -20,7 +20,7 @@ export default function PrivateRouteRootLayoutStudent({ children }) {
         <Providers>
           <AuthProvider accessType='student-grad' accessLevel='private'>
             <StudentNavbar linksStudents={linksGradStudents} />
-            <div className='flex justify-center'>{children}</div>
+            <div className='2xl:flex 2xl:justify-center'>{children}</div>
           </AuthProvider>
         </Providers>
       </body>

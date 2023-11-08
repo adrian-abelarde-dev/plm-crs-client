@@ -48,9 +48,9 @@ const GradStudentHome = () => {
       </div>
 
       {/* Student Dashboard Content */}
-      <div className='mt-10 flex'>
+      <div className='mt-10 flex flex-col md:flex-row gap-4'>
         {/* Student Info */}
-        <Card className='w-[24.312rem]'>
+        <Card className='w-1/3 max-md:w-full'>
           <CardHeader>
             <CardTitle>
               <div className=''>
@@ -86,20 +86,20 @@ const GradStudentHome = () => {
               {schoolYear}
             </Label>
           </CardContent>
-          <CardFooter className='mt-12'>
+          <CardFooter className='mt-12 md:max-xl:block'>
             <Button className='bg-yellow-400 text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500'>
               <Printer className='h-4 w-4 mr-2' /> Print SER
             </Button>
-            <Button className='bg-[#5458AE] hover:bg-[#2e3281]'>
+            <Button className='bg-[#5458AE] hover:bg-[#2e3281] md:max-xl:mt-4'>
               <IconBrandTeams className='h-4 w-4 mr-2' /> Open Teams
             </Button>
           </CardFooter>
         </Card>
 
         {/* Payment */}
-        <div className='ml-4 lg:mt-0 w-[49.685rem] flex flex-col justify-between'>
+        <div className='md:max-xl:ml-4 w-2/3 max-md:w-full flex flex-col justify-between max-md:mt-4'>
           {/* Alert */}
-          <Alert className='bg-[#fefce8]'>
+          <Alert className='bg-[#fefce8] max-md:mb-4'>
             <AlertTriangle className='h-4 w-4 -mt-1 text-yellow-700' />
             <AlertTitle className='text-yellow-700'>{alertMessage}</AlertTitle>
           </Alert>
@@ -147,17 +147,17 @@ const GradStudentHome = () => {
           </Card>
 
           {/* Button Group */}
-          <div className='flex justify-between'>
-            <Button className='bg-yellow-400 text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500 '>
+          <div className='flex max-md:grid max-md:grid-cols-1 max-md:grid-rows-1 max-md:mt-4 max-md:justify-items-start justify-between'>
+            <Button className='bg-yellow-400 text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500 max-md:mb-3 '>
               <Wallet className='h-4 w-4 mr-2' /> Pay Now
             </Button>
 
-            <div>
-              <Button className='bg-white border text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500 '>
+            <div className='max-md:flex max-md:flex-col'>
+              <Button className='bg-white border text-[#0F172A] mr-[0.62rem]  hover:bg-yellow-500 max-md:mb-3'>
                 <History className='h-4 w-4 mr-2' /> Payment History
               </Button>
 
-              <Button className='bg-white border text-[#0F172A] hover:bg-yellow-500 '>
+              <Button className='bg-white border text-[#0F172A] hover:bg-yellow-500 max-md:mb-3'>
                 <History className='h-4 w-4 mr-2' /> Assessment History
               </Button>
             </div>
