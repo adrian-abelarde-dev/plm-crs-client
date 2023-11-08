@@ -1,8 +1,5 @@
 const ActivitiesPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default ActivitiesPage;

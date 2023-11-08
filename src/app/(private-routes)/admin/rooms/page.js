@@ -1,8 +1,5 @@
 const RoomPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default RoomPage;

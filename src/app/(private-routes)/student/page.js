@@ -1,5 +1,5 @@
 const StudentLoginPage = () => {
-    return <>Test</>;
+  return <>Test</>;
 };
 
 export default StudentLoginPage;

@@ -1,8 +1,5 @@
 const CollegePage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default CollegePage;

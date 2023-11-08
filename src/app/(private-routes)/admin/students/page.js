@@ -1,8 +1,5 @@
 const StudentsPage = () => {
-    return (
-        <>
-        </>
-    );
+  return <></>;
 };
 
 export default StudentsPage;
