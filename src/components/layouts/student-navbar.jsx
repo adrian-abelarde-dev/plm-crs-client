@@ -24,7 +24,7 @@ const StudentNavbar = ({ linksStudents }) => {
 
   return (
     <>
-      <div className='flex h-16 w-screen place-items-center justify-between pt-[2.25rem] bg-white fixed top-0 z-[999] pb-9'>
+      <div className='flex h-16 w-screen place-items-center justify-between pt-12 bg-white fixed top-0 z-40 pb-9'>
         <div className='pl-[2.25rem]'>
           {/* 50px = 3.125rem */}
           <Image src={PLMLogo} width={50} height={50} alt='PLM Logo' />
@@ -47,7 +47,7 @@ const StudentNavbar = ({ linksStudents }) => {
                     {link.label}
                     <ChevronDown className='h-4 w-4 text-zinc-600 mt-1 ml-2' />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className='w-56'>
+                  <DropdownMenuContent className='w-56 z-50'>
                     <SessionLinks />
                     <DropdownMenuSeparator />
                     {link.subLinks.map((subLink, index) => {
