@@ -50,7 +50,7 @@ const GradStudentHome = () => {
   return (
     <div className='ml-9 mr-9'>
       {/* Title - Student Dashboard */}
-      <div className='mt-16'>
+      <div className='mt-32'>
         <Label className='font-[500] text-4xl '>Student Dashboard</Label>
       </div>
 
