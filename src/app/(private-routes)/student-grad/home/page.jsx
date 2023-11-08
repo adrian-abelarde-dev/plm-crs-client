@@ -1,3 +1,4 @@
+import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,12 +11,22 @@ import {
 } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { IconBrandTeams } from '@tabler/icons-react';
-import { Briefcase, CalendarCheck, Info, Printer, School } from 'lucide-react';
+import {
+  AlertTriangle,
+  Briefcase,
+  CalendarCheck,
+  Info,
+  Printer,
+  School,
+} from 'lucide-react';
 
 const GradStudentHome = () => {
   const program = '(MIT) Master of Information Technology';
   const college = 'CET - Graduate Program';
   const schoolYear = 'School Year 2023 - 2024 1st Semester';
+
+  const alertMessage =
+    'You are not yet officially enrolled for this current term. Please settle your dues.';
 
   return (
     <div className='ml-9 mr-9'>
@@ -26,7 +37,7 @@ const GradStudentHome = () => {
 
       {/* Student Dashboard Content */}
       <div className='mt-10 flex'>
-        <Card className='w-[24.3125rem]'>
+        <Card className='w-[24.3125]'>
           <CardHeader>
             <CardTitle>
               <div className=''>
@@ -72,7 +83,12 @@ const GradStudentHome = () => {
           </CardFooter>
         </Card>
 
-        <div>test2</div>
+        <div className='ml-4 lg:mt-0 w-2/3'>
+          <Alert className='bg-[#fefce8]'>
+            <AlertTriangle className='h-4 w-4 -mt-1 text-yellow-700' />
+            <AlertTitle className='text-yellow-700'>{alertMessage}</AlertTitle>
+          </Alert>
+        </div>
       </div>
     </div>
   );
