@@ -9,7 +9,7 @@ const CustomStepper = ({
   steps = [],
   initialStep = 0,
   onStepChange,
-  withButtons = false,
+  // withButtons = false, Add if needed
   children,
   ...rest
 }) => {

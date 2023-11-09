@@ -19,8 +19,15 @@ export default function PrivateRouteRootLayoutAdmin({ children }) {
         {/* AuthProvider added for private routes */}
         <Providers>
           <AuthProvider accessType='admin' accessLevel='private'>
-            <Sidebar sidebarLinks={adminSidebarLinks} />
-            {children}
+            <section className='w-full relative'>
+              {/* Sidebar is floating but fixed */}
+              <section className='fixed left-0 z-50'>
+                <Sidebar sidebarLinks={adminSidebarLinks} />
+              </section>
+
+              {/* Adds margin left based on sidebar width */}
+              <div className='flex-grow ml-[48px] md:ml-52'>{children}</div>
+            </section>
           </AuthProvider>
         </Providers>
       </body>
