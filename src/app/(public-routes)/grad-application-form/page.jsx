@@ -72,7 +72,7 @@ const GradApplicationForm = () => {
       description: (
         <>
           Hi! {form.getValues().firstName}, Your Application is under review,
-          and we've emailed you to confirm its receipt and processing
+          and we&apos;ve emailed you to confirm its receipt and processing
         </>
       ),
     });
