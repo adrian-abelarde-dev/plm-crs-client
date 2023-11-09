@@ -75,10 +75,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.mantine-Menu-dropdown,
-.mantine-Paper-root {
-  /* Put this at the top always */
-
-  z-index: 9999 !important;
-}
