@@ -1,6 +1,7 @@
 'use client';
 
 import { Flex } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ToggleFiltersButton,
@@ -10,7 +11,6 @@ import {
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
-import Loader from '../component/loader';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -45,6 +45,7 @@ import { Label } from '../ui/label';
 
 const TableMRT = ({
   title,
+  description, // Added description
   searchPlaceholder,
   data,
   template,
@@ -82,9 +83,10 @@ const TableMRT = ({
     },
     selectAllMode: 'page',
     positionActionsColumn: 'last',
-
     enableRowNumbers: isRowNumbersVisible,
-
+    state: {
+      isLoading: !fade, // Replaced spinner with built-in spinner from MRT
+    },
     renderRowActionMenuItems: () => {
       return (
         <div className='flex flex-col w-[14.75rem]'>
@@ -115,16 +117,83 @@ const TableMRT = ({
     setFade(true);
   }, [fade]);
 
-  if (!fade) {
-    return <Loader />;
-  }
-
   return (
     <div className='my-4'>
-      <Label className='font-[500] text-4xl'>{title}</Label>
+      <Label className='font-medium text-2xl'>{title}</Label>
+      <p className='text-sm text-zinc-400'>{description}</p>
       <div className='mt-[2.12rem]'>
         <div className='transition-all duration-1000'>
-          <MantineReactTable table={table} />
+          {/* Changed theme to our design colors */}
+          <MantineProvider
+            theme={{
+              primaryColor: 'yellow',
+              primaryShade: 8,
+              colors: {
+                yellow: [
+                  '#5F370E',
+                  '#975A16',
+                  '#B7791F',
+                  '#D69E2E',
+                  '#ECC94B',
+                  '#F6E05E',
+                  '#FAF089',
+                  '#FEFCBF',
+                  '#FACC15', // Primary
+                  '#EAB308',
+                ],
+                gray: [
+                  '#F9FAFB',
+                  '#F3F4F6',
+                  '#E5E7EB',
+                  '#D1D5DB',
+                  '#9CA3AF',
+                  '#6B7280',
+                  '#4B5563',
+                  '#374151',
+                  '#1F2937', // Color being used
+                  '#111827',
+                ],
+                dark: [
+                  '#111827',
+                  '#1F2937',
+                  '#374151',
+                  '#4B5563',
+                  '#6B7280',
+                  '#9CA3AF',
+                  '#D1D5DB',
+                  '#E5E7EB',
+                  '#F3F4F6',
+                  '#F9FAFB',
+                ],
+                white: [
+                  '#FFFFFF',
+                  '#E6E6E6',
+                  '#CCCCCC',
+                  '#B3B3B3',
+                  '#999999',
+                  '#808080',
+                  '#666666',
+                  '#4D4D4D',
+                  '#333333', // Color being used
+                  '#1A1A1A',
+                ],
+
+                black: [
+                  '#000000',
+                  '#262626',
+                  '#4C4C4C',
+                  '#737373',
+                  '#999999',
+                  '#C0C0C0',
+                  '#E6E6E6',
+                  '#F2F2F2',
+                  '#FFFFFF', // Color being used
+                ],
+              },
+            }}
+          >
+            <MantineReactTable table={table} />
+          </MantineProvider>
         </div>
       </div>
     </div>
