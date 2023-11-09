@@ -16,6 +16,7 @@ import {
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { ScrollArea } from '../ui/scroll-area';
 import {
   Select,
   SelectContent,
@@ -66,13 +67,15 @@ export const SelectFormField = ({
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {content.map((item) => {
-                  return (
-                    <SelectItem value={item.value} key={item.value}>
-                      {item.label}
-                    </SelectItem>
-                  );
-                })}
+                <ScrollArea className={content.length >= 10 && 'h-96'}>
+                  {content.map((item) => {
+                    return (
+                      <SelectItem value={item.value} key={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    );
+                  })}
+                </ScrollArea>
               </SelectContent>
             </Select>
             <FormDescription>{description}</FormDescription>
@@ -90,6 +93,7 @@ export const SelectFormField = ({
 // ? description -> description for the form field
 // ? fieldName -> name of the field that is connected to the 'form'
 // ? className -> optional
+// ? disabled -> optional
 export const InputFormField = ({
   form,
   title,
@@ -97,6 +101,7 @@ export const InputFormField = ({
   description, // optional
   fieldName,
   className,
+  disabled,
 }) => {
   return (
     <FormField
@@ -106,7 +111,12 @@ export const InputFormField = ({
         <FormItem>
           <FormLabel className='text-[#09090B] font-bold'>{title}</FormLabel>{' '}
           <FormControl>
-            <Input placeholder={placeholder} {...field} className={className} />
+            <Input
+              placeholder={placeholder}
+              {...field}
+              className={className}
+              disabled={disabled}
+            />
           </FormControl>
           <FormDescription>{description}</FormDescription>
           <FormMessage />

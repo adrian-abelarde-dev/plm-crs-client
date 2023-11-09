@@ -22,15 +22,44 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import philippines from 'philippines';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import PLMLogo from '../../../assets/plm-logo.png';
 
 const GradApplicationForm = () => {
+  const [provinceCity, setProvinceCity] = useState([]);
+  const [municipality, setMunicipality] = useState([]);
   const form = useForm({
     resolver: zodResolver(GradApplicationFormSchema),
     defaultValues: { ...gradApplicationFormDefaultValues },
   });
+
+  useEffect(() => {
+    setProvinceCity(() => {
+      return philippines.provinces.map((province) => {
+        return { value: province.key, label: province.name };
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (form.getValues().provinceCity && philippines.cities) {
+      const filteredCities = philippines.cities.filter(
+        (city) => city.province === form.getValues().provinceCity,
+      );
+
+      const mappedCities = filteredCities.map((city) => ({
+        value: city.name,
+        label: city.name,
+        isCity: city.city,
+      }));
+
+      setMunicipality(mappedCities);
+    }
+    // bugs on updating form values
+  }, [form.getValues().provinceCity, provinceCity]);
 
   const onSubmit = () => {
     toast({
@@ -177,7 +206,7 @@ const GradApplicationForm = () => {
           <div className='grid grid-flow-col gap-4 max-md:block'>
             <SelectFormField
               form={form}
-              content={sex} // change later
+              content={provinceCity}
               title={'Province / City'}
               placeholder={'Select'}
               fieldName='provinceCity'
@@ -185,7 +214,7 @@ const GradApplicationForm = () => {
 
             <SelectFormField
               form={form}
-              content={sex} // change later
+              content={municipality}
               title={'Municipality'}
               placeholder={'Select'}
               fieldName='municipality'
@@ -201,7 +230,7 @@ const GradApplicationForm = () => {
               disabled={form.getValues().municipality === ''}
             />
 
-            <SelectFormField
+            <InputFormField
               form={form}
               content={sex} // change later
               title={'Barangay'}
