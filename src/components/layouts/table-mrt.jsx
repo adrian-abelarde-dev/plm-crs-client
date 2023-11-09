@@ -84,9 +84,9 @@ const TableMRT = ({
     selectAllMode: 'page',
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
-    state: {
-      isLoading: !fade, // Replaced spinner with built-in spinner from MRT
-    },
+    // state: {
+    //   isLoading: !fade, // Replaced spinner with built-in spinner from MRT
+    // },
     renderRowActionMenuItems: () => {
       return (
         <div className='flex flex-col w-[14.75rem]'>
@@ -121,7 +121,7 @@ const TableMRT = ({
     <div className='my-4'>
       <Label className='font-medium text-2xl'>{title}</Label>
       <p className='text-sm text-zinc-400'>{description}</p>
-      <div className='mt-[2.12rem]'>
+      <div className='mt-4'>
         <div className='transition-all duration-1000'>
           {/* Changed theme to our design colors */}
           <MantineProvider
