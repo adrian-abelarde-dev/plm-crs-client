@@ -1,7 +1,6 @@
 'use client';
 
-import { Flex, Menu } from '@mantine/core';
-import { Loader2 } from 'lucide-react';
+import { Flex } from '@mantine/core';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ToggleFiltersButton,
@@ -17,6 +16,7 @@ import { Label } from '../ui/label';
 // * title -> string, defines the title of the table
 // * searchPlaceholder -> string, defines the placeholder text for the search input
 // * isCheckBoxVisible -> boolean, defines whether the checkbox is visible or not --> default is false
+// * isRowNumbersVisible -> boolean, defines whether the row numbers are visible or not --> default is false
 // * data -> array, defines the data for the table
 // * template -> array, defines the template for the table. requires the following format:
 // ? [{
@@ -49,6 +49,7 @@ const TableMRT = ({
   data,
   template,
   isCheckBoxVisible,
+  isRowNumbersVisible,
 
   // JSX Props
   RightButtons,
@@ -81,6 +82,8 @@ const TableMRT = ({
     },
     selectAllMode: 'page',
     positionActionsColumn: 'last',
+
+    enableRowNumbers: isRowNumbersVisible,
 
     renderRowActionMenuItems: () => {
       return (
@@ -117,7 +120,7 @@ const TableMRT = ({
   }
 
   return (
-    <div className='m-4'>
+    <div className='my-4'>
       <Label className='font-[500] text-4xl'>{title}</Label>
       <div className='mt-[2.12rem]'>
         <div className='transition-all duration-1000'>
