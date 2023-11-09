@@ -263,11 +263,6 @@ const ScheduleOfActivitiesTable = () => {
         description='Add, edit, and delete activities.'
         searchPlaceholder='Search Activities'
         RightButtons={<AddActivityDialogForm />}
-        LeftButtons={
-          <Button className=' text-[#0F172A]' variant='outline'>
-            Click
-          </Button>
-        }
         RowActions={
           <>
             {fakeActivitiesRowActions.map((rowAction) => {
