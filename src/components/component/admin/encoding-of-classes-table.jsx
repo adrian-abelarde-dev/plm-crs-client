@@ -276,9 +276,9 @@ const AddParticipantDialogForm = () => {
                     const toMinutes = parseInt(endTime.split(':')[1]);
 
                     const from = new Date(
-                      selectedDate.from.getFullYear(),
-                      selectedDate.from.getMonth(),
-                      selectedDate.from.getDate(),
+                      selectedDate?.from.getFullYear(),
+                      selectedDate?.from.getMonth(),
+                      selectedDate?.from.getDate(),
                       fromHours,
                       fromMinutes,
                     );
