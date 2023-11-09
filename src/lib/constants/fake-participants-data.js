@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge';
 import { Edit, Trash } from 'lucide-react';
 
 export const fakeParticipantsRowActions = [
@@ -9,54 +8,6 @@ export const fakeParticipantsRowActions = [
   {
     label: 'Delete Participant',
     icon: <Trash className='h-4 w-4' />,
-  },
-];
-
-export const fakeParticipantsTemplate = [
-  {
-    accessorKey: 'participant',
-    id: 'participant',
-    header: 'Participant',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'status',
-    id: 'status',
-    header: 'Status',
-    filterVariant: 'fuzzy',
-    Cell: ({ cell }) => {
-      return (
-        <Badge
-          variant={cell.getValue() === 'Active' ? 'outlinePrimary' : 'outline'}
-        >
-          {cell.getValue()}
-        </Badge>
-      );
-    },
-  },
-  {
-    accessorKey: 'aysem',
-    id: 'aysem',
-    header: 'AY-SEM',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'scheduleStart',
-    id: 'scheduleStart',
-    header: 'Schedule Start',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'scheduleEnd',
-    id: 'scheduleEnd',
-    header: 'Schedule End',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'dateCreated',
-    id: 'dateCreated',
-    header: 'Date Created',
-    filterVariant: 'fuzzy',
   },
 ];
 

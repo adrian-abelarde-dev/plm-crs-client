@@ -1,3 +1,6 @@
+'use client';
+
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -20,14 +23,13 @@ import {
 import {
   fakeParticipants,
   fakeParticipantsRowActions,
-  fakeParticipantsTemplate,
 } from '@/lib/constants/fake-participants-data';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { CalendarIcon, MousePointerSquare } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import { useState } from 'react';
 
-import TableMRT from '../layouts/table-mrt';
+import TableMRT from '../../layouts/table-mrt';
 
 const AddParticipantDialogForm = () => {
   const [date, setDate] = useState({
@@ -166,52 +168,95 @@ const AddParticipantDialogForm = () => {
   );
 };
 
-const ActivitiesDialog = ({ value }) => {
+const EncodingOfClassesTable = () => {
+  const fakeParticipantsTemplate = [
+    {
+      accessorKey: 'participant',
+      id: 'participant',
+      header: 'Participant',
+      filterVariant: 'fuzzy',
+    },
+    {
+      accessorKey: 'status',
+      id: 'status',
+      header: 'Status',
+      filterVariant: 'fuzzy',
+      Cell: ({ cell }) => {
+        return (
+          <Badge
+            variant={
+              cell.getValue() === 'Active' ? 'outlinePrimary' : 'outline'
+            }
+          >
+            {cell.getValue()}
+          </Badge>
+        );
+      },
+    },
+    {
+      accessorKey: 'aysem',
+      id: 'aysem',
+      header: 'AY-SEM',
+      filterVariant: 'fuzzy',
+    },
+    {
+      accessorKey: 'scheduleStart',
+      id: 'scheduleStart',
+      header: 'Schedule Start',
+      filterVariant: 'fuzzy',
+    },
+    {
+      accessorKey: 'scheduleEnd',
+      id: 'scheduleEnd',
+      header: 'Schedule End',
+      filterVariant: 'fuzzy',
+    },
+    {
+      accessorKey: 'dateCreated',
+      id: 'dateCreated',
+      header: 'Date Created',
+      filterVariant: 'fuzzy',
+    },
+  ];
+
   return (
-    <Dialog>
-      <DialogTrigger className='text-left underline flex items-center gap-2 hover:text-zinc-500'>
-        {value} <MousePointerSquare className='h-4 w-4' />
-      </DialogTrigger>
-      <DialogContent className='max-w-[80%] flex flex-col overflow-y-scroll max-h-[80%]'>
-        <TableMRT
-          template={fakeParticipantsTemplate}
-          data={fakeParticipants}
-          title='Encoding of Classes'
-          description='Add, edit, and delete participants.'
-          searchPlaceholder='Search Participants'
-          RightButtons={<AddParticipantDialogForm />}
-          LeftButtons={
-            <Button className='text-[#0F172A]' variant='outline'>
-              Click
-            </Button>
-          }
-          RowActions={
-            <>
-              {fakeParticipantsRowActions.map((rowAction) => {
-                return (
-                  <Button
-                    key={rowAction.label}
-                    className={cn(
-                      `text-zinc-900 justify-between hover:bg-zinc-100`,
-                      // If label includes 'trash' or 'delete' make the text red and icon
-                      // color red
-                      (rowAction.label.toLowerCase().includes('trash') ||
-                        rowAction.label.toLowerCase().includes('delete')) &&
-                        'text-destructive hover:text-red-400',
-                    )}
-                    variant='ghost'
-                  >
-                    {rowAction.label}
-                    {rowAction.icon}
-                  </Button>
-                );
-              })}
-            </>
-          }
-        />
-      </DialogContent>
-    </Dialog>
+    <TableMRT
+      template={fakeParticipantsTemplate}
+      data={fakeParticipants}
+      title='Encoding of Classes'
+      description='Add, edit, and delete participants.'
+      searchPlaceholder='Search Participants'
+      RightButtons={<AddParticipantDialogForm />}
+      LeftButtons={
+        <Button className='text-[#0F172A]' variant='outline'>
+          Click
+        </Button>
+      }
+      RowActions={
+        <>
+          {fakeParticipantsRowActions.map((rowAction) => {
+            return (
+              <Button
+                key={rowAction.label}
+                className={cn(
+                  `text-zinc-900 justify-between hover:bg-zinc-100`,
+                  // If label includes 'trash' or 'delete' make the text red and icon
+                  // color red
+                  (rowAction.label.toLowerCase().includes('trash') ||
+                    rowAction.label.toLowerCase().includes('delete')) &&
+                    'text-destructive hover:text-red-400',
+                )}
+                variant='ghost'
+              >
+                {rowAction.label}
+                {rowAction.icon}
+              </Button>
+            );
+          })}
+        </>
+      }
+    />
   );
 };
 
-export default ActivitiesDialog;
+export default EncodingOfClassesTable;

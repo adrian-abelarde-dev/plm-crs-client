@@ -58,7 +58,7 @@ const TableMRT = ({
   RowActions,
 }) => {
   const columns = useMemo(() => template, [template]);
-  const [fade, setFade] = useState(false);
+  const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   const table = useMantineReactTable({
     columns,
@@ -66,6 +66,7 @@ const TableMRT = ({
     enableColumnFilterModes: true,
     enableColumnOrdering: true,
     enableFacetedValues: true,
+    enableFullScreenToggle: false,
     enableGrouping: true,
     enablePinning: true,
     enableRowActions: RowActions ? true : false,
@@ -84,9 +85,9 @@ const TableMRT = ({
     selectAllMode: 'page',
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
-    // state: {
-    //   isLoading: !fade, // Replaced spinner with built-in spinner from MRT
-    // },
+    state: {
+      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
+    },
     renderRowActionMenuItems: () => {
       return (
         <div className='flex flex-col w-[14.75rem]'>
@@ -114,8 +115,8 @@ const TableMRT = ({
   });
 
   useEffect(() => {
-    setFade(true);
-  }, [fade]);
+    setIsDomLoaded(true);
+  }, [isDomLoaded]);
 
   return (
     <div className='my-4'>
