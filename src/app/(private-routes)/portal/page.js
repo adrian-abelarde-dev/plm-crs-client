@@ -15,13 +15,20 @@ import { LogOut } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 const Portal = () => {
   const { data: session, status } = useSession();
 
-  if (status === 'loading' && !session) {
-    return <Loader />;
-  }
+  // if (status === 'loading') {
+  //   return <Loader />;
+  // }
+
+  useEffect(() => {
+    if (status === 'loading') {
+      return <Loader />;
+    }
+  }, [session, status]);
 
   console.log({ session });
 
