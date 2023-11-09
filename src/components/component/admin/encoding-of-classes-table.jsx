@@ -4,10 +4,16 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/components/ui/command';
+import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -20,18 +26,34 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   fakeParticipants,
   fakeParticipantsRowActions,
 } from '@/lib/constants/fake-participants-data';
+import { participantTypes } from '@/lib/constants/participant-types';
+import {
+  participantsIfCollege,
+  participantsIfCourse,
+  participantsIfEmployeeUser,
+  participantsIfStudent,
+  participantsIfYearLevel,
+} from '@/lib/constants/participants';
 import { cn } from '@/lib/utils';
+import { CaretSortIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
-import { useState } from 'react';
+import { CalendarIcon, CheckIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import TableMRT from '../../layouts/table-mrt';
 
 const AddParticipantDialogForm = () => {
+  const [participantTypeOpen, setParticipantTypeOpen] = useState(false);
+  const [participantTypeValue, setParticipantTypeValue] = useState(null);
+
+  const [participantOpen, setParticipantOpen] = useState(false);
+  const [participantValue, setParticipantValue] = useState(null);
+
   const [date, setDate] = useState({
     from: new Date(2021, 8, 1, 8, 0), // 2021-09-01 08:00
     to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
@@ -40,6 +62,31 @@ const AddParticipantDialogForm = () => {
   const [startTime, setStartTime] = useState('08:00');
   const [endTime, setEndTime] = useState('17:00');
 
+  const getParticipants = () => {
+    switch (participantTypeValue) {
+      case 'college':
+        return participantsIfCollege;
+      case 'course':
+        return participantsIfCourse;
+      case 'yrlvl':
+        return participantsIfYearLevel;
+      case 'colyrlvl':
+        return participantsIfYearLevel;
+      case 'courseyrlvl':
+        return participantsIfYearLevel;
+      case 'student':
+        return participantsIfStudent;
+      case 'empuser':
+        return participantsIfEmployeeUser;
+      default:
+        return [];
+    }
+  };
+
+  useEffect(() => {
+    setParticipantValue(null);
+  }, [participantTypeValue]);
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -47,16 +94,135 @@ const AddParticipantDialogForm = () => {
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Add participant</DialogTitle>
-          <DialogDescription>
-            Add a new participant here. Click save when you&apos;re done.
-          </DialogDescription>
+          <DialogTitle>Add Participant</DialogTitle>
         </DialogHeader>
         <div className='flex flex-col gap-4'>
+          {/* Participant Type */}
+          <section className='w-full flex flex-col gap-2'>
+            <Label>Participant Type</Label>
+            <Popover
+              open={participantTypeOpen}
+              onOpenChange={setParticipantTypeOpen}
+            >
+              <PopoverTrigger asChild>
+                <Button
+                  variant='outline'
+                  role='combobox'
+                  aria-expanded={open}
+                  className='w-full justify-between text-left'
+                >
+                  {participantTypeValue
+                    ? participantTypes.find(
+                        (participantType) =>
+                          participantType.value === participantTypeValue,
+                      )?.label
+                    : 'Select type...'}
+                  <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className='w-full p-0'>
+                <Command>
+                  <CommandInput placeholder='Search type...' className='h-9' />
+                  <CommandEmpty>No type found.</CommandEmpty>
+                  <CommandGroup>
+                    {participantTypes.map((participantType) => (
+                      <CommandItem
+                        key={participantType.value}
+                        value={participantType.value}
+                        onSelect={(currentValue) => {
+                          setParticipantTypeValue(
+                            currentValue === participantTypeValue
+                              ? ''
+                              : currentValue,
+                          );
+                          setParticipantTypeOpen(false);
+                        }}
+                      >
+                        {participantType.label}
+                        <CheckIcon
+                          className={cn(
+                            'ml-auto h-4 w-4',
+                            participantTypeValue === participantType.value
+                              ? 'opacity-100'
+                              : 'opacity-0',
+                          )}
+                        />
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          </section>
+
+          {/* Participants */}
+          <section className='w-full flex flex-col gap-2'>
+            <Label>Participants</Label>
+            <Popover
+              open={participantOpen}
+              onOpenChange={setParticipantOpen}
+              disabled={!participantTypeValue}
+            >
+              <PopoverTrigger asChild>
+                <Button
+                  variant='outline'
+                  role='combobox'
+                  aria-expanded={open}
+                  className='w-full justify-between text-left text-ellipsis'
+                  disabled={!participantTypeValue}
+                >
+                  {participantValue
+                    ? getParticipants().find(
+                        (participant) => participant.value === participantValue,
+                      )?.label
+                    : 'Select participant...'}
+                  <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className='w-[200px] p-0'>
+                <Command>
+                  <CommandInput
+                    placeholder='Search participant...'
+                    className='h-9'
+                  />
+                  <CommandEmpty>No participant found.</CommandEmpty>
+                  <CommandGroup>
+                    <ScrollArea className='h-36 w-48'>
+                      {getParticipants().map((participant) => (
+                        <CommandItem
+                          key={participant.value}
+                          value={participant.value}
+                          onSelect={(currentValue) => {
+                            setParticipantValue(
+                              currentValue === participantValue
+                                ? ''
+                                : currentValue,
+                            );
+                            setParticipantOpen(false);
+                          }}
+                        >
+                          {participant.label}
+                          <CheckIcon
+                            className={cn(
+                              'ml-auto h-4 w-4',
+                              participantValue === participant.value
+                                ? 'opacity-100'
+                                : 'opacity-0',
+                            )}
+                          />
+                        </CommandItem>
+                      ))}
+                    </ScrollArea>
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          </section>
+
           {/* Participant Name */}
           <section className='w-full flex flex-col gap-2'>
-            <Label htmlFor='activity-name'>Participant Name</Label>
-            <Input id='activity-name' placeholder='Enter participant name' />
+            <Label htmlFor='participant-name'>Participant Name</Label>
+            <Input id='participant-name' placeholder='Enter participant name' />
           </section>
 
           {/* AY-SEM */}
@@ -161,7 +327,7 @@ const AddParticipantDialogForm = () => {
           <DialogClose asChild>
             <Button variant='outline'>Cancel</Button>
           </DialogClose>
-          <Button type='submit'>Save changes</Button>
+          <Button type='submit'>Save Participant</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

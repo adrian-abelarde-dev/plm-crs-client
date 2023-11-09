@@ -4,6 +4,16 @@ import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -25,7 +35,6 @@ import { useState } from 'react';
 import EncodingOfClassesTable from './encoding-of-classes-table';
 
 const AddActivityDialogForm = () => {
-  const [opened, { open, close }] = useDisclosure(false);
   const [date, setDate] = useState({
     from: new Date(2021, 8, 1, 8, 0), // 2021-09-01 08:00
     to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
@@ -35,18 +44,17 @@ const AddActivityDialogForm = () => {
 
   return (
     <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        title='Add activity'
-        size='md'
-        radius={'md'}
-        zIndex={50}
-        overlayProps={{
-          blur: 3,
-        }}
-      >
-        <div className='flex flex-col gap-4'>
+      <Dialog>
+        <DialogTrigger>
+          <Button>Add Activity</Button>
+        </DialogTrigger>
+        <DialogContent className='sm:max-w-[425px]'>
+          <DialogHeader>
+            <DialogTitle>Add Activity</DialogTitle>
+            <DialogDescription>
+              Add a new activity here. Click save when you&apos;re done.
+            </DialogDescription>
+          </DialogHeader>
           <div className='flex flex-col gap-4'>
             {/* Activity Name */}
             <section className='w-full flex flex-col gap-2'>
@@ -152,15 +160,14 @@ const AddActivityDialogForm = () => {
               </section>
             </section>
           </div>
-        </div>
-        <div className='w-full flex gap-2 justify-end mt-4'>
-          <Button variant='outline' onClick={close}>
-            Cancel
-          </Button>
-          <Button type='submit'>Save changes</Button>
-        </div>
-      </Modal>
-      <Button onClick={open}>Add Activity</Button>
+          <DialogFooter className='w-full flex justify-end'>
+            <DialogClose asChild>
+              <Button variant='outline'>Cancel</Button>
+            </DialogClose>
+            <Button type='submit'>Save Activity</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
@@ -179,7 +186,7 @@ const ScheduleOfActivitiesTable = () => {
         return (
           <Button
             variant='ghost'
-            className='flex gap-2 items-center text-zinc-900 hover:bg-transparent hover:text-zinc-400'
+            className='flex gap-2 items-center text-left text-zinc-900 hover:bg-transparent hover:text-zinc-400'
             onClick={open}
           >
             {cell.getValue()} <MousePointerSquare className='h-4 w-4' />
