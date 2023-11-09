@@ -59,7 +59,7 @@ const GradApplicationForm = () => {
       setMunicipality(mappedCities);
     }
     // bugs on updating form values
-  }, [form.getValues().provinceCity, provinceCity]);
+  }, [form, provinceCity]);
 
   const onSubmit = () => {
     toast({
