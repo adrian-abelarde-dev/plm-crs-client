@@ -31,6 +31,7 @@ import {
 // ? description -> description for the form field
 // ? fieldName -> name of the field that is connected to the 'form'
 // ? className -> optional
+// ? disabled -> optional
 export const SelectFormField = ({
   form,
   content,
@@ -39,6 +40,7 @@ export const SelectFormField = ({
   description, // optional
   fieldName,
   className,
+  disabled,
 }) => {
   return (
     <FormField
@@ -52,6 +54,7 @@ export const SelectFormField = ({
               onValueChange={field.onChange}
               defaultValue={field.value}
               className={className}
+              disabled={disabled}
             >
               <FormControl>
                 <SelectTrigger>
@@ -190,21 +193,23 @@ export const CheckBoxFormField = ({
     <FormField
       control={form.control}
       name={fieldName}
-      render={({ field }) => (
-        <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow'>
-          <FormControl>
-            <Checkbox
-              checked={field.value}
-              onCheckedChange={field.onChange}
-              className={className}
-            />
-          </FormControl>
-          <div className='space-y-1 leading-none'>
-            <FormLabel>{title}</FormLabel>
-            <FormDescription>{description}</FormDescription>
-          </div>
-        </FormItem>
-      )}
+      render={({ field }) => {
+        return (
+          <FormItem className='flex flex-row items-start space-x-3 space-y-0 p-4'>
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+                className={className}
+              />
+            </FormControl>
+            <div className='space-y-1 leading-none'>
+              <FormLabel>{title}</FormLabel>
+              <FormDescription>{description}</FormDescription>
+            </div>
+          </FormItem>
+        );
+      }}
     />
   );
 };

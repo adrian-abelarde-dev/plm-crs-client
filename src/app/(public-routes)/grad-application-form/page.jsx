@@ -6,13 +6,18 @@ import {
   InputFormField,
   SelectFormField,
 } from '@/components/component/form';
+import { MessageModal } from '@/components/component/modal';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { toast } from '@/components/ui/use-toast';
 import { program, sex } from '@/lib/constants/fake-grad-application-form-data';
-import { GradApplicationFormSchema } from '@/lib/constants/form-scheme';
+import {
+  GradApplicationFormSchema,
+  gradApplicationFormDefaultValues,
+} from '@/lib/constants/form-scheme';
+import { termsAndConditions } from '@/lib/constants/terms-agreement';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
@@ -22,7 +27,10 @@ import { useForm } from 'react-hook-form';
 import PLMLogo from '../../../assets/plm-logo.png';
 
 const GradApplicationForm = () => {
-  const form = useForm({ resolver: zodResolver(GradApplicationFormSchema) });
+  const form = useForm({
+    resolver: zodResolver(GradApplicationFormSchema),
+    defaultValues: { ...gradApplicationFormDefaultValues },
+  });
 
   const onSubmit = () => {
     toast({
@@ -39,11 +47,7 @@ const GradApplicationForm = () => {
         </>
       ),
     });
-
-    console.log(form.getValues());
   };
-
-  // console.log(form.getValues());
 
   return (
     <div className='mx-10 mb-[2.94rem]'>
@@ -185,6 +189,7 @@ const GradApplicationForm = () => {
               title={'Municipality'}
               placeholder={'Select'}
               fieldName='municipality'
+              disabled={form.getValues().provinceCity === ''}
             />
 
             <SelectFormField
@@ -193,6 +198,7 @@ const GradApplicationForm = () => {
               title={'Sub Municipality'}
               placeholder={'Select'}
               fieldName='subMunicipality'
+              disabled={form.getValues().municipality === ''}
             />
 
             <SelectFormField
@@ -201,6 +207,7 @@ const GradApplicationForm = () => {
               title={'Barangay'}
               placeholder={'Select'}
               fieldName='barangay'
+              disabled={form.getValues().subMunicipality === ''}
             />
 
             <InputFormField
@@ -233,7 +240,7 @@ const GradApplicationForm = () => {
               form={form}
               title={'Complete Address'}
               placeholder={'Complete School Address'}
-              fieldName={'completAddress'}
+              fieldName={'completeAddress'}
             />
           </div>
 
@@ -256,20 +263,77 @@ const GradApplicationForm = () => {
           </div>
 
           {/* Terms and Conditions */}
-          <CheckBoxFormField
-            form={form}
-            title={
-              <>
-                I have read and understand the <a>Terms and Conditions</a>
-              </>
-            }
-            fieldName={'termsAndConditions'}
-          />
+          <div className='flex justify-center'>
+            <CheckBoxFormField
+              form={form}
+              title={
+                <>
+                  I have read and understand the{' '}
+                  <MessageModal
+                    title='Terms & Conditions'
+                    trigger={
+                      <a className='underline font-bold'>
+                        terms and conditions
+                      </a>
+                    }
+                    content={<TermsAndAgreement />}
+                  />
+                </>
+              }
+              fieldName={'termsAndConditions'}
+            />
+          </div>
 
           {/* Submit Button */}
-          <Button type='submit'>Apply Now!</Button>
+          <div className='flex justify-center'>
+            <Button
+              type='submit'
+              disabled={!form.getValues().termsAndConditions}
+            >
+              Apply Now!
+            </Button>
+          </div>
         </form>
       </Form>
+    </div>
+  );
+};
+
+const TermsAndAgreement = () => {
+  return (
+    <div>
+      <div className='mb-6'>
+        <Label className=''>
+          Terms and Conditions for Student Application to Pamantasan ng Lungsod
+          ng Maynila(PLM)
+        </Label>
+      </div>
+
+      <div className='mb-6'>
+        <Label>
+          These Terms and Conditions govern the application process for
+          prospective students seeking admission to Pamantasan ng Lungsod ng
+          Maynila(PLM). By submitting an application to PLM, you agree to abide
+          by the following terms and conditions:
+        </Label>
+      </div>
+
+      {termsAndConditions.map((item, index) => (
+        <div key={index} className='flex flex-col py-2'>
+          <Label className='font-bold text-md'>
+            {index + 1}. {item.title}
+          </Label>
+          {item.content.map((content, index) => {
+            return (
+              <ul key={index} className='indent-2 ml-12 list-disc'>
+                <li>
+                  <Label>{content}</Label>
+                </li>
+              </ul>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };
