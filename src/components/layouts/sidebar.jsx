@@ -64,7 +64,15 @@ export function Sidebar({ sidebarLinks }) {
     <aside className='h-screen w-fit outline outline-1 outline-gray-200 md:w-52'>
       <Container className='flex h-full flex-col justify-between px-2 py-10 gap-10 md:px-4'>
         <div className='flex flex-col gap-6'>
-          <Image src='/plm-logo.png' width={50} height={50} alt='PLM Logo' />
+          {/* Made Image have responsive width */}
+          <Image
+            src='/plm-logo.png'
+            alt='PLM Logo'
+            width={0}
+            height={0}
+            sizes='100vw'
+            className='h-auto w-8 md:w-12'
+          />
           <Separator />
           <div className='flex flex-col gap-1'>{sidebarButtonsContent}</div>
         </div>
@@ -84,7 +92,7 @@ export function Sidebar({ sidebarLinks }) {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              className='flex justify-between items-center'
+              className='flex justify-between items-center cursor-pointer'
               onClick={() => {
                 signOut();
               }}

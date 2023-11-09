@@ -28,7 +28,41 @@ export const linksStudents = [
   },
   {
     label: 'Account',
-    path: '/student/account',
+    path: '/account',
+    subLinks: [
+      {
+        label: 'Change Password',
+        path: 'https://account.activedirectory.windowsazure.com/ChangePassword.aspx',
+      },
+      { label: 'Sign out', path: '#' },
+    ],
+  },
+];
+
+export const linksGradStudents = [
+  {
+    label: 'Home',
+    path: '/student-grad/home',
+  },
+  {
+    label: 'Enrollment',
+    path: '/student-grad/enrollment',
+  },
+
+  {
+    label: 'Grades',
+    path: '/student-grad/grades',
+  },
+  {
+    label: 'Account',
+    path: '/student-grad/account',
+    subLinks: [
+      {
+        label: 'Change Password',
+        path: 'https://account.activedirectory.windowsazure.com/ChangePassword.aspx',
+      },
+      { label: 'Sign out', path: '#' },
+    ],
   },
 ];
 
