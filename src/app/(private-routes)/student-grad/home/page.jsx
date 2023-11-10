@@ -98,7 +98,7 @@ const GradStudentHome = () => {
             <Button className='bg-yellow-400 text-[#0F172A] mr-[0.62rem] hover:bg-yellow-500'>
               <Printer className='h-4 w-4 mr-2' /> Print SER
             </Button>
-            <Button className='bg-[#5458AE] hover:bg-[#2e3281] md:max-xl:mt-4'>
+            <Button className='bg-[#5458AE] hover:bg-[#2e3281] md:max-xl:mt-4 text-white'>
               <IconBrandTeams className='h-4 w-4 mr-2' />
               <Link
                 href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
