@@ -392,6 +392,7 @@ const EncodingOfClassesTable = () => {
       title='Encoding of Classes'
       description='Add, edit, and delete participants.'
       searchPlaceholder='Search Participants'
+      isFullscreen={false}
       RightButtons={<AddParticipantDialogForm />}
       LeftButtons={
         <Button className='text-[#0F172A]' variant='outline'>
