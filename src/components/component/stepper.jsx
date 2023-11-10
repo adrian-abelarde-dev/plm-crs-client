@@ -47,7 +47,9 @@ const CustomStepper = ({
             key={index}
             label={step.label}
             description={step.description}
-          />
+          >
+            {step.content}
+          </Stepper.Step>
         ))}
       </Stepper>
       {children ? children : null}
