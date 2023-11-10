@@ -5,6 +5,20 @@ import { useEffect, useState } from 'react';
 
 import { Button } from '../ui/button';
 
+// * steps -> array, defines the steps for the stepper. requires the following format:
+// ? [{
+// ?     label: 'string', --> the label for the step
+// ?     description: 'string', --> the description for the step
+// ?     content: 'JSX', --> the content for the step
+// ?     condition: boolean, --> the condition for the step to be disabled
+// ? }]
+// ? using condition is optional
+// * initialStep -> number, defines the initial step for the stepper
+// * onStepChange -> function, defines the function to be called when the step changes
+// * children -> JSX, defines the JSX for the stepper
+// * lastStepOnclick -> function, defines the function to be called when the last step button is clicked
+// * lastStepButtonLabel -> string, defines the label for the last step button
+// * completedPreview -> JSX, defines the JSX for the completed step preview
 const CustomStepper = ({
   steps = [],
   initialStep = 0,
