@@ -134,6 +134,7 @@ const GradApplicationForm = () => {
               title={'Name Extension'}
               placeholder={'(e.g. "Sr.", "Jr.", "II", "III")'}
               fieldName={'nameExtension'}
+              isOptional={false}
             />
 
             <InputFormField
@@ -141,6 +142,7 @@ const GradApplicationForm = () => {
               title={'Maiden Name'}
               placeholder={'Maiden Name'}
               fieldName={'maidenName'}
+              isOptional={false}
             />
 
             <SelectFormField
@@ -221,22 +223,22 @@ const GradApplicationForm = () => {
               disabled={form.getValues().provinceCity === ''}
             />
 
-            <SelectFormField
+            <InputFormField
               form={form}
-              content={sex} // change later
               title={'Sub Municipality'}
-              placeholder={'Select'}
+              placeholder={''}
               fieldName='subMunicipality'
-              disabled={form.getValues().municipality === ''}
+              // disabled={form.getValues().municipality === ''}
+              isOptional={false}
             />
 
             <InputFormField
               form={form}
               content={sex} // change later
               title={'Barangay'}
-              placeholder={'Select'}
+              placeholder={''}
               fieldName='barangay'
-              disabled={form.getValues().subMunicipality === ''}
+              disabled={form.getValues().municipality === ''}
             />
 
             <InputFormField
