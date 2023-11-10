@@ -14,9 +14,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
+// * description -> string, defines the description of the table
 // * searchPlaceholder -> string, defines the placeholder text for the search input
 // * isCheckBoxVisible -> boolean, defines whether the checkbox is visible or not --> default is false
 // * isRowNumbersVisible -> boolean, defines whether the row numbers are visible or not --> default is false
+// * isFullscreen -> boolean, defines whether the fullscreen button is visible or not --> default is true
 // * data -> array, defines the data for the table
 // * template -> array, defines the template for the table. requires the following format:
 // ? [{
@@ -39,6 +41,7 @@ import { Label } from '../ui/label';
 
 // * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
 // * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
+// * RowActions -> JSX, defines the JSX for the row actions
 
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
@@ -51,6 +54,7 @@ const TableMRT = ({
   template,
   isCheckBoxVisible,
   isRowNumbersVisible,
+  isFullscreen = true, // show by default
 
   // JSX Props
   RightButtons,
@@ -107,7 +111,7 @@ const TableMRT = ({
           </Flex>
           <Flex sx={{ gap: '8px' }}>
             {RightButtons}
-            <MRT_ToggleFullScreenButton table={table} />
+            {isFullscreen && <MRT_ToggleFullScreenButton table={table} />}
           </Flex>
         </Flex>
       );
