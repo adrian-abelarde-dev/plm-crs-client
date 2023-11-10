@@ -60,6 +60,10 @@ const TableMRT = ({
   RightButtons,
   LeftButtons,
   RowActions,
+
+  // state -> this is required when isCheckBoxVisible is true
+  setRowSelection,
+  rowSelection,
 }) => {
   const columns = useMemo(() => template, [template]);
   const [isDomLoaded, setIsDomLoaded] = useState(false);
@@ -75,9 +79,16 @@ const TableMRT = ({
     enablePinning: true,
     enableRowActions: RowActions ? true : false,
     enableRowSelection: isCheckBoxVisible ? true : false,
+    getRowId: (originalRow) =>
+      isCheckBoxVisible && originalRow[template[0].accessorKey], // returns the first column as the id
     initialState: { showColumnFilters: true, showGlobalFilter: true },
     paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
+    onRowSelectionChange: setRowSelection ? setRowSelection : null,
+    state: {
+      rowSelection: rowSelection ? rowSelection : null,
+      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
+    },
     mantinePaginationProps: {
       radius: 'xl',
       size: 'lg',
@@ -89,9 +100,7 @@ const TableMRT = ({
     selectAllMode: 'page',
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
-    state: {
-      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
-    },
+
     renderRowActionMenuItems: () => {
       return (
         <div className='flex flex-col w-[14.75rem]'>
@@ -197,7 +206,7 @@ const TableMRT = ({
               },
             }}
           >
-            <MantineReactTable table={table} />
+            {isDomLoaded && <MantineReactTable table={table} />}
           </MantineProvider>
         </div>
       </div>

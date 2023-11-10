@@ -7,25 +7,31 @@ import { fakeCollegeStudents, template } from '@/lib/constants/fake-table-data';
 import { Download } from 'lucide-react';
 import React, { useState } from 'react';
 
-const steps = [
-  {
-    label: 'First step',
-    description: 'Enroll available classes',
-    content: <EnrollmentStep />,
-  },
-  {
-    label: 'Second step',
-    description: 'Verify email',
-    content: <ViewEnlistedStep />,
-  },
-  {
-    label: 'Final step',
-    description: 'Get full access',
-    content: <PaymentStep />,
-  },
-];
-
 const GradStudentEnrollment = () => {
+  const [rowSelection, setRowSelection] = useState({});
+
+  const steps = [
+    {
+      label: 'First step',
+      description: 'Enroll available classes',
+      content: (
+        <EnrollmentStep
+          rowSelection={rowSelection}
+          setRowSelection={setRowSelection}
+        />
+      ),
+    },
+    {
+      label: 'Second step',
+      description: 'Verify email',
+      content: <ViewEnlistedStep />,
+    },
+    {
+      label: 'Final step',
+      description: 'Get full access',
+      content: <PaymentStep />,
+    },
+  ];
   return (
     <div className='mx-9'>
       {/* Header */}
@@ -56,11 +62,19 @@ const GradStudentEnrollment = () => {
   );
 };
 
-function EnrollmentStep() {
+function EnrollmentStep({ rowSelection, setRowSelection }) {
+  console.log(rowSelection);
+
   return (
     <>
       <Label className='font-[500] text-4xl '>Enlist Available Classes</Label>
-      <TableMRT template={template} data={fakeCollegeStudents} />
+      <TableMRT
+        template={template}
+        data={fakeCollegeStudents}
+        isCheckBoxVisible={true}
+        rowSelection={rowSelection}
+        setRowSelection={setRowSelection}
+      />
     </>
   );
 }
@@ -69,7 +83,7 @@ function ViewEnlistedStep() {
   return (
     <>
       <Label className='font-[500] text-4xl '>View Enlisted Subjects</Label>
-      <TableMRT template={template} data={fakeCollegeStudents} />
+      {/* <TableMRT template={template} data={fakeCollegeStudents} /> */}
     </>
   );
 }
@@ -78,7 +92,7 @@ function PaymentStep() {
   return (
     <>
       <Label className='font-[500] text-4xl '>Payment</Label>
-      <TableMRT template={template} data={fakeCollegeStudents} />
+      {/* <TableMRT template={template} data={fakeCollegeStudents} /> */}
     </>
   );
 }

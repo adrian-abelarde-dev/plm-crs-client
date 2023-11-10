@@ -290,7 +290,7 @@ export const gradClassesTemplate = [
 export const template = [
   {
     accessorKey: 'studentNumber',
-    id: 'email',
+    id: 'studentNumber',
     header: 'Email',
     filterVariant: 'autocomplete',
   },
