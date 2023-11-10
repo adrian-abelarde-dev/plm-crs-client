@@ -1,9 +1,8 @@
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import AuthProvider from '@/components/component/auth';
 import Providers from '@/components/component/providers';
 import { getServerSession } from 'next-auth/next';
 import { Inter } from 'next/font/google';
-
-import { authOptions } from './api/auth/[...nextauth]/route';
 
 const inter = Inter({ subsets: ['latin'] });
 
