@@ -67,6 +67,7 @@ const TableMRT = ({
 }) => {
   const columns = useMemo(() => template, [template]);
   const [isDomLoaded, setIsDomLoaded] = useState(false);
+  const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
 
   const table = useMantineReactTable({
     columns,
@@ -78,17 +79,22 @@ const TableMRT = ({
     enableGrouping: true,
     enablePinning: true,
     enableRowActions: RowActions ? true : false,
+
     enableRowSelection: isCheckBoxVisible ? true : false,
     getRowId: (originalRow) =>
-      isCheckBoxVisible && originalRow[template[0].accessorKey], // returns the first column as the id
+      isCheckBoxVisible ? originalRow[template[0].accessorKey] : null, // returns the first column as the id
+    state: {
+      rowSelection:
+        rowSelection === undefined ? rowSelectionHandler : rowSelection,
+      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
+    },
+    onRowSelectionChange:
+      setRowSelection === undefined ? setRowSelectionHandler : setRowSelection,
+
     initialState: { showColumnFilters: true, showGlobalFilter: true },
     paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
-    onRowSelectionChange: setRowSelection ? setRowSelection : null,
-    state: {
-      rowSelection: rowSelection ? rowSelection : null,
-      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
-    },
+
     mantinePaginationProps: {
       radius: 'xl',
       size: 'lg',
@@ -206,7 +212,7 @@ const TableMRT = ({
               },
             }}
           >
-            {isDomLoaded && <MantineReactTable table={table} />}
+            <MantineReactTable table={table} />
           </MantineProvider>
         </div>
       </div>

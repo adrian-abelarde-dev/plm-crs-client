@@ -3,7 +3,12 @@
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Label } from '@/components/ui/label';
-import { fakeCollegeStudents, template } from '@/lib/constants/fake-table-data';
+import {
+  fakeCollegeStudents,
+  fakeGradEnlistClasses,
+  gradEnlistClassesTemplate,
+  template,
+} from '@/lib/constants/fake-table-data';
 import { Download } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -69,11 +74,12 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
     <>
       <Label className='font-[500] text-4xl '>Enlist Available Classes</Label>
       <TableMRT
-        template={template}
-        data={fakeCollegeStudents}
+        template={gradEnlistClassesTemplate}
+        data={fakeGradEnlistClasses}
         isCheckBoxVisible={true}
         rowSelection={rowSelection}
         setRowSelection={setRowSelection}
+        searchPlaceholder={'Search Subject'}
       />
     </>
   );
