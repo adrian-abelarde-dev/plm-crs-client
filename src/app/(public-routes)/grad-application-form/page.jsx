@@ -54,7 +54,8 @@ const GradApplicationForm = () => {
       isCity: city.city,
     }));
     setMunicipality(mappedCities);
-  }, [form.getValues().provinceCity]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.getValues().provinceCity, form]);
 
   // console.log(provinceCity, municipality);
   // console.log(
@@ -63,7 +64,7 @@ const GradApplicationForm = () => {
   //   form.getValues().sex,
   // );
 
-  // console.log(form.getValues());
+  console.log(form.getValues().provinceCity);
 
   const onSubmit = (values) => {
     toast({

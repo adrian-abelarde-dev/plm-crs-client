@@ -51,8 +51,6 @@ export const SelectFormField = ({
       control={form.control}
       name={fieldName}
       render={({ field }) => {
-        // console.log(field);
-
         return (
           <FormItem>
             <FormLabel className='text-[#09090B] font-bold'>
@@ -61,7 +59,7 @@ export const SelectFormField = ({
             </FormLabel>
             <Select
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              value={field.value}
               className={className}
               disabled={disabled}
             >
@@ -78,11 +76,17 @@ export const SelectFormField = ({
                 <ScrollArea className={content.length >= 10 && 'h-96'}>
                   {content.map((item, index) => {
                     return (
-                      <SelectItem value={item.value} key={index}>
+                      <SelectItem value={item.value.toString()} key={index}>
                         {item.label}
                       </SelectItem>
                     );
                   })}
+
+                  {/* {propType.map((data) => (
+                    <SelectItem key={data.id} value={data.id.toString()}>
+                      {data.name}
+                    </SelectItem>
+                  ))} */}
                 </ScrollArea>
               </SelectContent>
             </Select>
