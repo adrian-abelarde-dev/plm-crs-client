@@ -13,6 +13,8 @@ const CustomStepper = ({
   children,
   lastStepOnclick, // added this to define the last step button on click
   lastStepButtonLabel, // added this to define the last step button label
+
+  completedPreview, // added this to define the preview for the completed step
   ...rest
 }) => {
   const [activeStepper, setActiveStepper] = useState(initialStep);
@@ -54,6 +56,8 @@ const CustomStepper = ({
             {step.content}
           </Stepper.Step>
         ))}
+
+        <Stepper.Completed>{completedPreview}</Stepper.Completed>
       </Stepper>
       {children ? children : null}
       <section className='w-full flex justify-center items-center gap-2 mt-4'>
