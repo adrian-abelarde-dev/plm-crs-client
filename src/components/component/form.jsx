@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
+import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Calendar } from '../ui/calendar';
 import { Checkbox } from '../ui/checkbox';
@@ -33,6 +34,7 @@ import {
 // ? fieldName -> name of the field that is connected to the 'form'
 // ? className -> optional
 // ? disabled -> optional
+// ? isOptional -> optional
 export const SelectFormField = ({
   form,
   content,
@@ -42,6 +44,7 @@ export const SelectFormField = ({
   fieldName,
   className,
   disabled,
+  isOptional, // optional
 }) => {
   return (
     <FormField
@@ -50,7 +53,10 @@ export const SelectFormField = ({
       render={({ field }) => (
         <>
           <FormItem>
-            <FormLabel className='text-[#09090B] font-bold'>{title}</FormLabel>
+            <FormLabel className='text-[#09090B] font-bold'>
+              {title}
+              <BadgeForm isOptional={isOptional} />
+            </FormLabel>
             <Select
               onValueChange={field.onChange}
               defaultValue={field.value}
@@ -94,6 +100,7 @@ export const SelectFormField = ({
 // ? fieldName -> name of the field that is connected to the 'form'
 // ? className -> optional
 // ? disabled -> optional
+// ? isOptional -> optional
 export const InputFormField = ({
   form,
   title,
@@ -102,6 +109,7 @@ export const InputFormField = ({
   fieldName,
   className,
   disabled,
+  isOptional, // optional
 }) => {
   return (
     <FormField
@@ -109,7 +117,9 @@ export const InputFormField = ({
       name={fieldName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='text-[#09090B] font-bold'>{title}</FormLabel>{' '}
+          <FormLabel className='text-[#09090B] font-bold'>
+            {title} <BadgeForm isOptional={isOptional} />
+          </FormLabel>
           <FormControl>
             <Input
               placeholder={placeholder}
@@ -132,6 +142,7 @@ export const InputFormField = ({
 // ? description -> description for the form field
 // ? fieldName -> name of the field that is connected to the 'form'
 // ? className -> optional
+// ? disabled -> optional
 export const DateFormField = ({
   form,
   title,
@@ -139,6 +150,7 @@ export const DateFormField = ({
   description, // optional
   fieldName,
   className,
+  isOptional,
 }) => {
   return (
     <FormField
@@ -146,7 +158,10 @@ export const DateFormField = ({
       name={fieldName}
       render={({ field }) => (
         <FormItem className='flex flex-col mt-[0.62rem]'>
-          <FormLabel className='text-[#09090B] font-bold'>{title}</FormLabel>{' '}
+          <FormLabel className='text-[#09090B] font-bold'>
+            {title}
+            <BadgeForm isOptional={isOptional} />
+          </FormLabel>{' '}
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -221,5 +236,24 @@ export const CheckBoxFormField = ({
         );
       }}
     />
+  );
+};
+
+const BadgeForm = ({ isOptional = true }) => {
+  return (
+    <>
+      {isOptional ? (
+        <Badge className='px-2 ml-1 text-zinc-500' variant='ghost'>
+          Optional
+        </Badge>
+      ) : (
+        <Badge
+          className='ml-1 bg-[#FEF2F2] text-[#DC2626] border-[#DC2626]'
+          variant='ghost'
+        >
+          Required
+        </Badge>
+      )}
+    </>
   );
 };
