@@ -50,8 +50,10 @@ export const SelectFormField = ({
     <FormField
       control={form.control}
       name={fieldName}
-      render={({ field }) => (
-        <>
+      render={({ field }) => {
+        // console.log(field);
+
+        return (
           <FormItem>
             <FormLabel className='text-[#09090B] font-bold'>
               {title}
@@ -74,9 +76,9 @@ export const SelectFormField = ({
               </FormControl>
               <SelectContent>
                 <ScrollArea className={content.length >= 10 && 'h-96'}>
-                  {content.map((item) => {
+                  {content.map((item, index) => {
                     return (
-                      <SelectItem value={item.value} key={item.value}>
+                      <SelectItem value={item.value} key={index}>
                         {item.label}
                       </SelectItem>
                     );
@@ -87,8 +89,8 @@ export const SelectFormField = ({
             <FormDescription>{description}</FormDescription>
             <FormMessage /> {/* Error Message */}
           </FormItem>
-        </>
-      )}
+        );
+      }}
     />
   );
 };
@@ -157,7 +159,7 @@ export const DateFormField = ({
       control={form.control}
       name={fieldName}
       render={({ field }) => (
-        <FormItem className='flex flex-col mt-[0.62rem]'>
+        <FormItem className='flex flex-col mt-1'>
           <FormLabel className='text-[#09090B] font-bold'>
             {title}
             <BadgeForm isOptional={isOptional} />
