@@ -15,11 +15,19 @@ import { LogOut } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const Portal = () => {
   const { data: session, status } = useSession();
+  const [isDomLoaded, setIsDomLoaded] = useState(false);
 
-  if (status === 'loading' && !session) {
+  useEffect(() => {
+    if (status !== 'loading') {
+      setIsDomLoaded(true);
+    }
+  }, [session, status]);
+
+  if (!isDomLoaded) {
     return <Loader />;
   }
 
