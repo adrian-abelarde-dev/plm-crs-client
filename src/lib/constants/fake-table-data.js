@@ -290,7 +290,7 @@ export const gradClassesTemplate = [
 export const template = [
   {
     accessorKey: 'studentNumber',
-    id: 'email',
+    id: 'studentNumber',
     header: 'Email',
     filterVariant: 'autocomplete',
   },
@@ -317,5 +317,132 @@ export const template = [
     id: 'registrationCode',
     header: 'Registration Code',
     filterVariant: 'select',
+  },
+];
+
+export const gradEnlistClassesTemplate = [
+  // classSection, classTitle, units, preRequisite, schedule, slots, enlisted, enrolled
+  {
+    accessorKey: 'classSection',
+    id: 'classSection',
+    header: 'Class/Section',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'classTitle',
+    id: 'classTitle',
+    header: 'Class Title',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'units',
+    id: 'units',
+    header: 'Units',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'preRequisite',
+    id: 'preRequisite',
+    header: 'Pre-Requisite',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'schedule',
+    id: 'schedule',
+    header: 'Schedule',
+    filterVariant: 'date',
+  },
+  {
+    accessorKey: 'slots',
+    id: 'slots',
+    header: 'Slots',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'enlisted',
+    id: 'enlisted',
+    header: 'Enlisted',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'enrolled',
+    id: 'enrolled',
+    header: 'Enrolled',
+    filterVariant: 'fuzzy',
+  },
+];
+
+export const gradSelectedEnlistClassesTemplate = [
+  {
+    accessorKey: 'classSection',
+    id: 'classSection',
+    header: 'Class/Section',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'classTitle',
+    id: 'classTitle',
+    header: 'Class Title',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'schedule',
+    id: 'schedule',
+    header: 'Schedule',
+    filterVariant: 'date',
+  },
+];
+
+// fake data based on gradEnlistClassesTemplate
+export const fakeGradEnlistClasses = [
+  {
+    classSection: 'TW-101',
+    classTitle: 'Thesis Writing',
+    units: '3',
+    preRequisite: 'None',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    slots: '5',
+    enlisted: '0',
+    enrolled: '0',
+  },
+  {
+    classSection: 'TW-102',
+    classTitle: 'Thesis Writing',
+    units: '3',
+    preRequisite: 'None',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    slots: '5',
+    enlisted: '0',
+    enrolled: '0',
+  },
+  {
+    classSection: 'TW-103',
+    classTitle: 'Thesis Writing',
+    units: '3',
+    preRequisite: 'None',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    slots: '5',
+    enlisted: '0',
+    enrolled: '0',
+  },
+  {
+    classSection: 'TW-104',
+    classTitle: 'Thesis Writing',
+    units: '3',
+    preRequisite: 'None',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    slots: '5',
+    enlisted: '0',
+    enrolled: '0',
+  },
+  {
+    classSection: 'TW-105',
+    classTitle: 'Thesis Writing',
+    units: '3',
+    preRequisite: 'None',
+    schedule: 'MWF 8:00 AM - 9:00 AM',
+    slots: '5',
+    enlisted: '0',
+    enrolled: '0',
   },
 ];
