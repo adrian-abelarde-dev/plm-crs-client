@@ -15,7 +15,6 @@ const Providers = ({ children, session }) => {
   return (
     <SessionProvider session={session}>
       {children}
-
       {isDomLoaded && <Toaster />}
     </SessionProvider>
   );
