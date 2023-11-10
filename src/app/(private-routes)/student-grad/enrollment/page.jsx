@@ -1,7 +1,9 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
+import TableMRT from '@/components/layouts/table-mrt';
 import { Label } from '@/components/ui/label';
+import { fakeCollegeStudents, template } from '@/lib/constants/fake-table-data';
 import { Download } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -39,7 +41,7 @@ const GradStudentEnrollment = () => {
         </div>
       </div>
       {/* Stepper */}
-      <div className=''>
+      <div className='mb-20'>
         <CustomStepper
           steps={steps}
           lastStepOnclick={() => console.log('test')}
@@ -48,9 +50,7 @@ const GradStudentEnrollment = () => {
               <Download className='h-4 w-4 mr-2' /> Download & Finish Enrollment
             </>
           }
-        >
-          <div className='place-self-start mt-[1.88rem]'>Test</div>
-        </CustomStepper>
+        ></CustomStepper>
       </div>
     </div>
   );
@@ -58,16 +58,29 @@ const GradStudentEnrollment = () => {
 
 function EnrollmentStep() {
   return (
-    <Label className='font-[500] text-4xl '>Enlist Available Classes</Label>
+    <>
+      <Label className='font-[500] text-4xl '>Enlist Available Classes</Label>
+      <TableMRT template={template} data={fakeCollegeStudents} />
+    </>
   );
 }
 
 function ViewEnlistedStep() {
-  return <Label className='font-[500] text-4xl '>View Enlisted Subjects</Label>;
+  return (
+    <>
+      <Label className='font-[500] text-4xl '>View Enlisted Subjects</Label>
+      <TableMRT template={template} data={fakeCollegeStudents} />
+    </>
+  );
 }
 
 function PaymentStep() {
-  return <Label className='font-[500] text-4xl '>Payment</Label>;
+  return (
+    <>
+      <Label className='font-[500] text-4xl '>Payment</Label>
+      <TableMRT template={template} data={fakeCollegeStudents} />
+    </>
+  );
 }
 
 export default GradStudentEnrollment;
