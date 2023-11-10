@@ -2,6 +2,7 @@
 
 import CustomStepper from '@/components/component/stepper';
 import { Label } from '@/components/ui/label';
+import { Download } from 'lucide-react';
 import React, { useState } from 'react';
 
 const steps = [
@@ -39,7 +40,15 @@ const GradStudentEnrollment = () => {
       </div>
       {/* Stepper */}
       <div className=''>
-        <CustomStepper steps={steps}>
+        <CustomStepper
+          steps={steps}
+          lastStepOnclick={() => console.log('test')}
+          lastStepButtonLabel={
+            <>
+              <Download className='h-4 w-4 mr-2' /> Download & Finish Enrollment
+            </>
+          }
+        >
           <div className='place-self-start mt-[1.88rem]'>Test</div>
         </CustomStepper>
       </div>

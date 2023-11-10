@@ -11,6 +11,8 @@ const CustomStepper = ({
   onStepChange,
   // withButtons = false, Add if needed
   children,
+  lastStepOnclick, // added this to define the last step button on click
+  lastStepButtonLabel, // added this to define the last step button label
   ...rest
 }) => {
   const [activeStepper, setActiveStepper] = useState(initialStep);
@@ -40,6 +42,7 @@ const CustomStepper = ({
         onStepClick={setActiveStepper}
         breakpoint='sm'
         color='yellow'
+        allowNextStepsSelect={false} // disabled next step
         {...rest}
       >
         {steps.map((step, index) => (
@@ -57,7 +60,12 @@ const CustomStepper = ({
         <Button onClick={prevStep} variant='outline'>
           Back
         </Button>
-        <Button onClick={nextStep}>Next step</Button>
+
+        {steps.length === activeStepper ? (
+          <Button onClick={lastStepOnclick}>{lastStepButtonLabel}</Button>
+        ) : (
+          <Button onClick={nextStep}>Next step</Button>
+        )}
       </section>
     </>
   );
