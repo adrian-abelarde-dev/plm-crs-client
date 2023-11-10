@@ -57,14 +57,20 @@ const CustomStepper = ({
       </Stepper>
       {children ? children : null}
       <section className='w-full flex justify-center items-center gap-2 mt-4'>
-        <Button onClick={prevStep} variant='outline'>
+        <Button
+          onClick={prevStep}
+          variant='outline'
+          disabled={activeStepper === 0} // disabled back button when on first step
+        >
           Back
         </Button>
 
         {steps.length === activeStepper ? (
           <Button onClick={lastStepOnclick}>{lastStepButtonLabel}</Button>
         ) : (
-          <Button onClick={nextStep}>Next step</Button>
+          <Button onClick={nextStep} disabled={steps[activeStepper].condition}>
+            Next step
+          </Button>
         )}
       </section>
     </>

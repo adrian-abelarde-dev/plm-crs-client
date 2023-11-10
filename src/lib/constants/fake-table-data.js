@@ -372,6 +372,27 @@ export const gradEnlistClassesTemplate = [
   },
 ];
 
+export const gradSelectedEnlistClassesTemplate = [
+  {
+    accessorKey: 'classSection',
+    id: 'classSection',
+    header: 'Class/Section',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'classTitle',
+    id: 'classTitle',
+    header: 'Class Title',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'schedule',
+    id: 'schedule',
+    header: 'Schedule',
+    filterVariant: 'date',
+  },
+];
+
 // fake data based on gradEnlistClassesTemplate
 export const fakeGradEnlistClasses = [
   {

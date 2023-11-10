@@ -4,16 +4,20 @@ import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Label } from '@/components/ui/label';
 import {
-  fakeCollegeStudents,
   fakeGradEnlistClasses,
   gradEnlistClassesTemplate,
-  template,
+  gradSelectedEnlistClassesTemplate,
 } from '@/lib/constants/fake-table-data';
 import { Download } from 'lucide-react';
 import React, { useState } from 'react';
 
 const GradStudentEnrollment = () => {
   const [rowSelection, setRowSelection] = useState({});
+
+  // collects the selected classes
+  const enlistedClasses = fakeGradEnlistClasses.filter(
+    (item) => rowSelection[item[gradEnlistClassesTemplate[0].accessorKey]],
+  );
 
   const steps = [
     {
@@ -25,11 +29,12 @@ const GradStudentEnrollment = () => {
           setRowSelection={setRowSelection}
         />
       ),
+      condition: enlistedClasses.length === 0,
     },
     {
       label: 'Second step',
       description: 'Verify email',
-      content: <ViewEnlistedStep />,
+      content: <ViewEnlistedStep enlistedClasses={enlistedClasses} />,
     },
     {
       label: 'Final step',
@@ -68,8 +73,6 @@ const GradStudentEnrollment = () => {
 };
 
 function EnrollmentStep({ rowSelection, setRowSelection }) {
-  console.log(rowSelection);
-
   return (
     <>
       <Label className='font-[500] text-4xl '>Enlist Available Classes</Label>
@@ -85,11 +88,15 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
   );
 }
 
-function ViewEnlistedStep() {
+function ViewEnlistedStep({ enlistedClasses }) {
   return (
     <>
       <Label className='font-[500] text-4xl '>View Enlisted Subjects</Label>
-      {/* <TableMRT template={template} data={fakeCollegeStudents} /> */}
+      <TableMRT
+        template={gradSelectedEnlistClassesTemplate}
+        data={enlistedClasses}
+        searchPlaceholder={'Search Subject'}
+      />
     </>
   );
 }
