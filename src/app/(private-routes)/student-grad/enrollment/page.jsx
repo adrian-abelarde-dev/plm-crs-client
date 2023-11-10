@@ -2,13 +2,12 @@
 
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   fakeGradEnlistClasses,
   gradEnlistClassesTemplate,
-  gradSelectedEnlistClassesTemplate,
 } from '@/lib/constants/fake-table-data';
 import { CheckCircle, Download } from 'lucide-react';
 import React, { useState } from 'react';
