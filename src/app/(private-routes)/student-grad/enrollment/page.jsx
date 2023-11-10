@@ -48,7 +48,7 @@ const GradStudentEnrollment = () => {
       {/* Header */}
       <div className='mt-32 flex flex-col place-items-center'>
         <div className='place-self-start mb-[1.88rem]'>
-          <Label className='font-[500] text-4xl '>Enrollment</Label>
+          <Label className='font-medium text-4xl '>Enrollment</Label>
         </div>
         <Label>Current School Year / Term</Label>
         <div className='mb-[1.88rem]'>
@@ -61,7 +61,7 @@ const GradStudentEnrollment = () => {
       <div className='mb-20 '>
         <CustomStepper
           steps={steps}
-          lastStepOnclick={() => console.log('test')}
+          lastStepOnclick={() => {}}
           lastStepButtonLabel={
             <>
               <Download className='h-4 w-4 mr-2' /> Download & Finish Enrollment
@@ -77,7 +77,7 @@ const GradStudentEnrollment = () => {
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
     <>
-      <Label className='font-[500] text-4xl '>Enlist Available Classes</Label>
+      <Label className='font-medium text-4xl '>Enlist Available Classes</Label>
       <TableMRT
         template={gradEnlistClassesTemplate}
         data={fakeGradEnlistClasses}
@@ -93,7 +93,7 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
     <>
-      <Label className='font-[500] text-4xl '>View Enlisted Subjects</Label>
+      <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
       <TableMRT
         template={gradEnlistClassesTemplate}
         data={enlistedClasses}
