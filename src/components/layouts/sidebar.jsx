@@ -24,6 +24,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { SessionLinks } from './student-navbar';
+
 function SidebarButton({ icon, text, onClick, path, className }) {
   const pathname = usePathname();
 
@@ -91,13 +93,14 @@ export function Sidebar({ sidebarLinks }) {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <SessionLinks /> {/* Portal */}
             <DropdownMenuItem
-              className='flex justify-between items-center cursor-pointer'
+              className='flex justify-between items-center cursor-pointer text-red-500'
               onClick={() => {
                 signOut();
               }}
             >
-              Sign Out <LogOut className='h-4 w-4 text-zinc-400' />
+              Sign Out <LogOut className='h-4 w-4 text-red-500' />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
