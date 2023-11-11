@@ -3,12 +3,12 @@
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -19,6 +19,7 @@ import {
   gradEnlistClassesTemplate,
 } from '@/lib/constants/fake-table-data';
 import { CheckCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const GradStudentEnrollment = () => {
@@ -100,13 +101,11 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 }
 
 function ViewEnlistedStep({ enlistedClasses }) {
-  console.log(enlistedClasses);
-
   return (
-    <>
+    <div className='flex flex-col '>
       <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
 
-      <Table className='w-[75rem] mt-10'>
+      <Table className='w-full mt-10'>
         <TableHeader>
           <TableRow>
             <TableHead className='font-medium text-black'>
@@ -132,7 +131,7 @@ function ViewEnlistedStep({ enlistedClasses }) {
           })}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }
 
@@ -179,6 +178,10 @@ const CompletedPreview = () => {
         The start of classes will be on{' '}
         <span className='font-bold text-lg'>{startOfClasses}</span>
       </Label>
+
+      <Button className='mt-4' asChild>
+        <Link href='/student-grad'>Back to Dashboard</Link>
+      </Button>
     </div>
   );
 };
