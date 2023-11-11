@@ -410,6 +410,7 @@ const EncodingOfClassesTable = () => {
                   // If label includes 'trash' or 'delete' make the text red and icon
                   // color red
                   (rowAction.label.toLowerCase().includes('trash') ||
+                    rowAction.label.toLowerCase().includes('archive') ||
                     rowAction.label.toLowerCase().includes('delete')) &&
                     'text-destructive hover:text-red-400',
                 )}
