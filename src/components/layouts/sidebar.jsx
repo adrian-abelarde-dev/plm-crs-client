@@ -7,6 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import { Container } from '@/components/ui/container';
 import {
   DropdownMenu,
@@ -23,12 +28,79 @@ import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 import { SessionLinks } from './student-navbar';
 
-function SidebarButton({ icon, text, onClick, path, className }) {
+function SidebarButton({ icon, text, onClick, path, className, subContent }) {
   const pathname = usePathname();
 
+  return (
+    <>
+      {subContent ? (
+        <>
+          <Collapsible className='w-full'>
+            <CollapsibleTrigger className='w-full flex justify-between'>
+              <CustomLinks
+                pathname={pathname}
+                path={path}
+                className={className}
+                onClick={onClick}
+                icon={icon}
+                text={text}
+              />
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {subContent.map((content, index) => {
+                return (
+                  <Link
+                    className='flex w-full justify-center'
+                    key={index}
+                    href={content.path}
+                  >
+                    <CustomLinks
+                      pathname={pathname}
+                      path={content.path}
+                      className={'ml-[1.26rem] my-1'}
+                      onClick={onClick}
+                      icon={content.icon}
+                      text={content.text}
+                    />
+                  </Link>
+                );
+              })}
+            </CollapsibleContent>
+          </Collapsible>
+        </>
+      ) : (
+        <>
+          <CustomLinks
+            pathname={pathname}
+            path={path}
+            className={className}
+            onClick={onClick}
+            icon={icon}
+            text={text}
+          />
+        </>
+      )}
+    </>
+  );
+}
+
+export function CustomLinks({
+  pathname,
+  path,
+  className,
+  onClick,
+  icon,
+  text,
+}) {
+  const [active, setActive] = useState(false);
+
+  if (text === 'Management') {
+    console.log(active, path);
+  }
   return (
     <Button
       className={cn(
@@ -37,13 +109,18 @@ function SidebarButton({ icon, text, onClick, path, className }) {
         className,
       )}
       variant='ghost'
-      onClick={onClick}
+      onClick={() => {
+        setActive(true);
+        onClick;
+      }}
     >
       {icon ? (
         <div
           className={cn(
             'flex w-full items-center justify-center md:justify-start',
-            pathname.includes(path) ? 'text-zinc-950' : 'text-zinc-500',
+            pathname.includes(path) || active
+              ? 'text-zinc-950'
+              : 'text-zinc-500',
           )}
         >
           {icon} <span className='hidden font-normal md:inline'>{text}</span>
@@ -86,8 +163,17 @@ export function Sidebar({ sidebarLinks, accessType }) {
   }
 
   const sidebarButtonsContent = sidebarLinks.map((button, index) => (
-    <Link className='flex w-full justify-center' key={index} href={button.path}>
-      <SidebarButton icon={button.icon} text={button.text} path={button.path} />
+    <Link
+      className='flex w-full justify-center'
+      key={index}
+      href={button.subContent ? '' : button.path}
+    >
+      <SidebarButton
+        icon={button.icon}
+        text={button.text}
+        path={button.path}
+        subContent={button.subContent}
+      />
     </Link>
   ));
 

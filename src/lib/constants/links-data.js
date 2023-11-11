@@ -3,6 +3,7 @@ import {
   ArrowLeftRight,
   Box,
   Calendar,
+  ChevronRight,
   GraduationCap,
   Mail,
   PersonStanding,
@@ -126,9 +127,28 @@ export const collegeGradLinks = [
   {
     icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Management',
-    path: '/college-grad/calendar',
+    path: '/college-grad/management',
     subContent: [
-      {}
+      {
+        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
+        text: 'Faculty',
+        path: '/college-grad/management/faculty',
+      },
+      {
+        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
+        text: 'Class',
+        path: '/college-grad/management/class',
+      },
+      {
+        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
+        text: 'Subject',
+        path: '/college-grad/management/subject',
+      },
+      {
+        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
+        text: 'Curriculum',
+        path: '/college-grad/management/curriculum',
+      },
     ],
   },
   {
