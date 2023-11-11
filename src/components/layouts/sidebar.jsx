@@ -56,7 +56,7 @@ function SidebarButton({ icon, text, onClick, path, className }) {
 }
 
 export function Sidebar({ sidebarLinks, accessType }) {
-  // session data
+  // session data to dynamically display name
   const { data: session } = useSession();
 
   function formatName(fullName) {
