@@ -3,13 +3,23 @@
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import {
   fakeGradEnlistClasses,
   gradEnlistClassesTemplate,
 } from '@/lib/constants/fake-table-data';
 import { CheckCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const GradStudentEnrollment = () => {
@@ -92,14 +102,36 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
-    <>
+    <div className='flex flex-col'>
       <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
-      <TableMRT
-        template={gradEnlistClassesTemplate}
-        data={enlistedClasses}
-        searchPlaceholder={'Search Subject'}
-      />
-    </>
+
+      <Table className='w-full mt-10'>
+        <TableHeader>
+          <TableRow>
+            <TableHead className='font-medium text-black'>
+              Class/Section
+            </TableHead>
+            <TableHead className='font-medium text-black'>
+              Class Title
+            </TableHead>
+            <TableHead className='font-medium text-black'>Schedule</TableHead>
+            <TableHead className='font-medium text-black'>Room</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {enlistedClasses.map((_class, index) => {
+            return (
+              <TableRow key={index}>
+                <TableCell>{_class.classSection}</TableCell>
+                <TableCell>{_class.classTitle}</TableCell>
+                <TableCell>{_class.schedule}</TableCell>
+                <TableCell>{_class.room}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
 
@@ -146,6 +178,10 @@ const CompletedPreview = () => {
         The start of classes will be on{' '}
         <span className='font-bold text-lg'>{startOfClasses}</span>
       </Label>
+
+      <Button className='mt-4' asChild>
+        <Link href='/student-grad'>Back to Dashboard</Link>
+      </Button>
     </div>
   );
 };
