@@ -6,6 +6,15 @@ import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import {
   fakeGradEnlistClasses,
   gradEnlistClassesTemplate,
 } from '@/lib/constants/fake-table-data';
@@ -91,14 +100,38 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 }
 
 function ViewEnlistedStep({ enlistedClasses }) {
+  console.log(enlistedClasses);
+
   return (
     <>
       <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
-      <TableMRT
-        template={gradEnlistClassesTemplate}
-        data={enlistedClasses}
-        searchPlaceholder={'Search Subject'}
-      />
+
+      <Table className='w-[75rem] mt-10'>
+        <TableHeader>
+          <TableRow>
+            <TableHead className='font-medium text-black'>
+              Class/Section
+            </TableHead>
+            <TableHead className='font-medium text-black'>
+              Class Title
+            </TableHead>
+            <TableHead className='font-medium text-black'>Schedule</TableHead>
+            <TableHead className='font-medium text-black'>Room</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {enlistedClasses.map((classs, index) => {
+            return (
+              <TableRow key={index}>
+                <TableCell>{classs.classSection}</TableCell>
+                <TableCell>{classs.classTitle}</TableCell>
+                <TableCell>{classs.schedule}</TableCell>
+                <TableCell>{classs.room}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </>
   );
 }

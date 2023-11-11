@@ -404,6 +404,7 @@ export const fakeGradEnlistClasses = [
     slots: '5',
     enlisted: '0',
     enrolled: '0',
+    room: 'Room 101',
   },
   {
     classSection: 'TW-102',
@@ -413,6 +414,7 @@ export const fakeGradEnlistClasses = [
     schedule: 'MWF 8:00 AM - 9:00 AM',
     slots: '5',
     enlisted: '0',
+    room: 'Room 101',
     enrolled: '0',
   },
   {
@@ -424,6 +426,7 @@ export const fakeGradEnlistClasses = [
     slots: '5',
     enlisted: '0',
     enrolled: '0',
+    room: 'Room 101',
   },
   {
     classSection: 'TW-104',
@@ -433,6 +436,7 @@ export const fakeGradEnlistClasses = [
     schedule: 'MWF 8:00 AM - 9:00 AM',
     slots: '5',
     enlisted: '0',
+    room: 'Room 101',
     enrolled: '0',
   },
   {
@@ -443,6 +447,7 @@ export const fakeGradEnlistClasses = [
     schedule: 'MWF 8:00 AM - 9:00 AM',
     slots: '5',
     enlisted: '0',
+    room: 'Room 101',
     enrolled: '0',
   },
 ];
