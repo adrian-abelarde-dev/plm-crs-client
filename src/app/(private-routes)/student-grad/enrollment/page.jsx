@@ -119,13 +119,13 @@ function ViewEnlistedStep({ enlistedClasses }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {enlistedClasses.map((classs, index) => {
+          {enlistedClasses.map((_class, index) => {
             return (
               <TableRow key={index}>
-                <TableCell>{classs.classSection}</TableCell>
-                <TableCell>{classs.classTitle}</TableCell>
-                <TableCell>{classs.schedule}</TableCell>
-                <TableCell>{classs.room}</TableCell>
+                <TableCell>{_class.classSection}</TableCell>
+                <TableCell>{_class.classTitle}</TableCell>
+                <TableCell>{_class.schedule}</TableCell>
+                <TableCell>{_class.room}</TableCell>
               </TableRow>
             );
           })}
