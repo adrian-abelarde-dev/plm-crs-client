@@ -8,6 +8,7 @@ import {
 } from '@/components/component/form';
 import { MessageModal } from '@/components/component/modal';
 import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -86,7 +87,7 @@ const GradApplicationForm = () => {
   };
 
   return (
-    <div className='mx-10 mb-[2.94rem]'>
+    <Container>
       <ApplicationFormHeader />
       <Link href='/'>
         <ArrowLeft className='h-6 w-6 text-zinc-500  mb-10' />
@@ -345,7 +346,7 @@ const GradApplicationForm = () => {
           </div>
         </form>
       </Form>
-    </div>
+    </Container>
   );
 };
 
