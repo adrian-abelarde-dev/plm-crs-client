@@ -127,6 +127,9 @@ export const collegeGradLinks = [
     icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Management',
     path: '/college-grad/calendar',
+    subContent: [
+      {}
+    ],
   },
   {
     icon: <ArrowLeftRight className='mr-0 h-4 w-4 md:mr-2' />,

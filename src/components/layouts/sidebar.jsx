@@ -19,7 +19,7 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { LogOut } from 'lucide-react';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -55,7 +55,36 @@ function SidebarButton({ icon, text, onClick, path, className }) {
   );
 }
 
-export function Sidebar({ sidebarLinks }) {
+export function Sidebar({ sidebarLinks, accessType }) {
+  // session data
+  const { data: session } = useSession();
+
+  function formatName(fullName) {
+    // Split the full name into parts
+    const parts = fullName.split(', ');
+
+    // Handle names without middle initials
+    if (parts.length === 1) {
+      return capitalizeFirstLetter(parts[0]);
+    }
+
+    // Extract the first name, middle initial, and last name
+    const [lastName, firstAndMiddle] = parts;
+    const [firstName, middleInitial] = firstAndMiddle.split(' ');
+
+    // Build the formatted name without the middle initial
+    const formattedName = `${capitalizeFirstLetter(firstName)} ${
+      middleInitial ? capitalizeFirstLetter(middleInitial) : ''
+    } ${capitalizeFirstLetter(lastName)}`;
+
+    return formattedName.trim();
+  }
+
+  // Helper function to capitalize the first letter of a word
+  function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
   const sidebarButtonsContent = sidebarLinks.map((button, index) => (
     <Link className='flex w-full justify-center' key={index} href={button.path}>
       <SidebarButton icon={button.icon} text={button.text} path={button.path} />
@@ -83,9 +112,9 @@ export function Sidebar({ sidebarLinks }) {
           <DropdownMenuTrigger>
             <Card className='hidden md:block rounded-md text-left'>
               <CardHeader className='p-4'>
-                <CardTitle>Emmanuel Leyco</CardTitle>
+                <CardTitle>{formatName(session.user.name)}</CardTitle>
                 <CardDescription className='p-0 m-0 leading-3'>
-                  Admin
+                  {accessType}
                 </CardDescription>
               </CardHeader>
             </Card>
