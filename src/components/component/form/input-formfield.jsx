@@ -1,0 +1,58 @@
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+import RequiredAsterisk from './required-asterisk';
+
+// ? form -> initialized on the parent component using useForm()
+// ? title -> label for the form field
+// ? placeholder -> placeholder for the input
+// ? description -> description for the form field
+// ? fieldName -> name of the field that is connected to the 'form'
+// ? className -> optional
+// ? disabled -> optional
+// ? isOptional -> optional
+export default function InputFormField({
+  form,
+  title,
+  placeholder,
+  description, // optional
+  fieldName,
+  className,
+  disabled,
+  isOptional = false,
+  badge,
+}) {
+  return (
+    <FormField
+      control={form.control}
+      name={fieldName}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className='text-zinc-900 w-full font-medium flex gap-1 items-end justify-between'>
+            <span>
+              {title} <RequiredAsterisk isOptional={isOptional} />
+            </span>{' '}
+            {badge}
+          </FormLabel>
+          <FormControl>
+            <Input
+              placeholder={placeholder}
+              {...field}
+              className={className}
+              disabled={disabled}
+            />
+          </FormControl>
+          <FormDescription>{description}</FormDescription>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+}

@@ -1,6 +1,10 @@
 'use client';
 
-import { InputFormField, SelectFormField } from '@/components/component/form';
+import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
+import DateFormField from '@/components/component/form/date-formfield';
+import InputFormField from '@/components/component/form/input-formfield';
+import SelectFormField from '@/components/component/form/select-formfield';
+import MessageModal from '@/components/component/modal';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -48,7 +52,7 @@ export const units = [
   { label: 'Grad', value: 'grad' },
 ];
 
-const CustomUserTypesBadges = ({ value }) => {
+function CustomUserTypesBadges({ value }) {
   switch (value) {
     case 'admin':
       return <Badge variant='outlinePrimary'>Admin</Badge>;
@@ -61,9 +65,9 @@ const CustomUserTypesBadges = ({ value }) => {
     default:
       return <Badge variant='outline'>Unknown</Badge>;
   }
-};
+}
 
-const AddUserDialogForm = () => {
+function AddUserDialogForm() {
   const addUserForm = useForm({
     resolver: zodResolver(addUserSchema),
     defaultValues: {
@@ -95,7 +99,7 @@ const AddUserDialogForm = () => {
         <Form {...addUserForm}>
           <form onSubmit={addUserForm.handleSubmit(onSubmit)}>
             {/* Content */}
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-2'>
               {/* User ID */}
               <section className='w-full flex flex-col gap-2'>
                 <InputFormField
@@ -118,8 +122,15 @@ const AddUserDialogForm = () => {
                 />
               </section>
 
-              {/* First Name */}
-              <section className='w-full flex flex-col gap-2'>
+              <section className='w-full flex gap-2'>
+                {/* First Name */}
+                <InputFormField
+                  form={addUserForm}
+                  title='First Name'
+                  placeholder='John'
+                  fieldName='firstName'
+                />
+                {/* First Name */}
                 <InputFormField
                   form={addUserForm}
                   title='First Name'
@@ -127,22 +138,45 @@ const AddUserDialogForm = () => {
                   fieldName='firstName'
                 />
               </section>
+
+              <DateFormField
+                form={addUserForm}
+                title='Birth Date'
+                placeholder='Select date'
+                fieldName='birthDate'
+              />
+
+              <CheckBoxFormField
+                form={addUserForm}
+                title={
+                  <>
+                    I have read and understand the{' '}
+                    <MessageModal
+                      title='Terms & Conditions'
+                      trigger={<span>terms and conditions</span>}
+                      content='Test'
+                      dialogTriggerVariant='underlined'
+                    />
+                  </>
+                }
+                fieldName={'termsAndConditions'}
+              />
             </div>
+
+            <DialogFooter className='w-full flex justify-end mt-4'>
+              <DialogClose asChild>
+                <Button variant='outline'>Cancel</Button>
+              </DialogClose>
+              <Button type='submit'>Save User</Button>
+            </DialogFooter>
           </form>
         </Form>
-
-        <DialogFooter className='w-full flex justify-end'>
-          <DialogClose asChild>
-            <Button variant='outline'>Cancel</Button>
-          </DialogClose>
-          <Button type='submit'>Save User</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-};
+}
 
-const UsersPage = () => {
+function UsersPage() {
   return (
     <main className='w-full p-6'>
       <TableMRT
@@ -180,6 +214,6 @@ const UsersPage = () => {
       />
     </main>
   );
-};
+}
 
 export default UsersPage;

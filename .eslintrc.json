@@ -4,6 +4,11 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "rules": {
+    "no-trailing-spaces": "error",
+    "no-duplicate-imports": "error",
+    "no-undef": "error"
+  },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "root": true

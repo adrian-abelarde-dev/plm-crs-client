@@ -7,16 +7,25 @@ import * as React from 'react';
 
 const Dialog = DialogPrimitive.Root;
 
-const DialogTrigger = React.forwardRef(({ className, ...props }, ref) => (
-  <DialogPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      'bg-primary text-primary-foreground shadow hover:bg-yellow-500 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2',
-      className,
-    )}
-    {...props}
-  />
-));
+const DialogTrigger = React.forwardRef(
+  ({ className, variant, ...props }, ref) => (
+    <DialogPrimitive.Trigger
+      ref={ref}
+      className={
+        variant === 'underlined'
+          ? cn(
+              'text-zinc-900 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background underline break-words',
+              className,
+            )
+          : cn(
+              'bg-primary text-primary-foreground shadow hover:bg-yellow-500 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2',
+              className,
+            )
+      }
+      {...props}
+    />
+  ),
+);
 DialogTrigger.displayName = DialogPrimitive.Trigger.displayName;
 
 const DialogPortal = DialogPrimitive.Portal;

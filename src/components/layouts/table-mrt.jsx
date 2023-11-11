@@ -1,7 +1,6 @@
 'use client';
 
-import { Flex } from '@mantine/core';
-import { MantineProvider } from '@mantine/core';
+import { Flex, MantineProvider } from '@mantine/core';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ToggleFiltersButton,
