@@ -24,15 +24,30 @@ import React, { useState } from 'react';
 const GradStudentGrades = () => {
   const [selectedAysem, setSelectedAysem] = useState();
 
+  const aysem = [
+    {
+      aysem: 20201,
+    },
+    {
+      aysem: 20202,
+    },
+    {
+      aysem: 20211,
+    },
+    {
+      aysem: 20212,
+    },
+  ];
+
   return (
-    <div className='mx-9 pr-9 w-full'>
+    <div className='mx-9 pr-9 2xl:pr-0 w-full'>
       {/* Header */}
       <div className='mt-32 mb-[1.88rem]'>
         <Label className='font-medium text-4xl '>Grades</Label>
       </div>
 
       {/* Grades Table */}
-      <div className='mb-20 mr-9'>
+      <div className='mb-20 mr-9 2xl:mr-0'>
         <div className='flex  max-md:block justify-between'>
           <div className='w-[20rem] max-md:w-full'>
             <Select
@@ -48,9 +63,13 @@ const GradStudentGrades = () => {
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value='m@example.com'>m@example.com</SelectItem>
-                <SelectItem value='m@google.com'>m@google.com</SelectItem>
-                <SelectItem value='m@support.com'>m@support.com</SelectItem>
+                {aysem.map((year, index) => {
+                  return (
+                    <SelectItem key={index} value={year.aysem}>
+                      {year.aysem}
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
           </div>
