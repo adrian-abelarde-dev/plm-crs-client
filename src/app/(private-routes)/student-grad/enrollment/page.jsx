@@ -102,7 +102,7 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
-    <div className='flex flex-col '>
+    <div className='flex flex-col'>
       <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
 
       <Table className='w-full mt-10'>
