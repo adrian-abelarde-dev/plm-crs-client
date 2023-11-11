@@ -70,9 +70,7 @@ const AddUserDialogForm = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button>Add User</Button>
-      </DialogTrigger>
+      <DialogTrigger>Add User</DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle>Add User</DialogTitle>

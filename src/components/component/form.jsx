@@ -2,7 +2,6 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
-import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Calendar } from '../ui/calendar';
 import { Checkbox } from '../ui/checkbox';
@@ -45,7 +44,10 @@ export const SelectFormField = ({
   className,
   disabled,
   isOptional, // optional
+  customItem,
 }) => {
+  const CustomItem = customItem;
+
   return (
     <FormField
       control={form.control}
@@ -53,9 +55,9 @@ export const SelectFormField = ({
       render={({ field }) => (
         <>
           <FormItem>
-            <FormLabel className='text-[#09090B] font-bold'>
+            <FormLabel className='text-text-zinc-900 font-medium flex gap-1 items-end'>
               {title}
-              <BadgeForm isOptional={isOptional} />
+              <RequiredAsterisk isOptional={isOptional} />
             </FormLabel>
             <Select
               onValueChange={field.onChange}
@@ -77,7 +79,7 @@ export const SelectFormField = ({
                   {content.map((item) => {
                     return (
                       <SelectItem value={item.value} key={item.value}>
-                        {item.label}
+                        <CustomItem value={item.value} />
                       </SelectItem>
                     );
                   })}
@@ -109,7 +111,8 @@ export const InputFormField = ({
   fieldName,
   className,
   disabled,
-  isOptional, // optional
+  isOptional = false,
+  badge,
 }) => {
   return (
     <FormField
@@ -117,8 +120,11 @@ export const InputFormField = ({
       name={fieldName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='text-[#09090B] font-bold'>
-            {title} <BadgeForm isOptional={isOptional} />
+          <FormLabel className='text-zinc-900 w-full font-medium flex gap-1 items-end justify-between'>
+            <span>
+              {title} <RequiredAsterisk isOptional={isOptional} />
+            </span>{' '}
+            {badge}
           </FormLabel>
           <FormControl>
             <Input
@@ -158,9 +164,9 @@ export const DateFormField = ({
       name={fieldName}
       render={({ field }) => (
         <FormItem className='flex flex-col mt-[0.62rem]'>
-          <FormLabel className='text-[#09090B] font-bold'>
+          <FormLabel className='text-text-zinc-900 font-medium'>
             {title}
-            <BadgeForm isOptional={isOptional} />
+            <RequiredAsterisk isOptional={isOptional} />
           </FormLabel>{' '}
           <Popover>
             <PopoverTrigger asChild>
@@ -239,20 +245,13 @@ export const CheckBoxFormField = ({
   );
 };
 
-const BadgeForm = ({ isOptional = true }) => {
+const RequiredAsterisk = ({ isOptional = true }) => {
   return (
     <>
-      {isOptional ? (
-        <Badge className='px-2 ml-1 text-zinc-500' variant='ghost'>
-          Optional
-        </Badge>
-      ) : (
-        <Badge
-          className='ml-1 bg-[#FEF2F2] text-[#DC2626] border-[#DC2626]'
-          variant='ghost'
-        >
-          Required
-        </Badge>
+      {!isOptional && (
+        <span className='text-red-500' data-testid='required-asterisk'>
+          *
+        </span>
       )}
     </>
   );

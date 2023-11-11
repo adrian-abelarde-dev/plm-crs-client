@@ -89,9 +89,7 @@ const AddParticipantDialogForm = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button>Add Participant</Button>
-      </DialogTrigger>
+      <DialogTrigger>Add Participant</DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle>Add Participant</DialogTitle>
