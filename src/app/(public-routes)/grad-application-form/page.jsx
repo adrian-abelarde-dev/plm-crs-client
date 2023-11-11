@@ -302,7 +302,6 @@ const GradApplicationForm = () => {
                     title='Terms & Conditions'
                     trigger={<span>terms and conditions</span>}
                     content={<TermsAndAgreement />}
-                    dialogTriggerVariant='underlined'
                   />
                 </>
               }

@@ -28,6 +28,7 @@ export default function InputFormField({
   disabled,
   isOptional = false,
   badge,
+  type = 'text',
 }) {
   return (
     <FormField
@@ -47,6 +48,7 @@ export default function InputFormField({
               {...field}
               className={className}
               disabled={disabled}
+              type={type}
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>

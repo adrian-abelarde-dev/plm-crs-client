@@ -45,8 +45,10 @@ const AddActivityDialogForm = () => {
   return (
     <>
       <Dialog>
-        <DialogTrigger>Add Activity</DialogTrigger>
-        <DialogContent className='sm:max-w-[425px]'>
+        <DialogTrigger asChild>
+          <Button>Add Activity</Button>
+        </DialogTrigger>
+        <DialogContent className='xsm:max-w-[425px]'>
           <DialogHeader>
             <DialogTitle>Add Activity</DialogTitle>
             <DialogDescription>

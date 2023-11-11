@@ -1,10 +1,7 @@
 'use client';
 
-import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
-import DateFormField from '@/components/component/form/date-formfield';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
-import MessageModal from '@/components/component/modal';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -30,6 +27,17 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 const addUserSchema = z.object({
+  userId: z.string(),
+  userType: z.string(),
+  unit: z.string(),
+  firstName: z.string(),
+  middleName: z.string(),
+  lastName: z.string(),
+  emailAddress: z.string().email(),
+  // Date created will be auto-generated in backend
+});
+
+const editUserSchema = z.object({
   userId: z.string(),
   userType: z.string(),
   unit: z.string(),
@@ -89,11 +97,13 @@ function AddUserDialogForm() {
 
   return (
     <Dialog>
-      <DialogTrigger>Add User</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button>Add User</Button>
+      </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle>Add User</DialogTitle>
-          <DialogDescription>Add a User to the System</DialogDescription>
+          <DialogDescription>Add a User to the system</DialogDescription>
         </DialogHeader>
 
         <Form {...addUserForm}>
@@ -101,65 +111,63 @@ function AddUserDialogForm() {
             {/* Content */}
             <div className='flex flex-col gap-2'>
               {/* User ID */}
-              <section className='w-full flex flex-col gap-2'>
-                <InputFormField
-                  form={addUserForm}
-                  title='User ID'
-                  placeholder='John'
-                  fieldName='userId'
-                  badge={<Badge variant='outline'>Auto-generated</Badge>}
-                />
-              </section>
+              <InputFormField
+                form={addUserForm}
+                title='User ID'
+                placeholder='John'
+                fieldName='userId'
+                badge={<Badge variant='outline'>Auto-generated</Badge>}
+              />
 
-              <section className='w-full flex flex-col gap-2'>
-                <SelectFormField
-                  form={addUserForm}
-                  content={userTypes}
-                  title='User Type'
-                  placeholder='Select user type...'
-                  fieldName='userType'
-                  customItem={CustomUserTypesBadges}
-                />
-              </section>
+              <SelectFormField
+                form={addUserForm}
+                content={userTypes}
+                title='User Type'
+                placeholder='Select user type...'
+                fieldName='userType'
+                customItem={CustomUserTypesBadges}
+              />
+
+              <SelectFormField
+                form={addUserForm}
+                content={units}
+                title='Units'
+                placeholder='Select unit...'
+                fieldName='unit'
+              />
 
               <section className='w-full flex gap-2'>
                 {/* First Name */}
                 <InputFormField
                   form={addUserForm}
                   title='First Name'
-                  placeholder='John'
+                  placeholder='Enter first name'
                   fieldName='firstName'
                 />
-                {/* First Name */}
+                {/* Middle Name */}
                 <InputFormField
                   form={addUserForm}
-                  title='First Name'
-                  placeholder='John'
-                  fieldName='firstName'
+                  title='Middle Name'
+                  placeholder='Doe'
+                  fieldName='middleName'
                 />
               </section>
 
-              <DateFormField
+              {/* Last Name */}
+              <InputFormField
                 form={addUserForm}
-                title='Birth Date'
-                placeholder='Select date'
-                fieldName='birthDate'
+                title='Last Name'
+                placeholder='Enter last name'
+                fieldName='lastName'
               />
 
-              <CheckBoxFormField
+              {/* Email */}
+              <InputFormField
                 form={addUserForm}
-                title={
-                  <>
-                    I have read and understand the{' '}
-                    <MessageModal
-                      title='Terms & Conditions'
-                      trigger={<span>terms and conditions</span>}
-                      content='Test'
-                      dialogTriggerVariant='underlined'
-                    />
-                  </>
-                }
-                fieldName={'termsAndConditions'}
+                title='Email'
+                placeholder='Enter email'
+                fieldName='emailAddress'
+                type='email'
               />
             </div>
 
@@ -168,6 +176,113 @@ function AddUserDialogForm() {
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
               <Button type='submit'>Save User</Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function EditUserDialogForm({ label, icon }) {
+  const editUserForm = useForm({
+    resolver: zodResolver(editUserSchema),
+    defaultValues: {
+      userId: '2020-10016',
+      userType: 'admin',
+      unit: 'undergrad',
+      firstName: 'John',
+      middleName: 'Doe',
+      lastName: 'Smith',
+      emailAddress: 'john.doe2020@plmn.edu.ph',
+    },
+  });
+
+  function onSubmit(values) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  }
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          className='text-zinc-900 justify-between hover:bg-zinc-100'
+          variant='ghost'
+        >
+          {label}
+          {icon}
+        </Button>
+      </DialogTrigger>
+      <DialogContent className='sm:max-w-[425px]'>
+        <DialogHeader>
+          <DialogTitle>Edit User</DialogTitle>
+          <DialogDescription>Edit a User to the system</DialogDescription>
+        </DialogHeader>
+
+        <Form {...editUserForm}>
+          <form onSubmit={editUserForm.handleSubmit(onSubmit)}>
+            {/* Content */}
+            <div className='flex flex-col gap-2'>
+              {/* User ID */}
+              <InputFormField
+                form={editUserForm}
+                title='User ID'
+                placeholder='John'
+                fieldName='userId'
+                badge={<Badge variant='outline'>Auto-generated</Badge>}
+              />
+
+              <SelectFormField
+                form={editUserForm}
+                content={userTypes}
+                title='User Type'
+                placeholder='Select user type...'
+                fieldName='userType'
+                customItem={CustomUserTypesBadges}
+              />
+
+              <section className='w-full flex gap-2'>
+                {/* First Name */}
+                <InputFormField
+                  form={editUserForm}
+                  title='First Name'
+                  placeholder='Enter first name'
+                  fieldName='firstName'
+                />
+                {/* Middle Name */}
+                <InputFormField
+                  form={editUserForm}
+                  title='Middle Name'
+                  placeholder='Doe'
+                  fieldName='middleName'
+                />
+              </section>
+
+              {/* Last Name */}
+              <InputFormField
+                form={editUserForm}
+                title='Last Name'
+                placeholder='Enter last name'
+                fieldName='lastName'
+              />
+
+              {/* Email */}
+              <InputFormField
+                form={editUserForm}
+                title='Email'
+                placeholder='Enter email'
+                fieldName='emailAddress'
+                type='email'
+              />
+            </div>
+
+            <DialogFooter className='w-full flex justify-end mt-4'>
+              <DialogClose asChild>
+                <Button variant='outline'>Cancel</Button>
+              </DialogClose>
+              <Button type='submit'>Save Changes</Button>
             </DialogFooter>
           </form>
         </Form>
@@ -190,6 +305,16 @@ function UsersPage() {
         RowActions={
           <>
             {fakeUsersRowActions.map((rowAction) => {
+              if (rowAction.label.toLowerCase().includes('edit')) {
+                return (
+                  <EditUserDialogForm
+                    key={rowAction.label}
+                    icon={rowAction.icon}
+                    label={rowAction.label}
+                  />
+                );
+              }
+
               return (
                 <Button
                   key={rowAction.label}

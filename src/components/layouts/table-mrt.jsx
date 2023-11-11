@@ -10,6 +10,7 @@ import {
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
+import Loader from '../component/loader';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -135,6 +136,8 @@ const TableMRT = ({
   useEffect(() => {
     setIsDomLoaded(true);
   }, []);
+
+  if (!isDomLoaded) return <Loader />;
 
   return (
     <div className='my-4'>

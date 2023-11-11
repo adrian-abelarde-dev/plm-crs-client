@@ -1,5 +1,3 @@
-import { cn } from '@/lib/utils';
-
 import {
   Dialog,
   DialogContent,
@@ -22,17 +20,10 @@ export default function MessageModal({
   description,
   content,
   footer,
-  dialogTriggerCn,
-  dialogTriggerVariant,
 }) {
   return (
     <Dialog>
-      <DialogTrigger
-        className={cn('cursor-pointer', dialogTriggerCn)}
-        variant={dialogTriggerVariant}
-      >
-        {trigger}
-      </DialogTrigger>
+      <DialogTrigger className='cursor-pointer'>{trigger}</DialogTrigger>
       <DialogContent className='max-md:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle className='font-[700] text-2xl'>{title}</DialogTitle>
