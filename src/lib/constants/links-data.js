@@ -1,8 +1,11 @@
 import {
+  Activity,
+  ArrowLeftRight,
   Box,
   Calendar,
   GraduationCap,
   Mail,
+  PersonStanding,
   Presentation,
   User2,
   Warehouse,
@@ -106,5 +109,28 @@ export const adminSidebarLinks = [
     icon: <User2 className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Students',
     path: '/admin/students',
+  },
+];
+
+export const collegeGradLinks = [
+  {
+    icon: <Activity className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Activities',
+    path: '/college-grad/activities',
+  },
+  {
+    icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Students',
+    path: '/college-grad/students',
+  },
+  {
+    icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Management',
+    path: '/college-grad/calendar',
+  },
+  {
+    icon: <ArrowLeftRight className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Transactions',
+    path: '/college-grad/transactions',
   },
 ];
