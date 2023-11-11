@@ -28,7 +28,6 @@ import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 
 import { SessionLinks } from './student-navbar';
 
@@ -65,6 +64,7 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
                       onClick={onClick}
                       icon={content.icon}
                       text={content.text}
+                      activeState={true}
                     />
                   </Link>
                 );
@@ -81,6 +81,7 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
             onClick={onClick}
             icon={icon}
             text={text}
+            activeState={true}
           />
         </>
       )}
@@ -95,32 +96,25 @@ export function CustomLinks({
   onClick,
   icon,
   text,
+  activeState = false, // defines if the button has active state or not --> default is false
 }) {
-  const [active, setActive] = useState(false);
-
-  if (text === 'Management') {
-    console.log(active, path);
-  }
   return (
     <Button
       className={cn(
         `flex h-fit justify-center rounded-sm px-2 py-2 text-left md:w-full md:justify-start md:px-4 md:py-2 hover:bg-zinc-100`,
-        pathname.includes(path) && 'bg-yellow-400 hover:bg-yellow-500',
+        pathname.includes(path) &&
+          activeState &&
+          'bg-yellow-400 hover:bg-yellow-500',
         className,
       )}
       variant='ghost'
-      onClick={() => {
-        setActive(true);
-        onClick;
-      }}
+      onClick={onClick}
     >
       {icon ? (
         <div
           className={cn(
             'flex w-full items-center justify-center md:justify-start',
-            pathname.includes(path) || active
-              ? 'text-zinc-950'
-              : 'text-zinc-500',
+            pathname.includes(path) ? 'text-zinc-950' : 'text-zinc-500',
           )}
         >
           {icon} <span className='hidden font-normal md:inline'>{text}</span>
@@ -162,20 +156,22 @@ export function Sidebar({ sidebarLinks, accessType }) {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
-  const sidebarButtonsContent = sidebarLinks.map((button, index) => (
-    <Link
-      className='flex w-full justify-center'
-      key={index}
-      href={button.subContent ? '' : button.path}
-    >
-      <SidebarButton
-        icon={button.icon}
-        text={button.text}
-        path={button.path}
-        subContent={button.subContent}
-      />
-    </Link>
-  ));
+  const sidebarButtonsContent = sidebarLinks.map((button, index) => {
+    return (
+      <Link
+        className='flex w-full justify-center'
+        key={index}
+        href={button.subContent ? '' : button.path}
+      >
+        <SidebarButton
+          icon={button.icon}
+          text={button.text}
+          path={button.path}
+          subContent={button.subContent}
+        />
+      </Link>
+    );
+  });
 
   return (
     <aside className='h-screen w-fit outline outline-1 outline-gray-200 md:w-52'>
