@@ -1,13 +1,16 @@
 import {
   Activity,
   ArrowLeftRight,
+  BookOpenText,
+  BookText,
   Box,
   Calendar,
-  ChevronRight,
   GraduationCap,
   Mail,
+  PencilLine,
   PersonStanding,
   Presentation,
+  User,
   User2,
   Warehouse,
 } from 'lucide-react';
@@ -130,24 +133,24 @@ export const collegeGradLinks = [
     path: '/college-grad/management',
     subContent: [
       {
-        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
         text: 'Faculty',
         path: '/college-grad/management/faculty',
+        icon: <User className='mr-0 h-4 w-4 md:mr-2' />,
       },
       {
-        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
         text: 'Class',
         path: '/college-grad/management/class',
+        icon: <PencilLine className='mr-0 h-4 w-4 md:mr-2' />,
       },
       {
-        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
         text: 'Subject',
         path: '/college-grad/management/subject',
+        icon: <BookOpenText className='mr-0 h-4 w-4 md:mr-2' />,
       },
       {
-        icon: <ChevronRight className='mr-0 h-4 w-4 md:mr-2' />,
         text: 'Curriculum',
         path: '/college-grad/management/curriculum',
+        icon: <BookText className='mr-0 h-4 w-4 md:mr-2' />,
       },
     ],
   },

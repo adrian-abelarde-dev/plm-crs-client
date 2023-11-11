@@ -39,7 +39,7 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
       {subContent ? (
         <>
           <Collapsible className='w-full'>
-            <CollapsibleTrigger className='w-full flex justify-between'>
+            <CollapsibleTrigger className='w-full justify-center'>
               <CustomLinks
                 pathname={pathname}
                 path={path}
@@ -49,26 +49,29 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
                 text={text}
               />
             </CollapsibleTrigger>
-            <CollapsibleContent>
-              {subContent.map((content, index) => {
-                return (
-                  <Link
-                    className='flex w-full justify-center'
-                    key={index}
-                    href={content.path}
-                  >
-                    <CustomLinks
-                      pathname={pathname}
-                      path={content.path}
-                      className={'ml-[1.26rem] my-1'}
-                      onClick={onClick}
-                      icon={content.icon}
-                      text={content.text}
-                      activeState={true}
-                    />
-                  </Link>
-                );
-              })}
+            <CollapsibleContent className='flex flex-row justify-center'>
+              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
+              <div className='w-full'>
+                {subContent.map((content, index) => {
+                  return (
+                    <Link
+                      className='flex w-100 justify-center'
+                      key={index}
+                      href={content.path}
+                    >
+                      <CustomLinks
+                        pathname={pathname}
+                        path={content.path}
+                        className={'ml-[1.26rem] my-1 max-md:ml-0'}
+                        onClick={onClick}
+                        icon={content.icon}
+                        text={content.text}
+                        activeState={true}
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
             </CollapsibleContent>
           </Collapsible>
         </>
