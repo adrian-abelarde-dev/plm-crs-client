@@ -80,7 +80,7 @@ export function Sidebar({ sidebarLinks }) {
         </div>
 
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Card className='hidden md:block rounded-md text-left'>
               <CardHeader className='p-4'>
                 <CardTitle>Emmanuel Leyco</CardTitle>
