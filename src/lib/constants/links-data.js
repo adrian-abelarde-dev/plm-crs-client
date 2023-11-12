@@ -13,7 +13,6 @@ import {
   Presentation,
   User,
   User2,
-  UserCog,
   Warehouse,
 } from 'lucide-react';
 

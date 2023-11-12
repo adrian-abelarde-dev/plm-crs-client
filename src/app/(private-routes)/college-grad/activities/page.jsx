@@ -14,7 +14,7 @@ const CollegeGradActivities = () => {
         data={fakeCollegeActivities}
         title='Activity'
         description='Schedule of activities for School Year - 2023 - 2024 Trimester'
-        searchPlaceholder='Search Activitiy'
+        searchPlaceholder='Search Activity'
       />
     </main>
   );
