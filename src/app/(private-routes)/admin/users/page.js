@@ -21,6 +21,7 @@ import {
   UserSchema,
   userSchemaDefaultValues,
 } from '@/lib/constants/schema/user';
+import { usersTemplate } from '@/lib/constants/table-templates/admin/users';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Edit, PlusCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
