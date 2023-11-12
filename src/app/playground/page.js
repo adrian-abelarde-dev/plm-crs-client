@@ -21,13 +21,32 @@ import {
   fakeUsersRowActions,
   fakeUsersTemplate,
 } from '@/lib/constants/fake-users-data';
-import {
-  UserSchema,
-  userSchemaDefaultValues,
-} from '@/lib/constants/schema/user';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+const addUserSchema = z.object({
+  userId: z.string(),
+  userType: z.string(),
+  unit: z.string(),
+  firstName: z.string(),
+  middleName: z.string(),
+  lastName: z.string(),
+  emailAddress: z.string().email(),
+  // Date created will be auto-generated in backend
+});
+
+const editUserSchema = z.object({
+  userId: z.string(),
+  userType: z.string(),
+  unit: z.string(),
+  firstName: z.string(),
+  middleName: z.string(),
+  lastName: z.string(),
+  emailAddress: z.string().email(),
+  // Date created will be auto-generated in backend
+});
 
 export const userTypes = [
   { label: 'Admin', value: 'admin' },
@@ -41,7 +60,7 @@ export const units = [
   { label: 'Grad', value: 'grad' },
 ];
 
-const CustomUserTypesBadges = ({ value }) => {
+function CustomUserTypesBadges({ value }) {
   switch (value) {
     case 'admin':
       return <Badge variant='outlinePrimary'>Admin</Badge>;
@@ -54,13 +73,19 @@ const CustomUserTypesBadges = ({ value }) => {
     default:
       return <Badge variant='outline'>Unknown</Badge>;
   }
-};
+}
 
 function AddUserDialogForm() {
   const addUserForm = useForm({
-    resolver: zodResolver(UserSchema),
+    resolver: zodResolver(addUserSchema),
     defaultValues: {
-      userSchemaDefaultValues,
+      userId: '2020-10016',
+      userType: 'admin',
+      unit: 'undergrad',
+      firstName: 'John',
+      middleName: 'Doe',
+      lastName: 'Smith',
+      emailAddress: 'john.doe2020@plmn.edu.ph',
     },
   });
 
@@ -101,6 +126,14 @@ function AddUserDialogForm() {
                 placeholder='Select user type...'
                 fieldName='userType'
                 customItem={CustomUserTypesBadges}
+              />
+
+              <SelectFormField
+                form={addUserForm}
+                content={units}
+                title='Units'
+                placeholder='Select unit...'
+                fieldName='unit'
               />
 
               <section className='w-full flex gap-2'>
@@ -153,9 +186,15 @@ function AddUserDialogForm() {
 
 function EditUserDialogForm({ label, icon }) {
   const editUserForm = useForm({
-    resolver: zodResolver(UserSchema),
+    resolver: zodResolver(editUserSchema),
     defaultValues: {
-      userSchemaDefaultValues,
+      userId: '2020-10016',
+      userType: 'admin',
+      unit: 'undergrad',
+      firstName: 'John',
+      middleName: 'Doe',
+      lastName: 'Smith',
+      emailAddress: 'john.doe2020@plmn.edu.ph',
     },
   });
 

@@ -1,7 +1,6 @@
 'use client';
 
-import { Flex } from '@mantine/core';
-import { MantineProvider } from '@mantine/core';
+import { Flex, MantineProvider } from '@mantine/core';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ToggleFiltersButton,
@@ -11,6 +10,7 @@ import {
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
+import Loader from '../component/loader';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -66,8 +66,8 @@ const TableMRT = ({
   rowSelection,
 }) => {
   const columns = useMemo(() => template, [template]);
-  const [isDomLoaded, setIsDomLoaded] = useState(false);
   const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
+  const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   const table = useMantineReactTable({
     columns,
@@ -76,7 +76,7 @@ const TableMRT = ({
     enableColumnOrdering: true,
     enableFacetedValues: true,
     enableFullScreenToggle: false,
-    enableGrouping: true,
+    // enableGrouping: true, // This is what causing the console error
     enablePinning: true,
     enableRowActions: RowActions ? true : false,
 
@@ -86,7 +86,7 @@ const TableMRT = ({
     state: {
       rowSelection:
         rowSelection === undefined ? rowSelectionHandler : rowSelection,
-      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
+      isLoading: !isDomLoaded,
     },
     onRowSelectionChange:
       setRowSelection === undefined ? setRowSelectionHandler : setRowSelection,
@@ -135,7 +135,9 @@ const TableMRT = ({
 
   useEffect(() => {
     setIsDomLoaded(true);
-  }, [isDomLoaded]);
+  }, []);
+
+  if (!isDomLoaded) return <Loader />;
 
   return (
     <div className='my-4'>

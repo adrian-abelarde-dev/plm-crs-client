@@ -1,5 +1,3 @@
-'use client';
-
 import ScheduleOfActivitiesTable from '@/components/component/admin/schedule-of-activities-table';
 
 const ActivitiesPage = () => {
