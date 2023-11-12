@@ -18,11 +18,11 @@ export default function PrivateRouteRootLayoutAdmin({ children }) {
       <body className={inter.className}>
         {/* AuthProvider added for private routes */}
         <Providers>
-          <AuthProvider accessType='College' accessLevel='private'>
+          <AuthProvider accessType='college' accessLevel='private'>
             <section className='w-full relative'>
               {/* Sidebar is floating but fixed */}
               <section className='fixed left-0 z-50'>
-                <Sidebar sidebarLinks={collegeLinks} accessType='College' />
+                <Sidebar sidebarLinks={collegeLinks} accessType='college' />
               </section>
 
               {/* Adds margin left based on sidebar width */}
