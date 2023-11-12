@@ -16,17 +16,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import {
-  fakeUsers,
-  fakeUsersRowActions,
-  fakeUsersTemplate,
-} from '@/lib/constants/fake-users-data';
+import { fakeUsers, fakeUsersTemplate } from '@/lib/constants/fake-users-data';
 import {
   UserSchema,
   userSchemaDefaultValues,
 } from '@/lib/constants/schema/user';
-import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Edit, PlusCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const userTypes = [
@@ -41,7 +38,7 @@ export const units = [
   { label: 'Grad', value: 'grad' },
 ];
 
-const CustomUserTypesBadges = ({ value }) => {
+function CustomUserTypesBadges({ value }) {
   switch (value) {
     case 'admin':
       return <Badge variant='outlinePrimary'>Admin</Badge>;
@@ -54,7 +51,7 @@ const CustomUserTypesBadges = ({ value }) => {
     default:
       return <Badge variant='outline'>Unknown</Badge>;
   }
-};
+}
 
 function AddUserDialogForm() {
   const addUserForm = useForm({
@@ -73,7 +70,10 @@ function AddUserDialogForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add User</Button>
+        <Button>
+          <PlusCircle className='w-4 h-4 mr-2' />
+          Add User
+        </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
@@ -151,7 +151,7 @@ function AddUserDialogForm() {
   );
 }
 
-function EditUserDialogForm({ label, icon }) {
+function EditUserDialogForm({ disabled }) {
   const editUserForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
@@ -169,11 +169,12 @@ function EditUserDialogForm({ label, icon }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          disabled={disabled}
           className='text-zinc-900 justify-between hover:bg-zinc-100'
-          variant='ghost'
+          variant='outline'
         >
-          {label}
-          {icon}
+          <Edit className='w-4 h-4 mr-2' />
+          Edit
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
@@ -253,6 +254,12 @@ function EditUserDialogForm({ label, icon }) {
 }
 
 function UsersPage() {
+  const [selectedUser, setSelectedUser] = useState({});
+
+  useEffect(() => {
+    console.log({ selectedUser });
+  }, [selectedUser]);
+
   return (
     <main className='w-full p-6'>
       <TableMRT
@@ -261,41 +268,20 @@ function UsersPage() {
         title='Users'
         description='Add, edit, and archive users.'
         searchPlaceholder='Search User'
+        isCheckBoxVisible={true}
+        rowSelection={selectedUser}
+        setRowSelection={setSelectedUser}
         isFullscreen={false}
-        RightButtons={<AddUserDialogForm />}
-        RowActions={
-          <>
-            {fakeUsersRowActions.map((rowAction) => {
-              if (rowAction.label.toLowerCase().includes('edit')) {
-                return (
-                  <EditUserDialogForm
-                    key={rowAction.label}
-                    icon={rowAction.icon}
-                    label={rowAction.label}
-                  />
-                );
+        RightButtons={
+          <div className='flex gap-2 items-center'>
+            <EditUserDialogForm
+              disabled={
+                Object.keys(selectedUser).length > 1 ||
+                Object.keys(selectedUser).length === 0
               }
-
-              return (
-                <Button
-                  key={rowAction.label}
-                  className={cn(
-                    `text-zinc-900 justify-between hover:bg-zinc-100`,
-                    // If label includes 'trash' or 'delete' make the text red and icon
-                    // color red
-                    (rowAction.label.toLowerCase().includes('trash') ||
-                      rowAction.label.toLowerCase().includes('archive') ||
-                      rowAction.label.toLowerCase().includes('delete')) &&
-                      'text-destructive hover:text-red-400',
-                  )}
-                  variant='ghost'
-                >
-                  {rowAction.label}
-                  {rowAction.icon}
-                </Button>
-              );
-            })}
-          </>
+            />
+            <AddUserDialogForm />
+          </div>
         }
       />
     </main>
