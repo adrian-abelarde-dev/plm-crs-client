@@ -2,11 +2,14 @@ import {
   Activity,
   ArrowLeftRight,
   ArrowUpDown,
+  Book,
   BookOpenText,
   BookText,
   Box,
   Calendar,
+  File,
   GraduationCap,
+  ListTree,
   Mail,
   PencilLine,
   PersonStanding,
@@ -172,4 +175,32 @@ export const collegeGradLinks = [
       },
     ],
   },
+];
+
+export const collegeLinks = [
+  {
+    icon: <Book className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Subjects',
+    path: '/college/subjects',
+  },
+  {
+    icon: <ListTree className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Sections',
+    path: '/college/sections',
+  },
+  {
+    icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Schedule',
+    path: '/college/schedule',
+  },
+  {
+    icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Students',
+    path: '/college/students',
+  },
+  {
+    icon: <File className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Teaching Assignments',
+    path: '/college/teaching-assignments',
+  }
 ];
