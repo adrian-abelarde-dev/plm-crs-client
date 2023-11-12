@@ -46,7 +46,7 @@ import { Label } from '../ui/label';
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
 
-const TableMRT = ({
+function TableMRT({
   title,
   description, // Added description
   searchPlaceholder,
@@ -55,16 +55,14 @@ const TableMRT = ({
   isCheckBoxVisible,
   isRowNumbersVisible,
   isFullscreen = true, // show by default
-
   // JSX Props
   RightButtons,
   LeftButtons,
   RowActions,
-
   // state -> this is required when isCheckBoxVisible is true
   setRowSelection,
   rowSelection,
-}) => {
+}) {
   const columns = useMemo(() => template, [template]);
   const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
   const [isDomLoaded, setIsDomLoaded] = useState(false);
@@ -82,7 +80,7 @@ const TableMRT = ({
 
     enableRowSelection: isCheckBoxVisible ? true : false,
     getRowId: (originalRow) =>
-      isCheckBoxVisible ? originalRow[template[0].accessorKey] : null, // returns the first column as the id
+      isCheckBoxVisible ? originalRow[template[0].accessorKey] : null,
     state: {
       rowSelection:
         rowSelection === undefined ? rowSelectionHandler : rowSelection,
@@ -160,7 +158,7 @@ const TableMRT = ({
                   '#F6E05E',
                   '#FAF089',
                   '#FEFCBF',
-                  '#FACC15', // Primary
+                  '#FACC15',
                   '#EAB308',
                 ],
                 gray: [
@@ -172,7 +170,7 @@ const TableMRT = ({
                   '#6B7280',
                   '#4B5563',
                   '#374151',
-                  '#1F2937', // Color being used
+                  '#1F2937',
                   '#111827',
                 ],
                 dark: [
@@ -196,7 +194,7 @@ const TableMRT = ({
                   '#808080',
                   '#666666',
                   '#4D4D4D',
-                  '#333333', // Color being used
+                  '#333333',
                   '#1A1A1A',
                 ],
 
@@ -220,6 +218,6 @@ const TableMRT = ({
       </div>
     </div>
   );
-};
+}
 
 export default TableMRT;

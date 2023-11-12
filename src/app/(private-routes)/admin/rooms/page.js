@@ -1,5 +1,5 @@
-const RoomPage = () => {
+function RoomPage() {
   return <></>;
-};
+}
 
 export default RoomPage;

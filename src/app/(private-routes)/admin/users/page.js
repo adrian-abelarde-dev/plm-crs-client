@@ -16,7 +16,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import { fakeUsers, fakeUsersTemplate } from '@/lib/constants/fake-users-data';
+import { fakeUsers } from '@/lib/constants/fake-data/users';
 import {
   UserSchema,
   userSchemaDefaultValues,
@@ -263,7 +263,7 @@ function UsersPage() {
   return (
     <main className='w-full p-6'>
       <TableMRT
-        template={fakeUsersTemplate}
+        template={usersTemplate}
         data={fakeUsers}
         title='Users'
         description='Add, edit, and archive users.'

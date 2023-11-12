@@ -19,7 +19,7 @@ import { Button } from '../ui/button';
 // * lastStepOnclick -> function, defines the function to be called when the last step button is clicked
 // * lastStepButtonLabel -> string, defines the label for the last step button
 // * completedPreview -> JSX, defines the JSX for the completed step preview
-const CustomStepper = ({
+function CustomStepper({
   steps = [],
   initialStep = 0,
   onStepChange,
@@ -27,10 +27,9 @@ const CustomStepper = ({
   children,
   lastStepOnclick, // added this to define the last step button on click
   lastStepButtonLabel, // added this to define the last step button label
-
   completedPreview, // added this to define the preview for the completed step
   ...rest
-}) => {
+}) {
   const [activeStepper, setActiveStepper] = useState(initialStep);
   const [fade, setFade] = useState(false);
 
@@ -93,6 +92,6 @@ const CustomStepper = ({
       </section>
     </>
   );
-};
+}
 
 export default CustomStepper;

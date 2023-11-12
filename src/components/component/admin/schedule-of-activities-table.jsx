@@ -24,7 +24,7 @@ import {
 import {
   fakeActivities,
   fakeActivitiesRowActions,
-} from '@/lib/constants/fake-activities-data';
+} from '@/lib/constants/fake-data/activities';
 import { cn } from '@/lib/utils';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -34,9 +34,9 @@ import { useState } from 'react';
 
 import EncodingOfClassesTable from './encoding-of-classes-table';
 
-const AddActivityDialogForm = () => {
+function AddActivityDialogForm() {
   const [date, setDate] = useState({
-    from: new Date(2021, 8, 1, 8, 0), // 2021-09-01 08:00
+    from: new Date(2021, 8, 1, 8, 0),
     to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
   });
   const [startTime, setStartTime] = useState('08:00');
@@ -170,9 +170,9 @@ const AddActivityDialogForm = () => {
       </Dialog>
     </>
   );
-};
+}
 
-const ScheduleOfActivitiesTable = () => {
+function ScheduleOfActivitiesTable() {
   const [opened, { open, close }] = useDisclosure(false);
 
   const fakeActivitiesTemplate = [
@@ -289,6 +289,6 @@ const ScheduleOfActivitiesTable = () => {
       />
     </>
   );
-};
+}
 
 export default ScheduleOfActivitiesTable;

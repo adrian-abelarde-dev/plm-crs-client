@@ -19,14 +19,12 @@ import {
   TableCell,
   TableRow,
 } from '@/components/ui/table';
-import {
-  fakeGradAssessmentHistories,
-  fakeGradClasses,
-  fakeGradPaymentHistories,
-  gradAssessmentHistoryTemplate,
-  gradClassesTemplate,
-  gradPaymentHistoryTemplate,
-} from '@/lib/constants/fake-table-data';
+import { fakeGradAssessmentHistories } from '@/lib/constants/fake-data/grad-assessment-history';
+import { fakeGradClasses } from '@/lib/constants/fake-data/grad-classes';
+import { fakeGradPaymentHistories } from '@/lib/constants/fake-data/grad-payment-history';
+import { gradAssessmentHistoryTemplate } from '@/lib/constants/table-templates/student-grad/assessment-history';
+import { gradClassesTemplate } from '@/lib/constants/table-templates/student-grad/classes';
+import { gradPaymentHistoryTemplate } from '@/lib/constants/table-templates/student-grad/payment-history';
 import { IconBrandTeams } from '@tabler/icons-react';
 import {
   AlertTriangle,
@@ -40,7 +38,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-const GradStudentHome = () => {
+function GradStudentHome() {
   const program = '(MIT) Master of Information Technology';
   const college = 'CET - Graduate Program';
   const schoolYear = 'School Year 2023 - 2024 1st Semester';
@@ -223,6 +221,6 @@ const GradStudentHome = () => {
       </div>
     </div>
   );
-};
+}
 
 export default GradStudentHome;

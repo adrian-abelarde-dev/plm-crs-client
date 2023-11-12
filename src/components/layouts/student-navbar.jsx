@@ -25,7 +25,7 @@ import PLMLogo from '../../assets/plm-logo.png';
 import { Button } from '../ui/button';
 import NotificationBell from './notification-bell';
 
-const StudentNavbar = ({ linksStudents }) => {
+function StudentNavbar({ linksStudents }) {
   const currentPage = usePathname();
 
   return (
@@ -89,9 +89,9 @@ const StudentNavbar = ({ linksStudents }) => {
       </div>
     </>
   );
-};
+}
 
-export const SessionLinks = () => {
+export function SessionLinks() {
   // session
   const { data: session, status } = useSession();
   const currentPage = usePathname();
@@ -160,9 +160,9 @@ export const SessionLinks = () => {
   }
 
   return <></>;
-};
+}
 
-const SubLinksContent = ({ subLink }) => {
+function SubLinksContent({ subLink }) {
   if (subLink.label === 'Sign out') {
     return (
       <DropdownMenuItem className='cursor-pointer flex justify-between items-center flex-row text-red-500'>
@@ -195,6 +195,6 @@ const SubLinksContent = ({ subLink }) => {
       <Link href={subLink.path}>{subLink.label}</Link>
     </DropdownMenuItem>
   );
-};
+}
 
 export default StudentNavbar;

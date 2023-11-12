@@ -1,5 +1,5 @@
-const FacultyPage = () => {
+function FacultyPage() {
   return <></>;
-};
+}
 
 export default FacultyPage;

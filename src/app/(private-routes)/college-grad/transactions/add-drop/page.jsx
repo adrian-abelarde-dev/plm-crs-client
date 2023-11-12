@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CollegeGradAddDropPage = () => {
+function CollegeGradAddDropPage() {
   return <div>CollegeGradAddDropPage</div>;
-};
+}
 
 export default CollegeGradAddDropPage;
