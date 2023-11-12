@@ -12,8 +12,6 @@ import React, { useState } from 'react';
 const CollegeGradActivities = () => {
   const [selectedStudent, setSelectedStudent] = useState({});
 
-  console.log(selectedStudent);
-
   return (
     <main className='p-6'>
       {/* Table for Activities */}
