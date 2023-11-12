@@ -5,12 +5,11 @@ import { useSession } from 'next-auth/react';
 import { redirect, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
-const AuthProvider = ({ children, accessType, accessLevel }) => {
+function AuthProvider({ children, accessType, accessLevel }) {
   const pathname = usePathname();
 
   const { data: session, status } = useSession();
   // ? status can be 'loading', 'authenticated' or 'unauthenticated'
-
   useEffect(() => {
     // ? Authenticated
     if (status === 'authenticated') {
@@ -48,6 +47,6 @@ const AuthProvider = ({ children, accessType, accessLevel }) => {
   }
 
   return children;
-};
+}
 
 export default AuthProvider;

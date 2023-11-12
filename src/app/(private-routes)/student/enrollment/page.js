@@ -1,5 +1,5 @@
-const StudentEnrollmentPage = () => {
+function StudentEnrollmentPage() {
   return <div></div>;
-};
+}
 
 export default StudentEnrollmentPage;

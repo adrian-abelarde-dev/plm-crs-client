@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { SessionProvider } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
-const Providers = ({ children, session }) => {
+export default function Providers({ children, session }) {
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   // for UI hydration bug
@@ -18,6 +18,4 @@ const Providers = ({ children, session }) => {
       {isDomLoaded && <Toaster />}
     </SessionProvider>
   );
-};
-
-export default Providers;
+}

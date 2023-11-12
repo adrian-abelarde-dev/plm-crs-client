@@ -1,22 +1,20 @@
 'use client';
 
-import {
-  CheckBoxFormField,
-  DateFormField,
-  InputFormField,
-  SelectFormField,
-} from '@/components/component/form';
-import { MessageModal } from '@/components/component/modal';
+import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
+import DateFormField from '@/components/component/form/date-formfield';
+import InputFormField from '@/components/component/form/input-formfield';
+import SelectFormField from '@/components/component/form/select-formfield';
+import MessageModal from '@/components/component/modal';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { toast } from '@/components/ui/use-toast';
-import { program, sex } from '@/lib/constants/fake-grad-application-form-data';
+import { program, sex } from '@/lib/constants/fake-data/grad-application-form';
 import {
   GradApplicationFormSchema,
   gradApplicationFormDefaultValues,
-} from '@/lib/constants/form-scheme';
+} from '@/lib/constants/schema/grad-application-form';
 import { termsAndConditions } from '@/lib/constants/terms-agreement';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
@@ -28,7 +26,7 @@ import { useForm } from 'react-hook-form';
 
 import PLMLogo from '../../../assets/plm-logo.png';
 
-const GradApplicationForm = () => {
+function GradApplicationForm() {
   const [provinceCity, setProvinceCity] = useState([]);
   const [municipality, setMunicipality] = useState([]);
   const form = useForm({
@@ -61,11 +59,11 @@ const GradApplicationForm = () => {
     // bugs on updating form values
   }, [form, provinceCity]);
 
-  const onSubmit = () => {
+  function onSubmit() {
     toast({
       title: (
         <div className='flex flex-row'>
-          <CheckCircle className='h-4 w-4 mr-2 text-green-400' />
+          <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
           <Label>Application Submitted!</Label>
         </div>
       ),
@@ -76,13 +74,13 @@ const GradApplicationForm = () => {
         </>
       ),
     });
-  };
+  }
 
   return (
     <div className='mx-10 mb-[2.94rem]'>
       <ApplicationFormHeader />
       <Link href='/'>
-        <ArrowLeft className='h-6 w-6 text-zinc-500  mb-10' />
+        <ArrowLeft className='mb-10 h-6 w-6  text-zinc-500' />
       </Link>
       <ApplicationFormTitle />
 
@@ -100,8 +98,8 @@ const GradApplicationForm = () => {
 
           {/* Personal Information */}
           <div className='mt-[3.12rem]'>
-            <Label className='font-[600] text-base'>Personal Information</Label>
-            <Separator className='bg-yellow-400 h-1 mt-[0.62rem]' />
+            <Label className='text-base font-[600]'>Personal Information</Label>
+            <Separator className='mt-[0.62rem] h-1 bg-yellow-400' />
           </div>
 
           <div className='grid grid-flow-col gap-4 max-md:block'>
@@ -134,6 +132,7 @@ const GradApplicationForm = () => {
               title={'Name Extension'}
               placeholder={'(e.g. "Sr.", "Jr.", "II", "III")'}
               fieldName={'nameExtension'}
+              isOptional={false}
             />
 
             <InputFormField
@@ -141,6 +140,7 @@ const GradApplicationForm = () => {
               title={'Maiden Name'}
               placeholder={'Maiden Name'}
               fieldName={'maidenName'}
+              isOptional={false}
             />
 
             <SelectFormField
@@ -190,8 +190,8 @@ const GradApplicationForm = () => {
 
           {/* Complete Address */}
           <div className='mt-[3.12rem]'>
-            <Label className='font-[600] text-base'>Complete Address</Label>
-            <Separator className='bg-yellow-400 h-1 mt-[0.62rem]' />
+            <Label className='text-base font-[600]'>Complete Address</Label>
+            <Separator className='mt-[0.62rem] h-1 bg-yellow-400' />
           </div>
 
           <div>
@@ -221,22 +221,22 @@ const GradApplicationForm = () => {
               disabled={form.getValues().provinceCity === ''}
             />
 
-            <SelectFormField
+            <InputFormField
               form={form}
-              content={sex} // change later
               title={'Sub Municipality'}
-              placeholder={'Select'}
+              placeholder={''}
               fieldName='subMunicipality'
-              disabled={form.getValues().municipality === ''}
+              // disabled={form.getValues().municipality === ''}
+              isOptional={false}
             />
 
             <InputFormField
               form={form}
               content={sex} // change later
               title={'Barangay'}
-              placeholder={'Select'}
+              placeholder={''}
               fieldName='barangay'
-              disabled={form.getValues().subMunicipality === ''}
+              disabled={form.getValues().municipality === ''}
             />
 
             <InputFormField
@@ -249,10 +249,10 @@ const GradApplicationForm = () => {
 
           {/* Educational Attainment */}
           <div className='mt-[3.12rem]'>
-            <Label className='font-[600] text-base'>
+            <Label className='text-base font-[600]'>
               Educational Attainment
             </Label>
-            <Separator className='bg-yellow-400 h-1 mt-[0.62rem]' />
+            <Separator className='mt-[0.62rem] h-1 bg-yellow-400' />
           </div>
 
           <div>
@@ -300,11 +300,7 @@ const GradApplicationForm = () => {
                   I have read and understand the{' '}
                   <MessageModal
                     title='Terms & Conditions'
-                    trigger={
-                      <a className='underline font-bold'>
-                        terms and conditions
-                      </a>
-                    }
+                    trigger={<span>terms and conditions</span>}
                     content={<TermsAndAgreement />}
                   />
                 </>
@@ -326,9 +322,9 @@ const GradApplicationForm = () => {
       </Form>
     </div>
   );
-};
+}
 
-const TermsAndAgreement = () => {
+function TermsAndAgreement() {
   return (
     <div>
       <div className='mb-6'>
@@ -349,12 +345,12 @@ const TermsAndAgreement = () => {
 
       {termsAndConditions.map((item, index) => (
         <div key={index} className='flex flex-col py-2'>
-          <Label className='font-bold text-md'>
+          <Label className='text-md font-bold'>
             {index + 1}. {item.title}
           </Label>
           {item.content.map((content, index) => {
             return (
-              <ul key={index} className='indent-2 ml-12 list-disc'>
+              <ul key={index} className='ml-12 list-disc indent-2'>
                 <li>
                   <Label>{content}</Label>
                 </li>
@@ -365,13 +361,13 @@ const TermsAndAgreement = () => {
       ))}
     </div>
   );
-};
+}
 
-const ApplicationFormHeader = () => {
+function ApplicationFormHeader() {
   return (
-    <div className='flex flex-row pt-[1.88rem] pb-10'>
+    <div className='flex flex-row pb-10 pt-[1.88rem]'>
       <Image src={PLMLogo} width={50} height={50} alt='PLM Logo' />
-      <div className='flex flex-col mx-10 mt-[0.66rem] mb-[0.28rem]'>
+      <div className='mx-10 mb-[0.28rem] mt-[0.66rem] flex flex-col'>
         <Label className='mb-[0.31rem] text-yellow-500'>
           Pamantasan ng Lungsod ng Maynila
         </Label>
@@ -381,13 +377,13 @@ const ApplicationFormHeader = () => {
       </div>
     </div>
   );
-};
+}
 
-const ApplicationFormTitle = () => {
+function ApplicationFormTitle() {
   return (
-    <div className='flex justify-center mb-[0.63rem]'>
+    <div className='mb-[0.63rem] flex justify-center'>
       <div className='flex flex-col text-center'>
-        <Label className='font-[800] text-3xl text-[#0F172A] mb-1 -mt-16 max-md:mt-0'>
+        <Label className='-mt-16 mb-1 text-3xl font-[800] text-[#0F172A] max-md:mt-0'>
           PLM ONLINE APPLICATION
         </Label>
         <Label className='text-2xl font-[600]'>Graduate School Program</Label>
@@ -397,6 +393,6 @@ const ApplicationFormTitle = () => {
       </div>
     </div>
   );
-};
+}
 
 export default GradApplicationForm;

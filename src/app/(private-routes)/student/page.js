@@ -1,5 +1,5 @@
-const StudentPage = () => {
+function StudentPage() {
   return <></>;
-};
+}
 
 export default StudentPage;

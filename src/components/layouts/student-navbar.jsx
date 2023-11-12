@@ -1,6 +1,11 @@
 'use client';
 
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -8,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
+import { CaretSortIcon } from '@radix-ui/react-icons';
 import { ChevronDown, LogOut } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
@@ -16,9 +22,10 @@ import { redirect, usePathname } from 'next/navigation';
 import React from 'react';
 
 import PLMLogo from '../../assets/plm-logo.png';
+import { Button } from '../ui/button';
 import NotificationBell from './notification-bell';
 
-const StudentNavbar = ({ linksStudents }) => {
+function StudentNavbar({ linksStudents }) {
   const currentPage = usePathname();
 
   return (
@@ -82,9 +89,9 @@ const StudentNavbar = ({ linksStudents }) => {
       </div>
     </>
   );
-};
+}
 
-export const SessionLinks = () => {
+export function SessionLinks() {
   // session
   const { data: session, status } = useSession();
   const currentPage = usePathname();
@@ -115,19 +122,47 @@ export const SessionLinks = () => {
         </>
       );
     } else {
-      // displays portal if user has more than 3 roles
+      // displays collapsible portal if user has more than 3 roles
       return (
-        <DropdownMenuItem>
-          <Link href={'/portal'}>Portal</Link>
-        </DropdownMenuItem>
+        <Collapsible>
+          <CollapsibleTrigger className='w-full' asChild>
+            <Button
+              variant='ghost'
+              className='p-0 m-0 w-full flex flex-row justify-between px-2'
+            >
+              Portal
+              <CaretSortIcon />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            {session?.role.map((role, index) => {
+              if (!currentPage.includes(role)) {
+                // check if path is not the same as access role, to remove role on display
+                return (
+                  <DropdownMenuItem key={index}>
+                    <Link href={role}>
+                      {/* Displays 'Login as {role}' */}
+                      Login as{' '}
+                      {role
+                        .replace('-', ' ')
+                        .replace(/\w\S*/g, (w) =>
+                          w.replace(/^\w/, (c) => c.toUpperCase()),
+                        )}
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              }
+            })}
+          </CollapsibleContent>
+        </Collapsible>
       );
     }
   }
 
   return <></>;
-};
+}
 
-const SubLinksContent = ({ subLink }) => {
+function SubLinksContent({ subLink }) {
   if (subLink.label === 'Sign out') {
     return (
       <DropdownMenuItem className='cursor-pointer flex justify-between items-center flex-row text-red-500'>
@@ -160,6 +195,6 @@ const SubLinksContent = ({ subLink }) => {
       <Link href={subLink.path}>{subLink.label}</Link>
     </DropdownMenuItem>
   );
-};
+}
 
 export default StudentNavbar;

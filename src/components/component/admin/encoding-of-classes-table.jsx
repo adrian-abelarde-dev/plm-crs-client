@@ -30,7 +30,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   fakeParticipants,
   fakeParticipantsRowActions,
-} from '@/lib/constants/fake-participants-data';
+} from '@/lib/constants/fake-data/participants';
 import { participantTypes } from '@/lib/constants/participant-types';
 import {
   participantsIfCollege,
@@ -47,7 +47,7 @@ import { useEffect, useState } from 'react';
 
 import TableMRT from '../../layouts/table-mrt';
 
-const AddParticipantDialogForm = () => {
+function AddParticipantDialogForm() {
   const [participantTypeOpen, setParticipantTypeOpen] = useState(false);
   const [participantTypeValue, setParticipantTypeValue] = useState(null);
 
@@ -55,14 +55,14 @@ const AddParticipantDialogForm = () => {
   const [participantValue, setParticipantValue] = useState(null);
 
   const [date, setDate] = useState({
-    from: new Date(2021, 8, 1, 8, 0), // 2021-09-01 08:00
+    from: new Date(2021, 8, 1, 8, 0),
     to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
   });
 
   const [startTime, setStartTime] = useState('08:00');
   const [endTime, setEndTime] = useState('17:00');
 
-  const getParticipants = () => {
+  function getParticipants() {
     switch (participantTypeValue) {
       case 'college':
         return participantsIfCollege;
@@ -81,7 +81,7 @@ const AddParticipantDialogForm = () => {
       default:
         return [];
     }
-  };
+  }
 
   useEffect(() => {
     setParticipantValue(null);
@@ -89,7 +89,7 @@ const AddParticipantDialogForm = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>Add Participant</Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
@@ -332,9 +332,9 @@ const AddParticipantDialogForm = () => {
       </DialogContent>
     </Dialog>
   );
-};
+}
 
-const EncodingOfClassesTable = () => {
+function EncodingOfClassesTable() {
   const fakeParticipantsTemplate = [
     {
       accessorKey: 'participant',
@@ -392,6 +392,7 @@ const EncodingOfClassesTable = () => {
       title='Encoding of Classes'
       description='Add, edit, and delete participants.'
       searchPlaceholder='Search Participants'
+      isFullscreen={false}
       RightButtons={<AddParticipantDialogForm />}
       LeftButtons={
         <Button className='text-[#0F172A]' variant='outline'>
@@ -409,6 +410,7 @@ const EncodingOfClassesTable = () => {
                   // If label includes 'trash' or 'delete' make the text red and icon
                   // color red
                   (rowAction.label.toLowerCase().includes('trash') ||
+                    rowAction.label.toLowerCase().includes('archive') ||
                     rowAction.label.toLowerCase().includes('delete')) &&
                     'text-destructive hover:text-red-400',
                 )}
@@ -423,6 +425,6 @@ const EncodingOfClassesTable = () => {
       }
     />
   );
-};
+}
 
 export default EncodingOfClassesTable;
