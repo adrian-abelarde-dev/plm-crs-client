@@ -31,8 +31,6 @@ function EditFacultyDialogForm({ disabled, selectedFaculty }) {
     resolver: zodResolver(FacultySchema),
   });
 
-  console.log(selectedFaculty);
-
   useEffect(() => {
     editUserForm.setValue('facultyId', selectedFaculty?.facultyId);
     editUserForm.setValue('firstName', selectedFaculty?.firstName);
@@ -87,8 +85,6 @@ function EditFacultyDialogForm({ disabled, selectedFaculty }) {
         return <Badge variant='outline'>Unknown</Badge>;
     }
   }
-
-  console.log(selectedFaculty);
 
   function onSubmit(values) {
     toast({

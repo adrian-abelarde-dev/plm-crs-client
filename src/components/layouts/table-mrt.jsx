@@ -10,7 +10,9 @@ import {
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
+import AlertConfirmModal from '../component/alert-dialog';
 import Loader from '../component/loader';
+import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -62,9 +64,14 @@ function TableMRT({
   // state -> this is required when isCheckBoxVisible is true
   setRowSelection,
   rowSelection,
+
+  // setConfirmResult -> this is required when table has a 'status'
+  setConfirmResult,
+  confirmFunction, // executed function when confirm button is clicked
 }) {
   const columns = useMemo(() => template, [template]);
   const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
+  const [confirmHandler, setConfirmHandler] = useState(false); // to avoid error when confirmResult and setConfirmResult is undefined
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   const table = useMantineReactTable({
@@ -105,11 +112,42 @@ function TableMRT({
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
 
-    renderRowActionMenuItems: () => {
+    renderRowActionMenuItems: ({ row }) => {
       return (
         <div className='flex flex-col w-[14.75rem]'>
           <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
           {RowActions}
+
+          {/* display deactivate action when status exists  */}
+          {row.original.status !== undefined && (
+            <>
+              {row.original.status === 'Active' ? (
+                <AlertConfirmModal
+                  label='Deactivate'
+                  title='Are you sure you want to deactivate?'
+                  description='Once deactivated, all users account will be deactivated.'
+                  cancelLabel='Cancel'
+                  confirmLabel='Deactivate'
+                  setResult={
+                    setConfirmResult ? setConfirmResult : setConfirmHandler
+                  }
+                  confirmFunction={confirmFunction}
+                />
+              ) : (
+                <AlertConfirmModal
+                  label='Activate'
+                  title='Are you sure you want to reactivate?'
+                  description='Once activated, all users account will be activated.'
+                  cancelLabel='Cancel'
+                  confirmLabel='Activate'
+                  setResult={
+                    setConfirmResult ? setConfirmResult : setConfirmHandler
+                  }
+                  confirmFunction={confirmFunction}
+                />
+              )}
+            </>
+          )}
         </div>
       );
     },

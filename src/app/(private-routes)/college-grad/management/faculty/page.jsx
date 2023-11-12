@@ -5,12 +5,38 @@ import { Button } from '@/components/ui/button';
 import { collegeGradFacultyData } from '@/lib/constants/fake-data/faculty-management';
 import { collegeGradFacultyTemplate } from '@/lib/constants/table-templates/college-grad/faculty-management';
 import { Printer } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import EditFacultyDialogForm from './edit-faculty-dialog-form';
 
 function CollageGradManagementFaculty() {
   const [rowSelection, setRowSelection] = useState({});
+  const [confirmResult, setConfirmResult] = useState(false);
+
+  useEffect(() => {
+    if (confirmResult) {
+      console.log(confirmResult);
+      // update and handles the status of the deactivated faculty on UI
+
+      // no backend function here; use the confirmFunction prop instead if you wish to modify the backend data
+      setConfirmResult(false);
+    }
+  }, [confirmResult]);
+
+  function exampleAsyncFunction() {
+    return new Promise((resolve, reject) => {
+      // Perform asynchronous operations, such as API calls, database queries, etc.
+      // Simulating an asynchronous operation using setTimeout
+      setTimeout(() => {
+        const success = false; // Simulate success or failure
+        if (success) {
+          resolve('Operation succeeded');
+        } else {
+          reject('Operation failed');
+        }
+      }, 1000); // Simulating a delay of 1 second
+    });
+  }
 
   // collects the selected faculty data
   const selectedFaculty = collegeGradFacultyData.filter(
@@ -28,6 +54,8 @@ function CollageGradManagementFaculty() {
         isCheckBoxVisible={true}
         rowSelection={rowSelection}
         setRowSelection={setRowSelection}
+        setConfirmResult={setConfirmResult}
+        confirmFunction={() => exampleAsyncFunction()}
         RightButtons={
           <>
             <EditFacultyDialogForm
@@ -44,29 +72,7 @@ function CollageGradManagementFaculty() {
             </Button>
           </>
         }
-        RowActions={
-          <>
-            {/* {collegeGradFacultyRowActions.map((rowAction) => {
-              return (
-                <Button
-                  key={rowAction.label}
-                  className={cn(
-                    `text-zinc-900 justify-between hover:bg-zinc-100`,
-                    // If label includes 'trash' or 'delete' make the text red and icon
-                    // color red
-                    (rowAction.label.toLowerCase().includes('trash') ||
-                      rowAction.label.toLowerCase().includes('delete')) &&
-                      'text-destructive hover:text-red-400',
-                  )}
-                  variant='ghost'
-                >
-                  {rowAction.label}
-                  {rowAction.icon}
-                </Button>
-              );
-            })} */}
-          </>
-        }
+        RowActions={<></>}
       />
     </main>
   );
