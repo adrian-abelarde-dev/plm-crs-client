@@ -1,6 +1,7 @@
 import {
   Activity,
   ArrowLeftRight,
+  ArrowUpDown,
   BookOpenText,
   BookText,
   Box,
@@ -158,5 +159,17 @@ export const collegeGradLinks = [
     icon: <ArrowLeftRight className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Transactions',
     path: '/college-grad/transactions',
+    subContent: [
+      {
+        text: 'Add/Drop',
+        path: '/college-grad/transactions/add-drop',
+        icon: <ArrowUpDown className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+      {
+        text: 'Teaching Assignment',
+        path: '/college-grad/transactions/teaching-assignment',
+        // icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+    ],
   },
 ];
