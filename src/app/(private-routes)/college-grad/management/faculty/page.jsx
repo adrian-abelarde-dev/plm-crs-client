@@ -30,7 +30,7 @@ function CollageGradManagementFaculty() {
       // Perform asynchronous operations, such as API calls, database queries, etc.
       // Simulating an asynchronous operation using setTimeout
       setTimeout(() => {
-        const success = false; // Simulate success or failure
+        const success = true; // Simulate success or failure
         if (success) {
           resolve('Operation succeeded');
         } else {
