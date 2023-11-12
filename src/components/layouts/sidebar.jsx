@@ -197,7 +197,7 @@ export function Sidebar({ sidebarLinks, accessType }) {
           <DropdownMenuTrigger asChild>
             <Card className='hidden md:block rounded-md text-left'>
               <CardHeader className='p-4'>
-                <CardTitle>{formatName(session.user.name)}</CardTitle>
+                <CardTitle>{formatName(session?.user.name)}</CardTitle>
                 <CardDescription className='p-0 m-0 leading-3'>
                   {accessType}
                 </CardDescription>
