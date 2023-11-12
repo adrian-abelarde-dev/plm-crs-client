@@ -4,14 +4,14 @@ import { fakeStudents } from '@/lib/constants/fake-data/students';
 function StudentsPage() {
   const fakeStudentsTemplate = [
     {
-      accessorKey: 'userid',
-      id: 'userid',
+      accessorKey: 'userId',
+      id: 'userId',
       header: 'User ID',
       filterVariant: 'fuzzy',
     },
     {
-      accessorKey: 'fullname',
-      id: 'fullname',
+      accessorKey: 'fullName',
+      id: 'fullName',
       header: 'Full Name',
       filterVariant: 'fuzzy',
     },
