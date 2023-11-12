@@ -11,8 +11,6 @@ export const FacultySchema = z.object({
   sex: z.string(),
   address: z.string(),
   birthDate: z.date(),
-
-  // Date created will be auto-generated in backend
 });
 
 export const facultySchemaDefaultValues = {
