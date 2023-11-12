@@ -3,7 +3,7 @@
 import { signOut } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
-const StudentHomePage = () => {
+function StudentHomePage() {
   return (
     <div>
       <button
@@ -18,6 +18,6 @@ const StudentHomePage = () => {
       </button>
     </div>
   );
-};
+}
 
 export default StudentHomePage;

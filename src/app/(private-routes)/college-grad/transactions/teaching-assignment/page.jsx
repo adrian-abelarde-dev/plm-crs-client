@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CollegeGradTeachingAssignment = () => {
+function CollegeGradTeachingAssignment() {
   return <div>CollegeGradTeachingAssignment</div>;
-};
+}
 
 export default CollegeGradTeachingAssignment;

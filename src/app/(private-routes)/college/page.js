@@ -1,5 +1,5 @@
-const CollegePage = () => {
+function CollegePage() {
   return <></>;
-};
+}
 
 export default CollegePage;

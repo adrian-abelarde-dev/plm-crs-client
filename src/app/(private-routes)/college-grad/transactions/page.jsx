@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CollegeGradTransactions = () => {
+function CollegeGradTransactions() {
   return <div>CollegeGradTransactions</div>;
-};
+}
 
 export default CollegeGradTransactions;

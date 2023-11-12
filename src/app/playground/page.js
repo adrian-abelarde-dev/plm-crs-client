@@ -20,7 +20,7 @@ import {
   fakeUsers,
   fakeUsersRowActions,
   fakeUsersTemplate,
-} from '@/lib/constants/fake-users-data';
+} from '@/lib/constants/fake-data/users';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

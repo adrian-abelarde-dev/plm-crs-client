@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CollageGradManagementClass = () => {
+function CollageGradManagementClass() {
   return <div>CollageGradManagementClass</div>;
-};
+}
 
 export default CollageGradManagementClass;

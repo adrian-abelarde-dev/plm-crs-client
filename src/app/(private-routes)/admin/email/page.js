@@ -1,5 +1,5 @@
-const EmailPage = () => {
+function EmailPage() {
   return <></>;
-};
+}
 
 export default EmailPage;

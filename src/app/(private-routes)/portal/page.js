@@ -17,7 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const Portal = () => {
+function Portal() {
   const { data: session, status } = useSession();
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
@@ -30,8 +30,6 @@ const Portal = () => {
   if (!isDomLoaded) {
     return <Loader />;
   }
-
-  console.log({ session });
 
   return (
     <Container className='py-10'>
@@ -102,6 +100,6 @@ const Portal = () => {
       )}
     </Container>
   );
-};
+}
 
 export default Portal;
