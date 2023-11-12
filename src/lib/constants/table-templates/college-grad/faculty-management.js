@@ -49,18 +49,3 @@ export const collegeGradFacultyTemplate = [
     },
   },
 ];
-
-export const collegeGradFacultyRowActions = [
-  {
-    label: 'Edit Activity',
-    // icon: <View className='h-4 w-4 text-zinc-400' />,
-  },
-  {
-    label: 'Deactivate',
-    // icon: <Trash className='h-4 w-4' />,
-  },
-  {
-    label: 'Activate',
-    // icon: <Trash className='h-4 w-4' />,
-  },
-];

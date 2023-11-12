@@ -6,13 +6,11 @@ export const FacultySchema = z.object({
   middleName: z.string(),
   lastName: z.string(),
   status: z.string(),
-  //   suffix: z.string(),
-  //   maidenName: z.string(),
-  //   email: z.string().email(),
-  //   contactNumber: z.string(),
-  //   sex: z.string(),
-  //   address: z.string(),
-  //   birthDate: z.date(),
+  email: z.string().email(),
+  contactNumber: z.string(),
+  sex: z.string(),
+  address: z.string(),
+  birthDate: z.date(),
 
   // Date created will be auto-generated in backend
 });
