@@ -50,25 +50,30 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
               />
             </CollapsibleTrigger>
             <CollapsibleContent className='flex flex-row justify-center'>
-              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
+              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden mb-[30px]' />
+
               <div className='w-full'>
                 {subContent.map((content, index) => {
                   return (
-                    <Link
-                      className='flex w-100 justify-center'
-                      key={index}
-                      href={content.path}
-                    >
-                      <CustomLinks
-                        pathname={pathname}
-                        path={content.path}
-                        className={'ml-[1.26rem] my-1 max-md:ml-0'}
-                        onClick={onClick}
-                        icon={content.icon}
-                        text={content.text}
-                        activeState={true}
-                      />
-                    </Link>
+                    <div key={index} className='flex w-full gap-1'>
+                      <div className='mt-[10px] w-[22px] ml-[-3px] h-[15px] bg-transparent border-b-border border-l-border border-[3px] border-t-transparent border-r-transparent rounded-bl-xl' />
+
+                      <Link
+                        className='flex w-100 justify-center'
+                        key={index}
+                        href={content.path}
+                      >
+                        <CustomLinks
+                          pathname={pathname}
+                          path={content.path}
+                          className={'my-1 max-md:ml-0'}
+                          onClick={onClick}
+                          icon={content.icon}
+                          text={content.text}
+                          activeState={true}
+                        />
+                      </Link>
+                    </div>
                   );
                 })}
               </div>
@@ -177,7 +182,7 @@ export function Sidebar({ sidebarLinks, accessType }) {
   });
 
   return (
-    <aside className='h-screen w-fit outline outline-1 outline-gray-200 md:w-52'>
+    <aside className='h-screen w-fit outline outline-1 outline-gray-200 md:w-56'>
       <Container className='flex h-full flex-col justify-between px-2 py-10 gap-10 md:px-4'>
         <div className='flex flex-col gap-6'>
           {/* Made Image have responsive width */}
