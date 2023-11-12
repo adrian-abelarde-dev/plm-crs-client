@@ -22,7 +22,7 @@ export default function PrivateRouteRootLayoutAdmin({ children }) {
             <section className='w-full relative'>
               {/* Sidebar is floating but fixed */}
               <section className='fixed left-0 z-50'>
-                <Sidebar sidebarLinks={collegeLinks} accessType='college' />
+                <Sidebar sidebarLinks={collegeLinks} accessType='College' />
               </section>
 
               {/* Adds margin left based on sidebar width */}
