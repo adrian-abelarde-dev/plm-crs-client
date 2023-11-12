@@ -20,8 +20,7 @@ const CollegeGradActivities = () => {
       <TableMRT
         template={collegeGradStudentsTemplate}
         data={collegeGradStudentsData}
-        title='Activity'
-        description='Schedule of activities for School Year - 2023 - 2024 Trimester'
+        title='Students'
         searchPlaceholder='Search Student'
         isCheckBoxVisible={true}
         rowSelection={selectedStudent}
