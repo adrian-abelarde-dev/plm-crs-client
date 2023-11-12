@@ -1,6 +1,5 @@
 import { Badge } from '@/components/ui/badge';
-
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 export const collegeGradFacultyTemplate = [
   {
@@ -31,17 +30,20 @@ export const collegeGradFacultyTemplate = [
     accessorKey: 'status',
     id: 'status',
     header: 'Status',
-    filterVariant: 'fuzzy',
-    Cell: ({ value }) => {
+    filterVariant: 'multi-select',
+    Cell: ({ cell }) => {
       return (
         <Badge
+          variant='outline'
           className={cn(
-            value === 'Active'
-              ? 'bg-green-500 text-green-500'
-              : 'bg-yellow-500 text-yellow-500',
+            cell.getValue() === 'Active'
+              ? 'bg-[#c0e6dc] text-[#00b983] border-[#00b983]'
+              : cell.getValue() === 'Pending to Assign'
+              ? 'bg-[#fff9e1] text-[#fec141] border-[#fec141]'
+              : 'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]',
           )}
         >
-          {value}
+          {cell.getValue()}
         </Badge>
       );
     },

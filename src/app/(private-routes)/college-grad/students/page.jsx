@@ -22,7 +22,12 @@ function CollegeGradActivities() {
         rowSelection={selectedStudent}
         setRowSelection={setSelectedStudent}
         RightButtons={
-          <Button disabled={Object.keys(selectedStudent).length > 1}>
+          <Button
+            disabled={
+              Object.keys(selectedStudent).length > 1 ||
+              Object.keys(selectedStudent).length === 0
+            }
+          >
             <Printer className='w-4 h-4 mr-2' />
             Print SER
           </Button>

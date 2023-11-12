@@ -135,15 +135,15 @@ export function Sidebar({ sidebarLinks, accessType }) {
 
   function formatName(fullName) {
     // Split the full name into parts
-    const parts = fullName.split(', ');
+    const parts = fullName?.split(', ');
 
     // Handle names without middle initials
-    if (parts.length === 1) {
+    if (parts?.length === 1) {
       return capitalizeFirstLetter(parts[0]);
     }
 
     // Extract the first name, middle initial, and last name
-    const [lastName, firstAndMiddle] = parts;
+    const [lastName, firstAndMiddle = ''] = parts || [];
     const [firstName, middleInitial] = firstAndMiddle.split(' ');
 
     // Build the formatted name without the middle initial
@@ -156,7 +156,7 @@ export function Sidebar({ sidebarLinks, accessType }) {
 
   // Helper function to capitalize the first letter of a word
   function capitalizeFirstLetter(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    return word?.charAt(0)?.toUpperCase() + word?.slice(1)?.toLowerCase();
   }
 
   const sidebarButtonsContent = sidebarLinks.map((button, index) => {
@@ -197,7 +197,7 @@ export function Sidebar({ sidebarLinks, accessType }) {
           <DropdownMenuTrigger asChild>
             <Card className='hidden md:block rounded-md text-left'>
               <CardHeader className='p-4'>
-                <CardTitle>{formatName(session.user.name)}</CardTitle>
+                <CardTitle>{formatName(session?.user.name)}</CardTitle>
                 <CardDescription className='p-0 m-0 leading-3'>
                   {accessType}
                 </CardDescription>
