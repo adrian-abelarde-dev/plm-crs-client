@@ -24,6 +24,8 @@ function CollageGradManagementFaculty() {
   }, [confirmResult]);
 
   function exampleAsyncFunction() {
+    // sample async function for future reference
+    // contents of this function will be the connected to the backend
     return new Promise((resolve, reject) => {
       // Perform asynchronous operations, such as API calls, database queries, etc.
       // Simulating an asynchronous operation using setTimeout

@@ -12,7 +12,6 @@ import { useEffect, useMemo, useState } from 'react';
 
 import AlertConfirmModal from '../component/alert-dialog';
 import Loader from '../component/loader';
-import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -44,6 +43,10 @@ import { Label } from '../ui/label';
 // * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
 // * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
 // * RowActions -> JSX, defines the JSX for the row actions
+// * setRowSelection -> setState function, defines the state for the row selection
+// * rowSelection -> object, defines the selected rows
+// * setConfirmResult -> setState function, defines the state for the confirm result
+// * confirmFunction -> async function, defines the function to be executed when confirm button is clicked
 
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
