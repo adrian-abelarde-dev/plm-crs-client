@@ -1,7 +1,5 @@
 function CollegeSchedule () {
-  return <>
-  
-  </>;
+  return <></>;
 }
 
 export default CollegeSchedule;

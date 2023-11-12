@@ -1,7 +1,5 @@
 function CollegeStudents () {
-  return <>
-  
-  </>;
+  return <></>;
 }
 
 export default CollegeStudents;

@@ -1,7 +1,5 @@
 function CollegeSections() {
-  return <>
-  
-  </>;
+  return <></>;
 }
 
 export default CollegeSections;
