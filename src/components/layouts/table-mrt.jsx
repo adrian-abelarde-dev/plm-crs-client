@@ -71,7 +71,7 @@ function TableMRT({
 }) {
   const columns = useMemo(() => template, [template]);
   const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
-  const [confirmHandler, setConfirmHandler] = useState(false); // to avoid error when confirmResult and setConfirmResult is undefined
+  const setConfirmHandler = () => {}; // to avoid error when confirmResult and setConfirmResult is undefined
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   const table = useMantineReactTable({

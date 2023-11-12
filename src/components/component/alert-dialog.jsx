@@ -16,6 +16,14 @@ import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 import { toast } from '../ui/use-toast';
 
+// * label -> string, defines the label for the button
+// * title -> string, defines the title of the alert dialog
+// * description -> string, defines the description of the alert dialog
+// * cancelLabel -> string, defines the label for the cancel button
+// * confirmLabel -> string, defines the label for the confirm button
+// * className -> string, defines the addition of className for the button
+// * setResult -> setState function
+// * confirmFunction -> async function, defines the function to be executed when confirm button is clicked
 function AlertConfirmModal({
   label,
   title,
