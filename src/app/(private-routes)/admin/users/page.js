@@ -16,15 +16,15 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import {
-  fakeUsers,
-  fakeUsersRowActions,
-  fakeUsersTemplate,
-} from '@/lib/constants/fake-users-data';
+import { fakeUsers } from '@/lib/constants/fake-data/users';
 import {
   UserSchema,
   userSchemaDefaultValues,
 } from '@/lib/constants/schema/user';
+import {
+  usersRowActions,
+  usersTemplate,
+} from '@/lib/constants/table-templates/admin/users';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -41,7 +41,7 @@ export const units = [
   { label: 'Grad', value: 'grad' },
 ];
 
-const CustomUserTypesBadges = ({ value }) => {
+function CustomUserTypesBadges({ value }) {
   switch (value) {
     case 'admin':
       return <Badge variant='outlinePrimary'>Admin</Badge>;
@@ -54,7 +54,7 @@ const CustomUserTypesBadges = ({ value }) => {
     default:
       return <Badge variant='outline'>Unknown</Badge>;
   }
-};
+}
 
 function AddUserDialogForm() {
   const addUserForm = useForm({
@@ -256,7 +256,7 @@ function UsersPage() {
   return (
     <main className='w-full p-6'>
       <TableMRT
-        template={fakeUsersTemplate}
+        template={usersTemplate}
         data={fakeUsers}
         title='Users'
         description='Add, edit, and archive users.'
@@ -265,7 +265,7 @@ function UsersPage() {
         RightButtons={<AddUserDialogForm />}
         RowActions={
           <>
-            {fakeUsersRowActions.map((rowAction) => {
+            {usersRowActions.map((rowAction) => {
               if (rowAction.label.toLowerCase().includes('edit')) {
                 return (
                   <EditUserDialogForm

@@ -2,14 +2,12 @@
 
 import TableMRT from '@/components/layouts/table-mrt';
 import { Button } from '@/components/ui/button';
-import {
-  collegeGradStudentsData,
-  collegeGradStudentsTemplate,
-} from '@/lib/constants/fake-grad-students-data';
+import { collegeGradStudentsData } from '@/lib/constants/fake-data/grad-students';
+import { collegeGradStudentsTemplate } from '@/lib/constants/table-templates/college-grad/grad-students';
 import { Printer } from 'lucide-react';
 import React, { useState } from 'react';
 
-const CollegeGradActivities = () => {
+function CollegeGradActivities() {
   const [selectedStudent, setSelectedStudent] = useState({});
 
   return (
@@ -32,6 +30,6 @@ const CollegeGradActivities = () => {
       />
     </main>
   );
-};
+}
 
 export default CollegeGradActivities;

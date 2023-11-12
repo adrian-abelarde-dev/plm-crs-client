@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CollageGradManagementSubject = () => {
+function CollageGradManagementSubject() {
   return <div>CollageGradManagementSubject</div>;
-};
+}
 
 export default CollageGradManagementSubject;

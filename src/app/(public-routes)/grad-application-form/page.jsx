@@ -10,11 +10,11 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { toast } from '@/components/ui/use-toast';
-import { program, sex } from '@/lib/constants/fake-grad-application-form-data';
+import { program, sex } from '@/lib/constants/fake-data/grad-application-form';
 import {
   GradApplicationFormSchema,
   gradApplicationFormDefaultValues,
-} from '@/lib/constants/schema/grad-application-form-schema';
+} from '@/lib/constants/schema/grad-application-form';
 import { termsAndConditions } from '@/lib/constants/terms-agreement';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
@@ -26,7 +26,7 @@ import { useForm } from 'react-hook-form';
 
 import PLMLogo from '../../../assets/plm-logo.png';
 
-const GradApplicationForm = () => {
+function GradApplicationForm() {
   const [provinceCity, setProvinceCity] = useState([]);
   const [municipality, setMunicipality] = useState([]);
   const form = useForm({
@@ -59,7 +59,7 @@ const GradApplicationForm = () => {
     // bugs on updating form values
   }, [form, provinceCity]);
 
-  const onSubmit = () => {
+  function onSubmit() {
     toast({
       title: (
         <div className='flex flex-row'>
@@ -74,7 +74,7 @@ const GradApplicationForm = () => {
         </>
       ),
     });
-  };
+  }
 
   return (
     <div className='mx-10 mb-[2.94rem]'>
@@ -322,9 +322,9 @@ const GradApplicationForm = () => {
       </Form>
     </div>
   );
-};
+}
 
-const TermsAndAgreement = () => {
+function TermsAndAgreement() {
   return (
     <div>
       <div className='mb-6'>
@@ -361,9 +361,9 @@ const TermsAndAgreement = () => {
       ))}
     </div>
   );
-};
+}
 
-const ApplicationFormHeader = () => {
+function ApplicationFormHeader() {
   return (
     <div className='flex flex-row pb-10 pt-[1.88rem]'>
       <Image src={PLMLogo} width={50} height={50} alt='PLM Logo' />
@@ -377,9 +377,9 @@ const ApplicationFormHeader = () => {
       </div>
     </div>
   );
-};
+}
 
-const ApplicationFormTitle = () => {
+function ApplicationFormTitle() {
   return (
     <div className='mb-[0.63rem] flex justify-center'>
       <div className='flex flex-col text-center'>
@@ -393,6 +393,6 @@ const ApplicationFormTitle = () => {
       </div>
     </div>
   );
-};
+}
 
 export default GradApplicationForm;

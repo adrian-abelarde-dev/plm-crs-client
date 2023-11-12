@@ -17,11 +17,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { grades } from '@/lib/constants/fake-grades';
+import { grades } from '@/lib/constants/fake-data/grades';
 import { Printer } from 'lucide-react';
 import React, { useState } from 'react';
 
-const GradStudentGrades = () => {
+function GradStudentGrades() {
   const [selectedAysem, setSelectedAysem] = useState();
 
   const aysem = [
@@ -87,9 +87,9 @@ const GradStudentGrades = () => {
       </div>
     </div>
   );
-};
+}
 
-const GradesTable = ({ selectedAysem }) => {
+function GradesTable({ selectedAysem }) {
   return (
     <div className='mt-5'>
       {selectedAysem ? (
@@ -128,6 +128,6 @@ const GradesTable = ({ selectedAysem }) => {
       )}
     </div>
   );
-};
+}
 
 export default GradStudentGrades;

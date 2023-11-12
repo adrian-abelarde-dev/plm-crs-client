@@ -14,15 +14,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  fakeGradEnlistClasses,
-  gradEnlistClassesTemplate,
-} from '@/lib/constants/fake-table-data';
+import { fakeGradEnlistClasses } from '@/lib/constants/fake-data/grad-enlist-classes';
+import { gradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-grad/enlist-available-classes';
 import { CheckCircle, Download } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-const GradStudentEnrollment = () => {
+function GradStudentEnrollment() {
   const [rowSelection, setRowSelection] = useState({});
 
   // collects the selected classes
@@ -82,7 +80,7 @@ const GradStudentEnrollment = () => {
       </div>
     </div>
   );
-};
+}
 
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
@@ -162,7 +160,7 @@ function PaymentStep() {
   );
 }
 
-const CompletedPreview = () => {
+function CompletedPreview() {
   const startOfClasses = 'December 25, 1992';
 
   return (
@@ -184,6 +182,6 @@ const CompletedPreview = () => {
       </Button>
     </div>
   );
-};
+}
 
 export default GradStudentEnrollment;
