@@ -50,16 +50,16 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
               />
             </CollapsibleTrigger>
             <CollapsibleContent className='flex flex-row justify-center'>
-              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden mb-[30px]' />
+              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
 
               <div className='w-full'>
                 {subContent.map((content, index) => {
                   return (
                     <div key={index} className='flex w-full gap-1'>
-                      <div className='mt-[10px] w-[22px] ml-[-3px] h-[15px] bg-transparent border-b-border border-l-border border-[3px] border-t-transparent border-r-transparent rounded-bl-xl' />
+                      <div className='mt-[10px] w-[22px] ml-[-3px] h-[15px] bg-transparent border-b-border border-l-border border-[3px] border-t-transparent border-r-transparent rounded-bl-xl hidden md:block' />
 
                       <Link
-                        className='flex w-100 justify-center'
+                        className='flex w-full justify-center'
                         key={index}
                         href={content.path}
                       >

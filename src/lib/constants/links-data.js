@@ -13,6 +13,7 @@ import {
   Presentation,
   User,
   User2,
+  UserCog,
   Warehouse,
 } from 'lucide-react';
 
@@ -168,7 +169,7 @@ export const collegeGradLinks = [
       {
         text: 'Teaching Assignment',
         path: '/college-grad/transactions/teaching-assignment',
-        // icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
+        icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
       },
     ],
   },
