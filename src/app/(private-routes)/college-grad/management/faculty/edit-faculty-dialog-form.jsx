@@ -32,18 +32,11 @@ function EditFacultyDialogForm({ disabled, selectedFaculty }) {
   });
 
   useEffect(() => {
-    editUserForm.setValue('facultyId', selectedFaculty?.facultyId);
-    editUserForm.setValue('firstName', selectedFaculty?.firstName);
-    editUserForm.setValue('middleName', selectedFaculty?.middleName);
-    editUserForm.setValue('lastName', selectedFaculty?.lastName);
-    editUserForm.setValue('status', selectedFaculty?.status);
-    editUserForm.setValue('suffix', selectedFaculty?.suffix);
-    editUserForm.setValue('maidenName', selectedFaculty?.maidenName);
-    editUserForm.setValue('email', selectedFaculty?.email);
-    editUserForm.setValue('contactNumber', selectedFaculty?.contactNumber);
-    editUserForm.setValue('sex', selectedFaculty?.sex);
-    editUserForm.setValue('address', selectedFaculty?.address);
-    editUserForm.setValue('birthDate', selectedFaculty?.birthDate);
+    if (selectedFaculty) {
+      Object.keys(selectedFaculty).forEach((key) => {
+        editUserForm.setValue(key, selectedFaculty[key]);
+      });
+    }
   }, [selectedFaculty, editUserForm]);
 
   const facultyStatus = [
