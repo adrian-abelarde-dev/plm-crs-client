@@ -89,6 +89,7 @@ function EditFacultyDialogForm({ disabled, selectedFaculty }) {
       ),
       description: <>Changes has been Saved.</>,
     });
+
     console.log(values);
   }
 
@@ -260,7 +261,9 @@ function EditFacultyDialogForm({ disabled, selectedFaculty }) {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type='submit'>Save Changes</Button>
+              <DialogClose asChild>
+                <Button type='submit'>Save Changes</Button>
+              </DialogClose>
             </DialogFooter>
           </form>
         </Form>
