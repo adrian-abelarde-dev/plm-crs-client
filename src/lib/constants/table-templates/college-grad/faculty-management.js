@@ -1,6 +1,5 @@
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { View } from 'lucide-react';
 
 export const collegeGradFacultyTemplate = [
   {
@@ -33,8 +32,6 @@ export const collegeGradFacultyTemplate = [
     header: 'Status',
     filterVariant: 'fuzzy',
     Cell: ({ cell }) => {
-      console.log(cell.getValue());
-
       return (
         <Badge
           variant='outline'
@@ -42,7 +39,7 @@ export const collegeGradFacultyTemplate = [
             cell.getValue() === 'Active'
               ? 'bg-[#c0e6dc] text-[#00b983] border-[#00b983]'
               : cell.getValue() === 'Pending to Assign'
-              ? 'bg-[#fff9e1] text-[#fec141] border-[#fec141] '
+              ? 'bg-[#fff9e1] text-[#fec141] border-[#fec141]'
               : 'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]',
           )}
         >
