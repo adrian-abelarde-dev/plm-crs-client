@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge';
-
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
+import { View } from 'lucide-react';
 
 export const collegeGradFacultyTemplate = [
   {
@@ -32,18 +32,38 @@ export const collegeGradFacultyTemplate = [
     id: 'status',
     header: 'Status',
     filterVariant: 'fuzzy',
-    Cell: ({ value }) => {
+    Cell: ({ cell }) => {
+      console.log(cell.getValue());
+
       return (
         <Badge
+          variant='outline'
           className={cn(
-            value === 'Active'
-              ? 'bg-green-500 text-green-500'
-              : 'bg-yellow-500 text-yellow-500',
+            cell.getValue() === 'Active'
+              ? 'bg-[#c0e6dc] text-[#00b983] border-[#00b983]'
+              : cell.getValue() === 'Pending to Assign'
+              ? 'bg-[#fff9e1] text-[#fec141] border-[#fec141] '
+              : 'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]',
           )}
         >
-          {value}
+          {cell.getValue()}
         </Badge>
       );
     },
+  },
+];
+
+export const collegeGradFacultyRowActions = [
+  {
+    label: 'Edit Activity',
+    // icon: <View className='h-4 w-4 text-zinc-400' />,
+  },
+  {
+    label: 'Deactivate',
+    // icon: <Trash className='h-4 w-4' />,
+  },
+  {
+    label: 'Activate',
+    // icon: <Trash className='h-4 w-4' />,
   },
 ];
