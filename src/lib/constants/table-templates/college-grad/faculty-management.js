@@ -30,7 +30,7 @@ export const collegeGradFacultyTemplate = [
     accessorKey: 'status',
     id: 'status',
     header: 'Status',
-    filterVariant: 'fuzzy',
+    filterVariant: 'multi-select',
     Cell: ({ cell }) => {
       return (
         <Badge
