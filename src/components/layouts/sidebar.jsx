@@ -56,7 +56,7 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
                 {subContent.map((content, index) => {
                   return (
                     <div key={index} className='flex w-full gap-1'>
-                      <div className='mt-[10px] w-[22px] ml-[-3px] h-[15px] bg-transparent border-b-border border-l-border border-[3px] border-t-transparent border-r-transparent rounded-bl-xl hidden md:block' />
+                      <div className='mt-[0.625rem] w-[1.375rem] ml-[-0.188rem] h-[0.938rem] bg-transparent border-b-border border-l-border border-[0.188rem] border-t-transparent border-r-transparent rounded-bl-xl hidden md:block' />
 
                       <Link
                         className='flex w-full justify-center'
