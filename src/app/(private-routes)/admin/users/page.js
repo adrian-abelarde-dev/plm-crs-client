@@ -21,32 +21,13 @@ import {
   fakeUsersRowActions,
   fakeUsersTemplate,
 } from '@/lib/constants/fake-users-data';
+import {
+  UserSchema,
+  userSchemaDefaultValues,
+} from '@/lib/constants/schema/user';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-const addUserSchema = z.object({
-  userId: z.string(),
-  userType: z.string(),
-  unit: z.string(),
-  firstName: z.string(),
-  middleName: z.string(),
-  lastName: z.string(),
-  emailAddress: z.string().email(),
-  // Date created will be auto-generated in backend
-});
-
-const editUserSchema = z.object({
-  userId: z.string(),
-  userType: z.string(),
-  unit: z.string(),
-  firstName: z.string(),
-  middleName: z.string(),
-  lastName: z.string(),
-  emailAddress: z.string().email(),
-  // Date created will be auto-generated in backend
-});
 
 export const userTypes = [
   { label: 'Admin', value: 'admin' },
@@ -77,15 +58,9 @@ const CustomUserTypesBadges = ({ value }) => {
 
 function AddUserDialogForm() {
   const addUserForm = useForm({
-    resolver: zodResolver(addUserSchema),
+    resolver: zodResolver(UserSchema),
     defaultValues: {
-      userId: '2020-10016',
-      userType: 'admin',
-      unit: 'undergrad',
-      firstName: 'John',
-      middleName: 'Doe',
-      lastName: 'Smith',
-      emailAddress: 'john.doe2020@plmn.edu.ph',
+      userSchemaDefaultValues,
     },
   });
 
@@ -178,15 +153,9 @@ function AddUserDialogForm() {
 
 function EditUserDialogForm({ label, icon }) {
   const editUserForm = useForm({
-    resolver: zodResolver(editUserSchema),
+    resolver: zodResolver(UserSchema),
     defaultValues: {
-      userId: '2020-10016',
-      userType: 'admin',
-      unit: 'undergrad',
-      firstName: 'John',
-      middleName: 'Doe',
-      lastName: 'Smith',
-      emailAddress: 'john.doe2020@plmn.edu.ph',
+      userSchemaDefaultValues,
     },
   });
 
