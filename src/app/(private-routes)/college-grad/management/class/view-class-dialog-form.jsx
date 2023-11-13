@@ -57,8 +57,8 @@ function ViewClassDialogForm({ disabled, selectedClass }) {
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Faculty Details</DialogTitle>
-          <DialogDescription>View a Faculty to the system</DialogDescription>
+          <DialogTitle>Class Schedule</DialogTitle>
+          <DialogDescription>View a Class to the system</DialogDescription>
         </DialogHeader>
 
         <ScrollArea className='h-96 w-full'>

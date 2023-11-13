@@ -20,22 +20,13 @@ import { toast } from '@/components/ui/use-toast';
 import { faculties } from '@/lib/constants/fake-data/faculties';
 import { ClassSchema } from '@/lib/constants/schema/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle, Edit } from 'lucide-react';
-import { useEffect } from 'react';
+import { CheckCircle, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-function EditClassDialogForm({ disabled, selectedClass }) {
-  const editClassForm = useForm({
+function AddClassDialogForm() {
+  const addUserForm = useForm({
     resolver: zodResolver(ClassSchema),
   });
-
-  useEffect(() => {
-    if (selectedClass) {
-      Object.keys(selectedClass).forEach((key) => {
-        editClassForm.setValue(key, selectedClass[key]);
-      });
-    }
-  }, [selectedClass, editClassForm]);
 
   function onSubmit(values) {
     toast({
@@ -54,58 +45,63 @@ function EditClassDialogForm({ disabled, selectedClass }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          disabled={disabled}
-          className='text-zinc-900 justify-between hover:bg-zinc-100'
-          variant='outline'
-        >
-          <Edit className='w-4 h-4 mr-2' />
-          Edit
+        <Button>
+          <Plus className='w-4 h-4 mr-2' />
+          Add Class
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle>Class Schedule</DialogTitle>
-          <DialogDescription>Edit a Class to the system</DialogDescription>
+          <DialogDescription>
+            Add a Class Schedule to the system
+          </DialogDescription>
         </DialogHeader>
         <form
-          onSubmit={editClassForm.handleSubmit(onSubmit)}
+          onSubmit={addUserForm.handleSubmit(onSubmit)}
           className='space-y-6'
         >
-          <Form {...editClassForm}>
+          <Form {...addUserForm}>
             <ScrollArea className='h-96 w-full'>
-              {/* Subject Code */}
-              <InputFormField
-                form={editClassForm}
-                title={'Subject Code'}
-                placeholder={'Subject Code'}
-                fieldName={'subjectCode'}
-                disabled={true}
-                isOptional={true}
+              {/* Subject Name */}
+              <SelectFormField
+                form={addUserForm}
+                content={faculties}
+                title='Subject Name'
+                placeholder='Select Subject'
+                fieldName='subjectName'
               />
 
-              {/* Subject Name */}
-              <InputFormField
-                form={editClassForm}
-                title={'Subject Name'}
-                placeholder={'Subject Name'}
-                fieldName={'subjectName'}
-                disabled={true}
-                isOptional={true}
+              {/* Class Type */}
+              <SelectFormField
+                form={addUserForm}
+                content={faculties}
+                title='Class Type'
+                placeholder='Select Class Type'
+                fieldName='classType'
               />
 
               {/* Faculty */}
               <SelectFormField
-                form={editClassForm}
+                form={addUserForm}
                 content={faculties}
                 title='Faculty'
                 placeholder='Select Faculty'
                 fieldName='professor'
               />
 
+              {/* Section */}
+              <SelectFormField
+                form={addUserForm}
+                content={faculties}
+                title='Section'
+                placeholder='Select Section'
+                fieldName='section'
+              />
+
               {/* Maximum Slots */}
               <InputFormField
-                form={editClassForm}
+                form={addUserForm}
                 title={'Maximum Slots'}
                 placeholder={'Maximum Slots'}
                 fieldName={'maximumSlots'}
@@ -113,7 +109,7 @@ function EditClassDialogForm({ disabled, selectedClass }) {
 
               <div className='flex justify-start my-4'>
                 <CheckBoxFormField
-                  form={editClassForm}
+                  form={addUserForm}
                   title={'With date range?'}
                   fieldName={'withDateRange'}
                 />
@@ -123,12 +119,11 @@ function EditClassDialogForm({ disabled, selectedClass }) {
                 {/* Start Date */}
                 <div className='w-full'>
                   <DateFormField
-                    className=''
-                    form={editClassForm}
+                    form={addUserForm}
                     title={'Start Date'}
                     placeholder={'Select date'}
                     fieldName={'startDate'}
-                    disabled={!editClassForm.getValues().withDateRange}
+                    disabled={!addUserForm.getValues().withDateRange}
                   />
                 </div>
 
@@ -136,24 +131,23 @@ function EditClassDialogForm({ disabled, selectedClass }) {
                 <div className='w-full'>
                   <DateFormField
                     className='w-100'
-                    form={editClassForm}
+                    form={addUserForm}
                     title={'End Date'}
                     placeholder={'Select date'}
                     fieldName={'endDate'}
-                    disabled={!editClassForm.getValues().withDateRange}
+                    disabled={!addUserForm.getValues().withDateRange}
                   />
                 </div>
               </section>
             </ScrollArea>
             <DialogFooter className='w-full flex justify-end mt-4'>
               <DialogClose asChild>
-                <Button variant='outline' onClick={() => editClassForm.reset()}>
+                <Button variant='outline' onClick={() => addUserForm.reset()}>
                   Cancel
                 </Button>
               </DialogClose>
-              <DialogClose asChild>
-                <Button type='submit'>Save Changes</Button>
-              </DialogClose>
+
+              <Button type='submit'>Add Class</Button>
             </DialogFooter>
           </Form>
         </form>
@@ -162,4 +156,4 @@ function EditClassDialogForm({ disabled, selectedClass }) {
   );
 }
 
-export default EditClassDialogForm;
+export default AddClassDialogForm;

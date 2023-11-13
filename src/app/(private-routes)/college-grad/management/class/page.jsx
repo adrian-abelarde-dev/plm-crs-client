@@ -11,6 +11,7 @@ import { handleRowSelectionChange, testPromise } from '@/lib/utils';
 import { CheckCircle, Plus, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 
+import AddClassDialogForm from './add-class-dialog-form';
 import EditClassDialogForm from './edit-class-dialog-form';
 import ViewClassDialogForm from './view-class-dialog-form';
 
@@ -82,10 +83,7 @@ function CollageGradManagementClass() {
               }
             />
 
-            <Button>
-              <Plus className='w-4 h-4 mr-2' />
-              Add Class
-            </Button>
+            <AddClassDialogForm />
           </>
         }
         renderRowActionMenuItems={({ row }) => {
