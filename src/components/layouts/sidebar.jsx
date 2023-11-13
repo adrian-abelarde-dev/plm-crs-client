@@ -37,61 +37,57 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
   return (
     <>
       {subContent ? (
-        <>
-          <Collapsible className='w-full'>
-            <CollapsibleTrigger className='w-full justify-center'>
-              <CustomLinks
-                pathname={pathname}
-                path={path}
-                className={className}
-                onClick={onClick}
-                icon={icon}
-                text={text}
-              />
-            </CollapsibleTrigger>
-            <CollapsibleContent className='flex flex-row justify-center'>
-              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
+        <Collapsible className='w-full'>
+          <CollapsibleTrigger className='w-full justify-center' asChild>
+            <CustomLinks
+              pathname={pathname}
+              path={path}
+              className={className}
+              onClick={onClick}
+              icon={icon}
+              text={text}
+            />
+          </CollapsibleTrigger>
+          <CollapsibleContent className='flex flex-row justify-center'>
+            <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
 
-              <div className='w-full'>
-                {subContent.map((content, index) => {
-                  return (
-                    <div key={index} className='flex w-full gap-1'>
-                      <div className='mt-[0.625rem] w-[1.375rem] ml-[-0.188rem] h-[0.938rem] bg-transparent border-b-border border-l-border border-[0.188rem] border-t-transparent border-r-transparent rounded-bl-xl hidden md:block' />
+            <div className='w-full'>
+              {subContent.map((content, index) => {
+                return (
+                  <div key={index} className='flex w-full gap-1'>
+                    <div className='mt-[0.625rem] w-[1.375rem] ml-[-0.188rem] h-[0.938rem] bg-transparent border-b-border border-l-border border-[0.188rem] border-t-transparent border-r-transparent rounded-bl-xl hidden md:block' />
 
-                      <Link
-                        className='flex w-full justify-center'
-                        key={index}
-                        href={content.path}
-                      >
-                        <CustomLinks
-                          pathname={pathname}
-                          path={content.path}
-                          className={'my-1 max-md:ml-0'}
-                          onClick={onClick}
-                          icon={content.icon}
-                          text={content.text}
-                          activeState={true}
-                        />
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        </>
+                    <Link
+                      className='flex w-full justify-center'
+                      key={index}
+                      href={content.path}
+                    >
+                      <CustomLinks
+                        pathname={pathname}
+                        path={content.path}
+                        className={'my-1 max-md:ml-0'}
+                        onClick={onClick}
+                        icon={content.icon}
+                        text={content.text}
+                        activeState={true}
+                      />
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       ) : (
-        <>
-          <CustomLinks
-            pathname={pathname}
-            path={path}
-            className={className}
-            onClick={onClick}
-            icon={icon}
-            text={text}
-            activeState={true}
-          />
-        </>
+        <CustomLinks
+          pathname={pathname}
+          path={path}
+          className={className}
+          onClick={onClick}
+          icon={icon}
+          text={text}
+          activeState={true}
+        />
       )}
     </>
   );
