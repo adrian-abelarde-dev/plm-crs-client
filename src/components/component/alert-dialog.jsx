@@ -34,6 +34,8 @@ function AlertConfirmModal({
 
   setResult,
   confirmFunction,
+  setRowSelection,
+  id,
 }) {
   return (
     <AlertDialog>
@@ -60,6 +62,7 @@ function AlertConfirmModal({
           <AlertDialogAction
             onClick={() => {
               setResult(true);
+              setRowSelection(id);
               // executes function passed from parent
               confirmFunction()
                 .then(() => {

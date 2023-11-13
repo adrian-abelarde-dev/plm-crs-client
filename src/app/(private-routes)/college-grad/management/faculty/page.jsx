@@ -1,7 +1,9 @@
 'use client';
 
+import AlertConfirmModal from '@/components/component/alert-dialog';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import { collegeGradFacultyData } from '@/lib/constants/fake-data/faculty-management';
 import { collegeGradFacultyTemplate } from '@/lib/constants/table-templates/college-grad/faculty-management';
 import { Printer } from 'lucide-react';
@@ -15,7 +17,7 @@ function CollageGradManagementFaculty() {
 
   useEffect(() => {
     if (confirmResult) {
-      console.log(confirmResult);
+      console.log(confirmResult); // true if you accept
       // update and handles the status of the deactivated faculty on UI
 
       // no backend function here; use the confirmFunction prop instead if you wish to modify the backend data
@@ -23,7 +25,7 @@ function CollageGradManagementFaculty() {
     }
   }, [confirmResult]);
 
-  function exampleAsyncFunction() {
+  function exampleAsyncFunction(id) {
     // sample async function for future reference
     // contents of this function will be the connected to the backend
     return new Promise((resolve, reject) => {
@@ -32,6 +34,7 @@ function CollageGradManagementFaculty() {
       setTimeout(() => {
         const success = true; // Simulate success or failure
         if (success) {
+          console.log(id);
           resolve('Operation succeeded');
         } else {
           reject('Operation failed');
@@ -41,9 +44,12 @@ function CollageGradManagementFaculty() {
   }
 
   // collects the selected faculty data
-  const selectedFaculty = collegeGradFacultyData.filter(
-    (item) => rowSelection[item[collegeGradFacultyTemplate[0].accessorKey]],
-  );
+  const selectedFaculty = collegeGradFacultyData.filter((item) => {
+    const accessorKey = collegeGradFacultyTemplate[0]?.accessorKey;
+    return (
+      rowSelection && item && accessorKey && rowSelection[item[accessorKey]]
+    );
+  });
 
   return (
     <main className='p-6'>
@@ -56,8 +62,6 @@ function CollageGradManagementFaculty() {
         isCheckBoxVisible={true}
         rowSelection={rowSelection}
         setRowSelection={setRowSelection}
-        setConfirmResult={setConfirmResult}
-        confirmFunction={() => exampleAsyncFunction()}
         RightButtons={
           <>
             <EditFacultyDialogForm
@@ -74,7 +78,26 @@ function CollageGradManagementFaculty() {
             </Button>
           </>
         }
-        RowActions={<></>}
+        renderRowActionMenuItems={({ row }) => {
+          const selectedId =
+            row.original[collegeGradFacultyTemplate[0].accessorKey]; // first column is required to be the id
+
+          return (
+            <div className='flex flex-col w-[14.75rem] z-10'>
+              <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
+              <AlertConfirmModal
+                label='Deactivate'
+                title='Are you sure you want to deactivate?'
+                description='Once deactivated, all users account will be deactivated.'
+                cancelLabel='Cancel'
+                confirmLabel='Deactivate'
+                setResult={setConfirmResult}
+                confirmFunction={() => exampleAsyncFunction(selectedId)}
+                setRowSelection={setRowSelection}
+              />
+            </div>
+          );
+        }}
       />
     </main>
   );

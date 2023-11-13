@@ -10,7 +10,6 @@ import {
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
-import AlertConfirmModal from '../component/alert-dialog';
 import Loader from '../component/loader';
 import { Label } from '../ui/label';
 
@@ -45,8 +44,8 @@ import { Label } from '../ui/label';
 // * RowActions -> JSX, defines the JSX for the row actions
 // * setRowSelection -> setState function, defines the state for the row selection
 // * rowSelection -> object, defines the selected rows
-// * setConfirmResult -> setState function, defines the state for the confirm result
-// * confirmFunction -> async function, defines the function to be executed when confirm button is clicked
+// * renderRowActionMenuItems -> function, defines the JSX for the row action menu items
+// ? for `renderRowActionMenuItems` follow /college-grad/management/faculty/page.jsx as an example
 
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
@@ -63,18 +62,15 @@ function TableMRT({
   // JSX Props
   RightButtons,
   LeftButtons,
-  RowActions,
   // state -> this is required when isCheckBoxVisible is true
   setRowSelection,
   rowSelection,
 
-  // setConfirmResult -> this is required when table has a 'status'
-  setConfirmResult,
-  confirmFunction, // executed function when confirm button is clicked
+  // mantine-react-table property -> defines the actions per row
+  renderRowActionMenuItems,
 }) {
   const columns = useMemo(() => template, [template]);
   const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
-  const setConfirmHandler = () => {}; // to avoid error when confirmResult and setConfirmResult is undefined
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   const table = useMantineReactTable({
@@ -86,7 +82,7 @@ function TableMRT({
     enableFullScreenToggle: false,
     // enableGrouping: true, // This is what causing the console error
     enablePinning: true,
-    enableRowActions: RowActions ? true : false,
+    enableRowActions: renderRowActionMenuItems ? true : false,
 
     enableRowSelection: isCheckBoxVisible ? true : false,
     getRowId: (originalRow) =>
@@ -115,45 +111,7 @@ function TableMRT({
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
 
-    renderRowActionMenuItems: ({ row }) => {
-      return (
-        <div className='flex flex-col w-[14.75rem]'>
-          <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
-          {RowActions}
-
-          {/* display deactivate action when status exists  */}
-          {row.original.status !== undefined && (
-            <>
-              {row.original.status === 'Active' ? (
-                <AlertConfirmModal
-                  label='Deactivate'
-                  title='Are you sure you want to deactivate?'
-                  description='Once deactivated, all users account will be deactivated.'
-                  cancelLabel='Cancel'
-                  confirmLabel='Deactivate'
-                  setResult={
-                    setConfirmResult ? setConfirmResult : setConfirmHandler
-                  }
-                  confirmFunction={confirmFunction}
-                />
-              ) : (
-                <AlertConfirmModal
-                  label='Activate'
-                  title='Are you sure you want to reactivate?'
-                  description='Once activated, all users account will be activated.'
-                  cancelLabel='Cancel'
-                  confirmLabel='Activate'
-                  setResult={
-                    setConfirmResult ? setConfirmResult : setConfirmHandler
-                  }
-                  confirmFunction={confirmFunction}
-                />
-              )}
-            </>
-          )}
-        </div>
-      );
-    },
+    renderRowActionMenuItems: renderRowActionMenuItems,
     renderTopToolbar: ({ table }) => {
       return (
         <Flex p='md' justify='space-between'>
