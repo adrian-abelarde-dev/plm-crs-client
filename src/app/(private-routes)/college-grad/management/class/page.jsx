@@ -11,6 +11,7 @@ import { handleRowSelectionChange, testPromise } from '@/lib/utils';
 import { CheckCircle, Plus, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 
+import EditClassDialogForm from './edit-class-dialog-form';
 import ViewClassDialogForm from './view-class-dialog-form';
 
 function CollageGradManagementClass() {
@@ -66,6 +67,14 @@ function CollageGradManagementClass() {
         RightButtons={
           <>
             <ViewClassDialogForm
+              selectedClass={selectedClass[0]} // select the first item in the array
+              disabled={
+                Object.keys(selectedClass).length > 1 ||
+                Object.keys(selectedClass).length === 0
+              }
+            />
+
+            <EditClassDialogForm
               selectedClass={selectedClass[0]} // select the first item in the array
               disabled={
                 Object.keys(selectedClass).length > 1 ||

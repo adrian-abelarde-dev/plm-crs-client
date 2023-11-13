@@ -7,7 +7,7 @@ export const ClassSchema = z.object({
   professor: z.string(),
   classType: z.string(),
   section: z.string(),
-  maximumSlots: z.number(),
+  maximumSlots: z.string(),
   withDateRange: z.boolean(),
   startDate: z.date(),
   endDate: z.date(),

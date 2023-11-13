@@ -6,7 +6,7 @@ export const collegeClassManagementData = [
     subjectCode: 'GYM-123',
     subjectName: 'Engineering Research and Development',
     yearTerm: '2021-2022 1st Term',
-    professor: 'CET-GP',
+    professor: 'Dr. Sheldon Cooper',
     status: 'Active',
 
     // View Class Schedule Data:
