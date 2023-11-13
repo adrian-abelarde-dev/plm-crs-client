@@ -137,6 +137,7 @@ function GradApplicationForm() {
               title={'Name Extension'}
               placeholder={'(e.g. "Sr.", "Jr.", "II", "III")'}
               fieldName={'nameExtension'}
+              isOptional={true}
             />
 
             <InputFormField
@@ -144,6 +145,7 @@ function GradApplicationForm() {
               title={'Maiden Name'}
               placeholder={'Maiden Name'}
               fieldName={'maidenName'}
+              isOptional={true}
             />
 
             <SelectFormField
@@ -239,6 +241,7 @@ function GradApplicationForm() {
               placeholder={''}
               fieldName='subMunicipality'
               disabled={form.getValues().municipality === ''}
+              isOptional={true}
             />
 
             <InputFormField
