@@ -1,10 +1,22 @@
 import {
+  Activity,
+  ArrowLeftRight,
+  ArrowUpDown,
+  Book,
+  BookOpenText,
+  BookText,
   Box,
   Calendar,
+  File,
   GraduationCap,
+  ListTree,
   Mail,
+  PencilLine,
+  PersonStanding,
   Presentation,
+  User,
   User2,
+  UserCog,
   Warehouse,
 } from 'lucide-react';
 
@@ -107,4 +119,89 @@ export const adminSidebarLinks = [
     text: 'Students',
     path: '/admin/students',
   },
+];
+
+export const collegeGradLinks = [
+  {
+    icon: <Activity className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Activities',
+    path: '/college-grad/activities',
+  },
+  {
+    icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Students',
+    path: '/college-grad/students',
+  },
+  {
+    icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Management',
+    path: '/college-grad/management',
+    subContent: [
+      {
+        text: 'Faculty',
+        path: '/college-grad/management/faculty',
+        icon: <User className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+      {
+        text: 'Class',
+        path: '/college-grad/management/class',
+        icon: <PencilLine className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+      {
+        text: 'Subject',
+        path: '/college-grad/management/subject',
+        icon: <BookOpenText className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+      {
+        text: 'Curriculum',
+        path: '/college-grad/management/curriculum',
+        icon: <BookText className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+    ],
+  },
+  {
+    icon: <ArrowLeftRight className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Transactions',
+    path: '/college-grad/transactions',
+    subContent: [
+      {
+        text: 'Add/Drop',
+        path: '/college-grad/transactions/add-drop',
+        icon: <ArrowUpDown className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+      {
+        text: 'Teaching Assignment',
+        path: '/college-grad/transactions/teaching-assignment',
+        icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
+      },
+    ],
+  },
+];
+
+export const collegeLinks = [
+  {
+    icon: <Book className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Subjects',
+    path: '/college/subjects',
+  },
+  {
+    icon: <ListTree className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Sections',
+    path: '/college/sections',
+  },
+  {
+    icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Schedule',
+    path: '/college/schedule',
+  },
+  {
+    icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Students',
+    path: '/college/students',
+  },
+  {
+    icon: <File className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Teaching Assignments',
+    path: '/college/teaching-assignments',
+  }
 ];

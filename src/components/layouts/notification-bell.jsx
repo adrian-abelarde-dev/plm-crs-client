@@ -1,11 +1,11 @@
-import { fakeNotification } from '@/lib/constants/fake-notification-data';
+import { fakeNotification } from '@/lib/constants/fake-data/notification';
 import { AlertCircle, Bell, CheckCheck } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 import { Label } from '../ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 
-const NotificationBell = () => {
+function NotificationBell() {
   return (
     <Popover className='h-auto'>
       <PopoverTrigger>
@@ -29,17 +29,12 @@ const NotificationBell = () => {
       </PopoverContent>
     </Popover>
   );
-};
+}
 
 // ? type --> message type (e.g. system message, announcement, etc.)
 // ? message --> message content
 // ? timePosted --> parsed date from db
-const NotificationMessage = ({
-  type,
-  message,
-  timePosted,
-  notificationType,
-}) => {
+function NotificationMessage({ type, message, timePosted, notificationType }) {
   return (
     <Alert className='mx-5 mb-[0.31rem] py-[0.75rem] px-4'>
       {notificationType === 0 ? (
@@ -57,6 +52,6 @@ const NotificationMessage = ({
       </AlertDescription>
     </Alert>
   );
-};
+}
 
 export default NotificationBell;

@@ -22,11 +22,13 @@ export default function PrivateRouteRootLayoutAdmin({ children }) {
             <section className='w-full relative'>
               {/* Sidebar is floating but fixed */}
               <section className='fixed left-0 z-50'>
-                <Sidebar sidebarLinks={adminSidebarLinks} />
+                <Sidebar sidebarLinks={adminSidebarLinks} accessType='Admin' />
               </section>
 
               {/* Adds margin left based on sidebar width */}
-              <div className='flex-grow ml-[48px] md:ml-52'>{children}</div>
+              <div className='flex-grow ml-[3rem] md:ml-[14rem]'>
+                {children}
+              </div>
             </section>
           </AuthProvider>
         </Providers>

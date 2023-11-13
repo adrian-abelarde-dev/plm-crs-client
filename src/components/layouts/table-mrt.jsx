@@ -1,7 +1,6 @@
 'use client';
 
-import { Flex } from '@mantine/core';
-import { MantineProvider } from '@mantine/core';
+import { Flex, MantineProvider } from '@mantine/core';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ToggleFiltersButton,
@@ -11,6 +10,7 @@ import {
 } from 'mantine-react-table';
 import { useEffect, useMemo, useState } from 'react';
 
+import Loader from '../component/loader';
 import { Label } from '../ui/label';
 
 // * title -> string, defines the title of the table
@@ -42,26 +42,35 @@ import { Label } from '../ui/label';
 // * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
 // * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
 // * RowActions -> JSX, defines the JSX for the row actions
+// * setRowSelection -> setState function, defines the state for the row selection
+// * rowSelection -> object, defines the selected rows
+// * renderRowActionMenuItems -> function, defines the JSX for the row action menu items
+// ? for `renderRowActionMenuItems` follow /college-grad/management/faculty/page.jsx as an example
 
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
 
-const TableMRT = ({
+function TableMRT({
   title,
   description, // Added description
   searchPlaceholder,
   data,
-  template,
+  template, // NOTE: it is important to make the first element of the template to be the id of the row
   isCheckBoxVisible,
   isRowNumbersVisible,
   isFullscreen = true, // show by default
-
   // JSX Props
   RightButtons,
   LeftButtons,
-  RowActions,
-}) => {
+  // state -> this is required when isCheckBoxVisible is true
+  setRowSelection,
+  rowSelection,
+
+  // mantine-react-table property -> defines the actions per row
+  renderRowActionMenuItems,
+}) {
   const columns = useMemo(() => template, [template]);
+  const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   const table = useMantineReactTable({
@@ -71,13 +80,25 @@ const TableMRT = ({
     enableColumnOrdering: true,
     enableFacetedValues: true,
     enableFullScreenToggle: false,
-    enableGrouping: true,
+    // enableGrouping: true, // This is what causing the console error
     enablePinning: true,
-    enableRowActions: RowActions ? true : false,
+    enableRowActions: renderRowActionMenuItems ? true : false,
+
     enableRowSelection: isCheckBoxVisible ? true : false,
+    getRowId: (originalRow) =>
+      isCheckBoxVisible ? originalRow[template[0].accessorKey] : null,
+    state: {
+      rowSelection:
+        rowSelection === undefined ? rowSelectionHandler : rowSelection,
+      isLoading: !isDomLoaded,
+    },
+    onRowSelectionChange:
+      setRowSelection === undefined ? setRowSelectionHandler : setRowSelection,
+
     initialState: { showColumnFilters: true, showGlobalFilter: true },
     paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
+
     mantinePaginationProps: {
       radius: 'xl',
       size: 'lg',
@@ -89,17 +110,8 @@ const TableMRT = ({
     selectAllMode: 'page',
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
-    state: {
-      isLoading: !isDomLoaded, // Replaced spinner with built-in spinner from MRT
-    },
-    renderRowActionMenuItems: () => {
-      return (
-        <div className='flex flex-col w-[14.75rem]'>
-          <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
-          {RowActions}
-        </div>
-      );
-    },
+
+    renderRowActionMenuItems: renderRowActionMenuItems,
     renderTopToolbar: ({ table }) => {
       return (
         <Flex p='md' justify='space-between'>
@@ -120,7 +132,9 @@ const TableMRT = ({
 
   useEffect(() => {
     setIsDomLoaded(true);
-  }, [isDomLoaded]);
+  }, []);
+
+  if (!isDomLoaded) return <Loader />;
 
   return (
     <div className='my-4'>
@@ -143,7 +157,7 @@ const TableMRT = ({
                   '#F6E05E',
                   '#FAF089',
                   '#FEFCBF',
-                  '#FACC15', // Primary
+                  '#FACC15',
                   '#EAB308',
                 ],
                 gray: [
@@ -155,7 +169,7 @@ const TableMRT = ({
                   '#6B7280',
                   '#4B5563',
                   '#374151',
-                  '#1F2937', // Color being used
+                  '#1F2937',
                   '#111827',
                 ],
                 dark: [
@@ -179,7 +193,7 @@ const TableMRT = ({
                   '#808080',
                   '#666666',
                   '#4D4D4D',
-                  '#333333', // Color being used
+                  '#333333',
                   '#1A1A1A',
                 ],
 
@@ -203,6 +217,6 @@ const TableMRT = ({
       </div>
     </div>
   );
-};
+}
 
 export default TableMRT;

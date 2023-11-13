@@ -1,5 +1,5 @@
-const MeetingPage = () => {
+function MeetingPage() {
   return <></>;
-};
+}
 
 export default MeetingPage;
