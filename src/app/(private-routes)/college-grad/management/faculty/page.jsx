@@ -4,9 +4,11 @@ import AlertConfirmModal from '@/components/component/alert-dialog';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { toast } from '@/components/ui/use-toast';
 import { collegeGradFacultyData } from '@/lib/constants/fake-data/faculty-management';
 import { collegeGradFacultyTemplate } from '@/lib/constants/table-templates/college-grad/faculty-management';
-import { Printer } from 'lucide-react';
+import { testPromise } from '@/lib/utils';
+import { CheckCircle, Printer, XCircle } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 import EditFacultyDialogForm from './edit-faculty-dialog-form';
@@ -25,22 +27,31 @@ function CollageGradManagementFaculty() {
     }
   }, [confirmResult]);
 
-  function exampleAsyncFunction(id) {
-    // sample async function for future reference
-    // contents of this function will be the connected to the backend
-    return new Promise((resolve, reject) => {
-      // Perform asynchronous operations, such as API calls, database queries, etc.
-      // Simulating an asynchronous operation using setTimeout
-      setTimeout(() => {
-        const success = true; // Simulate success or failure
-        if (success) {
-          console.log(id);
-          resolve('Operation succeeded');
-        } else {
-          reject('Operation failed');
-        }
-      }, 1000); // Simulating a delay of 1 second
-    });
+  function sampleConfirmFunction(id) {
+    testPromise(id)
+      .then(() => {
+        toast({
+          title: (
+            <div className='flex flex-row'>
+              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+              <Label>Success!</Label>
+            </div>
+          ),
+          description: <>Changes has been Saved.</>,
+        });
+      })
+      .catch((err) => {
+        console.log('error: ', err);
+        toast({
+          title: (
+            <div className='flex flex-row'>
+              <XCircle className='mr-2 h-4 w-4 text-red-400' />
+              <Label>{err}</Label>
+            </div>
+          ),
+          description: <>Error saving your data</>,
+        });
+      });
   }
 
   // collects the selected faculty data
@@ -91,9 +102,7 @@ function CollageGradManagementFaculty() {
                 description='Once deactivated, all users account will be deactivated.'
                 cancelLabel='Cancel'
                 confirmLabel='Deactivate'
-                setResult={setConfirmResult}
-                confirmFunction={() => exampleAsyncFunction(selectedId)}
-                setRowSelection={setRowSelection}
+                confirmFunction={() => sampleConfirmFunction(selectedId)}
               />
             </div>
           );

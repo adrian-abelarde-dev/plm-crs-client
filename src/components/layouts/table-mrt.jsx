@@ -55,7 +55,7 @@ function TableMRT({
   description, // Added description
   searchPlaceholder,
   data,
-  template,
+  template, // NOTE: it is important to make the first element of the template to be the id of the row
   isCheckBoxVisible,
   isRowNumbersVisible,
   isFullscreen = true, // show by default
