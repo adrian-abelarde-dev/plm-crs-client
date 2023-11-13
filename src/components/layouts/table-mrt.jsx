@@ -42,6 +42,10 @@ import { Label } from '../ui/label';
 // * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
 // * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
 // * RowActions -> JSX, defines the JSX for the row actions
+// * setRowSelection -> setState function, defines the state for the row selection
+// * rowSelection -> object, defines the selected rows
+// * renderRowActionMenuItems -> function, defines the JSX for the row action menu items
+// ? for `renderRowActionMenuItems` follow /college-grad/management/faculty/page.jsx as an example
 
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
@@ -51,17 +55,19 @@ function TableMRT({
   description, // Added description
   searchPlaceholder,
   data,
-  template,
+  template, // NOTE: it is important to make the first element of the template to be the id of the row
   isCheckBoxVisible,
   isRowNumbersVisible,
   isFullscreen = true, // show by default
   // JSX Props
   RightButtons,
   LeftButtons,
-  RowActions,
   // state -> this is required when isCheckBoxVisible is true
   setRowSelection,
   rowSelection,
+
+  // mantine-react-table property -> defines the actions per row
+  renderRowActionMenuItems,
 }) {
   const columns = useMemo(() => template, [template]);
   const [rowSelectionHandler, setRowSelectionHandler] = useState({}); // to avoid error when rowSelection and setRowSelection is undefined
@@ -76,7 +82,7 @@ function TableMRT({
     enableFullScreenToggle: false,
     // enableGrouping: true, // This is what causing the console error
     enablePinning: true,
-    enableRowActions: RowActions ? true : false,
+    enableRowActions: renderRowActionMenuItems ? true : false,
 
     enableRowSelection: isCheckBoxVisible ? true : false,
     getRowId: (originalRow) =>
@@ -105,14 +111,7 @@ function TableMRT({
     positionActionsColumn: 'last',
     enableRowNumbers: isRowNumbersVisible,
 
-    renderRowActionMenuItems: () => {
-      return (
-        <div className='flex flex-col w-[14.75rem]'>
-          <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
-          {RowActions}
-        </div>
-      );
-    },
+    renderRowActionMenuItems: renderRowActionMenuItems,
     renderTopToolbar: ({ table }) => {
       return (
         <Flex p='md' justify='space-between'>

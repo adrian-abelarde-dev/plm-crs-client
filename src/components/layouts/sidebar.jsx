@@ -37,56 +37,57 @@ function SidebarButton({ icon, text, onClick, path, className, subContent }) {
   return (
     <>
       {subContent ? (
-        <>
-          <Collapsible className='w-full'>
-            <CollapsibleTrigger className='w-full justify-center'>
-              <CustomLinks
-                pathname={pathname}
-                path={path}
-                className={className}
-                onClick={onClick}
-                icon={icon}
-                text={text}
-              />
-            </CollapsibleTrigger>
-            <CollapsibleContent className='flex flex-row justify-center'>
-              <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
-              <div className='w-full'>
-                {subContent.map((content, index) => {
-                  return (
+        <Collapsible className='w-full'>
+          <CollapsibleTrigger className='w-full justify-center' asChild>
+            <CustomLinks
+              pathname={pathname}
+              path={path}
+              className={className}
+              onClick={onClick}
+              icon={icon}
+              text={text}
+            />
+          </CollapsibleTrigger>
+          <CollapsibleContent className='flex flex-row justify-center'>
+            <Separator className='h-100 w-[0.20rem] mt-1 ml-6 max-md:hidden' />
+
+            <div className='w-full'>
+              {subContent.map((content, index) => {
+                return (
+                  <div key={index} className='flex w-full gap-1'>
+                    <div className='mt-[0.625rem] w-[1.375rem] ml-[-0.188rem] h-[0.938rem] bg-transparent border-b-border border-l-border border-[0.188rem] border-t-transparent border-r-transparent rounded-bl-xl hidden md:block' />
+
                     <Link
-                      className='flex w-100 justify-center'
+                      className='flex w-full justify-center'
                       key={index}
                       href={content.path}
                     >
                       <CustomLinks
                         pathname={pathname}
                         path={content.path}
-                        className={'ml-[1.26rem] my-1 max-md:ml-0'}
+                        className={'my-1 max-md:ml-0'}
                         onClick={onClick}
                         icon={content.icon}
                         text={content.text}
                         activeState={true}
                       />
                     </Link>
-                  );
-                })}
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        </>
+                  </div>
+                );
+              })}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       ) : (
-        <>
-          <CustomLinks
-            pathname={pathname}
-            path={path}
-            className={className}
-            onClick={onClick}
-            icon={icon}
-            text={text}
-            activeState={true}
-          />
-        </>
+        <CustomLinks
+          pathname={pathname}
+          path={path}
+          className={className}
+          onClick={onClick}
+          icon={icon}
+          text={text}
+          activeState={true}
+        />
       )}
     </>
   );
@@ -135,15 +136,15 @@ export function Sidebar({ sidebarLinks, accessType }) {
 
   function formatName(fullName) {
     // Split the full name into parts
-    const parts = fullName.split(', ');
+    const parts = fullName?.split(', ');
 
     // Handle names without middle initials
-    if (parts.length === 1) {
+    if (parts?.length === 1) {
       return capitalizeFirstLetter(parts[0]);
     }
 
     // Extract the first name, middle initial, and last name
-    const [lastName, firstAndMiddle] = parts;
+    const [lastName, firstAndMiddle = ''] = parts || [];
     const [firstName, middleInitial] = firstAndMiddle.split(' ');
 
     // Build the formatted name without the middle initial
@@ -156,7 +157,7 @@ export function Sidebar({ sidebarLinks, accessType }) {
 
   // Helper function to capitalize the first letter of a word
   function capitalizeFirstLetter(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    return word?.charAt(0)?.toUpperCase() + word?.slice(1)?.toLowerCase();
   }
 
   const sidebarButtonsContent = sidebarLinks.map((button, index) => {
@@ -177,7 +178,7 @@ export function Sidebar({ sidebarLinks, accessType }) {
   });
 
   return (
-    <aside className='h-screen w-fit outline outline-1 outline-gray-200 md:w-52'>
+    <aside className='h-screen w-fit outline outline-1 outline-gray-200 md:w-56'>
       <Container className='flex h-full flex-col justify-between px-2 py-10 gap-10 md:px-4'>
         <div className='flex flex-col gap-6'>
           {/* Made Image have responsive width */}
@@ -194,10 +195,10 @@ export function Sidebar({ sidebarLinks, accessType }) {
         </div>
 
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger asChild className='cursor-pointer'>
             <Card className='hidden md:block rounded-md text-left'>
               <CardHeader className='p-4'>
-                <CardTitle>{formatName(session.user.name)}</CardTitle>
+                <CardTitle>{formatName(session?.user.name)}</CardTitle>
                 <CardDescription className='p-0 m-0 leading-3'>
                   {accessType}
                 </CardDescription>
