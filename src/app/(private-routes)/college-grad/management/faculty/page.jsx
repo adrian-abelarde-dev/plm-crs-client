@@ -9,23 +9,12 @@ import { collegeGradFacultyData } from '@/lib/constants/fake-data/faculty-manage
 import { collegeGradFacultyTemplate } from '@/lib/constants/table-templates/college-grad/faculty-management';
 import { testPromise } from '@/lib/utils';
 import { CheckCircle, Printer, XCircle } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import EditFacultyDialogForm from './edit-faculty-dialog-form';
 
 function CollageGradManagementFaculty() {
   const [rowSelection, setRowSelection] = useState({});
-  const [confirmResult, setConfirmResult] = useState(false);
-
-  useEffect(() => {
-    if (confirmResult) {
-      console.log(confirmResult); // true if you accept
-      // update and handles the status of the deactivated faculty on UI
-
-      // no backend function here; use the confirmFunction prop instead if you wish to modify the backend data
-      setConfirmResult(false);
-    }
-  }, [confirmResult]);
 
   async function sampleConfirmFunction(id) {
     try {
