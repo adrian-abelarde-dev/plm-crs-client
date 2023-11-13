@@ -24,3 +24,17 @@ export function getRandomDate() {
 
   return randomDate;
 }
+
+export function testPromise(id) {
+  return new Promise((resolve, reject) => {
+    // Perform asynchronous operations, such as API calls, database queries, etc.
+    // Simulating an asynchronous operation
+    const success = Math.random() < 0.5; // Simulate success or failure randomly
+    if (success) {
+      console.log(id);
+      resolve('Operation succeeded');
+    } else {
+      reject('Operation failed');
+    }
+  });
+}

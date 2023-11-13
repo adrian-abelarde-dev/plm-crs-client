@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils';
-import { CheckCircle, XCircle } from 'lucide-react';
 
 import {
   AlertDialog,
@@ -13,8 +12,6 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog';
 import { Button } from '../ui/button';
-import { Label } from '../ui/label';
-import { toast } from '../ui/use-toast';
 
 // * label -> string, defines the label for the button
 // * title -> string, defines the title of the alert dialog
@@ -22,18 +19,15 @@ import { toast } from '../ui/use-toast';
 // * cancelLabel -> string, defines the label for the cancel button
 // * confirmLabel -> string, defines the label for the confirm button
 // * className -> string, defines the addition of className for the button
-// * setResult -> setState function
-// * confirmFunction -> async function, defines the function to be executed when confirm button is clicked
+// * confirmFunction ->  function, defines the function to be executed when confirm button is clicked
 function AlertConfirmModal({
   label,
   title,
   description,
   cancelLabel,
   confirmLabel,
-  className,
-
-  setResult,
   confirmFunction,
+  className,
 }) {
   return (
     <AlertDialog>
@@ -54,37 +48,11 @@ function AlertConfirmModal({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => setResult(false)}>
-            {cancelLabel}
-          </AlertDialogCancel>
+          <AlertDialogCancel>{cancelLabel}</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              setResult(true);
               // executes function passed from parent
-              confirmFunction()
-                .then(() => {
-                  toast({
-                    title: (
-                      <div className='flex flex-row'>
-                        <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-                        <Label>Success!</Label>
-                      </div>
-                    ),
-                    description: <>Changes has been Saved.</>,
-                  });
-                })
-                .catch((err) => {
-                  console.log('error: ', err);
-                  toast({
-                    title: (
-                      <div className='flex flex-row'>
-                        <XCircle className='mr-2 h-4 w-4 text-red-400' />
-                        <Label>Error!</Label>
-                      </div>
-                    ),
-                    description: <>Error saving your data</>,
-                  });
-                });
+              confirmFunction();
             }}
           >
             {confirmLabel}
