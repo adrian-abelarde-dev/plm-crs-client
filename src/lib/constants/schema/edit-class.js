@@ -8,15 +8,10 @@ export const ClassSchema = z.object({
   maximumSlots: z.string(),
 });
 
-export const classSchemaDefaultValues = {
-  subjectCode: '',
-  subjectName: '',
-  yearTerm: '',
-  professor: '',
-  classType: '',
-  section: '',
-  maximumSlots: '',
-  withDateRange: false,
-  startDate: '',
-  endDate: '',
-};
+export const ScheduleSchema = z.object({
+  classDay: z.string(),
+  startTime: z.string(),
+  endTime: z.string(),
+  room: z.string(),
+  meetingType: z.string(),
+});

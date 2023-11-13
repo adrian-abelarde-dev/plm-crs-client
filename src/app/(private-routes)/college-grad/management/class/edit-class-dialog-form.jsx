@@ -20,11 +20,16 @@ import { toast } from '@/components/ui/use-toast';
 import { faculties } from '@/lib/constants/fake-data/faculties';
 import { ClassSchema } from '@/lib/constants/schema/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { set } from 'date-fns';
 import { CheckCircle, Edit } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import ScheduleInformation from './schedule-information';
+
 function EditClassDialogForm({ disabled, selectedClass }) {
+  const [schedule, setSchedule] = useState([]);
+
   const editClassForm = useForm({
     resolver: zodResolver(ClassSchema),
   });
@@ -36,6 +41,10 @@ function EditClassDialogForm({ disabled, selectedClass }) {
       });
     }
   }, [selectedClass, editClassForm]);
+
+  useEffect(() => {
+    setSchedule(selectedClass?.scheduleInformation);
+  }, [selectedClass]);
 
   function onSubmit(values) {
     toast({
@@ -74,6 +83,16 @@ function EditClassDialogForm({ disabled, selectedClass }) {
         >
           <Form {...editClassForm}>
             <ScrollArea className='h-96 w-full'>
+              {/* Schedule Information */}
+              <ScheduleInformation
+                setSchedule={setSchedule}
+                schedule={schedule}
+              />
+
+              <div className='mb-[1.31rem]'>
+                <Label className='font-bold text-lg'>Subject Information</Label>
+              </div>
+
               {/* Subject Code */}
               <InputFormField
                 form={editClassForm}
@@ -147,7 +166,13 @@ function EditClassDialogForm({ disabled, selectedClass }) {
             </ScrollArea>
             <DialogFooter className='w-full flex justify-end mt-4'>
               <DialogClose asChild>
-                <Button variant='outline' onClick={() => editClassForm.reset()}>
+                <Button
+                  variant='outline'
+                  onClick={() => {
+                    editClassForm.reset();
+                    setSchedule([]);
+                  }}
+                >
                   Cancel
                 </Button>
               </DialogClose>
