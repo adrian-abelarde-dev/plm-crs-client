@@ -4,7 +4,6 @@ import { IconBrandTeams } from '@tabler/icons-react';
 import { AlertCircle, CalendarIcon, School, Briefcase, Printer } from "lucide-react"
 import { AlertTitle } from "@/components/ui/alert"
 import Link from 'next/link';
-import { fakeStudentsDashboard } from '@/lib/constants/fake-data/schedule';
 import {
   Table,
   TableBody,
@@ -18,7 +17,7 @@ import {
 
 function StudentHomePage() {
 
-  const fakeStudentsDashboardTemplate = [
+  const fakeStudentsDashboard = [
     {
       accessorKey: 'classId',
             id: 'classId',
