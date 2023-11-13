@@ -17,7 +17,10 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from '@/components/ui/use-toast';
+import { classTypes } from '@/lib/constants/fake-data/class-type';
 import { faculties } from '@/lib/constants/fake-data/faculties';
+import { sections } from '@/lib/constants/fake-data/section';
+import { subjects } from '@/lib/constants/fake-data/subjects';
 import { ClassSchema } from '@/lib/constants/schema/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, Plus } from 'lucide-react';
@@ -26,6 +29,16 @@ import { useForm } from 'react-hook-form';
 function AddClassDialogForm() {
   const addUserForm = useForm({
     resolver: zodResolver(ClassSchema),
+    defaultValues: {
+      subjectName: '',
+      classType: '',
+      professor: '',
+      section: '',
+      maximumSlots: '',
+      withDateRange: false,
+      startDate: '',
+      endDate: '',
+    },
   });
 
   function onSubmit(values) {
@@ -66,7 +79,7 @@ function AddClassDialogForm() {
               {/* Subject Name */}
               <SelectFormField
                 form={addUserForm}
-                content={faculties}
+                content={subjects}
                 title='Subject Name'
                 placeholder='Select Subject'
                 fieldName='subjectName'
@@ -75,7 +88,7 @@ function AddClassDialogForm() {
               {/* Class Type */}
               <SelectFormField
                 form={addUserForm}
-                content={faculties}
+                content={classTypes}
                 title='Class Type'
                 placeholder='Select Class Type'
                 fieldName='classType'
@@ -93,7 +106,7 @@ function AddClassDialogForm() {
               {/* Section */}
               <SelectFormField
                 form={addUserForm}
-                content={faculties}
+                content={sections}
                 title='Section'
                 placeholder='Select Section'
                 fieldName='section'
@@ -147,7 +160,9 @@ function AddClassDialogForm() {
                 </Button>
               </DialogClose>
 
-              <Button type='submit'>Add Class</Button>
+              <Button type='submit' onClick={() => addUserForm.reset()}>
+                Add Class
+              </Button>
             </DialogFooter>
           </Form>
         </form>
