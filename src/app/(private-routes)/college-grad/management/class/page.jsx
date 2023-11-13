@@ -89,17 +89,30 @@ function CollageGradManagementClass() {
           const selectedId =
             row.original[collegeClassManagementTemplate[0].accessorKey]; // first column is required to be the id
 
+          const status = row.original.status;
+
           return (
             <div className='flex flex-col w-[14.75rem] z-10'>
               <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
-              <AlertConfirmModal
-                label='Deactivate'
-                title='Are you sure you want to set the status to pending?'
-                description='Once deactivated, all users account will be deactivated.'
-                cancelLabel='Cancel'
-                confirmLabel='Deactivate'
-                confirmFunction={() => sampleConfirmFunction(selectedId)}
-              />
+              {status === 'Active' ? (
+                <AlertConfirmModal
+                  label='Close'
+                  title='Are you sure you want to set the status to pending?'
+                  description='Once closed, this class will be inactive.'
+                  cancelLabel='Cancel'
+                  confirmLabel='Deactivate'
+                  confirmFunction={() => sampleConfirmFunction(selectedId)}
+                />
+              ) : (
+                <AlertConfirmModal
+                  label='Activate'
+                  title='Are you sure you want to set the status to active?'
+                  description='Once activated, this class will be active.'
+                  cancelLabel='Cancel'
+                  confirmLabel='Activate'
+                  confirmFunction={() => sampleConfirmFunction(selectedId)}
+                />
+              )}
             </div>
           );
         }}
