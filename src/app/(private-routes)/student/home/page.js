@@ -1,15 +1,13 @@
 'use client';
 import { Button } from "@/components/ui/button";
-import { signOut } from 'next-auth/react';
-import { redirect } from 'next/navigation';
-import { AlertCircle, CalendarIcon, School, Briefcase,Printer } from "lucide-react"
+import { IconBrandTeams } from '@tabler/icons-react';
+import { AlertCircle, CalendarIcon, School, Briefcase, Printer } from "lucide-react"
 import { AlertTitle } from "@/components/ui/alert"
 import Link from 'next/link';
 import { fakeStudentsDashboard } from '@/lib/constants/fake-data/schedule';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -23,7 +21,7 @@ function StudentHomePage() {
   const fakeStudentsDashboardTemplate = [
     {
       accessorKey: 'classId',
-      id: 'classId',
+            id: 'classId',
       header: 'Class/Section',
     },
     {
@@ -85,29 +83,28 @@ function StudentHomePage() {
       <AlertCircle className="h-4 w-4" />
         <AlertTitle>2020-11299</AlertTitle>
     </div>
-          <h1 className="py-4"></h1>
+        <h1 className="py-4"></h1>
     <div className="flex gap-1">
-      <Briefcase className="h-4 w-4"/>
-        <h1 className="">Computer Science</h1>
+      <Briefcase className="h-4 w-4 mr-2"/>
+        <h1>Computer Science</h1>
     </div>
-    
     <div className="flex gap-2">
-      <School />
-        <h1 className="">College of Engineering and Technology - Graduate Program</h1>
+      <School className="h-6 w-6 mr-1.5" />
+        <h1>College of Engineering and Technology - Graduate Program</h1>
     </div>
-    
     <div className="flex gap-1">
-      <CalendarIcon className="h-5 w-5" />
+      <CalendarIcon className="h-4 w-4 mr-2" />
         <h1 className="">School Year 2023 - 2024 1st Semester</h1>
     </div>
       <div className="py-5">
       <div className="flex space-x-3">
-      <div className="flex gap-2">
-        <Button variant='outline' className="bg-yellow-500">
-        <Printer className="h-4 w-4"/>Print SER</Button>
-        </div>
-        <Button variant="outline" className="bg-purple-500 text-white">
-          <Link href="https://teams.microsoft.com">Open Teams
+
+        <Button variant='outline' className="bg-yellow-400 hover:bg-yellow-500">
+        <Printer className="h-4 w-4 mr-2"/>Print SER</Button>
+        <Button variant="outline" className="bg-[#5458AE] hover:bg-[#2e3281] hover:text-white md:max-xl:mt-4 text-white">
+        <IconBrandTeams className="h-4 w-4 mr-2"/>
+          <Link href='https://www.youtube.com/watch?v=oHPjYCS3JKQ'
+          target='_blank' > Open Teams
           </Link>
         </Button>
       </div>
