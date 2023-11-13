@@ -27,9 +27,11 @@ function CollageGradManagementFaculty() {
     }
   }, [confirmResult]);
 
-  function sampleConfirmFunction(id) {
-    testPromise(id)
-      .then(() => {
+  async function sampleConfirmFunction(id) {
+    try {
+      const result = await testPromise(id);
+
+      if (result) {
         toast({
           title: (
             <div className='flex flex-row'>
@@ -37,21 +39,22 @@ function CollageGradManagementFaculty() {
               <Label>Success!</Label>
             </div>
           ),
-          description: <>Changes has been Saved.</>,
+          description: <>Changes have been Saved.</>,
         });
-      })
-      .catch((err) => {
-        console.log('error: ', err);
-        toast({
-          title: (
-            <div className='flex flex-row'>
-              <XCircle className='mr-2 h-4 w-4 text-red-400' />
-              <Label>{err}</Label>
-            </div>
-          ),
-          description: <>Error saving your data</>,
-        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+
+      toast({
+        title: (
+          <div className='flex flex-row'>
+            <XCircle className='mr-2 h-4 w-4 text-red-400' />
+            <Label>Error!</Label>
+          </div>
+        ),
+        description: <>Error saving your data</>,
       });
+    }
   }
 
   // collects the selected faculty data
