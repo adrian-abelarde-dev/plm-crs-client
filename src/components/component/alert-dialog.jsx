@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils';
-import { CheckCircle, XCircle } from 'lucide-react';
 
 import {
   AlertDialog,
@@ -13,8 +12,6 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog';
 import { Button } from '../ui/button';
-import { Label } from '../ui/label';
-import { toast } from '../ui/use-toast';
 
 // * label -> string, defines the label for the button
 // * title -> string, defines the title of the alert dialog
