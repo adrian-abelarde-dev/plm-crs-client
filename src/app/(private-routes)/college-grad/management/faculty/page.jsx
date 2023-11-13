@@ -96,17 +96,73 @@ function CollageGradManagementFaculty() {
           const selectedId =
             row.original[collegeGradFacultyTemplate[0].accessorKey]; // first column is required to be the id
 
+          const status = row.original.status;
+
           return (
             <div className='flex flex-col w-[14.75rem] z-10'>
               <Label className='my-[0.62rem] ml-4 font-bold'>Actions</Label>
-              <AlertConfirmModal
-                label='Deactivate'
-                title='Are you sure you want to deactivate?'
-                description='Once deactivated, all users account will be deactivated.'
-                cancelLabel='Cancel'
-                confirmLabel='Deactivate'
-                confirmFunction={() => sampleConfirmFunction(selectedId)}
-              />
+              {status === 'Active' && (
+                <>
+                  <AlertConfirmModal
+                    label='Deactivate'
+                    title='Are you sure you want to set the status to pending?'
+                    description='Once deactivated, all users account will be deactivated.'
+                    cancelLabel='Cancel'
+                    confirmLabel='Deactivate'
+                    confirmFunction={() => sampleConfirmFunction(selectedId)}
+                  />
+                  <AlertConfirmModal
+                    label='Set to Pending'
+                    title='Are you sure?'
+                    description='Once set to pending, all users account will be set to pending.'
+                    cancelLabel='Cancel'
+                    confirmLabel='Confirm'
+                    confirmFunction={() => sampleConfirmFunction(selectedId)}
+                  />
+                </>
+              )}
+
+              {status === 'Inactive' && (
+                <>
+                  <AlertConfirmModal
+                    label='Activate Faculty'
+                    title='Are you sure?'
+                    description='Once activated, all users account will be activated.'
+                    cancelLabel='Cancel'
+                    confirmLabel='Activate'
+                    confirmFunction={() => sampleConfirmFunction(selectedId)}
+                  />
+                  <AlertConfirmModal
+                    label='Set to Pending'
+                    title='Are you sure?'
+                    description='Once set to pending, all users account will be set to pending.'
+                    cancelLabel='Cancel'
+                    confirmLabel='Confirm'
+                    confirmFunction={() => sampleConfirmFunction(selectedId)}
+                  />
+                </>
+              )}
+
+              {status === 'Pending to Assign' && (
+                <>
+                  <AlertConfirmModal
+                    label='Activate Faculty'
+                    title='Are you sure?'
+                    description='Once activated, all users account will be activated.'
+                    cancelLabel='Cancel'
+                    confirmLabel='Activate'
+                    confirmFunction={() => sampleConfirmFunction(selectedId)}
+                  />
+                  <AlertConfirmModal
+                    label='Deactivate'
+                    title='Are you sure you want to set the status to pending?'
+                    description='Once deactivated, all users account will be deactivated.'
+                    cancelLabel='Cancel'
+                    confirmLabel='Deactivate'
+                    confirmFunction={() => sampleConfirmFunction(selectedId)}
+                  />
+                </>
+              )}
             </div>
           );
         }}
