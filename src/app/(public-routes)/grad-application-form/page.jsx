@@ -54,16 +54,9 @@ function GradApplicationForm() {
     }));
     setMunicipality(mappedCities);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form.getValues().provinceCity, form]);
+  }, [form.getValues().provinceCity]);
 
-  // console.log(provinceCity, municipality);
-  // console.log(
-  //   form.getValues().provinceCity,
-  //   form.getValues().municipality,
-  //   form.getValues().sex,
-  // );
-
-  console.log(form.getValues().provinceCity);
+  form.watch(); // solves the problem of not updating the form values
 
   const onSubmit = (values) => {
     toast({
@@ -80,6 +73,8 @@ function GradApplicationForm() {
         </>
       ),
     });
+
+    console.log(values);
   };
 
   return (
