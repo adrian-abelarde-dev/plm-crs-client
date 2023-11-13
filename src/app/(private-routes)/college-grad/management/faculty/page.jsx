@@ -32,7 +32,7 @@ function CollageGradManagementFaculty() {
         });
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error({ error });
 
       toast({
         title: (
