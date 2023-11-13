@@ -20,7 +20,6 @@ import { toast } from '@/components/ui/use-toast';
 import { faculties } from '@/lib/constants/fake-data/faculties';
 import { ClassSchema } from '@/lib/constants/schema/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { set } from 'date-fns';
 import { CheckCircle, Edit } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
