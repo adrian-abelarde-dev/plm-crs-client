@@ -39,7 +39,7 @@ export function testPromise(id) {
   });
 }
 
-// filters data based on row selection
+// filters data based on row selection, used for TableMRT's row selection
 export function handleRowSelectionChange(data, template, rowSelection) {
   // returns only the selected rows. can be multiple or not
   return data.filter((item) => {
@@ -48,4 +48,23 @@ export function handleRowSelectionChange(data, template, rowSelection) {
       rowSelection && item && accessorKey && rowSelection[item[accessorKey]]
     );
   });
+}
+
+// returns this format -> Thursday, May 24, 1984 at 6:34 AM
+export function formatDateString(dateObject) {
+  if (!dateObject || !(dateObject instanceof Date)) {
+    return 'Invalid Date';
+  }
+
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+
+  const readableDateString = dateObject.toLocaleString('en-US', options);
+  return readableDateString;
 }
