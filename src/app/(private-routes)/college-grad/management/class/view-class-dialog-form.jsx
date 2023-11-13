@@ -30,7 +30,7 @@ import {
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-function EditClassDialogForm({ disabled, selectedClass }) {
+function ViewClassDialogForm({ disabled, selectedClass }) {
   const editClassForm = useForm({
     resolver: zodResolver(ClassSchema),
   });
@@ -234,4 +234,4 @@ function EditClassDialogForm({ disabled, selectedClass }) {
   );
 }
 
-export default EditClassDialogForm;
+export default ViewClassDialogForm;
