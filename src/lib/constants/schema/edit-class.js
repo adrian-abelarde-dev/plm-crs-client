@@ -9,8 +9,6 @@ export const ClassSchema = z.object({
   section: z.string(),
   maximumSlots: z.string(),
   withDateRange: z.boolean(),
-  startDate: z.date(),
-  endDate: z.date(),
 });
 
 export const classSchemaDefaultValues = {

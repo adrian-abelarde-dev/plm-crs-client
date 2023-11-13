@@ -2,7 +2,6 @@ import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
 import DateFormField from '@/components/component/form/date-formfield';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -19,7 +18,6 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from '@/components/ui/use-toast';
 import { faculties } from '@/lib/constants/fake-data/faculties';
-import { sex } from '@/lib/constants/fake-data/grad-application-form';
 import { ClassSchema } from '@/lib/constants/schema/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, Edit } from 'lucide-react';
