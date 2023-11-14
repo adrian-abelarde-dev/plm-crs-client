@@ -26,6 +26,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { toast } from '@/components/ui/use-toast';
 import {
   fakeCollegeFaculty,
@@ -43,6 +49,7 @@ import {
   CheckCircle,
   ChevronDown,
   Edit,
+  HelpCircle,
 } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
@@ -496,6 +503,30 @@ function CollegeSchedulePage() {
 
                 {/* Class Information */}
                 <Label className='font-medium text-xl pt-4'>Class Hours</Label>
+                <dev className='flex gap-8'>
+                  <Label className='font-medium text-sm pt-4'>
+                    Is the class hours to be announced or unknown yet?
+                  </Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <HelpCircle className='mr-0 h-4 w-4 md:mr-2' />
+                      </TooltipTrigger>
+                    </Tooltip>
+                  </TooltipProvider>
+                </dev>
+                <RadioGroup defaultValues='comfortable'>
+                  <div className='flex gap-4'>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='default' id='tbaYes' />
+                      <Label htmlFor='tbaYes'>Yes</Label>
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='default' id='tbaYes' />
+                      <Label htmlFor='tbaYes'>No</Label>
+                    </div>
+                  </div>
+                </RadioGroup>
 
                 {/* Checkbox for Confirmation */}
                 <div className='items-top flex space-x-2 pt-2'>
