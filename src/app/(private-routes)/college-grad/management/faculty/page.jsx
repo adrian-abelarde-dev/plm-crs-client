@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import { collegeGradFacultyData } from '@/lib/constants/fake-data/faculty-management';
 import { collegeGradFacultyTemplate } from '@/lib/constants/table-templates/college-grad/faculty-management';
-import { testPromise } from '@/lib/utils';
+import { handleRowSelectionChange, testPromise } from '@/lib/utils';
 import { CheckCircle, Printer, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -47,12 +47,11 @@ function CollageGradManagementFaculty() {
   }
 
   // collects the selected faculty data
-  const selectedFaculty = collegeGradFacultyData.filter((item) => {
-    const accessorKey = collegeGradFacultyTemplate[0]?.accessorKey;
-    return (
-      rowSelection && item && accessorKey && rowSelection[item[accessorKey]]
-    );
-  });
+  const selectedFaculty = handleRowSelectionChange(
+    collegeGradFacultyData,
+    collegeGradFacultyTemplate,
+    rowSelection,
+  );
 
   return (
     <main className='p-6'>
@@ -60,7 +59,7 @@ function CollageGradManagementFaculty() {
       <TableMRT
         template={collegeGradFacultyTemplate}
         data={collegeGradFacultyData}
-        title='Faculty'
+        title='Faculty Management'
         searchPlaceholder='Search Faculty'
         isCheckBoxVisible={true}
         rowSelection={rowSelection}
@@ -75,7 +74,12 @@ function CollageGradManagementFaculty() {
               }
             />
 
-            <Button disabled={Object.keys(selectedFaculty).length > 1}>
+            <Button
+              disabled={
+                Object.keys(selectedFaculty).length > 1 ||
+                Object.keys(selectedFaculty).length === 0
+              }
+            >
               <Printer className='w-4 h-4 mr-2' />
               Print SER
             </Button>
