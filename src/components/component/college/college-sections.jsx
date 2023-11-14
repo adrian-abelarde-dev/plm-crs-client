@@ -307,7 +307,7 @@ function CollegeSectionsPage() {
                 />
 
                 {/* Year Level and Section */}
-                <section className='w-full flex gap-2 justify-items-start'>
+                <section className='w-full grid grid-cols-2 gap-2'>
                   {/* Year Level */}
                   <SelectFormField
                     form={addSectionForm}
@@ -316,7 +316,6 @@ function CollegeSectionsPage() {
                     placeholder='Select year level...'
                     fieldName='collegeYear'
                   />
-                  <Label className='flex items-center'>-</Label>
                   {/* Section */}
                   <SelectFormField
                     form={addSectionForm}

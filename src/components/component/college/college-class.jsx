@@ -1,7 +1,9 @@
 'use client';
 
 import TableMRT from '@/components/layouts/table-mrt';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Command,
   CommandEmpty,
@@ -10,14 +12,40 @@ import {
   CommandItem,
 } from '@/components/ui/command';
 import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Form } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { toast } from '@/components/ui/use-toast';
 import { fakeCollegeSchedule } from '@/lib/constants/fake-data/college-schedule';
+import {
+  UserSchema,
+  userSchemaDefaultValues,
+} from '@/lib/constants/schema/user';
 import { cn } from '@/lib/utils';
-import { ArchiveIcon, Check, ChevronDown, Edit } from 'lucide-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  ArchiveIcon,
+  Check,
+  CheckCircle,
+  ChevronDown,
+  Edit,
+} from 'lucide-react';
 import * as React from 'react';
+import { useForm } from 'react-hook-form';
+
+import InputFormField from '../form/input-formfield';
+import SelectFormField from '../form/select-formfield';
 
 export const collegeDepartments = [
   {
@@ -79,6 +107,82 @@ export const collegeSchoolYears = [
     value: '20222',
     label: '2022 2nd Semester',
   },
+];
+
+export const collegeSection = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+  { label: '4', value: '4' },
+  { label: '5', value: '5' },
+];
+
+export const collegeYearLevel = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+  { label: '4', value: '4' },
+  { label: '5', value: '5' },
+];
+
+export const collegeCredits = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+  { label: '4', value: '4' },
+];
+
+export const collegeSlots = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+  { label: '4', value: '4' },
+  { label: '5', value: '5' },
+  { label: '6', value: '6' },
+  { label: '7', value: '7' },
+  { label: '8', value: '8' },
+  { label: '9', value: '9' },
+  { label: '10', value: '10' },
+  { label: '11', value: '11' },
+  { label: '12', value: '12' },
+  { label: '13', value: '13' },
+  { label: '14', value: '14' },
+  { label: '15', value: '15' },
+  { label: '16', value: '16' },
+  { label: '17', value: '17' },
+  { label: '18', value: '18' },
+  { label: '19', value: '19' },
+  { label: '20', value: '20' },
+  { label: '21', value: '21' },
+  { label: '22', value: '22' },
+  { label: '23', value: '23' },
+  { label: '24', value: '24' },
+  { label: '25', value: '25' },
+  { label: '26', value: '26' },
+  { label: '27', value: '27' },
+  { label: '28', value: '28' },
+  { label: '29', value: '29' },
+  { label: '30', value: '30' },
+  { label: '31', value: '31' },
+  { label: '32', value: '32' },
+  { label: '33', value: '33' },
+  { label: '34', value: '34' },
+  { label: '35', value: '35' },
+  { label: '36', value: '36' },
+  { label: '37', value: '37' },
+  { label: '38', value: '38' },
+  { label: '39', value: '39' },
+  { label: '40', value: '40' },
+  { label: '41', value: '41' },
+  { label: '42', value: '42' },
+  { label: '43', value: '43' },
+  { label: '44', value: '44' },
+  { label: '45', value: '45' },
+  { label: '46', value: '46' },
+  { label: '47', value: '47' },
+  { label: '48', value: '48' },
+  { label: '49', value: '49' },
+  { label: '50', value: '50' },
 ];
 
 function CollegeSchedulePage() {
@@ -213,7 +317,111 @@ function CollegeSchedulePage() {
   }
 
   function AddClassUndergrad() {
-    return <Button>Add Class</Button>;
+    const addClassForm = useForm({
+      resolver: zodResolver(UserSchema),
+      defaultValues: {
+        userSchemaDefaultValues,
+      },
+    });
+
+    function onSubmit(values) {
+      console.log(values);
+      toast({
+        title: (
+          <div className='flex flex-row'>
+            <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+            <Label>Success!</Label>
+          </div>
+        ),
+        description: <>Changes has been Saved.</>,
+      });
+    }
+
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>Add Section</Button>
+        </DialogTrigger>
+        <DialogContent className='sm:max-w-[800px]'>
+          <DialogHeader>
+            <DialogTitle>Add Section</DialogTitle>
+          </DialogHeader>
+
+          <Form {...addClassForm}>
+            <form onSubmit={addClassForm.handleSubmit(onSubmit)}>
+              {/* Content */}
+              <div className='flex flex-col gap-2'>
+                {/* Schedule ID */}
+                <InputFormField
+                  disabled={true}
+                  form={addClassForm}
+                  title='Schedule ID'
+                  placeholder='CETBSCS0401'
+                  fieldName='scheduleId'
+                  badge={<Badge variant='outline'>Auto-generated</Badge>}
+                />
+
+                <InputFormField
+                  form={addClassForm}
+                  title='Subject'
+                  placeholder='Enter subject'
+                  fieldName='scheduleID'
+                />
+
+                {/* Section, Credits, Alloted Slots */}
+                <section className='w-full grid grid-cols-3 gap-2 '>
+                  {/* Section */}
+                  <SelectFormField
+                    form={addClassForm}
+                    content={collegeSection}
+                    title='Section'
+                    placeholder='1'
+                    fieldName='scheduleSection'
+                  />
+                  {/* Credits */}
+                  <SelectFormField
+                    form={addClassForm}
+                    content={collegeSection}
+                    title='Credits'
+                    placeholder='1'
+                    fieldName='scheduleCredits'
+                  />
+                  {/* Alloted Slots */}
+                  <SelectFormField
+                    form={addClassForm}
+                    content={collegeSlots}
+                    title='Alloted Slots'
+                    placeholder='1'
+                    fieldName='scheduleSlots'
+                  />
+                </section>
+
+                {/* Checkbox for Confirmation */}
+                <div className='items-top flex space-x-2 pt-2'>
+                  <Checkbox id='confirm' />
+                  <div className='grid gap-1.5 leading-none'>
+                    <label
+                      htmlFor='confirm'
+                      className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                    >
+                      Are you sure?
+                    </label>
+                    <p className='text-sm text-muted-foreground'>
+                      Double check if all inputs are correct to make sure there
+                      are no input errors.
+                    </p>
+                  </div>
+                </div>
+
+                <DialogFooter className='w-full flex justify-end mt-4'>
+                  <Button type='submit'>Save Section</Button>
+                </DialogFooter>
+              </div>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
+    );
   }
 
   const fakeCollegeScheduleTemplate = [
