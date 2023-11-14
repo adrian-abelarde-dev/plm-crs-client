@@ -20,7 +20,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { toast } from '@/components/ui/use-toast';
 import { sex } from '@/lib/constants/fake-data/grad-application-form';
-import { FacultySchema } from '@/lib/constants/schema/edit-faculty';
+import { FacultySchema } from '@/lib/constants/schema/college-grad/edit-faculty';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Briefcase, CheckCircle, School, User, View } from 'lucide-react';
 import { useEffect } from 'react';
