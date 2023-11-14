@@ -25,6 +25,17 @@ export function getRandomDate() {
   return randomDate;
 }
 
+// filters data based on row selection, used for TableMRT's row selection
+export function handleRowSelectionChange(data, template, rowSelection) {
+  // returns only the selected rows. can be multiple or not
+  return data.filter((item) => {
+    const accessorKey = template[0]?.accessorKey;
+    return (
+      rowSelection && item && accessorKey && rowSelection[item[accessorKey]]
+    );
+  });
+}
+
 export function testPromise(id) {
   return new Promise((resolve, reject) => {
     // Perform asynchronous operations, such as API calls, database queries, etc.
