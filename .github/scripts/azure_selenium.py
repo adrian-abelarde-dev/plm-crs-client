@@ -112,6 +112,22 @@ try:
     driver.execute_script("document.body.style.zoom='50%'")
     print("Zoom out to 50% done!")
 
+    # Get msportalfx-docking-footer msportalfx-padding then get its html with its children
+    footer = (
+        WebDriverWait(driver, 100)
+        .until(
+            EC.element_to_be_clickable(
+                (
+                    By.CSS_SELECTOR,
+                    "div.msportalfx-docking-footer.msportalfx-padding",
+                )
+            )
+        )
+        .get_attribute("innerHTML")
+    )
+
+    print(f"Footer: {footer}")
+
     # Click the element
     WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable(
