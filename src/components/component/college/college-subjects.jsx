@@ -137,7 +137,7 @@ function EditSubjectsUndergrad({ disabled }) {
       </DialogTrigger>
       <DialogContent className='sm:max-w-[500px]'>
         <DialogHeader>
-          <DialogTitle>Edit Subject</DialogTitle>
+          <DialogTitle>Edit Individual Subject</DialogTitle>
         </DialogHeader>
 
         <Form {...editSubjectForm}>

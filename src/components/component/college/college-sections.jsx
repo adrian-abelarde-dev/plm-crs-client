@@ -160,7 +160,7 @@ function EditSectionUndergrad({ disabled }) {
       </DialogTrigger>
       <DialogContent className='sm:max-w-[500px]'>
         <DialogHeader>
-          <DialogTitle>Edit Section</DialogTitle>
+          <DialogTitle>Edit Individual Section</DialogTitle>
         </DialogHeader>
 
         <Form {...editSectionForm}>
