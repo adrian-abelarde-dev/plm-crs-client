@@ -61,6 +61,7 @@ driver.get(
 # Add the redirect URI
 redirect_url = args.redirect_url
 
+print(f"Adding redirect URI: {redirect_url}")
 
 # # Click target linkText="Add URI"
 WebDriverWait(driver, 100).until(
