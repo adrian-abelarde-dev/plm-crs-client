@@ -107,33 +107,27 @@ for i in range(1, 4):
 
 # Simulate a javascript click like document.querySelector("#_weave_e_280 > div > div > div.fxs-lens-layout > div > div.fxs-part.fxs-part-no-fx-content-padding.fxs-part-for-template-blade > div.fxs-part-content.fxs-validationContainer.css-scope-Microsoft_AAD_RegisteredApps.css-scope-BladesApplicationsStylescss.css-scope-BladesAuthenticationStylescss.css-scope-BladesStylesWithWarningscss > div > div.msportalfx-docking-footer.msportalfx-padding > div:nth-child(1) > div").click()
 # Check first if the element exists
-try:
-    print("Simulate a javascript click to send the redirect URI...")
+print("Simulate a javascript click to send the redirect URI...")
 
-    # Get all the elements that has a "Save" text then print the element
-    save_elements = driver.find_elements(By.XPATH, "//*[contains(text(), 'Save')]")
-    for element in save_elements:
-        print("Save elements: " + element)
+# Get all the elements that has a "Save" text then print the element
+save_elements = driver.find_elements(By.XPATH, "//*[contains(text(), 'Save')]")
+for element in save_elements:
+    print("Save elements: " + element)
 
-    # Get all divs that has a role of button
-    divs = driver.find_elements(By.XPATH, "//div[@role='button']")
-    for div in divs:
-        print("Divs: " + div)
+# Get all divs that has a role of button
+divs = driver.find_elements(By.XPATH, "//div[@role='button']")
+for div in divs:
+    print("Divs: " + div)
 
-    # Click the element
-    WebDriverWait(driver, 3).until(
-        EC.element_to_be_clickable(
-            (
-                By.XPATH,
-                "/html/body/div[1]/div[4]/div[1]/div[1]/main/div[3]/div[2]/section/div[1]/div[2]/div[2]/div[4]/div[2]/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div[1]/div",
-            )
+# Click the element
+WebDriverWait(driver, 3).until(
+    EC.element_to_be_clickable(
+        (
+            By.XPATH,
+            "/html/body/div[1]/div[4]/div[1]/div[1]/main/div[3]/div[2]/section/div[1]/div[2]/div[2]/div[4]/div[2]/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div[1]/div",
         )
-    ).click()
-except Exception as e:
-    print("Element not found!" + str(e))
-    print("Closing the browser...")
-    driver.quit()
-    exit()
+    )
+).click()
 
 print("Simulate a javascript click done!")
 
