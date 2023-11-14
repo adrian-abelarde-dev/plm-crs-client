@@ -153,7 +153,6 @@ function CollegeSubjectsPage() {
           <DialogHeader>
             <DialogTitle>Edit Individual Subject</DialogTitle>
           </DialogHeader>
-
           <Form {...editSubjectForm}>
             <form onSubmit={editSubjectForm.handleSubmit(onSubmit)}>
               {/* Content */}
@@ -382,6 +381,7 @@ function CollegeSubjectsPage() {
         description=''
         searchPlaceholder='Search subjects...'
         isCheckBoxVisible={true}
+        isFullscreen={false}
         rowSelection={selectedSubject}
         setRowSelection={setSelectedSubject}
         RightButtons={
