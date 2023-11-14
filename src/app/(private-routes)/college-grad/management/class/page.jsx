@@ -10,9 +10,9 @@ import { handleRowSelectionChange, testPromise } from '@/lib/utils';
 import { CheckCircle, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 
-import AddClassDialogForm from './add-class-dialog-form';
-import EditClassDialogForm from './edit-class-dialog-form';
-import ViewClassDialogForm from './view-class-dialog-form';
+import AddClassDialogForm from './add-class';
+import EditClassDialogForm from './edit-class';
+import ViewClassDialogForm from './view-class';
 
 function CollageGradManagementClass() {
   const [rowSelection, setRowSelection] = useState({});

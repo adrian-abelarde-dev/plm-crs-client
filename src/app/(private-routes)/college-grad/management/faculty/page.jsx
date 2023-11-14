@@ -11,7 +11,7 @@ import { handleRowSelectionChange, testPromise } from '@/lib/utils';
 import { CheckCircle, Printer, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 
-import EditFacultyDialogForm from './edit-faculty-dialog-form';
+import EditFacultyDialogForm from './edit-faculty';
 
 function CollageGradManagementFaculty() {
   const [rowSelection, setRowSelection] = useState({});
