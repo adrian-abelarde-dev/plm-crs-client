@@ -55,7 +55,7 @@ function StudentsCollegeTable() {
     },
   ];
 
-  const MyComponent = () => {
+  const studentButtons = () => {
     return [
       <ViewProfile key='viewProfile' />,
       <EnlistStudent key='enlistStudent' />,
@@ -115,7 +115,7 @@ function StudentsCollegeTable() {
         description='Add, edit and view student/s.'
         searchPlaceholder='Search Student'
         isCheckBoxVisible={true}
-        RightButtons={MyComponent()}
+        RightButtons={studentButtons()}
         RowActions={
           <>
             {fakeCollegeStudentsRowActions.map((rowAction) => {
