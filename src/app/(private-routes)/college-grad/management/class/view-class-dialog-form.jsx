@@ -13,7 +13,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { ClassSchema } from '@/lib/constants/schema/edit-class';
+import { ClassSchema } from '@/lib/constants/schema/college-grad/edit-class';
 import { formatDateString } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {

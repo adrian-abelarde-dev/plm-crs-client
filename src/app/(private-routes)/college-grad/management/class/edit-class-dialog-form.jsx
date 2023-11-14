@@ -18,7 +18,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from '@/components/ui/use-toast';
 import { faculties } from '@/lib/constants/fake-data/faculties';
-import { ClassSchema } from '@/lib/constants/schema/edit-class';
+import { ClassSchema } from '@/lib/constants/schema/college-grad/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, Edit } from 'lucide-react';
 import { useEffect, useState } from 'react';
