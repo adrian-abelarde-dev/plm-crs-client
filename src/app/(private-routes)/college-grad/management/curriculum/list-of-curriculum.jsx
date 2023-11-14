@@ -8,13 +8,13 @@ import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import { collegeGradCurriculumManagementData } from '@/lib/constants/fake-data/curriculum-management';
 import { collegeGradCurriculumManagementTemplate } from '@/lib/constants/table-templates/college-grad/curriculum-management';
-import { CheckCircle, Plus, Trash } from 'lucide-react';
+import { CheckCircle, Trash } from 'lucide-react';
 import React, { useState } from 'react';
 
 import AddCourseForm from './add-course';
 
 function ListOfCurriculums() {
-  const [curriculumInput, setCurriculumInput] = useState('OKCPTR');
+  const [curriculumInput, setCurriculumInput] = useState('');
 
   async function deleteCurriculum() {
     setCurriculumInput('');

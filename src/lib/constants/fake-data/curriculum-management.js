@@ -1,7 +1,7 @@
 export const collegeGradCurriculumManagementData = [
   {
     courseCode: 'GEM-100',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'IT1',
@@ -23,7 +23,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-200',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'CS1',
@@ -45,7 +45,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-300',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'CPE1',
@@ -67,7 +67,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-400',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'HBD1',
@@ -89,7 +89,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-500',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'HAHA1',
@@ -111,7 +111,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-600',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'HAHA1',
@@ -133,7 +133,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-700',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'HAHA1',
@@ -155,7 +155,7 @@ export const collegeGradCurriculumManagementData = [
   },
   {
     courseCode: 'GEM-800',
-    courseTitle: 'Juan Dela Cruz',
+    courseTitle: 'Game Engineering Machine 1',
     preRequisites: [
       {
         courseCode: 'HAHA1',
@@ -176,46 +176,55 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
 ];
-
 export const collegeGradAffectedProgramsData = [
   {
-    program: 'GEM-100',
-    programName: 'Juan Dela Cruz',
+    program: 'MIT',
+    programName: 'Master of Information Technology',
     curriculum: 'MIT-2023',
   },
   {
-    program: 'GEM-200',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MBA',
+    programName: 'Master of Business Administration',
+    curriculum: 'MBA-2023',
   },
   {
-    program: 'GEM-300',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MSCS',
+    programName: 'Master of Science in Computer Science',
+    curriculum: 'MSCS-2023',
   },
   {
-    program: 'GEM-400',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MENG',
+    programName: 'Master of Engineering',
+    curriculum: 'MENG-2023',
   },
   {
-    program: 'GEM-500',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MPH',
+    programName: 'Master of Public Health',
+    curriculum: 'MPH-2023',
   },
   {
-    program: 'GEM-600',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MSW',
+    programName: 'Master of Social Work',
+    curriculum: 'MSW-2023',
   },
   {
-    program: 'GEM-700',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MFA',
+    programName: 'Master of Fine Arts',
+    curriculum: 'MFA-2023',
   },
   {
-    program: 'GEM-830',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
+    program: 'MED',
+    programName: 'Master of Education',
+    curriculum: 'MED-2023',
+  },
+  {
+    program: 'MSCHEM',
+    programName: 'Master of Science in Chemistry',
+    curriculum: 'MSCHEM-2023',
+  },
+  {
+    program: 'MPA',
+    programName: 'Master of Public Administration',
+    curriculum: 'MPA-2023',
   },
 ];

@@ -20,15 +20,15 @@ import { CheckCircle, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-function AddCourseForm({ curriculum }) {
-  const addCourseForm = useForm({
+function AddProgramForm({ curriculum }) {
+  const addProgramForm = useForm({
     resolver: zodResolver(
       z.object({
-        courseCode: z.string(),
+        programId: z.string(),
       }),
     ),
     defaultValues: {
-      courseCode: '',
+      programId: '',
     },
   });
 
@@ -40,11 +40,11 @@ function AddCourseForm({ curriculum }) {
           <Label>Success!</Label>
         </div>
       ),
-      description: <>Course has been added.</>,
+      description: <>Program has been added.</>,
     });
 
     console.log(values);
-    addCourseForm.reset();
+    addProgramForm.reset();
   }
 
   return (
@@ -52,31 +52,31 @@ function AddCourseForm({ curriculum }) {
       <AlertDialogTrigger asChild>
         <Button>
           <Plus className='w-4 h-4 mr-2' />
-          Add Course
+          Add Program
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className='sm:max-w-[425px]'>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Add Course to {curriculum.toUpperCase()}
+            Add Program to {curriculum.toUpperCase()}
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Add a Course to the Curriculum
+            Add a Program to the Curriculum
           </AlertDialogDescription>
         </AlertDialogHeader>
         <form
-          onSubmit={addCourseForm.handleSubmit(onSubmit)}
+          onSubmit={addProgramForm.handleSubmit(onSubmit)}
           className='space-y-6'
         >
-          <Form {...addCourseForm}>
+          <Form {...addProgramForm}>
             <ScrollArea className='w-full'>
-              {/* Course */}
+              {/* Program */}
               <SelectFormField
-                form={addCourseForm}
+                form={addProgramForm}
                 content={subjects}
-                title='Course Name'
-                placeholder='Select Course'
-                fieldName='courseCode'
+                title='Program Name'
+                placeholder='Select Program'
+                fieldName='programId'
               />
             </ScrollArea>
             <AlertDialogFooter className='w-full flex justify-end mt-4'>
@@ -84,14 +84,14 @@ function AddCourseForm({ curriculum }) {
                 <Button
                   variant='outline'
                   onClick={() => {
-                    addCourseForm.reset();
+                    addProgramForm.reset();
                   }}
                 >
                   Cancel
                 </Button>
               </AlertDialogCancel>
 
-              <Button type='submit'>Add Course</Button>
+              <Button type='submit'>Add Program</Button>
             </AlertDialogFooter>
           </Form>
         </form>
@@ -100,4 +100,4 @@ function AddCourseForm({ curriculum }) {
   );
 }
 
-export default AddCourseForm;
+export default AddProgramForm;
