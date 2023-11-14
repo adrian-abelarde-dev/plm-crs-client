@@ -29,6 +29,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Tooltip,
+  TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
@@ -502,31 +503,112 @@ function CollegeSchedulePage() {
                 />
 
                 {/* Class Information */}
-                <Label className='font-medium text-xl pt-4'>Class Hours</Label>
-                <dev className='flex gap-8'>
-                  <Label className='font-medium text-sm pt-4'>
-                    Is the class hours to be announced or unknown yet?
-                  </Label>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <HelpCircle className='mr-0 h-4 w-4 md:mr-2' />
-                      </TooltipTrigger>
-                    </Tooltip>
-                  </TooltipProvider>
-                </dev>
-                <RadioGroup defaultValues='comfortable'>
-                  <div className='flex gap-4'>
-                    <div className='flex items-center space-x-2'>
-                      <RadioGroupItem value='default' id='tbaYes' />
-                      <Label htmlFor='tbaYes'>Yes</Label>
+                <Label className='font-medium text-xl pt-4 pb-6'>
+                  Class Hours
+                </Label>
+                {/* Is the class hours to be announced or unknown yet? */}
+                <div className='grid grid-cols-1 space-y-4'>
+                  <div className='flex gap-8'>
+                    <div className='flex'>
+                      <Label className='font-medium text-sm'>
+                        Is the class hours to be announced or unknown yet?
+                      </Label>
+                      <span className='text-red-500'> *</span>
                     </div>
-                    <div className='flex items-center space-x-2'>
-                      <RadioGroupItem value='default' id='tbaYes' />
-                      <Label htmlFor='tbaYes'>No</Label>
+                    <div className='flex'>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className='flex'>
+                              <HelpCircle className='h-4 w-4 pt-1 inline-flex' />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent className='h-20 w-64 bg-black text-white justify-evenly tooltip-right'>
+                            <p className='text-justify'>
+                              The University Registrar is appealing to your
+                              department to accomplish this part professionally
+                              by truthfully stating the room assignment for
+                              planning purposes.
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   </div>
-                </RadioGroup>
+                  <RadioGroup defaultValues='comfortable'>
+                    <div className='flex gap-8'>
+                      <div className='flex items-center space-x-2'>
+                        <RadioGroupItem
+                          value='yes'
+                          id='tbaYes'
+                          className='text-black'
+                        />
+                        <Label htmlFor='tbaYes'>Yes</Label>
+                      </div>
+                      <div className='flex items-center space-x-2'>
+                        <RadioGroupItem
+                          value='no'
+                          id='tbaNo'
+                          className='text-black'
+                        />
+                        <Label htmlFor='tbaNo'>No</Label>
+                      </div>
+                    </div>
+                  </RadioGroup>
+                </div>
+                {/* Class has no definite time and day? */}
+                <div className='grid grid-cols-1 mt-4'>
+                  <div className='flex gap-8'>
+                    <div className='flex'>
+                      <Label className='font-medium text-sm'>
+                        Class has no definite time and day?
+                      </Label>
+                      <span className='text-red-500'> *</span>
+                    </div>
+                    <div className='flex'>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className='flex'>
+                              <HelpCircle className='h-4 w-4 pt-1 inline-flex' />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent className='h-20 w-64 bg-black text-white justify-evenly tooltip-right'>
+                            <p className='text-justify'>
+                              The University Registrar is appealing to your
+                              department to accomplish this part professionally
+                              by truthfully stating the room assignment for
+                              planning purposes.
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </div>
+                  <Label className='font-medium text-sm text-zinc-500 mt-1 mb-4'>
+                    (e.g. Thesis / Practicum / Field / College of Music)
+                  </Label>
+                  <RadioGroup defaultValues=''>
+                    <div className='flex gap-8'>
+                      <div className='flex items-center space-x-2'>
+                        <RadioGroupItem
+                          value='yes'
+                          id='definiteTimeDayYes'
+                          className='text-black'
+                        />
+                        <Label htmlFor='definiteTimeDayYes'>Yes</Label>
+                      </div>
+                      <div className='flex items-center space-x-2'>
+                        <RadioGroupItem
+                          value='no'
+                          id='definiteTimeDayNo'
+                          className='text-black'
+                        />
+                        <Label htmlFor='definiteTimeDayNo'>No</Label>
+                      </div>
+                    </div>
+                  </RadioGroup>
+                </div>
 
                 {/* Checkbox for Confirmation */}
                 <div className='items-top flex space-x-2 pt-2'>
