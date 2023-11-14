@@ -38,6 +38,11 @@ args = parser.parse_args()
 driver = webdriver.Chrome(options=chrome_options)
 driver.get("https://portal.azure.com")
 
+print("Logging in to Azure...")
+
+# Print the html for debugging
+print(driver.page_source)
+
 # Log in to Azure
 driver.find_element(By.ID, "i0116").send_keys(args.username)
 driver.find_element(By.ID, "idSIButton9").click()
