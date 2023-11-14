@@ -113,14 +113,14 @@ try:
     print("Zoom out to 50% done!")
 
     # Click the element
-    WebDriverWait(driver, 100).until(
+    WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable(
             (
-                By.CSS_SELECTOR,
-                "#_weave_e_280 > div > div > div.fxs-lens-layout > div > div.fxs-part.fxs-part-no-fx-content-padding.fxs-part-for-template-blade > div.fxs-part-content.fxs-validationContainer.css-scope-Microsoft_AAD_RegisteredApps.css-scope-BladesApplicationsStylescss.css-scope-BladesAuthenticationStylescss.css-scope-BladesStylesWithWarningscss > div > div.msportalfx-docking-footer.msportalfx-padding > div:nth-child(1) > div",
+                By.XPATH,
+                "/html/body/div[1]/div[4]/div[1]/div[1]/main/div[3]/div[2]/section/div[1]/div[2]/div[2]/div[4]/div[2]/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div[1]/div",
             )
         )
-    )
+    ).click()
 except Exception as e:
     print("Element not found!" + str(e))
     print("Closing the browser...")
