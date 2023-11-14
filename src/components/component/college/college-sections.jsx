@@ -1,3 +1,5 @@
+'use client';
+
 import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -13,6 +15,7 @@ import {
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
+import { toast } from '@/components/ui/use-toast';
 import {
   fakeSection,
   fakeSectionRowActions,
@@ -23,13 +26,12 @@ import {
 } from '@/lib/constants/schema/user';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArchiveIcon, Edit } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ArchiveIcon, CheckCircle, Edit } from 'lucide-react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
-import { toast } from '@/components/ui/use-toast';
 
 export const collegeDepartments = [
   { label: 'College of Education', value: 'coe' },
@@ -125,19 +127,6 @@ export const collegeSection = [
 function CollegeSectionsPage() {
   const [selectedSection, setSelectedSection] = useState({});
 
-  function onSubmit(values) {
-    toast({
-      title: (
-        <div className='flex flex-row'>
-          <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-          <Label>Success!</Label>
-        </div>
-      ),
-      description: <>Changes has been Saved.</>,
-    });
-  }
-}
-
   function ArchiveSectionUndergrad({ disabled }) {
     return (
       <Button
@@ -160,6 +149,7 @@ function CollegeSectionsPage() {
     });
 
     function onSubmit(values) {
+      console.log(values);
       toast({
         title: (
           <div className='flex flex-row'>
@@ -170,7 +160,6 @@ function CollegeSectionsPage() {
         description: <>Changes has been Saved.</>,
       });
     }
-  }
 
     return (
       <Dialog>
@@ -279,6 +268,19 @@ function CollegeSectionsPage() {
         userSchemaDefaultValues,
       },
     });
+
+    function onSubmit(values) {
+      console.log(values);
+      toast({
+        title: (
+          <div className='flex flex-row'>
+            <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+            <Label>Success!</Label>
+          </div>
+        ),
+        description: <>Changes has been Saved.</>,
+      });
+    }
 
     return (
       <Dialog>
