@@ -63,10 +63,12 @@ redirect_url = args.redirect_url
 
 print(f"Adding redirect URI: {redirect_url}")
 
-# # Click target linkText="Add URI"
+# Click target linkText="Add URI"
 WebDriverWait(driver, 100).until(
     EC.element_to_be_clickable((By.LINK_TEXT, "Add URI"))
 ).click()
+
+print("Click Add URI done!")
 
 # Click input with placeholder="e.g. https://example.com/auth"
 WebDriverWait(driver, 100).until(
@@ -75,12 +77,16 @@ WebDriverWait(driver, 100).until(
     )
 ).click()
 
+print("Click input with placeholder done!")
+
 # Type at an input with a placeholder of placeholder="e.g. https://example.com/auth"
 WebDriverWait(driver, 100).until(
     EC.element_to_be_clickable(
         (By.CSS_SELECTOR, "input[placeholder='e.g. https://example.com/auth']")
     )
 ).send_keys(redirect_url)
+
+print("Type at an input with a placeholder done!")
 
 # Simulate a smooth scroll like using mouse wheel to input[placeholder='e.g. https://example.com/auth']
 driver.execute_script(
@@ -91,6 +97,8 @@ driver.execute_script(
         )
     ),
 )
+
+print("Simulate a smooth scroll done!")
 
 for i in range(1, 4):
     print(f"Waiting... {i} seconds")
@@ -107,11 +115,14 @@ WebDriverWait(driver, 100).until(
     )
 ).click()
 
+print("Simulate a javascript click done!")
 
 print("Redirect URI added successfully!")
 
 for i in range(1, 4):
     print(f"Waiting... {i} seconds")
     time.sleep(1)
+
+print("Closing the browser...")
 
 driver.quit()
