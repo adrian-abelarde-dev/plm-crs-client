@@ -1,6 +1,7 @@
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import React from 'react';
+
+import ListOfCurriculums from './list-of-curriculum';
 
 function CollageGradManagementCurriculum() {
   return (
@@ -17,7 +18,9 @@ function CollageGradManagementCurriculum() {
             </TabsTrigger>
           </TabsList>
         </div>
-        <TabsContent value='listOfCurriculums'>List of Curriculums</TabsContent>
+        <TabsContent value='listOfCurriculums' className='w-full'>
+          <ListOfCurriculums />
+        </TabsContent>
         <TabsContent value='affectedPrograms'>Affected Programs</TabsContent>
       </Tabs>
     </main>

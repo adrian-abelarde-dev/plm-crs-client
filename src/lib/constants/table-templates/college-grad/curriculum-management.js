@@ -1,6 +1,22 @@
-import { Badge } from '@/components/ui/badge';
-
-import { cn } from '../utils';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 // List of Curriculums
 export const collegeGradCurriculumManagementTemplate = [
@@ -21,17 +37,41 @@ export const collegeGradCurriculumManagementTemplate = [
     id: 'preRequisites',
     header: 'Pre-Requisites',
     filterVariant: 'fuzzy',
-    Cell: ({ value }) => {
+    Cell: ({ cell }) => {
       return (
-        <Badge
-          className={cn(
-            value
-              ? 'bg-green-500 text-green-500'
-              : 'bg-yellow-500 text-yellow-500',
-          )}
-        >
-          View Pre-Requisites
-        </Badge>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant='outline'>Show Pre-Requisites</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Pre-Requisites</AlertDialogTitle>
+            </AlertDialogHeader>
+
+            <Table>
+              <TableCaption>A list of your recent invoices.</TableCaption>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Course Code</TableHead>
+                  <TableHead>Course Title</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {cell.getValue().map((preRequisite, index) => {
+                  return (
+                    <TableRow key={index}>
+                      <TableCell>{preRequisite.courseCode}</TableCell>
+                      <TableCell>{preRequisite.courseTitle}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+            <AlertDialogFooter>
+              <AlertDialogAction>Close</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       );
     },
   },
