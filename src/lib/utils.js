@@ -49,3 +49,22 @@ export function testPromise(id) {
     }
   });
 }
+
+// returns this format -> Thursday, May 24, 1984 at 6:34 AM
+export function formatDateString(dateObject) {
+  if (!dateObject || !(dateObject instanceof Date)) {
+    return 'Invalid Date';
+  }
+
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+
+  const readableDateString = dateObject.toLocaleString('en-US', options);
+  return readableDateString;
+}

@@ -34,6 +34,7 @@ export default function DateFormField({
   fieldName,
   className,
   isOptional,
+  disabled,
 }) {
   return (
     <FormField
@@ -46,7 +47,7 @@ export default function DateFormField({
             <RequiredAsterisk isOptional={isOptional} />
           </FormLabel>{' '}
           <Popover>
-            <PopoverTrigger asChild>
+            <PopoverTrigger asChild disabled={disabled}>
               <FormControl>
                 <Button
                   variant={'outline'}
