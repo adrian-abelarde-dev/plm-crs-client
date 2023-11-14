@@ -1,6 +1,8 @@
 name: Capture Vercel Preview URL and Update Azure Redirect URIs
 
-on: push
+on:
+ issue_comment:
+  types: [edited]
 
 jobs:
  capture_vercel_preview_url:
