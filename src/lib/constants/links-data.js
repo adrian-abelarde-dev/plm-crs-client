@@ -154,7 +154,7 @@ export const collegeGradLinks = [
       },
       {
         text: 'Curriculum',
-        path: '/college-grad/management/curriculum',
+        path: '/college-grad/management/curriculum/list-of-curriculums',
         icon: <BookText className='mr-0 h-4 w-4 md:mr-2' />,
       },
     ],
