@@ -85,7 +85,7 @@ function StudentHomePage() {
               </div>
             </CardTitle>
             <CardDescription className='flex flex-row '>
-            <AlertCircle className='h-5 w-5 pt-1 -mt-2.5' />
+            <AlertCircle className='h-5 w- pt-1 -mt-2.5' />
               <Label className='-mt-1'>2020-110299</Label>
             </CardDescription>
           </CardHeader>
