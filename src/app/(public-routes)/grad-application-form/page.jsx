@@ -6,6 +6,7 @@ import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
 import MessageModal from '@/components/component/modal';
 import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -43,23 +44,21 @@ function GradApplicationForm() {
   }, []);
 
   useEffect(() => {
-    if (form.getValues().provinceCity && philippines.cities) {
-      const filteredCities = philippines.cities.filter(
-        (city) => city.province === form.getValues().provinceCity,
-      );
+    const filteredCities = philippines.cities.filter(
+      (city) => city.province === form.getValues().provinceCity,
+    );
+    const mappedCities = filteredCities.map((city) => ({
+      value: city.name,
+      label: city.name,
+      isCity: city.city,
+    }));
+    setMunicipality(mappedCities);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.getValues().provinceCity]);
 
-      const mappedCities = filteredCities.map((city) => ({
-        value: city.name,
-        label: city.name,
-        isCity: city.city,
-      }));
+  form.watch(); // solves the problem of not updating the form values
 
-      setMunicipality(mappedCities);
-    }
-    // bugs on updating form values
-  }, [form, provinceCity]);
-
-  function onSubmit() {
+  const onSubmit = (values) => {
     toast({
       title: (
         <div className='flex flex-row'>
@@ -74,10 +73,12 @@ function GradApplicationForm() {
         </>
       ),
     });
-  }
+
+    console.log(values);
+  };
 
   return (
-    <div className='mx-10 mb-[2.94rem]'>
+    <Container>
       <ApplicationFormHeader />
       <Link href='/'>
         <ArrowLeft className='mb-10 h-6 w-6  text-zinc-500' />
@@ -94,6 +95,7 @@ function GradApplicationForm() {
             title={'Program'}
             placeholder={'Select Available Program / Course'}
             fieldName='program'
+            isOptional={false}
           />
 
           {/* Personal Information */}
@@ -109,6 +111,7 @@ function GradApplicationForm() {
               title={'First Name'}
               placeholder={'Juan'}
               fieldName={'firstName'}
+              isOptional={false}
             />
 
             <InputFormField
@@ -116,6 +119,7 @@ function GradApplicationForm() {
               title={'Middle Name'}
               placeholder={'Nolasco'}
               fieldName={'middleName'}
+              isOptional={false}
             />
 
             <InputFormField
@@ -123,6 +127,7 @@ function GradApplicationForm() {
               title={'Last Name'}
               placeholder={'Dela Cruz'}
               fieldName={'lastName'}
+              isOptional={false}
             />
           </div>
 
@@ -132,7 +137,7 @@ function GradApplicationForm() {
               title={'Name Extension'}
               placeholder={'(e.g. "Sr.", "Jr.", "II", "III")'}
               fieldName={'nameExtension'}
-              isOptional={false}
+              isOptional={true}
             />
 
             <InputFormField
@@ -140,7 +145,7 @@ function GradApplicationForm() {
               title={'Maiden Name'}
               placeholder={'Maiden Name'}
               fieldName={'maidenName'}
-              isOptional={false}
+              isOptional={true}
             />
 
             <SelectFormField
@@ -149,6 +154,7 @@ function GradApplicationForm() {
               title={'Sex'}
               placeholder={'Select'}
               fieldName='sex'
+              isOptional={false}
             />
 
             <DateFormField
@@ -156,6 +162,7 @@ function GradApplicationForm() {
               title={'Birth Date'}
               placeholder={'Select date'}
               fieldName={'birthDate'}
+              isOptional={false}
             />
 
             <InputFormField
@@ -163,6 +170,7 @@ function GradApplicationForm() {
               title={'Birth Place'}
               placeholder={'Birth Place'}
               fieldName={'birthPlace'}
+              isOptional={false}
             />
           </div>
 
@@ -172,12 +180,14 @@ function GradApplicationForm() {
               title={'Email Address'}
               placeholder={'ava.wright@gmail.com'}
               fieldName={'email'}
+              isOptional={false}
             />
             <InputFormField
               form={form}
               title={'Contact Number'}
               placeholder={'09123456789'}
               fieldName={'contactNumber'}
+              isOptional={false}
             />
 
             <InputFormField
@@ -185,6 +195,7 @@ function GradApplicationForm() {
               title={'Phone Number'}
               placeholder={'(02) 0-0000000'}
               fieldName={'phoneNumber'}
+              isOptional={false}
             />
           </div>
 
@@ -200,6 +211,7 @@ function GradApplicationForm() {
               title={'Address'}
               placeholder={'Address'}
               fieldName={'address'}
+              isOptional={false}
             />
           </div>
 
@@ -210,6 +222,7 @@ function GradApplicationForm() {
               title={'Province / City'}
               placeholder={'Select'}
               fieldName='provinceCity'
+              isOptional={false}
             />
 
             <SelectFormField
@@ -219,6 +232,7 @@ function GradApplicationForm() {
               placeholder={'Select'}
               fieldName='municipality'
               disabled={form.getValues().provinceCity === ''}
+              isOptional={false}
             />
 
             <InputFormField
@@ -226,8 +240,8 @@ function GradApplicationForm() {
               title={'Sub Municipality'}
               placeholder={''}
               fieldName='subMunicipality'
-              // disabled={form.getValues().municipality === ''}
-              isOptional={false}
+              disabled={form.getValues().municipality === ''}
+              isOptional={true}
             />
 
             <InputFormField
@@ -237,6 +251,7 @@ function GradApplicationForm() {
               placeholder={''}
               fieldName='barangay'
               disabled={form.getValues().municipality === ''}
+              isOptional={false}
             />
 
             <InputFormField
@@ -244,6 +259,7 @@ function GradApplicationForm() {
               title={'Zip Code'}
               placeholder={'(e.g. 1012)'}
               fieldName={'zipCode'}
+              isOptional={false}
             />
           </div>
 
@@ -320,7 +336,7 @@ function GradApplicationForm() {
           </div>
         </form>
       </Form>
-    </div>
+    </Container>
   );
 }
 
