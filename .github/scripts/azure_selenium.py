@@ -41,11 +41,19 @@ driver.get("https://portal.azure.com")
 print("Logging in to Azure...")
 
 # Log in to Azure
-driver.find_element(By.ID, "i0116").send_keys(args.username)
-driver.find_element(By.ID, "idSIButton9").click()
-WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, "i0118"))).send_keys(
-    args.password
-)
+
+# Send keys to input with a placeholder: 'Email, phone, or Skype'
+WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, "input[placeholder='Email, phone, or Skype']")
+    )
+).send_keys(args.username)
+
+# Send keys to input with a placeholder: 'placeholder="Password"'
+WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "input[placeholder='Password']"))
+).send_keys(args.password)
+
 driver.find_element(By.ID, "idSIButton9").click()
 
 # Navigate to the app registration
