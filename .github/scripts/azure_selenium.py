@@ -3,7 +3,29 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+import chromedriver_autoinstaller
+from pyvirtualdisplay import Display
+
 import time
+
+# Set up a virtual display
+display = Display(visible=0, size=(800, 800))
+display.start()
+
+# Install ChromeDriver
+chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
+# and if it doesn't exist, download it automatically,
+# then add chromedriver to path
+
+# Set up Chrome options
+chrome_options = Options()
+options = ["--window-size=1200,1200", "--ignore-certificate-errors"]
+
+for option in options:
+    chrome_options.add_argument(option)
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser()
@@ -12,7 +34,8 @@ parser.add_argument("password")
 parser.add_argument("redirect_url")
 args = parser.parse_args()
 
-driver = webdriver.Chrome()
+# Set up the webdriver
+driver = webdriver.Chrome(options=chrome_options)
 driver.get("https://portal.azure.com")
 
 # Log in to Azure
