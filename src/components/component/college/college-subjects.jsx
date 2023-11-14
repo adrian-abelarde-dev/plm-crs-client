@@ -202,7 +202,7 @@ function EditSubjectsUndergrad({ disabled }) {
                 <DialogClose asChild>
                   <Button variant='outline'>Cancel</Button>
                 </DialogClose>
-                <Button type='submit'>Save Section</Button>
+                <Button type='submit'>Save Subject</Button>
               </DialogFooter>
             </div>
           </form>
