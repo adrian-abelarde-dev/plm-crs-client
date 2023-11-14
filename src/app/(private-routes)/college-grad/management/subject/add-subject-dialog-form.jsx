@@ -66,7 +66,8 @@ function AddSubjectDialogForm() {
           className='space-y-6'
         >
           <Form {...addSubjectForm}>
-            <ScrollArea className='h-96 w-full'>
+            <ScrollArea className='w-full'>
+              {' '}
               {/* Subject Code */}
               <InputFormField
                 form={addSubjectForm}
@@ -74,7 +75,6 @@ function AddSubjectDialogForm() {
                 placeholder={'Subject Code'}
                 fieldName={'subjectCode'}
               />
-
               {/* Subject Name */}
               <InputFormField
                 form={addSubjectForm}
@@ -82,7 +82,6 @@ function AddSubjectDialogForm() {
                 placeholder={'Subject Name'}
                 fieldName={'subjectName'}
               />
-
               {/* Units */}
               <SelectFormField
                 form={addSubjectForm}
@@ -91,7 +90,6 @@ function AddSubjectDialogForm() {
                 placeholder='Select Unit'
                 fieldName='units'
               />
-
               <div className='flex justify-start my-4'>
                 <CheckBoxFormField
                   form={addSubjectForm}

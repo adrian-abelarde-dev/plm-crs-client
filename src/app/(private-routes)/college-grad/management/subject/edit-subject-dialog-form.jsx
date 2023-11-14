@@ -76,7 +76,7 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
           className='space-y-6'
         >
           <Form {...editSubjectForm}>
-            <ScrollArea className='h-96 w-full'>
+            <ScrollArea className='w-full'>
               {/* Subject Code */}
               <InputFormField
                 form={editSubjectForm}
@@ -84,7 +84,6 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
                 placeholder={'Subject Code'}
                 fieldName={'subjectCode'}
               />
-
               {/* Subject Name */}
               <InputFormField
                 form={editSubjectForm}
@@ -92,7 +91,6 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
                 placeholder={'Subject Name'}
                 fieldName={'subjectName'}
               />
-
               {/* Units */}
               <SelectFormField
                 form={editSubjectForm}
@@ -101,7 +99,6 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
                 placeholder='Select Unit'
                 fieldName='units'
               />
-
               <div className='flex justify-start my-4'>
                 <CheckBoxFormField
                   form={editSubjectForm}
