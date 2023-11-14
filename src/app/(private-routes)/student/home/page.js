@@ -1,7 +1,16 @@
 'use client';
+
 import { Badge } from '@/components/ui/badge';
-import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import {
   Table,
   TableBody,
@@ -11,14 +20,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { fakeStudentsDashboard } from '@/lib/constants/fake-data/schedule';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { IconBrandTeams } from '@tabler/icons-react';
 import {
   AlertCircle,
@@ -29,7 +30,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-
 function StudentHomePage() {
   const program = 'BS Computer Science';
   const college = 'College of Engineering and Technology - Graduate Program';
@@ -37,10 +37,10 @@ function StudentHomePage() {
 
   return (
     <div className='ml-9 mr-9'>
-    {/* Title - Student Dashboard */}
-    <div className='mt-32'>
-      <Label className='font-[500] text-4xl '>Student Dashboard</Label>
-    </div>
+      {/* Title - Student Dashboard */}
+      <div className='mt-32'>
+        <Label className='font-[500] text-4xl '>Student Dashboard</Label>
+      </div>
       <div className='flex space-x-3'>
         <div className='rounded-md border w-3/4 p-2'>
           {/*Table for Schedules*/}
@@ -68,7 +68,7 @@ function StudentHomePage() {
         </div>
         {/*Table for Student Information*/}
         <Card className='w-1/3 max-md:w-full'>
-        <CardHeader>
+          <CardHeader>
             <CardTitle>
               <div className=''>
                 <Badge
@@ -78,14 +78,12 @@ function StudentHomePage() {
                   Not Enrolled
                 </Badge>
                 <div className='mt-5'>
-                  <Label className='font-[600] text-xl '>
-                    Juan Dela Cruz
-                  </Label>
+                  <Label className='font-[600] text-xl '>Juan Dela Cruz</Label>
                 </div>
               </div>
             </CardTitle>
             <CardDescription className='flex flex-row '>
-            <AlertCircle className='h-5 w- pt-1 -mt-2.5' />
+              <AlertCircle className='h-5 w- pt-1 -mt-2.5' />
               <Label className='-mt-1'>2020-110299</Label>
             </CardDescription>
           </CardHeader>
@@ -117,7 +115,6 @@ function StudentHomePage() {
               </Link>
             </Button>
           </CardFooter>
-
         </Card>
       </div>
     </div>

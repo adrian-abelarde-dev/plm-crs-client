@@ -15,6 +15,6 @@ export const collegeGradSubjectManagementTemplate = [
     accessorKey: 'units',
     id: 'units',
     header: 'Units',
-    filterVariant: 'fuzzy',
+    filterVariant: 'multi-select',
   },
 ];
