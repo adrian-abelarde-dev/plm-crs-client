@@ -111,8 +111,8 @@ try:
     print("Simulate a javascript click to send the redirect URI...")
 
     # Get all the elements that has a "Save" text then print the element
-    for element in driver.find_elements_by_xpath("//*[contains(text(), 'Save')]"):
-        print("Save element: " + element)
+    save_elements = driver.find_elements(By.XPATH, "//*[contains(text(), 'Save')]")
+    print(save_elements)
 
     # Click the element
     WebDriverWait(driver, 3).until(
