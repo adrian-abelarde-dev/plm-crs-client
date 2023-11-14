@@ -1,4 +1,4 @@
-function CollegeStudents () {
+function CollegeStudents() {
   return <></>;
 }
 
