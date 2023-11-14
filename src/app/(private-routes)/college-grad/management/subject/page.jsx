@@ -6,7 +6,7 @@ import { collegeGradSubjectManagementTemplate } from '@/lib/constants/table-temp
 import { handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
-import AddClassDialogForm from '../class/add-class-dialog-form';
+import AddSubjectDialogForm from './add-subject-dialog-form';
 import EditSubjectDialogForm from './edit-subject-dialog-form';
 
 function CollageGradManagementSubject() {
@@ -39,7 +39,7 @@ function CollageGradManagementSubject() {
               }
             />
 
-            <AddClassDialogForm />
+            <AddSubjectDialogForm />
           </>
         }
       />
