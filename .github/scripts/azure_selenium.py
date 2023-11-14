@@ -42,10 +42,14 @@ WebDriverWait(driver, 20).until(
     )
 ).send_keys(args.username)
 
-# Send keys to input with a placeholder: 'placeholder="Password"'
+
+driver.find_element(By.ID, "idSIButton9").click()
+
+# Send keys to input with a type of password
 WebDriverWait(driver, 20).until(
-    EC.element_to_be_clickable((By.CSS_SELECTOR, "input[placeholder='Password']"))
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "input[type='password']"))
 ).send_keys(args.password)
+
 
 driver.find_element(By.ID, "idSIButton9").click()
 
