@@ -201,7 +201,7 @@ export const collegeLinks = [
   },
   {
     icon: <File className='mr-0 h-4 w-4 md:mr-2' />,
-    text: 'Teaching Assignments',
+    text:  <span>Teaching<br/>Assignment</span>,
     path: '/college/teaching-assignments',
-  }
+  },
 ];
