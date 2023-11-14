@@ -1,4 +1,4 @@
-function CollegeSchedule () {
+function CollegeSchedule() {
   return <></>;
 }
 
