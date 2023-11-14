@@ -11,6 +11,7 @@ import {
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -91,7 +92,7 @@ function StudentGradesPage() {
 function GradesTable({ selectedAysem }) {
   return (
     <div className='mt-5'>
-      <div className='rounded-md border'>
+      <div className='rounded-md'>
         {selectedAysem ? (
           <Table className='w-full '>
             <TableHeader>
@@ -103,7 +104,9 @@ function GradesTable({ selectedAysem }) {
                   Subject Title
                 </TableHead>
                 <TableHead className='font-bold text-black'>Units</TableHead>
-                <TableHead className='font-bold text-black'>Grade</TableHead>
+                <TableHead className='font-bold text-black text-center'>
+                  Grade
+                </TableHead>
                 <TableHead className='font-bold text-black'>
                   Completion Grades
                 </TableHead>
@@ -117,12 +120,23 @@ function GradesTable({ selectedAysem }) {
                     <TableCell>{grade.subjectCode}</TableCell>
                     <TableCell>{grade.subjectTitle}</TableCell>
                     <TableCell>{grade.units}</TableCell>
-                    <TableCell>{grade.grade}</TableCell>
+                    <TableCell className='text-center'>{grade.grade}</TableCell>
                     <TableCell>{grade.completion}</TableCell>
                     <TableCell>{grade.remarks}</TableCell>
                   </TableRow>
                 );
               })}
+
+              <TableRow>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell className='text-center font-bold'>
+                  GWA: 1.25
+                </TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         ) : (
@@ -130,12 +144,6 @@ function GradesTable({ selectedAysem }) {
             Please Select AY/SEM
           </div>
         )}
-      </div>
-      <div className='flex items-center justify-center mt-4'>
-        <div className='flex space-x-1 bg-yellow-500 rounded-md border-2 p-1 '>
-          <p className='font-bold'>GWA:</p>
-          <p>1.234</p>
-        </div>
       </div>
     </div>
   );
