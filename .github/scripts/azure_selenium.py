@@ -20,13 +20,6 @@ chromedriver_autoinstaller.install()  # Check if the current version of chromedr
 # and if it doesn't exist, download it automatically,
 # then add chromedriver to path
 
-# Set up Chrome options
-chrome_options = Options()
-options = ["--window-size=1200,1200", "--ignore-certificate-errors"]
-
-for option in options:
-    chrome_options.add_argument(option)
-
 # Parse command-line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("username")
@@ -35,7 +28,7 @@ parser.add_argument("redirect_url")
 args = parser.parse_args()
 
 # Set up the webdriver
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome()
 driver.get("https://portal.azure.com")
 
 print("Logging in to Azure...")
