@@ -74,7 +74,12 @@ function CollageGradManagementFaculty() {
               }
             />
 
-            <Button disabled={Object.keys(selectedFaculty).length > 1}>
+            <Button
+              disabled={
+                Object.keys(selectedFaculty).length > 1 ||
+                Object.keys(selectedFaculty).length === 0
+              }
+            >
               <Printer className='w-4 h-4 mr-2' />
               Print SER
             </Button>

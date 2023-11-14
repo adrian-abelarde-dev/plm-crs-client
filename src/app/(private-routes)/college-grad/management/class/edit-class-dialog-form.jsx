@@ -33,6 +33,8 @@ function EditClassDialogForm({ disabled, selectedClass }) {
     resolver: zodResolver(ClassSchema),
   });
 
+  editClassForm.watch();
+
   useEffect(() => {
     if (selectedClass) {
       Object.keys(selectedClass).forEach((key) => {
