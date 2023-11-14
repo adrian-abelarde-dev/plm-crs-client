@@ -30,6 +30,7 @@ import { useForm } from 'react-hook-form';
 
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
+import { toast } from '@/components/ui/use-toast';
 
 export const collegeSubjectName = [
   {
@@ -120,8 +121,17 @@ function EditSubjectsUndergrad({ disabled }) {
   });
 
   function onSubmit(values) {
-    console.log(values);
+    toast({
+      title: (
+        <div className='flex flex-row'>
+          <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+          <Label>Success!</Label>
+        </div>
+      ),
+      description: <>Changes has been Saved.</>,
+    });
   }
+}
 
   return (
     <Dialog>
@@ -221,8 +231,17 @@ function AddSubjectsUndergrad() {
   });
 
   function onSubmit(values) {
-    console.log(values);
+    toast({
+      title: (
+        <div className='flex flex-row'>
+          <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+          <Label>Success!</Label>
+        </div>
+      ),
+      description: <>Changes has been Saved.</>,
+    });
   }
+}
 
   return (
     <Dialog>

@@ -29,6 +29,7 @@ import { useForm } from 'react-hook-form';
 
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
+import { toast } from '@/components/ui/use-toast';
 
 export const collegeDepartments = [
   { label: 'College of Education', value: 'coe' },
@@ -124,13 +125,18 @@ export const collegeSection = [
 function CollegeSectionsPage() {
   const [selectedSection, setSelectedSection] = useState({});
 
-  useEffect(() => {
-    console.log({ selectedSection });
-  }, [selectedSection]);
-
   function onSubmit(values) {
-    console.log(values);
+    toast({
+      title: (
+        <div className='flex flex-row'>
+          <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+          <Label>Success!</Label>
+        </div>
+      ),
+      description: <>Changes has been Saved.</>,
+    });
   }
+}
 
   function ArchiveSectionUndergrad({ disabled }) {
     return (
@@ -154,8 +160,17 @@ function CollegeSectionsPage() {
     });
 
     function onSubmit(values) {
-      console.log(values);
+      toast({
+        title: (
+          <div className='flex flex-row'>
+            <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+            <Label>Success!</Label>
+          </div>
+        ),
+        description: <>Changes has been Saved.</>,
+      });
     }
+  }
 
     return (
       <Dialog>

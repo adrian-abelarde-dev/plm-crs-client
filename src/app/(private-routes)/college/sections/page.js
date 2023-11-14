@@ -1,5 +1,3 @@
-'use client';
-
 import CollegeSectionsPage from '@/components/component/college/college-sections';
 
 function CollegeSections() {
