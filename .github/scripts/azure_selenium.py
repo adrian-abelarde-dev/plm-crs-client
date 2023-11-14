@@ -108,25 +108,10 @@ for i in range(1, 4):
 # Simulate a javascript click like document.querySelector("#_weave_e_280 > div > div > div.fxs-lens-layout > div > div.fxs-part.fxs-part-no-fx-content-padding.fxs-part-for-template-blade > div.fxs-part-content.fxs-validationContainer.css-scope-Microsoft_AAD_RegisteredApps.css-scope-BladesApplicationsStylescss.css-scope-BladesAuthenticationStylescss.css-scope-BladesStylesWithWarningscss > div > div.msportalfx-docking-footer.msportalfx-padding > div:nth-child(1) > div").click()
 # Check first if the element exists
 try:
-    # Zoom out to 50%
-    driver.execute_script("document.body.style.zoom='50%'")
-    print("Zoom out to 50% done!")
+    print("Simulate a javascript click to send the redirect URI...")
 
-    # Get msportalfx-docking-footer msportalfx-padding then get its html with its children
-    footer = (
-        WebDriverWait(driver, 100)
-        .until(
-            EC.element_to_be_clickable(
-                (
-                    By.CSS_SELECTOR,
-                    "div.msportalfx-docking-footer.msportalfx-padding",
-                )
-            )
-        )
-        .get_attribute("innerHTML")
-    )
-
-    print(f"Footer: {footer}")
+    # Print entire html not page source
+    print(driver.page_source)
 
     # Click the element
     WebDriverWait(driver, 3).until(
