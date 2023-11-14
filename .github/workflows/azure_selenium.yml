@@ -1,30 +1,27 @@
-name: Capture Vercel Preview URL and Update Azure Redirect URIs
+name: Capture Vercel preview URL
 
 on:
- issue_comment:
-  types: [edited]
+  issue_comment:
+    types: [edited]
 
 jobs:
- capture_vercel_preview_url:
-  name: Capture Vercel Preview URL
-  runs-on: "ubuntu-latest"
-  steps:
-    - uses: actions/checkout@v2
-
-    - uses: aaimio/vercel-preview-url-action@v2.2.0
-      id: vercel_preview_url
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install selenium
-
-    - name: Run Python script
-      run: python .github/scripts/azure_selenium.py ${{ secrets.AZURE_USERNAME }} ${{ secrets.AZURE_PASSWORD }} ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+  capture_vercel_preview_url:
+    name: Capture Vercel preview URL
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: aaimio/vercel-preview-url-action@v2.2.0
+        id: vercel_preview_url
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Below is but an example of what you could do with the preview URL.
+      # The preview URL is accessed through ${{ steps.<step_id>.outputs.vercel_preview_url }}
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}.'
+            });
