@@ -1,0 +1,26 @@
+name: Capture Vercel preview URL
+
+on:
+  issue_comment:
+    types: [edited]
+
+jobs:
+  capture_vercel_preview_url:
+    name: Capture Vercel preview URL
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture Vercel preview URL
+        id: vercel_preview_url
+        uses: aaimio/vercel-preview-url-action@v2.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add comment to PR
+        id: comment_to_pr
+        uses: marocchino/sticky-pull-request-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.issue.number }}
+          header: vercel-preview
+          message: |
+            The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}.
