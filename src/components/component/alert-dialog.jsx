@@ -31,17 +31,24 @@ function AlertConfirmModal({
 }) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button
-          className={cn(
-            'text-zinc-900 justify-between hover:bg-zinc-100',
-            className,
-          )}
-          variant='ghost'
-        >
-          {label}
-        </Button>
-      </AlertDialogTrigger>
+      {/* check if the label passed is a string or a Button */}
+
+      {typeof label === 'string' ? (
+        <AlertDialogTrigger asChild>
+          <Button
+            className={cn(
+              'text-zinc-900 justify-between hover:bg-zinc-100',
+              className,
+            )}
+            variant='ghost'
+          >
+            {label}
+          </Button>
+        </AlertDialogTrigger>
+      ) : (
+        <AlertDialogTrigger>{label}</AlertDialogTrigger>
+      )}
+
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>

@@ -1,6 +1,6 @@
 export const collegeGradCurriculumManagementData = [
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-100',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -22,7 +22,7 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-200',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -44,7 +44,7 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-300',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -66,7 +66,7 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-400',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -110,7 +110,7 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-600',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -132,7 +132,7 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-700',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -154,7 +154,7 @@ export const collegeGradCurriculumManagementData = [
     ],
   },
   {
-    courseCode: 'GEM-500',
+    courseCode: 'GEM-800',
     courseTitle: 'Juan Dela Cruz',
     preRequisites: [
       {
@@ -179,7 +179,7 @@ export const collegeGradCurriculumManagementData = [
 
 export const collegeGradAffectedProgramsData = [
   {
-    program: 'GEM-500',
+    program: 'GEM-100',
     programName: 'Juan Dela Cruz',
     curriculum: 'MIT-2023',
   },
@@ -189,7 +189,17 @@ export const collegeGradAffectedProgramsData = [
     curriculum: 'MIT-2023',
   },
   {
+    program: 'GEM-300',
+    programName: 'Juan Dela Cruz',
+    curriculum: 'MIT-2023',
+  },
+  {
     program: 'GEM-400',
+    programName: 'Juan Dela Cruz',
+    curriculum: 'MIT-2023',
+  },
+  {
+    program: 'GEM-500',
     programName: 'Juan Dela Cruz',
     curriculum: 'MIT-2023',
   },
@@ -204,17 +214,7 @@ export const collegeGradAffectedProgramsData = [
     curriculum: 'MIT-2023',
   },
   {
-    program: 'GEM-800',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
-  },
-  {
-    program: 'GEM-900',
-    programName: 'Juan Dela Cruz',
-    curriculum: 'MIT-2023',
-  },
-  {
-    program: 'GEM-530',
+    program: 'GEM-830',
     programName: 'Juan Dela Cruz',
     curriculum: 'MIT-2023',
   },

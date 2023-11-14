@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -49,7 +48,6 @@ export const collegeGradCurriculumManagementTemplate = [
             </AlertDialogHeader>
 
             <Table>
-              <TableCaption>A list of your recent invoices.</TableCaption>
               <TableHeader>
                 <TableRow>
                   <TableHead>Course Code</TableHead>
