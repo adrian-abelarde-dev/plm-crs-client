@@ -57,6 +57,7 @@ function AlertConfirmModal({
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelLabel}</AlertDialogCancel>
           <AlertDialogAction
+            className='bg-[#DC2626] text-white hover:bg-[#bd3f3f]'
             onClick={() => {
               // executes function passed from parent
               confirmFunction();
