@@ -62,3 +62,30 @@ export const fakeCollegeSchedule = [
     schedSlots: 47,
   },
 ];
+
+export const fakeCollegeFaculty = [
+  {
+    facultyFName: 'John',
+    facultyMName: 'Doe',
+    facultyLName: 'Smith',
+    facultyEmail: 'jdsmith@plm.edu.ph',
+  },
+  {
+    facultyFName: 'Jane',
+    facultyMName: 'Emily',
+    facultyLName: 'Doe',
+    facultyEmail: 'jedoe@plm.edu.ph',
+  },
+  {
+    facultyFName: 'Robert',
+    facultyMName: 'Alwyn',
+    facultyLName: 'Johnson',
+    facultyEmail: 'rajohnson@plm.edu.ph',
+  },
+  {
+    facultyFName: 'Emily',
+    facultyMName: 'Grace',
+    facultyLName: 'Williams',
+    facultyEmail: 'egwilliams@plm.edu.ph',
+  },
+];

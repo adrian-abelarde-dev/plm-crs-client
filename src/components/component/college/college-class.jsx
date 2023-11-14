@@ -27,7 +27,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { toast } from '@/components/ui/use-toast';
-import { fakeCollegeSchedule } from '@/lib/constants/fake-data/college-schedule';
+import {
+  fakeCollegeFaculty,
+  fakeCollegeSchedule,
+} from '@/lib/constants/fake-data/college-schedule';
 import {
   UserSchema,
   userSchemaDefaultValues,
@@ -185,6 +188,13 @@ export const collegeSlots = [
   { label: '50', value: '50' },
 ];
 
+export const collegeParentClassCode = [
+  { label: 'CSC', value: 'csc' },
+  { label: 'ETH', value: 'eth' },
+  { label: 'ICC', value: 'icc' },
+  { label: 'TCW', value: 'tcw' },
+];
+
 function CollegeSchedulePage() {
   function DepartmentFilterUndergrad() {
     const [open, setOpen] = React.useState(false);
@@ -337,20 +347,57 @@ function CollegeSchedulePage() {
       });
     }
 
+    function AddFacultyUndergrad() {
+      return <Button>Add Faculty</Button>;
+    }
+
+    const fakeCollegeFacultyTemplate = [
+      {
+        accessorKey: 'facultyFName',
+        id: 'facultyFName',
+        header: 'First Name',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'facultyMName',
+        id: 'facultyMName',
+        header: 'Middle Name',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'facultyLName',
+        id: 'facultyLName',
+        header: 'Last Name',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'facultyEmail',
+        id: 'facultyEmail',
+        header: 'PLM Email',
+        filterVariant: 'fuzzy',
+      },
+    ];
+
     return (
       <Dialog>
         <DialogTrigger asChild>
           <Button>Add Section</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-[800px]'>
+        <DialogContent className='md:max-w-[1024px] h-5/6 overflow-auto'>
           <DialogHeader>
-            <DialogTitle>Add Section</DialogTitle>
+            <DialogTitle className='font-medium text-2xl'>
+              Add Section
+            </DialogTitle>
           </DialogHeader>
 
           <Form {...addClassForm}>
             <form onSubmit={addClassForm.handleSubmit(onSubmit)}>
               {/* Content */}
               <div className='flex flex-col gap-2'>
+                {/* Class Information */}
+                <Label className='font-medium text-xl pt-4'>
+                  Class Information
+                </Label>
                 {/* Schedule ID */}
                 <InputFormField
                   disabled={true}
@@ -360,12 +407,12 @@ function CollegeSchedulePage() {
                   fieldName='scheduleId'
                   badge={<Badge variant='outline'>Auto-generated</Badge>}
                 />
-
+                {/* Subject */}
                 <InputFormField
                   form={addClassForm}
                   title='Subject'
                   placeholder='Enter subject'
-                  fieldName='scheduleID'
+                  fieldName='scheduleSubject'
                 />
 
                 {/* Section, Credits, Alloted Slots */}
@@ -395,6 +442,60 @@ function CollegeSchedulePage() {
                     fieldName='scheduleSlots'
                   />
                 </section>
+                {/* Parent Class Code */}
+                <SelectFormField
+                  form={addClassForm}
+                  content={collegeParentClassCode}
+                  title='Parent Class Code'
+                  placeholder='Enter parent class code'
+                  fieldName='scheduleParentClassCode'
+                />
+                {/* Minimum Year Level, AY-SEM, College */}
+                <section className='w-full grid grid-cols-3 gap-2 '>
+                  {/* Minimum Year Level */}
+                  <SelectFormField
+                    form={addClassForm}
+                    content={collegeYearLevel}
+                    title='Minimum Year Level'
+                    placeholder='Enter minimum year level'
+                    fieldName='scheduleMinYrLevel'
+                  />
+                  {/* AY-SEM */}
+                  <SelectFormField
+                    disabled={true}
+                    form={addClassForm}
+                    content={collegeSchoolYears}
+                    title='AY-SEM'
+                    placeholder='20231'
+                    fieldName='scheduleAYSEM'
+                  />
+                  {/* College */}
+                  <SelectFormField
+                    form={addClassForm}
+                    content={collegeSchoolYears}
+                    title='College'
+                    placeholder='Enter AY-SEM'
+                    fieldName='scheduleCollege'
+                  />
+                </section>
+
+                {/* Faculty Table */}
+                <TableMRT
+                  className='pt-1'
+                  template={fakeCollegeFacultyTemplate}
+                  data={fakeCollegeFaculty}
+                  title={<Label className='font-medium text-xl'>Faculty</Label>}
+                  searchPlaceholder='Search faculty...'
+                  isFullscreen={false}
+                  RightButtons={
+                    <>
+                      <AddFacultyUndergrad />
+                    </>
+                  }
+                />
+
+                {/* Class Information */}
+                <Label className='font-medium text-xl pt-4'>Class Hours</Label>
 
                 {/* Checkbox for Confirmation */}
                 <div className='items-top flex space-x-2 pt-2'>
