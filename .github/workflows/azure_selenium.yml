@@ -1,33 +1,27 @@
 name: Capture Vercel preview URL
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [edited]
 
 jobs:
   capture_vercel_preview_url:
     name: Capture Vercel preview URL
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
     steps:
-      - name: Wait for Vercel deployment
-        id: wait_for_vercel
-        run: echo "Waiting for Vercel deployment to be ready..."
-        continue-on-error: true
-
-      - name: Capture Vercel preview URL
-        if: ${{ success() }}
+      - uses: aaimio/vercel-preview-url-action@v2.2.0
         id: vercel_preview_url
-        uses: aaimio/vercel-preview-url-action@v2.2.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Add comment to PR
-        if: ${{ success() }}
-        id: comment_to_pr
-        uses: marocchino/sticky-pull-request-comment@v1
+      # Below is but an example of what you could do with the preview URL.
+      # The preview URL is accessed through ${{ steps.<step_id>.outputs.vercel_preview_url }}
+      - uses: actions/github-script@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ github.event.pull_request.number }}
-          header: vercel-preview
-          message: |
-            The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}.
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}.'
+            });
