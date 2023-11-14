@@ -15,7 +15,7 @@ import { program, sex } from '@/lib/constants/fake-data/grad-application-form';
 import {
   GradApplicationFormSchema,
   gradApplicationFormDefaultValues,
-} from '@/lib/constants/schema/grad-application-form';
+} from '@/lib/constants/schema/college-grad/grad-application-form';
 import { termsAndConditions } from '@/lib/constants/terms-agreement';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, CheckCircle } from 'lucide-react';

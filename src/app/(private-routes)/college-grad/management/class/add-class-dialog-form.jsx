@@ -21,7 +21,7 @@ import { classTypes } from '@/lib/constants/fake-data/class-type';
 import { faculties } from '@/lib/constants/fake-data/faculties';
 import { sections } from '@/lib/constants/fake-data/section';
 import { subjects } from '@/lib/constants/fake-data/subjects';
-import { ClassSchema } from '@/lib/constants/schema/edit-class';
+import { ClassSchema } from '@/lib/constants/schema/college-grad/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, Plus } from 'lucide-react';
 import { useState } from 'react';

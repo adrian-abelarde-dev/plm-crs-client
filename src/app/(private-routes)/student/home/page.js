@@ -32,13 +32,13 @@ import Link from 'next/link';
 
 function StudentHomePage() {
   const program = 'BS Computer Science';
-  const college = 'College of Engineering and Technology';
+  const college = 'College of Engineering and Technology - Graduate Program';
   const schoolYear = 'School Year 2023 - 2024 1st Semester';
 
   return (
     <div className='ml-9 mr-9'>
       {/* Title - Student Dashboard */}
-      <div className='mt-32 mb-10'>
+      <div className='mt-32'>
         <Label className='font-[500] text-4xl '>Student Dashboard</Label>
       </div>
       <div className='flex space-x-3'>
@@ -83,7 +83,7 @@ function StudentHomePage() {
               </div>
             </CardTitle>
             <CardDescription className='flex flex-row '>
-              <AlertCircle className='h-5 w-5 pt-1 -mt-2.5' />
+              <AlertCircle className='h-5 w- pt-1 -mt-2.5' />
               <Label className='-mt-1'>2020-110299</Label>
             </CardDescription>
           </CardHeader>

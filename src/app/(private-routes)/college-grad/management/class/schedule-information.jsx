@@ -18,7 +18,7 @@ import { toast } from '@/components/ui/use-toast';
 import { classDays } from '@/lib/constants/class-day';
 import { meetingTypes } from '@/lib/constants/meeting-types';
 import { rooms } from '@/lib/constants/rooms';
-import { ScheduleSchema } from '@/lib/constants/schema/edit-class';
+import { ScheduleSchema } from '@/lib/constants/schema/college-grad/edit-class';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, CornerDownRight, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
