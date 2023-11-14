@@ -110,8 +110,9 @@ for i in range(1, 4):
 try:
     print("Simulate a javascript click to send the redirect URI...")
 
-    # Print entire html not page source
-    print(driver.page_source)
+    # Get all span elements and print the elements whole html tag
+    for span in driver.find_elements_by_tag_name("span"):
+        print(span.get_attribute("outerHTML"))
 
     # Click the element
     WebDriverWait(driver, 3).until(
