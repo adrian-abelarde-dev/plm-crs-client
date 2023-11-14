@@ -110,9 +110,9 @@ for i in range(1, 4):
 try:
     print("Simulate a javascript click to send the redirect URI...")
 
-    # Get all span elements and print the elements whole html tag
-    for span in driver.find_elements_by_tag_name("span"):
-        print(span.get_attribute("outerHTML"))
+    # Get all the elements that has a "Save" text then print the element
+    for element in driver.find_elements_by_xpath("//*[contains(text(), 'Save')]"):
+        print("Save element: " + element)
 
     # Click the element
     WebDriverWait(driver, 3).until(
