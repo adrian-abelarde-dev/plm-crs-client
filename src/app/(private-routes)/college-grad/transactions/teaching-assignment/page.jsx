@@ -149,7 +149,7 @@ function CollegeGradTeachingAssignment() {
         </>
       ) : (
         <div className='w-full h-96 flex justify-center place-items-center text-zinc-400 '>
-          Please search for a Curriculum
+          Please search for a Faculty
         </div>
       )}
     </main>
