@@ -88,13 +88,6 @@ WebDriverWait(driver, 100).until(
 
 print("Type at an input with a placeholder done!")
 
-# Now find an element with a text of redirect_url, then element.get_attribute("outerHTML")
-input_element = driver.find_element(
-    By.XPATH, f"//div[text()='{redirect_url}']/../div[1]"
-)
-for element in input_element:
-    print(f"Input Element: {element.get_attribute('outerHTML')}")
-
 # Simulate a smooth scroll like using mouse wheel to input[placeholder='e.g. https://example.com/auth']
 driver.execute_script(
     "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})",
