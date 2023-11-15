@@ -22,7 +22,7 @@ import { fakeundergradRegScheduleClasses } from '@/lib/constants/fake-data/under
 import { Download } from 'lucide-react';
 import React, { useState } from 'react';
 
-function regStudentEnrollment() {
+function UndergradStudentEnrollment() {
   const [rowSelection, setRowSelection] = useState({});
 
   // collects the selected classes
@@ -194,4 +194,4 @@ function CompletedPreview() {
   );
 }
 
-export default regStudentEnrollment;
+export default UndergradStudentEnrollment;
