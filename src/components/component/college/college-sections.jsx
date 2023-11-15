@@ -23,7 +23,6 @@ function CollegeSectionsPage() {
         template={fakeSectionTemplate}
         data={fakeSection}
         title='Sections'
-        description=''
         searchPlaceholder='Search sections...'
         isCheckBoxVisible={true}
         isFullscreen={false}

@@ -24,7 +24,6 @@ function CollegeSubjectsPage() {
         template={fakeSubjectTemplate}
         data={fakeSubjects}
         title='Subjects'
-        description=''
         searchPlaceholder='Search subjects...'
         isCheckBoxVisible={true}
         isFullscreen={false}
