@@ -1,3 +1,5 @@
+import { getRandomDate } from '@/lib/utils';
+
 export const facultyTeachingAssignments = [
   {
     subjectCode: 'CMSC 11',
@@ -9,6 +11,7 @@ export const facultyTeachingAssignments = [
     creditedUnits: 3.0,
     college: 'College of Engineering and Technology',
     typeOfLoad: 'RL',
+    effectivityDate: getRandomDate(),
   },
   {
     subjectCode: 'CMSC 22',
@@ -20,6 +23,7 @@ export const facultyTeachingAssignments = [
     creditedUnits: 3.0,
     college: 'College of Engineering and Technology',
     typeOfLoad: 'EL',
+    effectivityDate: getRandomDate(),
   },
   {
     subjectCode: 'ENGL 101',
@@ -31,6 +35,7 @@ export const facultyTeachingAssignments = [
     creditedUnits: 3.0,
     college: 'College of Arts and Letters',
     typeOfLoad: 'AL',
+    effectivityDate: getRandomDate(),
   },
   {
     subjectCode: 'MATH 30',
@@ -42,6 +47,7 @@ export const facultyTeachingAssignments = [
     creditedUnits: 3.0,
     college: 'College of Science',
     typeOfLoad: 'SL',
+    effectivityDate: getRandomDate(),
   },
   {
     subjectCode: 'PHIL 50',
@@ -53,5 +59,6 @@ export const facultyTeachingAssignments = [
     creditedUnits: 3.0,
     college: 'College of Arts and Letters',
     typeOfLoad: 'OCL',
+    effectivityDate: getRandomDate(),
   },
 ];

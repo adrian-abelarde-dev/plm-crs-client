@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -13,18 +14,15 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { facultyTeachingAssignments } from '@/lib/constants/fake-data/teaching-assignments-grad';
+import { totalUnits } from '@/lib/utils';
+import { Printer } from 'lucide-react';
 import { useState } from 'react';
+
+import EditTeachingAssignment from './edit-teaching-assignment';
 
 function CollegeGradTeachingAssignment() {
   const [facultyInput, setFacultyInput] = useState('Urquico, Kurt Jacob E.');
-
-  // compute for total units
-  function totalUnits(key) {
-    return facultyTeachingAssignments.reduce(
-      (total, subject) => total + subject[key],
-      0,
-    );
-  }
+  const [subjects, setSubjects] = useState(facultyTeachingAssignments);
 
   return (
     <main className='p-6'>
@@ -58,6 +56,21 @@ function CollegeGradTeachingAssignment() {
             </Label>
             <Label>1st Sem, SY 2023-2024</Label>
           </div>
+
+          <div className='flex justify-end gap-2'>
+            <EditTeachingAssignment
+              subjects={subjects}
+              setSubjects={setSubjects}
+            />
+            <Button
+              className='text-zinc-900 justify-between hover:bg-zinc-100'
+              variant='outline'
+            >
+              <Printer className='w-4 h-4 mr-2' />
+              Print PDF
+            </Button>
+          </div>
+
           <Table className='mt-8'>
             <TableCaption>
               This college has considered you to teach the following subject(s)
@@ -89,7 +102,7 @@ function CollegeGradTeachingAssignment() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {facultyTeachingAssignments.map((subjects, index) => {
+              {subjects.map((subjects, index) => {
                 return (
                   <TableRow key={index}>
                     <TableCell>{subjects.subjectCode}</TableCell>
@@ -116,14 +129,16 @@ function CollegeGradTeachingAssignment() {
                 <TableCell></TableCell>
                 <TableCell className='text-center'>
                   Total No. of Units:{' '}
-                  <span className='text-bold'>{totalUnits('units')}</span>
+                  <span className='text-bold'>
+                    {totalUnits('units', subjects)}
+                  </span>
                 </TableCell>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
                 <TableCell className='text-center'>
                   Total No. of Credits:{' '}
                   <span className='text-bold'>
-                    {totalUnits('creditedUnits')}
+                    {totalUnits('creditedUnits', subjects)}
                   </span>
                 </TableCell>
                 <TableCell></TableCell>

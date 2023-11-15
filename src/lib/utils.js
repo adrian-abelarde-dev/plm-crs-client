@@ -68,3 +68,19 @@ export function formatDateString(dateObject) {
   const readableDateString = dateObject.toLocaleString('en-US', options);
   return readableDateString;
 }
+
+// compute for total units in an array of objects [{}]
+export function totalUnits(key, data) {
+  return data?.reduce((total, item) => total + item[key], 0);
+}
+
+// used for computing total units for a specific type of load
+export function computeLoads(key, data, typeOfLoad) {
+  return data?.reduce((total, item) => {
+    // Check if the subject's typeOfLoad matches the specified typeOfLoad
+    if (item.typeOfLoad === typeOfLoad) {
+      return total + item[key];
+    }
+    return total;
+  }, 0);
+}
