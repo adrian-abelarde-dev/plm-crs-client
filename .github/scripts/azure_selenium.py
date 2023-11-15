@@ -110,7 +110,7 @@ for i in range(1, 4):
 print("Simulate a javascript click to send the redirect URI...")
 
 # Get all the elements that has a "Save" text then print the element
-save_elements = driver.find_elements(By.XPATH, "//*[contains(text(), 'Save')]")
+save_elements = driver.find_elements(By.CSS_SELECTOR, "div[title='Save']")
 for element in save_elements:
     # Print its html element
     print(f'Has Save: {element.get_attribute("outerHTML")}')
@@ -120,15 +120,19 @@ divs = driver.find_elements(By.XPATH, "//div[@role='button']")
 for div in divs:
     print(f'`div` with role as button: {div.get_attribute("outerHTML")}')
 
-# Click the element
-WebDriverWait(driver, 3).until(
-    EC.element_to_be_clickable(
-        (
-            By.XPATH,
-            "/html/body/div[1]/div[4]/div[1]/div[1]/main/div[3]/div[2]/section/div[1]/div[2]/div[2]/div[4]/div[2]/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div[1]/div",
+
+try:
+    # Click the element
+    WebDriverWait(driver, 3).until(
+        EC.element_to_be_clickable(
+            (
+                By.XPATH,
+                "/html/body/div[1]/div[4]/div[1]/div[1]/main/div[3]/div[2]/section/div[1]/div[2]/div[2]/div[4]/div[2]/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div[1]/div",
+            )
         )
-    )
-).click()
+    ).click()
+except Exception as e:
+    print(f"Exception: {e}")
 
 print("Simulate a javascript click done!")
 
