@@ -275,6 +275,7 @@ function CollegeSubjectsPage() {
         description=''
         searchPlaceholder='Search subjects...'
         isCheckBoxVisible={true}
+        isFullscreen={false}
         rowSelection={selectedSubject}
         setRowSelection={setSelectedSubject}
         RightButtons={

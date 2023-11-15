@@ -278,6 +278,7 @@ function CollegeSectionsPage() {
         description=''
         searchPlaceholder='Search sections...'
         isCheckBoxVisible={true}
+        isFullscreen={false}
         rowSelection={selectedSection}
         setRowSelection={setSelectedSection}
         RightButtons={
