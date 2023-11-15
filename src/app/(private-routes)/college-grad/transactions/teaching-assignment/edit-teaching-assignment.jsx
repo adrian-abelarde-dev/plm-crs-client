@@ -74,6 +74,24 @@ function EditTeachingAssignment({ subjects, setSubjects }) {
     });
   }
 
+  function handleTypeOfLoadChange(newTypeOfLoad, subjectCode) {
+    setSubjects((prevAssignments) => {
+      const updatedAssignments = [...prevAssignments];
+      const index = updatedAssignments.findIndex(
+        (assignment) => assignment.subjectCode === subjectCode,
+      );
+
+      if (index !== -1) {
+        updatedAssignments[index] = {
+          ...updatedAssignments[index],
+          typeOfLoad: newTypeOfLoad,
+        };
+      }
+
+      return updatedAssignments;
+    });
+  }
+
   const loads = [
     { label: 'Regular Load (RL)', loadType: 'RL' },
     { label: 'Extra Load (EL)', loadType: 'EL' },
@@ -151,7 +169,12 @@ function EditTeachingAssignment({ subjects, setSubjects }) {
                     {/* Type of Load */}
                     <TableCell>
                       <Select
-                        // onValueChange={field.onChange}
+                        onValueChange={(newTypeOfLoad) => {
+                          handleTypeOfLoadChange(
+                            newTypeOfLoad,
+                            subjects.subjectCode,
+                          );
+                        }}
                         defaultValue={subjects.typeOfLoad}
                       >
                         <SelectTrigger>
