@@ -1,27 +1,44 @@
-name: Capture Vercel preview URL
+name: Capture Vercel Preview URL and Update Azure Redirect URIs
 
 on:
-  issue_comment:
-    types: [edited]
+  push:
 
 jobs:
   capture_vercel_preview_url:
-    name: Capture Vercel preview URL
-    runs-on: "ubuntu-latest"
+    name: Capture Vercel Preview URL
+    runs-on: 'ubuntu-latest'
     steps:
-      - uses: aaimio/vercel-preview-url-action@v2.2.0
+      - name: Checking out repository
+        uses: actions/checkout@v3
+
+      - name: Sleep for 30 seconds
+        run: sleep 30
+
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
         id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # Below is but an example of what you could do with the preview URL.
-      # The preview URL is accessed through ${{ steps.<step_id>.outputs.vercel_preview_url }}
-      - uses: actions/github-script@v3
+          vercel_project_id: 'prj_3hOQM4SDgkaItQrnmDzZio4KkRKZ'
+
+      - name: Setting up Python
+        uses: actions/setup-python@v4
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}.'
-            });
+          python-version: '3.9'
+
+      - name: Installing package list
+        run: apt list --installed
+
+      - name: Removing previous chrome instances on runner
+        run: sudo apt purge google-chrome-stable
+
+      # Need to fetch reqs if needed
+      - name: Installing all necessary packages
+        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
+
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
+
+      - name: Run Python script
+        run: python .github/scripts/azure_selenium.py ${{ secrets.AZURE_USERNAME }} ${{ secrets.AZURE_PASSWORD }} ${{ steps.vercel_preview_url.outputs.preview_url }}
