@@ -170,7 +170,13 @@ export const collegeGradLinks = [
         icon: <ArrowUpDown className='mr-0 h-4 w-4 md:mr-2' />,
       },
       {
-        text: 'Teaching Assignment',
+        text: (
+          <span>
+            Teaching
+            <br />
+            Assignment
+          </span>
+        ),
         path: '/college-grad/transactions/teaching-assignment',
         icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
       },
