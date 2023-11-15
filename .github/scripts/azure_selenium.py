@@ -59,7 +59,7 @@ driver.get(
 )
 
 # Add the redirect URI
-redirect_url = args.redirect_url
+redirect_url = f"https://{args.redirect_url}/api/auth/callback/azure-ad"
 
 print(f"Adding redirect URI: {redirect_url}")
 
