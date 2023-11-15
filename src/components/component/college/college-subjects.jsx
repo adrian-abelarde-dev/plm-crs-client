@@ -17,6 +17,9 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import {
+  collegeActiveStatus,
+  collegeSubjectName,
+  collegeSubjectType,
   fakeSubjectRowActions,
   fakeSubjects,
 } from '@/lib/constants/fake-data/college-subjects';
@@ -24,6 +27,7 @@ import {
   UserSchema,
   userSchemaDefaultValues,
 } from '@/lib/constants/schema/user';
+import { fakeSubjectTemplate } from '@/lib/constants/table-templates/college/college-subjects-table';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArchiveIcon, CheckCircle, Edit } from 'lucide-react';
@@ -32,73 +36,6 @@ import { useForm } from 'react-hook-form';
 
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
-
-export const collegeSubjectName = [
-  {
-    label: 'Synchronization and Concurrency',
-    value: 'CSE2SYNC202310001',
-  },
-  {
-    label: 'Database Management Systems',
-    value: 'CSE2DBMS202310002',
-  },
-  {
-    label: 'Operating Systems',
-    value: 'CSE2OS202310003',
-  },
-  {
-    label: 'Data Structures and Algorithms',
-    value: 'CSE2DSA202310004',
-  },
-  {
-    label: 'Computer Networks',
-    value: 'CSE2CN202310005',
-  },
-  {
-    label: 'Software Engineering',
-    value: 'CSE2SE202310006',
-  },
-  {
-    label: 'Artificial Intelligence',
-    value: 'CSE2AI202310007',
-  },
-  {
-    label: 'Machine Learning',
-    value: 'CSE2ML202310008',
-  },
-  {
-    label: 'Web Development',
-    value: 'CSE2WD202310009',
-  },
-  {
-    label: 'Mobile Application Development',
-    value: 'CSE2MAD202310010',
-  },
-];
-
-export const collegeSubjectType = [
-  {
-    label: 'Face-to-Face',
-    value: 'f2f',
-  },
-  {
-    label: 'Online',
-    value: 'online',
-  },
-  {
-    label: 'Lecture',
-    value: 'lecture',
-  },
-  {
-    label: 'Lab',
-    value: 'lab',
-  },
-];
-
-export const collegeActiveStatus = [
-  { label: 'Active', value: 'active' },
-  { label: 'Inactive', value: 'inactive' },
-];
 
 function CollegeSubjectsPage() {
   const [selectedSubject, setSelectedSubject] = useState({});
@@ -328,50 +265,6 @@ function CollegeSubjectsPage() {
       </Dialog>
     );
   }
-
-  const fakeSubjectTemplate = [
-    {
-      accessorKey: 'subjectName',
-      id: 'subjectName',
-      header: 'Subject',
-      filterVariant: 'fuzzy',
-    },
-    {
-      accessorKey: 'underGrad',
-      id: 'underGrad',
-      header: 'Type',
-      filterVariant: 'fuzzy',
-    },
-    {
-      accessorKey: 'subjectType',
-      id: 'subjectType',
-      header: 'Subject Type',
-      filterVariant: 'fuzzy',
-      Cell: ({ cell }) => {
-        return (
-          <Badge
-            variant={
-              cell.getValue() === 'Synchronous' ? 'outlinePrimary' : 'outline'
-            }
-          >
-            {cell.getValue()}
-          </Badge>
-        );
-      },
-    },
-    {
-      accessorKey: 'activeStatus',
-      id: 'activeStatus',
-      header: 'Active Status',
-      filterVariant: 'fuzzy',
-    },
-    {
-      accessorKey: 'dateCreated',
-      id: 'dateCreated',
-      header: 'Created At',
-      filterVariant: 'fuzzy',
-    },
-  ];
 
   return (
     <main className='w-full p-6'>

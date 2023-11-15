@@ -17,6 +17,10 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import {
+  collegeDepartments,
+  collegePrograms,
+  collegeSection,
+  collegeYear,
   fakeSection,
   fakeSectionRowActions,
 } from '@/lib/constants/fake-data/college-sections';
@@ -24,6 +28,7 @@ import {
   UserSchema,
   userSchemaDefaultValues,
 } from '@/lib/constants/schema/user';
+import { fakeSectionTemplate } from '@/lib/constants/table-templates/college/college-sections-table';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArchiveIcon, CheckCircle, Edit } from 'lucide-react';
@@ -32,97 +37,6 @@ import { useForm } from 'react-hook-form';
 
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
-
-export const collegeDepartments = [
-  { label: 'College of Education', value: 'coe' },
-  { label: 'PLM Business School', value: 'business' },
-  { label: 'College of Humanities and Social Sciences', value: 'chass' },
-  { label: 'College of Engineering', value: 'cet' },
-  { label: 'College of Architecture and Urban Planning', value: 'archi' },
-  { label: 'College of Science', value: 'cs' },
-  { label: 'College of Nursing', value: 'cn' },
-  { label: 'College of Physical Therapy', value: 'cpt' },
-];
-
-export const collegePrograms = [
-  {
-    label: 'Bachelor of Science in Accountancy',
-    value: 'bsa',
-  },
-  {
-    label: 'Bachelor of Science in Business Administration',
-    value: 'bsba',
-  },
-  {
-    label: 'Bachelor of Science in Entrepreneurship',
-    value: 'bse',
-  },
-  {
-    label: 'Bachelor of Science in Hotel and Restaurant Management',
-    value: 'bshrm',
-  },
-  {
-    label: 'Bachelor of Science in Tourism Management',
-    value: 'bstm',
-  },
-  {
-    label: 'Bachelor of Arts in English Language Studies',
-    value: 'baels',
-  },
-  {
-    label: 'Bachelor of Arts in Political Science',
-    value: 'baps',
-  },
-  {
-    label: 'Bachelor of Science in Psychology',
-    value: 'bspsy',
-  },
-  {
-    label: 'Bachelor of Science in Civil Engineering',
-    value: 'bsce',
-  },
-  {
-    label: 'Bachelor of Science in Computer Engineering',
-    value: 'bscoe',
-  },
-  {
-    label: 'Bachelor of Science in Electrical Engineering',
-    value: 'bsee',
-  },
-  {
-    label: 'Bachelor of Science in Architecture',
-    value: 'bsarchi',
-  },
-  {
-    label: 'Bachelor of Science in Chemistry',
-    value: 'bschem',
-  },
-  {
-    label: 'Bachelor of Science in Mathematics',
-    value: 'bsmath',
-  },
-  { label: 'Bachelor of Science in Nursing', value: 'bsn' },
-  {
-    label: 'Bachelor of Science in Physical Therapy',
-    value: 'bspt',
-  },
-];
-
-export const collegeYear = [
-  { label: '1', value: '1' },
-  { label: '2', value: '2' },
-  { label: '3', value: '3' },
-  { label: '4', value: '4' },
-  { label: '5', value: '5' },
-];
-
-export const collegeSection = [
-  { label: '1', value: '1' },
-  { label: '2', value: '2' },
-  { label: '3', value: '3' },
-  { label: '4', value: '4' },
-  { label: '5', value: '5' },
-];
 
 function CollegeSectionsPage() {
   const [selectedSection, setSelectedSection] = useState({});
@@ -354,21 +268,6 @@ function CollegeSectionsPage() {
       </Dialog>
     );
   }
-
-  const fakeSectionTemplate = [
-    {
-      accessorKey: 'collegeSection',
-      id: 'collegeSection',
-      header: 'Section',
-      filterVariant: 'fuzzy',
-    },
-    {
-      accessorKey: 'dateCreated',
-      id: 'dateCreated',
-      header: 'Date Created',
-      filterVariant: 'fuzzy',
-    },
-  ];
 
   return (
     <main className='w-full p-6'>
