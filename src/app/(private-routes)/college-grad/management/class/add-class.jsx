@@ -2,17 +2,17 @@ import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
 import DateFormField from '@/components/component/form/date-formfield';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -62,20 +62,20 @@ function AddClassDialogForm() {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
         <Button>
           <Plus className='w-4 h-4 mr-2' />
           Add Class
         </Button>
-      </DialogTrigger>
-      <DialogContent className='sm:max-w-[425px]'>
-        <DialogHeader>
-          <DialogTitle>Class Schedule</DialogTitle>
-          <DialogDescription>
+      </AlertDialogTrigger>
+      <AlertDialogContent className='sm:max-w-[425px]'>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Class Schedule</AlertDialogTitle>
+          <AlertDialogDescription>
             Add a Class Schedule to the system
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
         <form
           onSubmit={addClassForm.handleSubmit(onSubmit)}
           className='space-y-6'
@@ -168,8 +168,8 @@ function AddClassDialogForm() {
                 schedule={schedule}
               />
             </ScrollArea>
-            <DialogFooter className='w-full flex justify-end mt-4'>
-              <DialogClose asChild>
+            <AlertDialogFooter className='w-full flex justify-end mt-4'>
+              <AlertDialogCancel asChild>
                 <Button
                   variant='outline'
                   onClick={() => {
@@ -179,16 +179,16 @@ function AddClassDialogForm() {
                 >
                   Cancel
                 </Button>
-              </DialogClose>
+              </AlertDialogCancel>
 
               <Button type='submit' onClick={() => addClassForm.reset()}>
                 Add Class
               </Button>
-            </DialogFooter>
+            </AlertDialogFooter>
           </Form>
         </form>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 
