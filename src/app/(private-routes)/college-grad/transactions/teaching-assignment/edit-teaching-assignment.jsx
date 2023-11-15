@@ -42,7 +42,7 @@ import { CalendarIcon, CheckCircle, Edit } from 'lucide-react';
 import Load from './load';
 
 function EditTeachingAssignment({ subjects, setSubjects }) {
-  function onSubmit(values) {
+  function saveChanges() {
     toast({
       title: (
         <div className='flex flex-row'>
@@ -50,10 +50,8 @@ function EditTeachingAssignment({ subjects, setSubjects }) {
           <Label>Success!</Label>
         </div>
       ),
-      description: <>Course has been added.</>,
+      description: <>Teaching Assignment has been saved.</>,
     });
-
-    console.log(values);
   }
 
   function handleEffectivityDate(newDate, subjectCode) {
@@ -289,7 +287,7 @@ function EditTeachingAssignment({ subjects, setSubjects }) {
             <Button variant='outline'>Close</Button>
           </AlertDialogCancel>
 
-          <Button type='submit'>Save</Button>
+          <Button onClick={saveChanges}>Save</Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
