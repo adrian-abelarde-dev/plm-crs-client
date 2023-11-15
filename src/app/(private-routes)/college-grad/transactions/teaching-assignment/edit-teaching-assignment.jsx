@@ -211,7 +211,7 @@ function EditTeachingAssignment({ subjects, setSubjects }) {
                             )}
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className='w-auto p-0' align='start'>
+                        <PopoverContent className='w-auto' align='start'>
                           <Calendar
                             mode='single'
                             selected={subjects.effectivityDate}
@@ -232,26 +232,27 @@ function EditTeachingAssignment({ subjects, setSubjects }) {
             </TableBody>
             <TableFooter>
               <TableRow>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+                <TableCell />
+                <TableCell />
+                <TableCell />
+
                 <TableCell className='text-center'>
                   Total No. of Units:{' '}
                   <span className='text-bold'>
                     {totalUnits('units', subjects)}
                   </span>
                 </TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+                <TableCell />
+                <TableCell />
                 <TableCell className='text-center'>
                   Total No. of Credits:{' '}
                   <span className='text-bold'>
                     {totalUnits('creditedUnits', subjects)}
                   </span>
                 </TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+                <TableCell />
+                <TableCell />
+                <TableCell />
               </TableRow>
             </TableFooter>
           </Table>

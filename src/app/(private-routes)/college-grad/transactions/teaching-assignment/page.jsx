@@ -124,25 +124,25 @@ function CollegeGradTeachingAssignment() {
             </TableBody>
             <TableFooter>
               <TableRow>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+                <TableCell />
+                <TableCell />
+                <TableCell />
                 <TableCell className='text-center'>
                   Total No. of Units:{' '}
                   <span className='text-bold'>
                     {totalUnits('units', subjects)}
                   </span>
                 </TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+                <TableCell />
+                <TableCell />
                 <TableCell className='text-center'>
                   Total No. of Credits:{' '}
                   <span className='text-bold'>
                     {totalUnits('creditedUnits', subjects)}
                   </span>
                 </TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+                <TableCell />
+                <TableCell />
               </TableRow>
             </TableFooter>
           </Table>
