@@ -4,15 +4,15 @@ import AlertConfirmModal from '@/components/component/alert-dialog';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
-import { collegeClassManagementData } from '@/lib/constants/fake-data/class-management';
+import { collegeClassManagementData } from '@/lib/constants/fake-data/grad-class-management';
 import { collegeClassManagementTemplate } from '@/lib/constants/table-templates/college-grad/class-management';
 import { handleRowSelectionChange, testPromise } from '@/lib/utils';
 import { CheckCircle, XCircle } from 'lucide-react';
 import React, { useState } from 'react';
 
-import AddClassDialogForm from './add-class-dialog-form';
-import EditClassDialogForm from './edit-class-dialog-form';
-import ViewClassDialogForm from './view-class-dialog-form';
+import AddClassDialogForm from './add-class';
+import EditClassDialogForm from './edit-class';
+import ViewClassDialogForm from './view-class';
 
 function CollageGradManagementClass() {
   const [rowSelection, setRowSelection] = useState({});

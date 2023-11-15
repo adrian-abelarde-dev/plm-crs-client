@@ -31,17 +31,24 @@ function AlertConfirmModal({
 }) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button
-          className={cn(
-            'text-zinc-900 justify-between hover:bg-zinc-100',
-            className,
-          )}
-          variant='ghost'
-        >
-          {label}
-        </Button>
-      </AlertDialogTrigger>
+      {/* check if the label passed is a string or a Button */}
+
+      {typeof label === 'string' ? (
+        <AlertDialogTrigger asChild>
+          <Button
+            className={cn(
+              'text-zinc-900 justify-between hover:bg-zinc-100',
+              className,
+            )}
+            variant='ghost'
+          >
+            {label}
+          </Button>
+        </AlertDialogTrigger>
+      ) : (
+        <AlertDialogTrigger>{label}</AlertDialogTrigger>
+      )}
+
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
@@ -50,6 +57,7 @@ function AlertConfirmModal({
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelLabel}</AlertDialogCancel>
           <AlertDialogAction
+            className='bg-[#DC2626] text-white hover:bg-[#bd3f3f]'
             onClick={() => {
               // executes function passed from parent
               confirmFunction();

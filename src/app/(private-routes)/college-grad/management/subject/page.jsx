@@ -6,8 +6,8 @@ import { collegeGradSubjectManagementTemplate } from '@/lib/constants/table-temp
 import { handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
-import AddSubjectDialogForm from './add-subject-dialog-form';
-import EditSubjectDialogForm from './edit-subject-dialog-form';
+import AddSubjectDialogForm from './add-subject';
+import EditSubjectDialogForm from './edit-subject';
 
 function CollageGradManagementSubject() {
   const [rowSelection, setRowSelection] = useState({});
