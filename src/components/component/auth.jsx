@@ -9,6 +9,9 @@ function AuthProvider({ children, accessType, accessLevel }) {
   const pathname = usePathname();
 
   const { data: session, status } = useSession();
+
+  console.log(session);
+
   // ? status can be 'loading', 'authenticated' or 'unauthenticated'
   useEffect(() => {
     // ? Authenticated
