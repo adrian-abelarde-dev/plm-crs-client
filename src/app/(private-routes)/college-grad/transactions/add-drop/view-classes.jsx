@@ -53,10 +53,10 @@ function ViewClasses({ addedClasses, droppedClasses }) {
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableCell className='font-bold'>Class ID</TableCell>
-                    <TableCell className='font-bold'>Class</TableCell>
-                    <TableCell className='font-bold'>Class Title</TableCell>
+                  <TableRow className='font-bold'>
+                    <TableCell>Class ID</TableCell>
+                    <TableCell>Class</TableCell>
+                    <TableCell>Class Title</TableCell>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -85,10 +85,10 @@ function ViewClasses({ addedClasses, droppedClasses }) {
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableCell className='font-bold'>Class ID</TableCell>
-                    <TableCell className='font-bold'>Class</TableCell>
-                    <TableCell className='font-bold'>Class Title</TableCell>
+                  <TableRow className='font-bold'>
+                    <TableCell>Class ID</TableCell>
+                    <TableCell>Class</TableCell>
+                    <TableCell>Class Title</TableCell>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
