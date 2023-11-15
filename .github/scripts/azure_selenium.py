@@ -113,12 +113,12 @@ print("Simulate a javascript click to send the redirect URI...")
 save_elements = driver.find_elements(By.XPATH, "//*[contains(text(), 'Save')]")
 for element in save_elements:
     # Print its html element
-    print(element.get_attribute("outerHTML"))
+    print(f'Has Save: {element.get_attribute("outerHTML")}')
 
 # Get all divs that has a role of button
 divs = driver.find_elements(By.XPATH, "//div[@role='button']")
 for div in divs:
-    print(div.get_attribute("outerHTML"))
+    print(f'`div` with role as button: {div.get_attribute("outerHTML")}')
 
 # Click the element
 WebDriverWait(driver, 3).until(
