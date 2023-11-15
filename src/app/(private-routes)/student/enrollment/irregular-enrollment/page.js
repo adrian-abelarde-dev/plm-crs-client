@@ -1,5 +1,5 @@
-function irregStudentEnrollmentPage() {
+function IrregStudentEnrollmentPage() {
   return <div></div>;
 }
 
-export default irregStudentEnrollmentPage;
+export default IrregStudentEnrollmentPage;
