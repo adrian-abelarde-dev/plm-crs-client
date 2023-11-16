@@ -10,6 +10,14 @@ import {
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { toast } from '@/components/ui/use-toast';
 import {
   collegeActiveStatus,
@@ -28,7 +36,10 @@ import { useForm } from 'react-hook-form';
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
 
-function CollegeSubjectsEditIndivOrMultiple({ editIndivMultipleSubjects }) {
+function CollegeSubjectsEditIndivOrMultiple({
+  editIndivMultipleSubjects,
+  selectedSubjects,
+}) {
   const editSubjectForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
@@ -53,7 +64,9 @@ function CollegeSubjectsEditIndivOrMultiple({ editIndivMultipleSubjects }) {
     return (
       <DialogContent className='sm:max-w-[500px]'>
         <DialogHeader>
-          <DialogTitle>Edit Individual Subject</DialogTitle>
+          <DialogTitle className='text-2xl font-medium'>
+            Edit Individual Subject
+          </DialogTitle>
         </DialogHeader>
 
         <Form {...editSubjectForm}>
@@ -118,7 +131,7 @@ function CollegeSubjectsEditIndivOrMultiple({ editIndivMultipleSubjects }) {
                 <DialogClose asChild>
                   <Button variant='outline'>Cancel</Button>
                 </DialogClose>
-                <Button type='submit'>Save Subject</Button>
+                <Button type='submit'>Save Changes</Button>
               </DialogFooter>
             </div>
           </form>
@@ -127,51 +140,70 @@ function CollegeSubjectsEditIndivOrMultiple({ editIndivMultipleSubjects }) {
     );
   } else if (editIndivMultipleSubjects > 1) {
     return (
-      <DialogContent className='sm:max-w-[500px]'>
+      <DialogContent className='sm:max-w-[800px]'>
         <DialogHeader>
-          <DialogTitle>Edit Multiple Subjects</DialogTitle>
+          <DialogTitle className='text-2xl font-medium'>
+            Edit Multiple Subjects
+          </DialogTitle>
         </DialogHeader>
 
         <Form {...editSubjectForm}>
           <form onSubmit={editSubjectForm.handleSubmit(onSubmit)}>
             {/* Content */}
             <div className='flex flex-col gap-2'>
-              {/* Subject ID */}
-              <InputFormField
-                disabled={true}
-                form={editSubjectForm}
-                title='Subject ID'
-                placeholder='CSE2SYNC202310001'
-                fieldName='subjectId'
-                badge={<Badge variant='outline'>Auto-generated</Badge>}
-              />
+              {/* Selected Subjects */}
+              <Label className='font-medium text-xl'>Selected Subjects</Label>
+              <Table className='w-full mt-2 mb-10'>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className='font-medium text-black'>
+                      Subject
+                    </TableHead>
+                    <TableHead className='font-medium text-black'>
+                      Subject Type
+                    </TableHead>
+                    <TableHead className='font-medium text-black'>
+                      Active Status
+                    </TableHead>
+                    <TableHead className='font-medium text-black'>
+                      Created At
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {selectedSubjects.map((_subject, index) => {
+                    return (
+                      <TableRow key={index}>
+                        <TableCell>{_subject.subjectName}</TableCell>
+                        <TableCell>{_subject.subjectType}</TableCell>
+                        <TableCell>{_subject.activeStatus}</TableCell>
+                        <TableCell>{_subject.dateCreated}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
 
               {/* Subject Title */}
-              <SelectFormField
-                form={editSubjectForm}
-                content={collegeSubjectName}
-                title='Subject Title'
-                placeholder='Type title here...'
-                fieldName='collegeSubjectName'
-              />
+              <Label className='font-medium text-xl'>Subject Details</Label>
+              <section className='w-full grid grid-cols-2 gap-4 mt-2'>
+                <SelectFormField
+                  form={editSubjectForm}
+                  content={collegeSubjectType}
+                  title='Subject Type'
+                  placeholder='(Mixed)'
+                  fieldName='collegeSubjectType'
+                />
 
-              {/* Subject Type */}
-              <SelectFormField
-                form={editSubjectForm}
-                content={collegeSubjectType}
-                title='Subject Type'
-                placeholder='Select subject type...'
-                fieldName='collegeSubjectType'
-              />
-
-              {/* Active Status */}
-              <SelectFormField
-                form={editSubjectForm}
-                content={collegeActiveStatus}
-                title='Active Status'
-                placeholder='Select status...'
-                fieldName='collegeStatus'
-              />
+                {/* Active Status */}
+                <SelectFormField
+                  form={editSubjectForm}
+                  content={collegeActiveStatus}
+                  title='Active Status'
+                  placeholder='(Mixed)'
+                  fieldName='collegeStatus'
+                />
+              </section>
 
               {/* Checkbox for Confirmation */}
               <div className='items-top flex space-x-2 pt-2'>
@@ -194,7 +226,7 @@ function CollegeSubjectsEditIndivOrMultiple({ editIndivMultipleSubjects }) {
                 <DialogClose asChild>
                   <Button variant='outline'>Cancel</Button>
                 </DialogClose>
-                <Button type='submit'>Save Subject</Button>
+                <Button type='submit'>Save Changes</Button>
               </DialogFooter>
             </div>
           </form>

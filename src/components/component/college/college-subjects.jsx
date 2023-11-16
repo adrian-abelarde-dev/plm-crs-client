@@ -16,7 +16,11 @@ import ArchiveSubjectsUndergrad from './college-subjects-archive';
 import EditSubjectsUndergrad from './college-subjects-edit';
 
 function CollegeSubjectsPage() {
-  const [selectedSubject, setSelectedSubject] = useState({});
+  const [rowSelection, setRowSelection] = useState({});
+
+  const selectedSubjects = fakeSubjects.filter(
+    (item) => setRowSelection[item[fakeSubjectTemplate[0].accessorKey]],
+  );
 
   return (
     <main className='w-full p-6'>
@@ -27,16 +31,17 @@ function CollegeSubjectsPage() {
         searchPlaceholder='Search subjects...'
         isCheckBoxVisible={true}
         isFullscreen={false}
-        rowSelection={selectedSubject}
-        setRowSelection={setSelectedSubject}
+        rowSelection={rowSelection}
+        setRowSelection={setRowSelection}
         RightButtons={
           <div className='flex gap-2 items-center'>
             <ArchiveSubjectsUndergrad
-              disabled={Object.keys(selectedSubject).length === 0}
+              disabled={Object.keys(rowSelection).length === 0}
             />
             <EditSubjectsUndergrad
-              disabled={Object.keys(selectedSubject).length === 0}
-              editIndivMultipleSubjects={Object.keys(selectedSubject).length}
+              disabled={Object.keys(rowSelection).length === 0}
+              editIndivMultipleSubjects={Object.keys(rowSelection).length}
+              selectedSubjects={selectedSubjects}
             />
             <AddSubjectsUndergrad />
           </div>

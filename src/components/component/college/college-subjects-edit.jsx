@@ -5,7 +5,11 @@ import React from 'react';
 
 import CollegeSubjectsEditIndivOrMultiple from './college-subjects-edit-content';
 
-function EditSubjectsUndergrad({ disabled, editIndivMultipleSubjects }) {
+function EditSubjectsUndergrad({
+  disabled,
+  editIndivMultipleSubjects,
+  selectedSubjects,
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -20,6 +24,7 @@ function EditSubjectsUndergrad({ disabled, editIndivMultipleSubjects }) {
       </DialogTrigger>
       <CollegeSubjectsEditIndivOrMultiple
         editIndivMultipleSubjects={editIndivMultipleSubjects}
+        selectedSubjects={selectedSubjects}
       />
     </Dialog>
   );
