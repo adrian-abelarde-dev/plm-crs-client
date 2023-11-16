@@ -2,6 +2,7 @@
 
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import {
   Table,
@@ -13,7 +14,8 @@ import {
 } from '@/components/ui/table';
 import { fakeundergradIrregEnlistClasses } from '@/lib/constants/fake-data/undergrad-irreg-enlist-classes';
 import { ungradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-undergrad/classes-enlist';
-import { Download } from 'lucide-react';
+import { CheckCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 function IrregStudentEnrollmentPage() {
@@ -124,37 +126,22 @@ function ViewEnlistedStep({ enlistedClasses }) {
   );
 }
 
-function CompletedPreview(enlistedClasses) {
-  return (
-    <div className='flex flex-col'>
-      <Label className='font-medium text-4xl '>View Enlisted Classes</Label>
+function CompletedPreview() {
+  const startOfClasses = 'December 25, 1992';
 
-      <Table className='w-full mt-10'>
-        <TableHeader>
-          <TableRow>
-            <TableHead className='font-medium text-black'>
-              Class/Section
-            </TableHead>
-            <TableHead className='font-medium text-black'>
-              Class Title
-            </TableHead>
-            <TableHead className='font-medium text-black'>Schedule</TableHead>
-            <TableHead className='font-medium text-black'>Room</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {enlistedClasses.map((_class, index) => {
-            return (
-              <TableRow key={index}>
-                <TableCell>{_class.classSection}</TableCell>
-                <TableCell>{_class.classTitle}</TableCell>
-                <TableCell>{_class.schedule}</TableCell>
-                <TableCell>{_class.room}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+  return (
+    <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
+      <CheckCircle className='h-[9.375rem] w-[9.375rem] mr-2 mb-5 text-green-400' />
+      <Label className='text-4xl font-bold'>
+        You&apos;re Successfully Enrolled!
+      </Label>
+      <Label className='text-xl font-semibold'>
+        and added to your subject&apos;s MS Teams.
+      </Label>
+      <Label className='text-md mt-4 font-normal'>
+        The start of classes will be on{' '}
+        <span className='font-bold text-lg'>{startOfClasses}</span>
+      </Label>
       <div className='py-5 mt-5 flex justify-center border-0 '>
         <Label className='text-base font-bold mr-1'>NOTE:</Label>
         <Label className='text-base mr-1'>
@@ -165,9 +152,12 @@ function CompletedPreview(enlistedClasses) {
         <Label className='text-base mr-1'>to be</Label>
         <Label className='text-base underline mr-1'>officially enrolled</Label>
         <Label className='text-base'>
-          and be added to your subject’s MS teams.
+          and be added to your subject&apos;s MS teams.
         </Label>
       </div>
+      <Button className='mt-4' asChild>
+        <Link href='/student-grad'>Back to Dashboard</Link>
+      </Button>
     </div>
   );
 }
