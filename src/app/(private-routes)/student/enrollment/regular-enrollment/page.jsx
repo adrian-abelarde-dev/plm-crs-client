@@ -2,6 +2,7 @@
 
 import CustomStepper from '@/components/component/stepper';
 import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import {
   Select,
@@ -19,7 +20,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { fakeundergradRegScheduleClasses } from '@/lib/constants/fake-data/undergradRegScheduleClasses';
-import { Download } from 'lucide-react';
+import { CheckCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 function UndergradStudentEnrollment() {
@@ -173,13 +175,25 @@ function ViewAssessmentStep() {
 }
 
 function CompletedPreview() {
+  const startOfClasses = 'December 25, 1992';
+
   return (
-    <>
-      <Alert className='bg-yellow-500 flex justify-center mt-12'>
-        <AlertTitle className='font-bold text-lg'>
-          This space is for Registration Form
-        </AlertTitle>
-      </Alert>
+    <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
+      <CheckCircle className='h-[9.375rem] w-[9.375rem] mr-2 mb-5 text-green-400' />
+      <Label className='text-4xl font-bold'>
+        You&apos;re Successfully Enrolled!
+      </Label>
+      <Label className='text-xl font-semibold'>
+        and added to your subject&apos;s MS Teams.
+      </Label>
+      <Label className='text-md mt-4 font-normal'>
+        The start of classes will be on{' '}
+        <span className='font-bold text-lg'>{startOfClasses}</span>
+      </Label>
+
+      <Button className='mt-4' asChild>
+        <Link href='/student-grad'>Back to Dashboard</Link>
+      </Button>
 
       <div className='py-5 mt-5 flex justify-center border-0 '>
         <Label className='text-base mr-1'>Please download a copy of your</Label>
@@ -190,7 +204,7 @@ function CompletedPreview() {
           and be added to your subject’s MS teams.
         </Label>
       </div>
-    </>
+    </div>
   );
 }
 
