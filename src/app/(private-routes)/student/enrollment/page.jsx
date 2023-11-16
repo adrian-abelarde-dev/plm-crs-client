@@ -76,7 +76,7 @@ function UndergradStudentEnrollment() {
             </>
           }
           completedPreview={<CompletedPreview />}
-        ></CustomStepper>
+        />
       </div>
     </div>
   );

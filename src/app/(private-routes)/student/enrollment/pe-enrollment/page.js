@@ -1,5 +1,5 @@
-function peStudentEnrollmentPage() {
+function PEStudentEnrollmentPage() {
   return <div></div>;
 }
 
-export default peStudentEnrollmentPage;
+export default PEStudentEnrollmentPage;
