@@ -36,6 +36,7 @@ function CollegeSubjectsPage() {
             />
             <EditSubjectsUndergrad
               disabled={Object.keys(selectedSubject).length === 0}
+              editIndivMultipleSubjects={Object.keys(selectedSubject).length}
             />
             <AddSubjectsUndergrad />
           </div>

@@ -35,7 +35,7 @@ function CollegeSectionsPage() {
             />
             <EditSectionUndergrad
               disabled={Object.keys(selectedSection).length === 0}
-              onClick={() => console.log('edit')}
+              editIndivMultipleSections={Object.keys(selectedSection).length}
             />
             <AddSectionUndergrad />
           </div>
