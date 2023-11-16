@@ -130,7 +130,7 @@ function GradesTable({ selectedAysem }) {
                 <TableCell></TableCell>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
-                <TableCell className='text-center font-bold'>
+                <TableCell className='text-center font-bold bg-yellow-500 rounded-md'>
                   GWA: 1.25
                 </TableCell>
                 <TableCell></TableCell>

@@ -29,6 +29,24 @@ export const linksStudents = [
   {
     label: 'Enrollment',
     path: '/student/enrollment',
+    subLinks: [
+      {
+        label: 'Regular Enrollment',
+        path: '/student/enrollment/regular-enrollment',
+      },
+      {
+        label: 'irregular-enrollment',
+        path: '/student/enrollment/irregular-enrollment',
+      },
+      {
+        label: 'PE Enrollment',
+        path: '/student/enrollment/pe-enrollment',
+      },
+      {
+        label: 'NSTP Enrollment',
+        path: '/student/enrollment/nstp-enrollment',
+      },
+    ],
   },
   {
     label: 'Information',
