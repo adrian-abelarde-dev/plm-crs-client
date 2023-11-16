@@ -66,8 +66,8 @@ function PEStudentEnrollmentPage() {
               <Download className='h-4 w-4 mr-2' /> Download SER
             </>
           }
-          completedPreview={<CompletedPreview />}
-        ></CustomStepper>
+          completedPreview={<ViewEnlistedStep />}
+        />
       </div>
     </div>
   );
@@ -108,16 +108,17 @@ function ViewEnlistedStep({ enlistedClasses }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {enlistedClasses.map((_class, index) => {
-            return (
-              <TableRow key={index}>
-                <TableCell>{_class.classSection}</TableCell>
-                <TableCell>{_class.classTitle}</TableCell>
-                <TableCell>{_class.schedule}</TableCell>
-                <TableCell>{_class.room}</TableCell>
-              </TableRow>
-            );
-          })}
+          {enlistedClasses &&
+            enlistedClasses.map((_class, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableCell>{_class.classSection}</TableCell>
+                  <TableCell>{_class.classTitle}</TableCell>
+                  <TableCell>{_class.schedule}</TableCell>
+                  <TableCell>{_class.room}</TableCell>
+                </TableRow>
+              );
+            })}
         </TableBody>
       </Table>
     </div>
@@ -143,17 +144,16 @@ function CompletedPreview({ enlistedClasses }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {enlistedClasses &&
-            enlistedClasses.map((_class, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell>{_class.classSection}</TableCell>
-                  <TableCell>{_class.classTitle}</TableCell>
-                  <TableCell>{_class.schedule}</TableCell>
-                  <TableCell>{_class.room}</TableCell>
-                </TableRow>
-              );
-            })}
+          {enlistedClasses.map((_class, index) => {
+            return (
+              <TableRow key={index}>
+                <TableCell>{_class.classSection}</TableCell>
+                <TableCell>{_class.classTitle}</TableCell>
+                <TableCell>{_class.schedule}</TableCell>
+                <TableCell>{_class.room}</TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
       <div className='py-5 mt-5 flex justify-center border-0 '>
@@ -166,7 +166,7 @@ function CompletedPreview({ enlistedClasses }) {
         <Label className='text-base mr-1'>to be</Label>
         <Label className='text-base underline mr-1'>officially enrolled</Label>
         <Label className='text-base'>
-          and be added to your subject’s MS teams.
+          and be added to your subject&apos;s MS teams.
         </Label>
       </div>
     </div>
