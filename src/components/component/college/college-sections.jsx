@@ -15,7 +15,10 @@ import ArchiveSectionUndergrad from './college-sections-archive';
 import EditSectionUndergrad from './college-sections-edit';
 
 function CollegeSectionsPage() {
-  const [selectedSection, setSelectedSection] = useState({});
+  const [rowSelection, setRowSelection] = useState({});
+  const selectedSections = fakeSection.filter(
+    (item) => setRowSelection[item[fakeSectionTemplate[0].accessorKey]],
+  );
 
   return (
     <main className='w-full p-6'>
@@ -26,16 +29,17 @@ function CollegeSectionsPage() {
         searchPlaceholder='Search sections...'
         isCheckBoxVisible={true}
         isFullscreen={false}
-        rowSelection={selectedSection}
-        setRowSelection={setSelectedSection}
+        rowSelection={rowSelection}
+        setRowSelection={setRowSelection}
         RightButtons={
           <div className='flex gap-2 items-center'>
             <ArchiveSectionUndergrad
-              disabled={Object.keys(selectedSection).length === 0}
+              disabled={Object.keys(rowSelection).length === 0}
             />
             <EditSectionUndergrad
-              disabled={Object.keys(selectedSection).length === 0}
-              editIndivMultipleSections={Object.keys(selectedSection).length}
+              disabled={Object.keys(rowSelection).length === 0}
+              editIndivMultipleSections={Object.keys(rowSelection).length}
+              selectedSections={selectedSections}
             />
             <AddSectionUndergrad />
           </div>

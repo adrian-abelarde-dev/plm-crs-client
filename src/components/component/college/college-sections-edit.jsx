@@ -4,7 +4,11 @@ import { Edit } from 'lucide-react';
 
 import CollegeSectionsEditIndivOrMultiple from './college-sections-edit-content';
 
-function EditSectionUndergrad({ disabled, editIndivMultipleSections }) {
+function EditSectionUndergrad({
+  disabled,
+  editIndivMultipleSections,
+  selectedSections,
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -19,6 +23,7 @@ function EditSectionUndergrad({ disabled, editIndivMultipleSections }) {
       </DialogTrigger>
       <CollegeSectionsEditIndivOrMultiple
         editIndivMultipleSections={editIndivMultipleSections}
+        selectedSections={selectedSections}
       />
     </Dialog>
   );

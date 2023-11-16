@@ -16,42 +16,52 @@ export const fakeSectionRowActions = [
 export const fakeSection = [
   {
     collegeSection: 'BSCS 2-4',
+    collegeDepartment: 'CET',
     dateCreated: 'September 23, 2023',
   },
   {
     collegeSection: 'BSIT 2-5',
+    collegeDepartment: 'CET',
     dateCreated: 'September 24, 2023',
   },
   {
     collegeSection: 'BSME 2-6',
+    collegeDepartment: 'CET',
     dateCreated: 'September 25, 2023',
   },
   {
     collegeSection: 'BEED 2-7',
+    collegeDepartment: 'CET',
     dateCreated: 'September 26, 2023',
   },
   {
     collegeSection: 'BSE 2-8',
+    collegeDepartment: 'CET',
     dateCreated: 'September 27, 2023',
   },
   {
     collegeSection: 'BSN 2-9',
+    collegeDepartment: 'CET',
     dateCreated: 'September 28, 2023',
   },
   {
     collegeSection: 'BSPH 2-10',
+    collegeDepartment: 'CET',
     dateCreated: 'September 29, 2023',
   },
   {
     collegeSection: 'BSA 2-11',
+    collegeDepartment: 'CET',
     dateCreated: 'September 30, 2023',
   },
   {
     collegeSection: 'BSARCH 2-12',
+    collegeDepartment: 'CET',
     dateCreated: 'October 01, 2023',
   },
   {
     collegeSection: 'BSCRIM 2-13',
+    collegeDepartment: 'CET',
     dateCreated: 'October 02, 2023',
   },
 ];

@@ -10,6 +10,14 @@ import {
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { toast } from '@/components/ui/use-toast';
 import {
   collegeDepartments,
@@ -28,7 +36,10 @@ import { useForm } from 'react-hook-form';
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
 
-function CollegeSectionsEditIndivOrMultiple({ editIndivMultipleSections }) {
+function CollegeSectionsEditIndivOrMultiple({
+  editIndivMultipleSections,
+  selectedSections,
+}) {
   const editSectionForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
@@ -52,7 +63,9 @@ function CollegeSectionsEditIndivOrMultiple({ editIndivMultipleSections }) {
     return (
       <DialogContent className='sm:max-w-[500px]'>
         <DialogHeader>
-          <DialogTitle>Edit Individual Section</DialogTitle>
+          <DialogTitle className='text-2xl font-medium'>
+            Edit Individual Section
+          </DialogTitle>
         </DialogHeader>
         <Form {...editSectionForm}>
           <form onSubmit={editSectionForm.handleSubmit(onSubmit)}>
@@ -87,24 +100,28 @@ function CollegeSectionsEditIndivOrMultiple({ editIndivMultipleSections }) {
               />
 
               {/* Year Level and Section */}
-              <section className='w-full flex gap-2 justify-items-start'>
-                {/* Year Level */}
-                <SelectFormField
-                  form={editSectionForm}
-                  content={collegeYear}
-                  title='Year Level'
-                  placeholder='Select year level...'
-                  fieldName='collegeYear'
-                />
+              <section className='w-full flex gap-2 justify-between'>
+                <section className='w-2/5 '>
+                  {/* Year Level */}
+                  <SelectFormField
+                    form={editSectionForm}
+                    content={collegeYear}
+                    title='Year Level'
+                    placeholder='Select year level...'
+                    fieldName='collegeYear'
+                  />
+                </section>
                 <Label className='flex items-center'>-</Label>
+                <section className='w-2/5'>
+                  <SelectFormField
+                    form={editSectionForm}
+                    content={collegeSection}
+                    title='Section'
+                    placeholder='Select section...'
+                    fieldName='collegeSection'
+                  />
+                </section>
                 {/* Section */}
-                <SelectFormField
-                  form={editSectionForm}
-                  content={collegeSection}
-                  title='Section'
-                  placeholder='Select section...'
-                  fieldName='collegeSection'
-                />
               </section>
 
               {/* Checkbox for Confirmation */}
@@ -128,7 +145,7 @@ function CollegeSectionsEditIndivOrMultiple({ editIndivMultipleSections }) {
                 <DialogClose asChild>
                   <Button variant='outline'>Cancel</Button>
                 </DialogClose>
-                <Button type='submit'>Save Section</Button>
+                <Button type='submit'>Save Changes</Button>
               </DialogFooter>
             </div>
           </form>
@@ -137,61 +154,85 @@ function CollegeSectionsEditIndivOrMultiple({ editIndivMultipleSections }) {
     );
   } else if (editIndivMultipleSections > 1) {
     return (
-      <DialogContent className='sm:max-w-[500px]'>
+      <DialogContent className='sm:max-w-[800px]'>
         <DialogHeader>
-          <DialogTitle>Edit Multiple Sections</DialogTitle>
+          <DialogTitle className='text-2xl font-medium'>
+            Edit Multiple Sections
+          </DialogTitle>
         </DialogHeader>
         <Form {...editSectionForm}>
           <form onSubmit={editSectionForm.handleSubmit(onSubmit)}>
             {/* Content */}
             <div className='flex flex-col gap-2'>
-              {/* Section ID */}
-              <InputFormField
-                disabled={true}
-                form={editSectionForm}
-                title='Section ID'
-                placeholder='CETBSCS0401'
-                fieldName='sectionId'
-                badge={<Badge variant='outline'>Auto-generated</Badge>}
-              />
+              {/* Selected Sections */}
+              <Label className='font-medium text-xl'>Selected Sections</Label>
+              <Table className='w-full mt-2 mb-10'>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className='font-medium text-black'>
+                      Section
+                    </TableHead>
+                    <TableHead className='font-medium text-black'>
+                      Department
+                    </TableHead>
+                    <TableHead className='font-medium text-black'>
+                      Created At
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {selectedSections.map((_section, index) => {
+                    return (
+                      <TableRow key={index}>
+                        <TableCell>{_section.collegeSection}</TableCell>
+                        <TableCell>{_section.collegeDepartments}</TableCell>
+                        <TableCell>{_section.dateCreated}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
 
-              {/* Department */}
-              <SelectFormField
-                form={editSectionForm}
-                content={collegeDepartments}
-                title='Department'
-                placeholder='Select department...'
-                fieldName='collegeDepartment'
-              />
-
-              {/* Programs */}
-              <SelectFormField
-                form={editSectionForm}
-                content={collegePrograms}
-                title='Program'
-                placeholder='Select program...'
-                fieldName='collegeProgram'
-              />
-
-              {/* Year Level and Section */}
-              <section className='w-full flex gap-2 justify-items-start'>
-                {/* Year Level */}
-                <SelectFormField
-                  form={editSectionForm}
-                  content={collegeYear}
-                  title='Year Level'
-                  placeholder='Select year level...'
-                  fieldName='collegeYear'
-                />
-                <Label className='flex items-center'>-</Label>
-                {/* Section */}
-                <SelectFormField
-                  form={editSectionForm}
-                  content={collegeSection}
-                  title='Section'
-                  placeholder='Select section...'
-                  fieldName='collegeSection'
-                />
+              <Label className='font-medium text-xl'>Section Details</Label>
+              <section className='w-full flex gap-4 mt-2'>
+                <section className='w-8/12 grid grid-cols-2 gap-2'>
+                  {/* Department */}
+                  <SelectFormField
+                    form={editSectionForm}
+                    content={collegeDepartments}
+                    title='Department'
+                    placeholder='Select department...'
+                    fieldName='collegeDepartment'
+                  />
+                  {/* Programs */}
+                  <SelectFormField
+                    form={editSectionForm}
+                    content={collegePrograms}
+                    title='Program'
+                    placeholder='Select program...'
+                    fieldName='collegeProgram'
+                  />
+                </section>
+                {/* Year Level and Section */}
+                <section className='w-4/12 flex gap-2 justify-evenly'>
+                  {/* Year Level */}
+                  <SelectFormField
+                    form={editSectionForm}
+                    content={collegeYear}
+                    title='Year Level'
+                    placeholder='(Mixed)'
+                    fieldName='collegeYear'
+                  />
+                  <Label className='flex items-center'>-</Label>
+                  {/* Section */}
+                  <SelectFormField
+                    form={editSectionForm}
+                    content={collegeSection}
+                    title='Section'
+                    placeholder='(Mixed)'
+                    fieldName='collegeSection'
+                  />
+                </section>
               </section>
 
               {/* Checkbox for Confirmation */}
@@ -215,7 +256,7 @@ function CollegeSectionsEditIndivOrMultiple({ editIndivMultipleSections }) {
                 <DialogClose asChild>
                   <Button variant='outline'>Cancel</Button>
                 </DialogClose>
-                <Button type='submit'>Save Section</Button>
+                <Button type='submit'>Save Changes</Button>
               </DialogFooter>
             </div>
           </form>
