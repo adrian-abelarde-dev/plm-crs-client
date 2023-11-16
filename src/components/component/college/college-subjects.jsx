@@ -8,7 +8,7 @@ import {
 } from '@/lib/constants/fake-data/college-subjects';
 import '@/lib/constants/schema/user';
 import { fakeSubjectTemplate } from '@/lib/constants/table-templates/college/college-subjects-table';
-import { cn } from '@/lib/utils';
+import { cn, handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
 import AddSubjectsUndergrad from './college-subjects-add';
@@ -18,8 +18,10 @@ import EditSubjectsUndergrad from './college-subjects-edit';
 function CollegeSubjectsPage() {
   const [rowSelection, setRowSelection] = useState({});
 
-  const selectedSubjects = fakeSubjects.filter(
-    (item) => setRowSelection[item[fakeSubjectTemplate[0].accessorKey]],
+  const selectedSubjects = handleRowSelectionChange(
+    fakeSubjects,
+    fakeSubjectTemplate,
+    rowSelection,
   );
 
   return (

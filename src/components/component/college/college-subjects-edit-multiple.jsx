@@ -28,18 +28,46 @@ import {
 } from '@/lib/constants/schema/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle } from 'lucide-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import SelectFormField from '../form/select-formfield';
 
 function CollegeSubjectsEditMultiple({ selectedSubjects }) {
+  const [defaultSubjectType, setDefaultSubjectType] = useState('');
+  const [defaultActiveStatus, setDefaultActiveStatus] = useState('');
   const editSubjectForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
       userSchemaDefaultValues,
     },
   });
+
+  useEffect(() => {
+    // check if all subjectType on selectedSubjects are all the same
+    // if all are same, set the default value of subjectType to that value
+    // else, set the default value of subjectType to '(Mixed)'
+    // check if all activeStatus on selectedSubjects are all the same
+    // if all are same, set the default value of activeStatus to that value
+    // else, set the default value of activeStatus to '(Mixed)'
+    // Extract unique values for subjectType and activeStatus
+    const uniqueSubjectTypes = [
+      ...new Set(selectedSubjects.map((subject) => subject.subjectType)),
+    ];
+    const uniqueActiveStatus = [
+      ...new Set(selectedSubjects.map((subject) => subject.activeStatus)),
+    ];
+
+    // Determine default values based on uniqueness
+    const defaultSubjectTypeValue =
+      uniqueSubjectTypes.length === 1 ? uniqueSubjectTypes[0] : '(Mixed)';
+    const defaultActiveStatusValue =
+      uniqueActiveStatus.length === 1 ? uniqueActiveStatus[0] : '(Mixed)';
+
+    // Set default values in state
+    setDefaultSubjectType(defaultSubjectTypeValue);
+    setDefaultActiveStatus(defaultActiveStatusValue);
+  }, [editSubjectForm, selectedSubjects]);
 
   function onSubmit(values) {
     console.log(values);
@@ -106,7 +134,7 @@ function CollegeSubjectsEditMultiple({ selectedSubjects }) {
                 form={editSubjectForm}
                 content={collegeSubjectType}
                 title='Subject Type'
-                placeholder='(Mixed)'
+                placeholder={defaultSubjectType}
                 fieldName='collegeSubjectType'
               />
 
@@ -115,7 +143,7 @@ function CollegeSubjectsEditMultiple({ selectedSubjects }) {
                 form={editSubjectForm}
                 content={collegeActiveStatus}
                 title='Active Status'
-                placeholder='(Mixed)'
+                placeholder={defaultActiveStatus}
                 fieldName='collegeStatus'
               />
             </section>
