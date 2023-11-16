@@ -66,7 +66,7 @@ function PEStudentEnrollmentPage() {
               <Download className='h-4 w-4 mr-2' /> Download SER
             </>
           }
-          completedPreview={<ViewEnlistedStep />}
+          completedPreview={<CompletedPreview />}
         />
       </div>
     </div>
