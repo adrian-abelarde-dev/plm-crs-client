@@ -39,9 +39,7 @@ function IrregStudentEnrollmentPage() {
     {
       label: 'Second step',
       description: 'View enlisted classes',
-      content: (
-        <ViewEnlistedStep enlistedClasses={fakeundergradIrregEnlistClasses} />
-      ),
+      content: <ViewEnlistedStep enlistedClasses={enlistedClasses} />,
     },
   ];
   return (
@@ -69,7 +67,7 @@ function IrregStudentEnrollmentPage() {
             </>
           }
           completedPreview={<CompletedPreview />}
-        ></CustomStepper>
+        />
       </div>
     </div>
   );
@@ -126,7 +124,7 @@ function ViewEnlistedStep({ enlistedClasses }) {
   );
 }
 
-function CompletedPreview() {
+function CompletedPreview(enlistedClasses) {
   return (
     <div className='flex flex-col'>
       <Label className='font-medium text-4xl '>View Enlisted Classes</Label>
@@ -145,7 +143,7 @@ function CompletedPreview() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {fakeundergradIrregEnlistClasses.map((_class, index) => {
+          {enlistedClasses.map((_class, index) => {
             return (
               <TableRow key={index}>
                 <TableCell>{_class.classSection}</TableCell>
