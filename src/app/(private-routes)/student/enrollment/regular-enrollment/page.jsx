@@ -191,10 +191,6 @@ function CompletedPreview() {
         <span className='font-bold text-lg'>{startOfClasses}</span>
       </Label>
 
-      <Button className='mt-4' asChild>
-        <Link href='/student-grad'>Back to Dashboard</Link>
-      </Button>
-
       <div className='py-5 mt-5 flex justify-center border-0 '>
         <Label className='text-base mr-1'>Please download a copy of your</Label>
         <Label className='text-base font-bold mr-1'>SER</Label>
@@ -204,6 +200,9 @@ function CompletedPreview() {
           and be added to your subject’s MS teams.
         </Label>
       </div>
+      <Button className='mt-4' asChild>
+        <Link href='/student-grad'>Back to Dashboard</Link>
+      </Button>
     </div>
   );
 }
