@@ -8,7 +8,9 @@ function CollegeSubjectsEditIndivOrMultiple({
   selectedSubjects,
 }) {
   if (editIndivMultipleSubjects === 1) {
-    return <CollegeSubjectsEditIndividual />;
+    return (
+      <CollegeSubjectsEditIndividual selectedSubjects={selectedSubjects} />
+    );
   } else if (editIndivMultipleSubjects > 1) {
     return <CollegeSubjectsEditMultiple selectedSubjects={selectedSubjects} />;
   }

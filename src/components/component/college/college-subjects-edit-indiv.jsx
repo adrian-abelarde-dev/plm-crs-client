@@ -22,13 +22,16 @@ import {
 } from '@/lib/constants/schema/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle } from 'lucide-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import InputFormField from '../form/input-formfield';
 import SelectFormField from '../form/select-formfield';
 
-function CollegeSubjectsEditIndividual() {
+function CollegeSubjectsEditIndividual({ selectedSubjects }) {
+  const [defaultSubjectTitle, setDefaultSubjectTitle] = useState('');
+  const [defaultSubjectType, setDefaultSubjectType] = useState('');
+  const [defaultActiveStatus, setDefaultActiveStatus] = useState('');
   const editSubjectForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
@@ -48,6 +51,27 @@ function CollegeSubjectsEditIndividual() {
       description: <>Changes has been Saved.</>,
     });
   }
+
+  useEffect(() => {
+    const selectedSubjectTitle = Array.from(new Set(selectedSubjects)).map(
+      (subject) => subject.subjectName,
+    );
+    const selectedSubjectType = Array.from(new Set(selectedSubjects)).map(
+      (subject) => subject.subjectType,
+    );
+    const selectedActiveStatus = Array.from(new Set(selectedSubjects)).map(
+      (subject) => subject.activeStatus,
+    );
+
+    const defaultSubjectTitle = selectedSubjectTitle[0];
+    const defaultSubjectType = selectedSubjectType[0];
+    const defaultActiveStatus = selectedActiveStatus[0];
+
+    setDefaultSubjectTitle(defaultSubjectTitle);
+    setDefaultSubjectType(defaultSubjectType);
+    setDefaultActiveStatus(defaultActiveStatus);
+  }, [editSubjectForm, selectedSubjects]);
+
   return (
     <DialogContent className='sm:max-w-[500px]'>
       <DialogHeader>
@@ -75,7 +99,7 @@ function CollegeSubjectsEditIndividual() {
               form={editSubjectForm}
               content={collegeSubjectName}
               title='Subject Title'
-              placeholder='Type title here...'
+              placeholder={defaultSubjectTitle}
               fieldName='collegeSubjectName'
             />
 
@@ -84,7 +108,7 @@ function CollegeSubjectsEditIndividual() {
               form={editSubjectForm}
               content={collegeSubjectType}
               title='Subject Type'
-              placeholder='Select subject type...'
+              placeholder={defaultSubjectType}
               fieldName='collegeSubjectType'
             />
 
@@ -93,7 +117,7 @@ function CollegeSubjectsEditIndividual() {
               form={editSubjectForm}
               content={collegeActiveStatus}
               title='Active Status'
-              placeholder='Select status...'
+              placeholder={defaultActiveStatus}
               fieldName='collegeStatus'
             />
 
