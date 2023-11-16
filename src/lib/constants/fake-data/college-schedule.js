@@ -89,3 +89,63 @@ export const fakeCollegeFaculty = [
     facultyEmail: 'egwilliams@plm.edu.ph',
   },
 ];
+
+export const fakeCollegeClassHours = [
+  {
+    day: 'Monday',
+    timeStart: '8:00 AM',
+    timeEnd: '9:30 AM',
+    room: 'GV 301',
+    meetingType: 'Asynchronous Online',
+  },
+  {
+    day: 'Monday',
+    timeStart: '8:00 AM',
+    timeEnd: '9:30 AM',
+    room: 'GV 301',
+    meetingType: 'Asynchronous Online',
+  },
+  {
+    day: 'Monday',
+    timeStart: '8:00 AM',
+    timeEnd: '9:30 AM',
+    room: 'GV 301',
+    meetingType: 'Asynchronous Online',
+  },
+  {
+    day: 'Wednesday',
+    timeStart: '8:00 AM',
+    timeEnd: '9:30 AM',
+    room: 'GV 301',
+    meetingType: 'Asynchronous Online',
+  },
+  {
+    day: 'Saturday',
+    timeStart: '8:30 AM',
+    timeEnd: '9:30 AM',
+    room: 'GV 301',
+    meetingType: 'Synchronous Online',
+  },
+  {
+    day: 'Friday',
+    timeStart: '8:00 AM',
+    timeEnd: '9:30 AM',
+    room: 'GV 301',
+    meetingType: 'Face To Face',
+  },
+];
+
+export const fakeCollegeClassRestrictions = [
+  {
+    scope: 'College',
+    restriction: 'Not Sure',
+  },
+  {
+    scope: 'College',
+    restriction: 'Not Sure',
+  },
+  {
+    scope: 'College',
+    restriction: 'Not Sure',
+  },
+];

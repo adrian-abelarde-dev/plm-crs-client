@@ -35,6 +35,8 @@ import {
 } from '@/components/ui/tooltip';
 import { toast } from '@/components/ui/use-toast';
 import {
+  fakeCollegeClassHours,
+  fakeCollegeClassRestrictions,
   fakeCollegeFaculty,
   fakeCollegeSchedule,
 } from '@/lib/constants/fake-data/college-schedule';
@@ -49,14 +51,16 @@ import {
   Check,
   CheckCircle,
   ChevronDown,
+  Delete,
   Edit,
   HelpCircle,
 } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
-import InputFormField from '../form/input-formfield';
-import SelectFormField from '../form/select-formfield';
+import InputFormField from '../../../../components/component/form/input-formfield';
+import SelectFormField from '../../../../components/component/form/select-formfield';
+import AddClassCollegeDialogForm from './add-faculty-dialog-form';
 
 export const collegeDepartments = [
   {
@@ -354,9 +358,75 @@ function CollegeSchedulePage() {
         description: <>Changes has been Saved.</>,
       });
     }
+    const handleAddFacultyClick = () => {
+      // Call the AddClassCollegeDialogForm function when the button is clicked
+      AddClassCollegeDialogForm();
+    };
 
     function AddFacultyUndergrad() {
-      return <Button>Add Faculty</Button>;
+      return <Button onClick={handleAddFacultyClick}>Add Faculty</Button>;
+    }
+
+    function EditFacultyUndergrad() {
+      return (
+        <Button variant='outline'>
+          Edit
+          <Edit className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    }
+
+    function DeleteFacultyUndergrad() {
+      return (
+        <Button variant='outline'>
+          Delete
+          <Delete className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    }
+
+    function AddClassHourUndergrad() {
+      return <Button>Add Class</Button>;
+    }
+
+    function EditClassHourUndergrad() {
+      return (
+        <Button variant='outline'>
+          Edit
+          <Edit className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    }
+
+    function DeleteClassHourUndergrad() {
+      return (
+        <Button variant='outline'>
+          Delete
+          <Delete className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    }
+
+    function AddClassResUndergrad() {
+      return <Button classname='font-medium'>Add Class</Button>;
+    }
+
+    function EditClassResUndergrad() {
+      return (
+        <Button variant='outline'>
+          Edit
+          <Edit className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    }
+
+    function DeleteClassResUndergrad() {
+      return (
+        <Button variant='outline'>
+          Delete
+          <Delete className='ml-2 h-4 w-4' />
+        </Button>
+      );
     }
 
     const fakeCollegeFacultyTemplate = [
@@ -386,31 +456,79 @@ function CollegeSchedulePage() {
       },
     ];
 
+    const fakeCollegeClassHoursTemplate = [
+      {
+        accessorKey: 'day',
+        id: 'day',
+        header: 'Day',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'timeStart',
+        id: 'timeStart',
+        header: 'Start Time',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'timeEnd',
+        id: 'timeEnd',
+        header: 'End Time',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'room',
+        id: 'room',
+        header: 'Room',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'meetingType',
+        id: 'meetingType',
+        header: 'Meeting Type',
+        filterVariant: 'fuzzy',
+      },
+    ];
+
+    const fakeCollegeClassResTemplate = [
+      {
+        accessorKey: 'scope',
+        id: 'scope',
+        header: 'Scope',
+        filterVariant: 'fuzzy',
+      },
+      {
+        accessorKey: 'restriction',
+        id: 'restriction',
+        header: 'Restriction',
+        filterVariant: 'fuzzy',
+      },
+    ];
+
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Add Section</Button>
+          <Button>Add Class</Button>
         </DialogTrigger>
         <DialogContent className='md:max-w-[1024px] h-5/6 overflow-auto'>
           <DialogHeader>
-            <DialogTitle className='font-medium text-2xl'>
-              Add Section
-            </DialogTitle>
+            <DialogTitle className='font-bold text-2xl'>Add Class</DialogTitle>
           </DialogHeader>
 
           <Form {...addClassForm}>
             <form onSubmit={addClassForm.handleSubmit(onSubmit)}>
               {/* Content */}
-              <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-4 mt-3'>
                 {/* Class Information */}
-                <Label className='font-medium text-xl pt-4'>
+                <Label className='font-semibold text-xl pt-4'>
                   Class Information
                 </Label>
                 {/* Schedule ID */}
                 <InputFormField
                   disabled={true}
                   form={addClassForm}
-                  title='Schedule ID'
+                  title={
+                    <Label className='font-medium text-sm'>Schedule ID</Label>
+                  }
                   placeholder='CETBSCS0401'
                   fieldName='scheduleId'
                   badge={<Badge variant='outline'>Auto-generated</Badge>}
@@ -418,18 +536,19 @@ function CollegeSchedulePage() {
                 {/* Subject */}
                 <InputFormField
                   form={addClassForm}
-                  title='Subject'
+                  title={<Label className='font-medium text-sm'>Subject</Label>}
                   placeholder='Enter subject'
                   fieldName='scheduleSubject'
                 />
-
                 {/* Section, Credits, Alloted Slots */}
                 <section className='w-full grid grid-cols-3 gap-2 '>
                   {/* Section */}
                   <SelectFormField
                     form={addClassForm}
                     content={collegeSection}
-                    title='Section'
+                    title={
+                      <Label className='font-medium text-sm'>Section</Label>
+                    }
                     placeholder='1'
                     fieldName='scheduleSection'
                   />
@@ -437,7 +556,9 @@ function CollegeSchedulePage() {
                   <SelectFormField
                     form={addClassForm}
                     content={collegeSection}
-                    title='Credits'
+                    title={
+                      <Label className='font-medium text-sm'>Credits</Label>
+                    }
                     placeholder='1'
                     fieldName='scheduleCredits'
                   />
@@ -445,7 +566,11 @@ function CollegeSchedulePage() {
                   <SelectFormField
                     form={addClassForm}
                     content={collegeSlots}
-                    title='Alloted Slots'
+                    title={
+                      <Label className='font-medium text-sm'>
+                        Allotted Slots
+                      </Label>
+                    }
                     placeholder='1'
                     fieldName='scheduleSlots'
                   />
@@ -454,7 +579,11 @@ function CollegeSchedulePage() {
                 <SelectFormField
                   form={addClassForm}
                   content={collegeParentClassCode}
-                  title='Parent Class Code'
+                  title={
+                    <Label className='font-medium text-sm'>
+                      Parent Class Code
+                    </Label>
+                  }
                   placeholder='Enter parent class code'
                   fieldName='scheduleParentClassCode'
                 />
@@ -464,7 +593,11 @@ function CollegeSchedulePage() {
                   <SelectFormField
                     form={addClassForm}
                     content={collegeYearLevel}
-                    title='Minimum Year Level'
+                    title={
+                      <Label className='font-medium text-sm'>
+                        Minimum Year Level
+                      </Label>
+                    }
                     placeholder='Enter minimum year level'
                     fieldName='scheduleMinYrLevel'
                   />
@@ -473,7 +606,9 @@ function CollegeSchedulePage() {
                     disabled={true}
                     form={addClassForm}
                     content={collegeSchoolYears}
-                    title='AY-SEM'
+                    title={
+                      <Label className='font-medium text-sm'>AY-SEM</Label>
+                    }
                     placeholder='20231'
                     fieldName='scheduleAYSEM'
                   />
@@ -481,33 +616,39 @@ function CollegeSchedulePage() {
                   <SelectFormField
                     form={addClassForm}
                     content={collegeSchoolYears}
-                    title='College'
+                    title={
+                      <Label className='font-medium text-sm'>College</Label>
+                    }
                     placeholder='Enter AY-SEM'
                     fieldName='scheduleCollege'
                   />
                 </section>
-
                 {/* Faculty Table */}
                 <TableMRT
-                  className='pt-1'
+                  className='pt-5'
                   template={fakeCollegeFacultyTemplate}
                   data={fakeCollegeFaculty}
-                  title={<Label className='font-medium text-xl'>Faculty</Label>}
+                  title={
+                    <Label className='font-semibold text-xl pt-3'>
+                      Faculty
+                    </Label>
+                  }
                   searchPlaceholder='Search faculty...'
                   isFullscreen={false}
                   RightButtons={
                     <>
+                      <DeleteFacultyUndergrad />
+                      <EditFacultyUndergrad />
                       <AddFacultyUndergrad />
                     </>
                   }
                 />
-
                 {/* Class Information */}
-                <Label className='font-medium text-xl pt-4 pb-6'>
+                <Label className='font-semibold text-xl pt-2 pb-6'>
                   Class Hours
                 </Label>
                 {/* Is the class hours to be announced or unknown yet? */}
-                <div className='grid grid-cols-1 space-y-4'>
+                <div className='grid grid-cols-1 space-y-2'>
                   <div className='flex gap-8'>
                     <div className='flex'>
                       <Label className='font-medium text-sm'>
@@ -519,8 +660,8 @@ function CollegeSchedulePage() {
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <div className='flex'>
-                              <HelpCircle className='h-4 w-4 pt-1 inline-flex' />
+                            <div className='flex mt-1'>
+                              <HelpCircle className='h-4 w-4 inline-flex' />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent className='h-20 w-64 bg-black text-white justify-evenly tooltip-right'>
@@ -559,18 +700,21 @@ function CollegeSchedulePage() {
                 {/* Class has no definite time and day? */}
                 <div className='grid grid-cols-1 mt-4'>
                   <div className='flex gap-8'>
-                    <div className='flex'>
+                    <div className='flex flex-col'>
                       <Label className='font-medium text-sm'>
                         Class has no definite time and day?
+                        <span className='text-red-500'> *</span>
                       </Label>
-                      <span className='text-red-500'> *</span>
+                      <Label className='font-medium text-sm text-zinc-500 mb-5'>
+                        (e.g. Thesis / Practicum / Field / College of Music)
+                      </Label>
                     </div>
                     <div className='flex'>
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className='flex'>
-                              <HelpCircle className='h-4 w-4 pt-1 inline-flex' />
+                              <HelpCircle className='h-4 w-4 inline-flex' />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent className='h-20 w-64 bg-black text-white justify-evenly tooltip-right'>
@@ -585,9 +729,6 @@ function CollegeSchedulePage() {
                       </TooltipProvider>
                     </div>
                   </div>
-                  <Label className='font-medium text-sm text-zinc-500 mt-1 mb-4'>
-                    (e.g. Thesis / Practicum / Field / College of Music)
-                  </Label>
                   <RadioGroup defaultValues=''>
                     <div className='flex gap-8'>
                       <div className='flex items-center space-x-2'>
@@ -609,27 +750,80 @@ function CollegeSchedulePage() {
                     </div>
                   </RadioGroup>
                 </div>
-
                 {/* Checkbox for Confirmation */}
-                <div className='items-top flex space-x-2 pt-2'>
+                <div className='items-top flex space-x-4 pt-5'>
                   <Checkbox id='confirm' />
-                  <div className='grid gap-1.5 leading-none'>
+                  <div className='grid gap-1 leading-none'>
                     <label
                       htmlFor='confirm'
-                      className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                      className='text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
                     >
                       Are you sure?
                     </label>
-                    <p className='text-sm text-muted-foreground'>
+                    <p className='text-sm text-muted-foreground w-72'>
                       Double check if all inputs are correct to make sure there
                       are no input errors.
                     </p>
                   </div>
                 </div>
-
-                <DialogFooter className='w-full flex justify-end mt-4'>
-                  <Button type='submit'>Save Section</Button>
-                </DialogFooter>
+                {/* Table for Class Hours*/}
+                <TableMRT
+                  className='pt-3'
+                  template={fakeCollegeClassHoursTemplate}
+                  data={fakeCollegeClassHours}
+                  searchPlaceholder='Search schedule...'
+                  isCheckBoxVisible={true}
+                  isFullscreen={false}
+                  RightButtons={
+                    <>
+                      <DeleteClassHourUndergrad />
+                      <EditClassHourUndergrad />
+                      <AddClassHourUndergrad />
+                    </>
+                  }
+                />
+                {/* Table for Class Restriction*/}
+                <TableMRT
+                  className='pt-3'
+                  template={fakeCollegeClassResTemplate}
+                  data={fakeCollegeClassRestrictions}
+                  title={
+                    <Label className='font-semibold text-xl'>
+                      Class Restriction
+                    </Label>
+                  }
+                  searchPlaceholder='Search restriction...'
+                  isCheckBoxVisible={true}
+                  isFullscreen={false}
+                  RightButtons={
+                    <>
+                      <DeleteClassResUndergrad />
+                      <EditClassResUndergrad />
+                      <AddClassResUndergrad />
+                    </>
+                  }
+                />
+                {/* Checkbox for Confirmation */}
+                <div className='items-top flex space-x-4 pt-2'>
+                  <Checkbox id='confirm' />
+                  <div className='grid gap-1 leading-none'>
+                    <label
+                      htmlFor='confirm'
+                      className='text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                    >
+                      Are you sure?
+                    </label>
+                    <p className='text-sm text-muted-foreground w-72'>
+                      Double check if all inputs are correct to make sure there
+                      are no input errors.
+                    </p>
+                    <DialogFooter className='mt-4 font-semibold'>
+                      <Button type='submit' className='w-80'>
+                        Add Schedule
+                      </Button>
+                    </DialogFooter>
+                  </div>
+                </div>
               </div>
             </form>
           </Form>
@@ -670,17 +864,11 @@ function CollegeSchedulePage() {
       <TableMRT
         template={fakeCollegeScheduleTemplate}
         data={fakeCollegeSchedule}
-        title='Class'
+        title='Schedule'
         description=''
-        searchPlaceholder='Search subject...'
+        searchPlaceholder='Search schedule...'
         isCheckBoxVisible={true}
         isFullscreen={false}
-        LeftButtons={
-          <>
-            <DepartmentFilterUndergrad />
-            <AcadYearFilterUndergrad />
-          </>
-        }
         RightButtons={
           <>
             <ArchiveSchedUndergrad />
