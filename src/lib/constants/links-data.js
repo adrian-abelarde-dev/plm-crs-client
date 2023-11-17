@@ -35,7 +35,7 @@ export const linksStudents = [
         path: '/student/enrollment/regular-enrollment',
       },
       {
-        label: 'Irregular-enrollment',
+        label: 'Irregular Enrollment',
         path: '/student/enrollment/irregular-enrollment',
       },
       {

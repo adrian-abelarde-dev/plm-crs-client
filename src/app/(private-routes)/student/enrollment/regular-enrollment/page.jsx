@@ -1,6 +1,8 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
+import CompletedPreview from '@/components/component/student/enrollment/completed-preview';
+import EnrollmentHeader from '@/components/component/student/enrollment/header';
 import { Label } from '@/components/ui/label';
 import {
   Select,
@@ -18,7 +20,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { fakeundergradRegScheduleClasses } from '@/lib/constants/fake-data/undergradRegScheduleClasses';
-import { CheckCircle, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { useState } from 'react';
 
 const viewScheduleStepHeaders = [
@@ -59,12 +61,7 @@ function UndergradStudentEnrollment() {
 
   return (
     <>
-      {/* Header */}
-      <div className='mt-32 flex flex-col place-items-start'>
-        <h1 className='font-medium text-4xl text-left mb-2'>Enrollment</h1>
-        <p className='text-zinc-400'>Current School Year / Term</p>
-        <p className='mb-10'>School Year 2023 - 2024 1st Trimester</p>
-      </div>
+      <EnrollmentHeader />
 
       {/* Stepper */}
       <div>
@@ -161,26 +158,6 @@ function ViewAssessmentStep() {
       <div className='bg-yellow-500 flex justify-center mt-12 p-4 rounded-md'>
         This space is for Enrollment Assessment Form
       </div>
-    </div>
-  );
-}
-
-function CompletedPreview() {
-  const startOfClasses = 'December 25, 1992';
-
-  return (
-    <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
-      <CheckCircle className='h-auto w-[100px] mr-2 mb-5 text-green-500' />
-      <h1 className='text-4xl font-medium mb-4'>
-        You&apos;re Successfully Enrolled!
-      </h1>
-      <p className='text-center w-[46.875rem]'>
-        You&apos;re added to your subject&apos;s MS Teams. The start of classes
-        will be on <span className='font-medium'>{startOfClasses}</span>. Please
-        download a copy of your SER to be{' '}
-        <span className='font-medium'>officially enrolled</span> and be added to
-        your subject&apos;s MS teams.
-      </p>
     </div>
   );
 }
