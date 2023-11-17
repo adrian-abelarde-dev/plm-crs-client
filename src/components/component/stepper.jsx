@@ -73,7 +73,7 @@ function CustomStepper({
         <Stepper.Completed>{completedPreview}</Stepper.Completed>
       </Stepper>
       {children ? children : null}
-      <section className='w-full flex justify-center items-center gap-2 mt-4'>
+      <section className='w-full flex justify-center items-center gap-2 mt-10'>
         <Button
           onClick={prevStep}
           variant='outline'
