@@ -80,5 +80,5 @@ export function SessionLinks() {
     }
   }
 
-  return <></>;
+  return null;
 }
