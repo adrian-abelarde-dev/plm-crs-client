@@ -229,7 +229,7 @@ export default function ProgramsTable({ selectedCollege }) {
             {/* Archive Alert */}
             <AlertConfirmModal
               label='Archive Program'
-              title='Are you sure you want to program this college?'
+              title='Are you sure you want to archive this program?'
               description='You can still undo this action. This will only archive the program and not delete it.'
               cancelLabel='Cancel'
               confirmLabel='Archive'
