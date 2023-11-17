@@ -36,7 +36,7 @@ function ListOfCurriculums() {
         <Label htmlFor='email'>Search Curriculum</Label>
         <Input
           id='curriculum'
-          placeholder='Seach'
+          placeholder='Search'
           onChange={(e) => setCurriculumInput(e.target.value)}
           value={curriculumInput}
         />

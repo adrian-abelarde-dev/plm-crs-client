@@ -1,9 +1,10 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
+import CompletedPreview from '@/components/component/student/enrollment/completed-preview';
+import EnrollmentHeader from '@/components/component/student/enrollment/header';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
@@ -16,9 +17,8 @@ import {
 } from '@/components/ui/table';
 import { fakeGradEnlistClasses } from '@/lib/constants/fake-data/grad-enlist-classes';
 import { gradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-grad/enlist-available-classes';
-import { CheckCircle, Download } from 'lucide-react';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { Download } from 'lucide-react';
+import { useState } from 'react';
 
 function GradStudentEnrollment() {
   const [rowSelection, setRowSelection] = useState({});
@@ -53,18 +53,7 @@ function GradStudentEnrollment() {
   ];
   return (
     <div className='mx-9'>
-      {/* Header */}
-      <div className='mt-32 flex flex-col place-items-center'>
-        <div className='place-self-start mb-[1.88rem]'>
-          <Label className='font-medium text-4xl '>Enrollment</Label>
-        </div>
-        <Label>Current School Year / Term</Label>
-        <div className='mb-[1.88rem]'>
-          <Label className='font-bold'>
-            School Year 2023 - 2024 1st Trimester
-          </Label>
-        </div>
-      </div>
+      <EnrollmentHeader />
       {/* Stepper */}
       <div className='mb-20 '>
         <CustomStepper
@@ -85,7 +74,7 @@ function GradStudentEnrollment() {
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
     <>
-      <Label className='font-medium text-4xl '>Enlist Available Classes</Label>
+      <h1 className='font-medium text-4xl '>Enlist Available Classes</h1>
       <TableMRT
         template={gradEnlistClassesTemplate}
         data={fakeGradEnlistClasses}
@@ -157,30 +146,6 @@ function PaymentStep() {
         </div>
       </RadioGroup>
     </>
-  );
-}
-
-function CompletedPreview() {
-  const startOfClasses = 'December 25, 1992';
-
-  return (
-    <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
-      <CheckCircle className='h-[9.375rem] w-[9.375rem] mr-2 mb-5 text-green-400' />
-      <Label className='text-4xl font-bold'>
-        You&apos;re Successfully Enrolled!
-      </Label>
-      <Label className='text-xl font-semibold'>
-        and added to your subject&apos;s MS Teams.
-      </Label>
-      <Label className='text-md mt-4 font-normal'>
-        The start of classes will be on{' '}
-        <span className='font-bold text-lg'>{startOfClasses}</span>
-      </Label>
-
-      <Button className='mt-4' asChild>
-        <Link href='/student-grad'>Back to Dashboard</Link>
-      </Button>
-    </div>
   );
 }
 

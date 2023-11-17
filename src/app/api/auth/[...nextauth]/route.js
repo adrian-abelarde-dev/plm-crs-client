@@ -13,6 +13,10 @@ export const authOptions = {
       },
     }),
   ],
+  session: {
+    strategy: 'jwt',
+    maxAge: 60 * 60 * 6, // 6 hours
+  },
   callbacks: {
     async jwt({ token, account }) {
       // IMPORTANT: Persist the access_token to the token right after sign in
@@ -24,13 +28,13 @@ export const authOptions = {
 
     async session({ session, token }) {
       // IMPORTANT: Add the token to the session as a property
+      // ! request token from backend
       session.idToken = token.idToken;
 
       // add api call that will lookup if the user matches the access that it needs
       session.role = [
         'admin',
         'faculty',
-        'cashier',
         'student-grad',
         'college-grad',
         'student', // for undergrad students

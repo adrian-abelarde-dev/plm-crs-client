@@ -51,7 +51,7 @@ export default function InputFormField({
               className={className}
               disabled={disabled}
               type={type}
-              onChange={onChange || field.onChange}
+              onChange={onChange}
               value={value || field.value}
             />
           </FormControl>
