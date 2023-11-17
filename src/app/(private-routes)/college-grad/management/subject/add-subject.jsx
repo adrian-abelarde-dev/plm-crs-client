@@ -1,17 +1,17 @@
 import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -19,26 +19,20 @@ import { toast } from '@/components/ui/use-toast';
 import { SubjectSchema } from '@/lib/constants/schema/college-grad/edit-subject';
 import { unitsForSubject } from '@/lib/constants/units-subjects';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle, Edit } from 'lucide-react';
+import { CheckCircle, Plus } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-function EditSubjectDialogForm({ disabled, selectedSubject }) {
-  const editSubjectForm = useForm({
+function AddSubjectDialogForm() {
+  const addSubjectForm = useForm({
     resolver: zodResolver(SubjectSchema),
   });
 
-  editSubjectForm.watch();
+  addSubjectForm.watch();
 
   useEffect(() => {
-    if (selectedSubject) {
-      Object.keys(selectedSubject).forEach((key) => {
-        editSubjectForm.setValue(key, selectedSubject[key]);
-      });
-    }
-
-    editSubjectForm.setValue('isSure', false); // keeps the checkbox unchecked
-  }, [selectedSubject, editSubjectForm]);
+    addSubjectForm.setValue('isSure', false); // keeps the checkbox unchecked
+  }, [addSubjectForm]);
 
   function onSubmit(values) {
     toast({
@@ -55,45 +49,44 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          disabled={disabled}
-          className='text-zinc-900 justify-between hover:bg-zinc-100'
-          variant='outline'
-        >
-          <Edit className='w-4 h-4 mr-2' />
-          Edit
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button>
+          <Plus className='w-4 h-4 mr-2' />
+          Add Subject
         </Button>
-      </DialogTrigger>
-      <DialogContent className='sm:max-w-[425px]'>
-        <DialogHeader>
-          <DialogTitle>Edit Subject</DialogTitle>
-          <DialogDescription>Edit a Subject to the system</DialogDescription>
-        </DialogHeader>
+      </AlertDialogTrigger>
+      <AlertDialogContent className='sm:max-w-[425px]'>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Add Subject</AlertDialogTitle>
+          <AlertDialogDescription>
+            Add a Subject to the system
+          </AlertDialogDescription>
+        </AlertDialogHeader>
         <form
-          onSubmit={editSubjectForm.handleSubmit(onSubmit)}
+          onSubmit={addSubjectForm.handleSubmit(onSubmit)}
           className='space-y-6'
         >
-          <Form {...editSubjectForm}>
+          <Form {...addSubjectForm}>
             <ScrollArea className='w-full'>
+              {' '}
               {/* Subject Code */}
               <InputFormField
-                form={editSubjectForm}
+                form={addSubjectForm}
                 title={'Subject Code'}
                 placeholder={'Subject Code'}
                 fieldName={'subjectCode'}
               />
               {/* Subject Name */}
               <InputFormField
-                form={editSubjectForm}
+                form={addSubjectForm}
                 title={'Subject Name'}
                 placeholder={'Subject Name'}
                 fieldName={'subjectName'}
               />
               {/* Units */}
               <SelectFormField
-                form={editSubjectForm}
+                form={addSubjectForm}
                 content={unitsForSubject}
                 title='Units'
                 placeholder='Select Unit'
@@ -101,7 +94,7 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
               />
               <div className='flex justify-start my-4'>
                 <CheckBoxFormField
-                  form={editSubjectForm}
+                  form={addSubjectForm}
                   title={'Are you sure?'}
                   description={
                     'Double check if all inputs are correct to make sure there are no input errors.'
@@ -110,30 +103,30 @@ function EditSubjectDialogForm({ disabled, selectedSubject }) {
                 />
               </div>
             </ScrollArea>
-            <DialogFooter className='w-full flex justify-end mt-4'>
-              <DialogClose asChild>
+            <AlertDialogFooter className='w-full flex justify-end mt-4'>
+              <AlertDialogCancel asChild>
                 <Button
                   variant='outline'
                   onClick={() => {
-                    editSubjectForm.reset();
+                    addSubjectForm.reset();
                   }}
                 >
                   Cancel
                 </Button>
-              </DialogClose>
+              </AlertDialogCancel>
 
               <Button
                 type='submit'
-                disabled={!editSubjectForm.getValues().isSure}
+                disabled={!addSubjectForm.getValues().isSure}
               >
                 Save Changes
               </Button>
-            </DialogFooter>
+            </AlertDialogFooter>
           </Form>
         </form>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 
-export default EditSubjectDialogForm;
+export default AddSubjectDialogForm;

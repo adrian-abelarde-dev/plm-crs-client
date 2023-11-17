@@ -1,16 +1,16 @@
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -55,20 +55,20 @@ function ScheduleInformation({ setSchedule, schedule }) {
 
   return (
     <>
-      <Dialog className='w-[100]'>
-        <DialogTrigger asChild className=' mt-4 flex cursor-pointer'>
+      <AlertDialog className='w-[100]'>
+        <AlertDialogTrigger asChild className=' mt-4 flex cursor-pointer'>
           <Label className='font-bold text-lg'>
             Schedule Information <Plus className='h-4 w-4 ml-2 mt-[0.35rem]' />
           </Label>
-        </DialogTrigger>
+        </AlertDialogTrigger>
 
-        <DialogContent className='sm:max-w-[45rem]'>
-          <DialogHeader>
-            <DialogTitle>Class Schedule</DialogTitle>
-            <DialogDescription>
+        <AlertDialogContent className='sm:max-w-[45rem]'>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Class Schedule</AlertDialogTitle>
+            <AlertDialogDescription>
               Add a Class Schedule to the system
-            </DialogDescription>
-          </DialogHeader>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
           <form
             onSubmit={addScheduleForm.handleSubmit(onSubmit)}
             className='space-y-6'
@@ -124,22 +124,22 @@ function ScheduleInformation({ setSchedule, schedule }) {
                   fieldName='meetingType'
                 />
               </ScrollArea>
-              <DialogFooter className='w-full flex justify-end mt-4'>
-                <DialogClose asChild>
+              <AlertDialogFooter className='w-full flex justify-end mt-4'>
+                <AlertDialogCancel asChild>
                   <Button
                     variant='outline'
                     onClick={() => addScheduleForm.reset()}
                   >
                     Close
                   </Button>
-                </DialogClose>
+                </AlertDialogCancel>
 
                 <Button type='submit'>Add Schedule</Button>
-              </DialogFooter>
+              </AlertDialogFooter>
             </Form>
           </form>
-        </DialogContent>
-      </Dialog>
+        </AlertDialogContent>
+      </AlertDialog>
       <div className='ml-4 mb-4'>
         {schedule?.map((_class, index) => {
           return (

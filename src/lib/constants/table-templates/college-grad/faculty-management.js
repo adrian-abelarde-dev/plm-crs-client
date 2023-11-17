@@ -39,8 +39,8 @@ export const collegeGradFacultyTemplate = [
             cell.getValue() === 'Active'
               ? 'bg-[#c0e6dc] text-[#00b983] border-[#00b983]'
               : cell.getValue() === 'Pending to Assign'
-              ? 'bg-[#fff9e1] text-[#fec141] border-[#fec141]'
-              : 'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]',
+                ? 'bg-[#fff9e1] text-[#fec141] border-[#fec141]'
+                : 'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]',
           )}
         >
           {cell.getValue()}

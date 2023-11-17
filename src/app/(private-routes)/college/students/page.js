@@ -1,7 +1,7 @@
-import StudentsCollegeTable from "@/components/component/admin/students-college-table";
+import StudentsCollegeTable from '@/components/component/admin/students-college-table';
 
 function StudentsPage() {
-  return(
+  return (
     <main className='w-full p-6'>
       <StudentsCollegeTable />
     </main>
