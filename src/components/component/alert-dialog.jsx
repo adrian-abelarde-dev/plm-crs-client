@@ -28,6 +28,7 @@ function AlertConfirmModal({
   confirmLabel,
   confirmFunction,
   className,
+  triggerIcon,
 }) {
   return (
     <AlertDialog>
@@ -43,6 +44,7 @@ function AlertConfirmModal({
             variant='ghost'
           >
             {label}
+            {triggerIcon}
           </Button>
         </AlertDialogTrigger>
       ) : (
