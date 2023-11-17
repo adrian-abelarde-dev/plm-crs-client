@@ -29,7 +29,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SessionLinks } from './student-navbar';
+import { SessionLinks } from './session-links';
 
 function SidebarButton({ icon, text, onClick, path, className, subContent }) {
   const pathname = usePathname();
@@ -205,10 +205,13 @@ export function Sidebar({ sidebarLinks, accessType }) {
               </CardHeader>
             </Card>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className='w-48'>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <SessionLinks /> {/* Portal */}
+
+            {/* Portal */}
+            <SessionLinks />
+
             <DropdownMenuItem
               className='flex justify-between items-center cursor-pointer text-red-500'
               onClick={() => {
