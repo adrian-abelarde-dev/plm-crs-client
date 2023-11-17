@@ -36,22 +36,20 @@ const faculty = facultyNames.map((facultyName) => ({
 console.log(faculty);
 [];
 
-function AddClassCollegeDialogForm() {
-  const [open, setOpen] = React.useState(false);
+function AddClassFacultyDialogForm() {
+  const [open, setOpen] = React.useState();
   const [value, setValue] = React.useState('');
 
   return (
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Add Activity</Button>
+          <Button>Add Faculty</Button>
         </DialogTrigger>
         <DialogContent className='xsm:max-w-[100px]'>
           <DialogHeader>
             <DialogTitle>Add Faculty</DialogTitle>
-            <DialogDescription>
-              Add a faculty here. Click save when you&apos;re done.
-            </DialogDescription>
+            <DialogDescription>Add existing faculty.</DialogDescription>
           </DialogHeader>
           <div className='flex flex-col gap-4'>
             {/* Faculty Name */}
@@ -63,7 +61,7 @@ function AddClassCollegeDialogForm() {
                     variant='outline'
                     role='combobox'
                     aria-expanded={open}
-                    className='w-[200px] justify-between'
+                    className='w-full justify-between'
                   >
                     {value
                       ? faculty.find((framework) => framework.value === value)
@@ -72,7 +70,7 @@ function AddClassCollegeDialogForm() {
                     <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className='w-[200px] p-0'>
+                <PopoverContent className='w-full p-0'>
                   <Command>
                     <CommandInput placeholder='Enter a faculty name...' />
                     <CommandEmpty>No faculty member found.</CommandEmpty>
@@ -105,14 +103,12 @@ function AddClassCollegeDialogForm() {
               </Popover>
             </section>
           </div>
-          <DialogFooter className='w-full flex justify-start'>
+          <DialogFooter className='w-full flex justify-evenly'>
             <DialogClose asChild>
               <Button variant='outline'>Cancel</Button>
             </DialogClose>
             <div className='justify-between' />
-            <Button variant='secondary' type='submit'>
-              Add Faculty
-            </Button>
+            <Button type='submit'>Add Faculty</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -120,4 +116,4 @@ function AddClassCollegeDialogForm() {
   );
 }
 
-export default AddClassCollegeDialogForm;
+export default AddClassFacultyDialogForm;

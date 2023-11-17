@@ -12,27 +12,24 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import {
-  collegeActiveStatus,
-  collegeSubjectName,
-  collegeSubjectType,
-} from '@/lib/constants/fake-data/college-subjects';
+  collegeDepartments,
+  collegePrograms,
+  collegeSection,
+  collegeYear,
+} from '@/lib/constants/fake-data/college-sections';
 import {
   UserSchema,
   userSchemaDefaultValues,
 } from '@/lib/constants/schema/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import InputFormField from '../form/input-formfield';
-import SelectFormField from '../form/select-formfield';
+import InputFormField from '../../form/input-formfield';
+import SelectFormField from '../../form/select-formfield';
 
-function CollegeSubjectsEditIndividual({ selectedSubjects }) {
-  const [defaultSubjectTitle, setDefaultSubjectTitle] = useState('');
-  const [defaultSubjectType, setDefaultSubjectType] = useState('');
-  const [defaultActiveStatus, setDefaultActiveStatus] = useState('');
-  const editSubjectForm = useForm({
+function CollegeSectionsEditIndividual() {
+  const editSectionForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
       userSchemaDefaultValues,
@@ -52,74 +49,69 @@ function CollegeSubjectsEditIndividual({ selectedSubjects }) {
     });
   }
 
-  useEffect(() => {
-    const selectedSubjectTitle = Array.from(new Set(selectedSubjects)).map(
-      (subject) => subject.subjectName,
-    );
-    const selectedSubjectType = Array.from(new Set(selectedSubjects)).map(
-      (subject) => subject.subjectType,
-    );
-    const selectedActiveStatus = Array.from(new Set(selectedSubjects)).map(
-      (subject) => subject.activeStatus,
-    );
-
-    const defaultSubjectTitle = selectedSubjectTitle[0];
-    const defaultSubjectType = selectedSubjectType[0];
-    const defaultActiveStatus = selectedActiveStatus[0];
-
-    setDefaultSubjectTitle(defaultSubjectTitle);
-    setDefaultSubjectType(defaultSubjectType);
-    setDefaultActiveStatus(defaultActiveStatus);
-  }, [editSubjectForm, selectedSubjects]);
-
   return (
     <DialogContent className='sm:max-w-[500px]'>
       <DialogHeader>
         <DialogTitle className='text-2xl font-medium'>
-          Edit Individual Subject
+          Edit Individual Section
         </DialogTitle>
       </DialogHeader>
-
-      <Form {...editSubjectForm}>
-        <form onSubmit={editSubjectForm.handleSubmit(onSubmit)}>
+      <Form {...editSectionForm}>
+        <form onSubmit={editSectionForm.handleSubmit(onSubmit)}>
           {/* Content */}
           <div className='flex flex-col gap-2'>
-            {/* Subject ID */}
+            {/* Section ID */}
             <InputFormField
               disabled={true}
-              form={editSubjectForm}
-              title='Subject ID'
-              placeholder='CSE2SYNC202310001'
-              fieldName='subjectId'
+              form={editSectionForm}
+              title='Section ID'
+              placeholder='CETBSCS0401'
+              fieldName='sectionId'
               badge={<Badge variant='outline'>Auto-generated</Badge>}
             />
 
-            {/* Subject Title */}
+            {/* Department */}
             <SelectFormField
-              form={editSubjectForm}
-              content={collegeSubjectName}
-              title='Subject Title'
-              placeholder={defaultSubjectTitle}
-              fieldName='collegeSubjectName'
+              form={editSectionForm}
+              content={collegeDepartments}
+              title='Department'
+              placeholder='Select department...'
+              fieldName='collegeDepartment'
             />
 
-            {/* Subject Type */}
+            {/* Programs */}
             <SelectFormField
-              form={editSubjectForm}
-              content={collegeSubjectType}
-              title='Subject Type'
-              placeholder={defaultSubjectType}
-              fieldName='collegeSubjectType'
+              form={editSectionForm}
+              content={collegePrograms}
+              title='Program'
+              placeholder='Select program...'
+              fieldName='collegeProgram'
             />
 
-            {/* Active Status */}
-            <SelectFormField
-              form={editSubjectForm}
-              content={collegeActiveStatus}
-              title='Active Status'
-              placeholder={defaultActiveStatus}
-              fieldName='collegeStatus'
-            />
+            {/* Year Level and Section */}
+            <section className='w-full flex gap-2 justify-between'>
+              <section className='w-2/5 '>
+                {/* Year Level */}
+                <SelectFormField
+                  form={editSectionForm}
+                  content={collegeYear}
+                  title='Year Level'
+                  placeholder='Select year level...'
+                  fieldName='collegeYear'
+                />
+              </section>
+              <Label className='flex items-center'>-</Label>
+              <section className='w-2/5'>
+                <SelectFormField
+                  form={editSectionForm}
+                  content={collegeSection}
+                  title='Section'
+                  placeholder='Select section...'
+                  fieldName='collegeSection'
+                />
+              </section>
+              {/* Section */}
+            </section>
 
             {/* Checkbox for Confirmation */}
             <div className='items-top flex space-x-2 pt-2'>
@@ -151,4 +143,4 @@ function CollegeSubjectsEditIndividual({ selectedSubjects }) {
   );
 }
 
-export default CollegeSubjectsEditIndividual;
+export default CollegeSectionsEditIndividual;

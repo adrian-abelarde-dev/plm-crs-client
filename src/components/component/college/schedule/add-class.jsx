@@ -46,9 +46,9 @@ import { CheckCircle, Delete, Edit, HelpCircle } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
-import InputFormField from '../form/input-formfield';
-import SelectFormField from '../form/select-formfield';
-import AddClassCollegeDialogForm from './college-schedule-add-faculty';
+import InputFormField from '../../form/input-formfield';
+import SelectFormField from '../../form/select-formfield';
+import AddClassFacultyDialogForm from './college-schedule-add-faculty';
 
 function AddClassUndergrad() {
   const addClassForm = useForm({
@@ -70,14 +70,6 @@ function AddClassUndergrad() {
       description: <>Changes has been Saved.</>,
     });
   }
-  const handleAddFacultyClick = () => {
-    // Call the AddClassCollegeDialogForm function when the button is clicked
-    AddClassCollegeDialogForm();
-  };
-
-  function AddFacultyUndergrad() {
-    return <Button onClick={handleAddFacultyClick}>Add Faculty</Button>;
-  }
 
   function EditFacultyUndergrad() {
     return (
@@ -98,7 +90,7 @@ function AddClassUndergrad() {
   }
 
   function AddClassHourUndergrad() {
-    return <Button>Add Class</Button>;
+    return <Button>Add Class Hour</Button>;
   }
 
   function EditClassHourUndergrad() {
@@ -266,18 +258,16 @@ function AddClassUndergrad() {
                   <>
                     <DeleteFacultyUndergrad />
                     <EditFacultyUndergrad />
-                    <AddFacultyUndergrad />
+                    <AddClassFacultyDialogForm />
                   </>
                 }
               />
               {/* Class Information */}
-              <Label className='font-semibold text-xl pt-2 pb-6'>
-                Class Hours
-              </Label>
+              <Label className='font-semibold text-xl pt-2'>Class Hours</Label>
               {/* Is the class hours to be announced or unknown yet? */}
               <div className='grid grid-cols-1 space-y-2'>
                 <div className='flex gap-8'>
-                  <div className='flex'>
+                  <div className='flex '>
                     <Label className='font-medium text-sm'>
                       Is the class hours to be announced or unknown yet?
                     </Label>
@@ -326,13 +316,13 @@ function AddClassUndergrad() {
               </div>
               {/* Class has no definite time and day? */}
               <div className='grid grid-cols-1 mt-4'>
-                <div className='flex gap-8'>
+                <div className='flex gap-8 items-center'>
                   <div className='flex flex-col'>
-                    <Label className='font-medium text-sm'>
+                    <Label className='font-medium text-sm mb-2'>
                       Class has no definite time and day?
                       <span className='text-red-500'> *</span>
                     </Label>
-                    <Label className='font-medium text-sm text-zinc-500 mb-5'>
+                    <Label className='font-medium text-sm text-zinc-500 pb-4'>
                       (e.g. Thesis / Practicum / Field / College of Music)
                     </Label>
                   </div>
@@ -377,25 +367,9 @@ function AddClassUndergrad() {
                   </div>
                 </RadioGroup>
               </div>
-              {/* Checkbox for Confirmation */}
-              <div className='items-top flex space-x-4 pt-5'>
-                <Checkbox id='confirm' />
-                <div className='grid gap-1 leading-none'>
-                  <label
-                    htmlFor='confirm'
-                    className='text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-                  >
-                    Are you sure?
-                  </label>
-                  <p className='text-sm text-muted-foreground w-72'>
-                    Double check if all inputs are correct to make sure there
-                    are no input errors.
-                  </p>
-                </div>
-              </div>
               {/* Table for Class Hours*/}
               <TableMRT
-                className='pt-3'
+                className='pt-2'
                 template={fakeCollegeClassHoursTemplate}
                 data={fakeCollegeClassHours}
                 searchPlaceholder='Search schedule...'
