@@ -29,13 +29,15 @@ export default function InputFormField({
   isOptional = false,
   badge,
   type = 'text',
+  onChange,
+  value,
 }) {
   return (
     <FormField
       control={form.control}
       name={fieldName}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className='w-full'>
           <FormLabel className='text-zinc-900 w-full font-medium flex gap-1 items-end justify-between'>
             <span>
               {title} <RequiredAsterisk isOptional={isOptional} />
@@ -49,6 +51,8 @@ export default function InputFormField({
               className={className}
               disabled={disabled}
               type={type}
+              onChange={onChange}
+              value={value || field.value}
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
