@@ -1,4 +1,4 @@
-import CollegeSchedulePage from '@/components/component/college/college-class';
+import CollegeSchedulePage from '@/components/component/college/college-schedule';
 
 function CollegeSchedule() {
   return (

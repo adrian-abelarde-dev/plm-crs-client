@@ -24,23 +24,17 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { facultyNames } from '@/lib/constants/fake-data/college-schedule';
 import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
-
-const facultyNames = [
-  'Jamilah S. Guallil',
-  'Raymund M. Dioses',
-  'Leisyl Mahusay',
-  'John Ray M. Tenio',
-  'Jonathan C. Morano',
-];
 
 const faculty = facultyNames.map((facultyName) => ({
   label: facultyName,
   value: facultyName.toLowerCase(),
 }));
 console.log(faculty);
+[];
 
 function AddClassCollegeDialogForm() {
   const [open, setOpen] = React.useState(false);
