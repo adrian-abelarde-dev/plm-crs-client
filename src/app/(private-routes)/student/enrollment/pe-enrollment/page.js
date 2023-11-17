@@ -16,7 +16,7 @@ import {
 import { fakeundergradPeEnlistClasses } from '@/lib/constants/fake-data/undergrad-pe-enlist-classes';
 import { ungradPeEnlistClassesTemplate } from '@/lib/constants/table-templates/student-undergrad/pe-classes-enlist';
 import { Download } from 'lucide-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function PEStudentEnrollmentPage() {
   const [rowSelection, setRowSelection] = useState({});

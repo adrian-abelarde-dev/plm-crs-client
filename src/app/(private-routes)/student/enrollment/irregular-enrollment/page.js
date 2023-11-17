@@ -32,7 +32,7 @@ function IrregStudentEnrollmentPage() {
     (item) => rowSelection[item[ungradEnlistClassesTemplate[0].accessorKey]],
   );
 
-  const steps = [
+  const irregStudentEnrollmentSteps = [
     {
       label: 'First step',
       description: 'Enroll available classes',
@@ -56,7 +56,7 @@ function IrregStudentEnrollmentPage() {
       {/* Stepper */}
       <div className='mb-20 '>
         <CustomStepper
-          steps={steps}
+          steps={irregStudentEnrollmentSteps}
           lastStepOnclick={() => {}}
           lastStepButtonLabel={
             <>
@@ -88,12 +88,12 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
-    <div className='flex flex-col'>
-      <h1 className='font-medium text-4xl '>View Enlisted Classes</h1>
+    <div className='flex flex-col mt-4'>
+      <h1 className='font-medium text-2xl'>View Enlisted Classes</h1>
 
       <Table className='w-full mt-10'>
         <TableHeader>
-          <TableRow className='font-medium text-black'>
+          <TableRow>
             {viewEnlistedStepHeaders.map((header, index) => {
               return <TableHead key={index}>{header}</TableHead>;
             })}
