@@ -2,8 +2,6 @@
 
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import {
   Table,
   TableBody,
@@ -15,18 +13,24 @@ import {
 import { fakeundergradIrregEnlistClasses } from '@/lib/constants/fake-data/undergrad-irreg-enlist-classes';
 import { ungradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-undergrad/classes-enlist';
 import { CheckCircle, Download } from 'lucide-react';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+const viewEnlistedStepsHeaders = [
+  'Class/Section',
+  'Class Title',
+  'Schedule',
+  'Room',
+];
 
 function IrregStudentEnrollmentPage() {
   const [rowSelection, setRowSelection] = useState({});
 
-  // collects the selected classes
+  // Collects the selected classes
   const enlistedClasses = fakeundergradIrregEnlistClasses.filter(
     (item) => rowSelection[item[ungradEnlistClassesTemplate[0].accessorKey]],
   );
 
-  const steps = [
+  const irregStudentEnrollmentSteps = [
     {
       label: 'First step',
       description: 'Enroll available classes',
@@ -44,24 +48,20 @@ function IrregStudentEnrollmentPage() {
       content: <ViewEnlistedStep enlistedClasses={enlistedClasses} />,
     },
   ];
+
   return (
     <div className='mx-9'>
       {/* Header */}
-      <div className='mt-32 flex flex-col place-items-center'>
-        <div className='place-self-start mb-[1.88rem]'>
-          <Label className='font-medium text-4xl '>Enrollment</Label>
-        </div>
-        <Label>Current School Year / Term</Label>
-        <div className='mb-[1.88rem]'>
-          <Label className='font-bold'>
-            School Year 2023 - 2024 1st Trimester
-          </Label>
-        </div>
+      <div className='mt-32 flex flex-col place-items-start'>
+        <h1 className='font-medium text-4xl text-left mb-2'>Enrollment</h1>
+        <p className='text-zinc-400'>Current School Year / Term</p>
+        <p className='mb-10'>School Year 2023 - 2024 1st Trimester</p>
       </div>
+
       {/* Stepper */}
-      <div className='mb-20 '>
+      <div className='mb-20'>
         <CustomStepper
-          steps={steps}
+          steps={irregStudentEnrollmentSteps}
           lastStepOnclick={() => {}}
           lastStepButtonLabel={
             <>
@@ -69,7 +69,7 @@ function IrregStudentEnrollmentPage() {
             </>
           }
           completedPreview={<CompletedPreview />}
-        ></CustomStepper>
+        />
       </div>
     </div>
   );
@@ -78,7 +78,7 @@ function IrregStudentEnrollmentPage() {
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
     <>
-      <Label className='font-medium text-4xl '>Enlist Available Classes</Label>
+      <h1 className='font-medium text-4xl '>Enlist Available Classes</h1>
       <TableMRT
         template={ungradEnlistClassesTemplate}
         data={fakeundergradIrregEnlistClasses}
@@ -93,20 +93,15 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
-    <div className='flex flex-col'>
-      <Label className='font-medium text-4xl '>View Enlisted Classes</Label>
+    <div className='flex flex-col mt-4'>
+      <h1 className='font-medium text-2xl'>View Enlisted Classes</h1>
 
       <Table className='w-full mt-10'>
         <TableHeader>
           <TableRow>
-            <TableHead className='font-medium text-black'>
-              Class/Section
-            </TableHead>
-            <TableHead className='font-medium text-black'>
-              Class Title
-            </TableHead>
-            <TableHead className='font-medium text-black'>Schedule</TableHead>
-            <TableHead className='font-medium text-black'>Room</TableHead>
+            {viewEnlistedStepsHeaders.map((header, index) => {
+              return <TableHead key={index}>{header}</TableHead>;
+            })}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -122,18 +117,12 @@ function ViewEnlistedStep({ enlistedClasses }) {
           })}
         </TableBody>
       </Table>
-      <div className='py-5 mt-5 flex justify-center border-0 '>
-        <Label className='text-base font-bold mr-1'>NOTE:</Label>
-        <Label className='text-base mr-1'>
-          Please double check the enlisted classes and then download a copy of
-          your
-        </Label>
-        <Label className='text-base font-bold mr-1'>SER</Label>
-        <Label className='text-base mr-1'>to be</Label>
-        <Label className='text-base underline mr-1'>officially enrolled</Label>
-        <Label className='text-base'>
-          and be added to your subject’s MS teams.
-        </Label>
+      <div className='py-5 mt-5 flex justify-start border-0 '>
+        <p className='w-[40rem] text-zinc-400'>
+          NOTE: Please double check the enlisted classes and then download a
+          copy of your SER to be officially enrolled and be added to your
+          subject&apos;s MS Teams.
+        </p>
       </div>
     </div>
   );
@@ -144,21 +133,17 @@ function CompletedPreview() {
 
   return (
     <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
-      <CheckCircle className='h-[9.375rem] w-[9.375rem] mr-2 mb-5 text-green-400' />
-      <Label className='text-4xl font-bold'>
+      <CheckCircle className='h-auto w-[100px] mr-2 mb-5 text-green-500' />
+      <h1 className='text-4xl font-medium mb-4'>
         You&apos;re Successfully Enrolled!
-      </Label>
-      <Label className='text-xl font-semibold'>
-        and added to your subject&apos;s MS Teams.
-      </Label>
-      <Label className='text-md mt-4 font-normal'>
-        The start of classes will be on{' '}
-        <span className='font-bold text-lg'>{startOfClasses}</span>
-      </Label>
-
-      <Button className='mt-4' asChild>
-        <Link href='/student/home'>Back to Dashboard</Link>
-      </Button>
+      </h1>
+      <p className='text-center w-[46.875rem]'>
+        You&apos;re added to your subject&apos;s MS Teams. The start of classes
+        will be on <span className='font-medium'>{startOfClasses}</span>. Please
+        download a copy of your SER to be{' '}
+        <span className='font-medium'>officially enrolled</span> and be added to
+        your subject&apos;s MS teams.
+      </p>
     </div>
   );
 }
