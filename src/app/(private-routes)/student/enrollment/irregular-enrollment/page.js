@@ -1,6 +1,7 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
+import CompletedPreview from '@/components/component/student/completed-preview';
 import TableMRT from '@/components/layouts/table-mrt';
 import {
   Table,
@@ -12,7 +13,7 @@ import {
 } from '@/components/ui/table';
 import { fakeundergradIrregEnlistClasses } from '@/lib/constants/fake-data/undergrad-irreg-enlist-classes';
 import { ungradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-undergrad/classes-enlist';
-import { CheckCircle, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { useState } from 'react';
 
 const viewEnlistedStepHeaders = [
@@ -21,8 +22,6 @@ const viewEnlistedStepHeaders = [
   'Schedule',
   'Room',
 ];
-
-const startOfClasses = 'December 25, 1992';
 
 function IrregStudentEnrollmentPage() {
   const [rowSelection, setRowSelection] = useState({});
@@ -117,24 +116,6 @@ function ViewEnlistedStep({ enlistedClasses }) {
           })}
         </TableBody>
       </Table>
-    </div>
-  );
-}
-
-function CompletedPreview() {
-  return (
-    <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
-      <CheckCircle className='h-auto w-[100px] mr-2 mb-5 text-green-500' />
-      <h1 className='text-4xl font-medium mb-4'>
-        You&apos;re Successfully Enrolled!
-      </h1>
-      <p className='text-center w-[46.875rem]'>
-        You&apos;re added to your subject&apos;s MS Teams. The start of classes
-        will be on <span className='font-medium'>{startOfClasses}</span>. Please
-        download a copy of your SER to be{' '}
-        <span className='font-medium'>officially enrolled</span> and be added to
-        your subject&apos;s MS teams.
-      </p>
     </div>
   );
 }
