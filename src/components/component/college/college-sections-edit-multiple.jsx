@@ -87,7 +87,7 @@ function CollegeSectionsEditMultiple({ selectedSections }) {
                   return (
                     <TableRow key={index}>
                       <TableCell>{_section.collegeSection}</TableCell>
-                      <TableCell>{_section.collegeDepartments}</TableCell>
+                      <TableCell>{_section.collegeDepartment}</TableCell>
                       <TableCell>{_section.dateCreated}</TableCell>
                     </TableRow>
                   );

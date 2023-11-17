@@ -7,7 +7,7 @@ import {
   fakeSectionRowActions,
 } from '@/lib/constants/fake-data/college-sections';
 import { fakeSectionTemplate } from '@/lib/constants/table-templates/college/college-sections-table';
-import { cn } from '@/lib/utils';
+import { cn, handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
 import AddSectionUndergrad from './college-sections-add';
@@ -16,8 +16,11 @@ import EditSectionUndergrad from './college-sections-edit';
 
 function CollegeSectionsPage() {
   const [rowSelection, setRowSelection] = useState({});
-  const selectedSections = fakeSection.filter(
-    (item) => setRowSelection[item[fakeSectionTemplate[0].accessorKey]],
+
+  const selectedSections = handleRowSelectionChange(
+    fakeSection,
+    fakeSectionTemplate,
+    rowSelection,
   );
 
   return (
