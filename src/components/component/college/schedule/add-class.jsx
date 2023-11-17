@@ -42,13 +42,21 @@ import {
   fakeCollegeFacultyTemplate,
 } from '@/lib/constants/table-templates/college/college-schedule-table';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle, Delete, Edit, HelpCircle } from 'lucide-react';
+import { CheckCircle, HelpCircle } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
 import InputFormField from '../../form/input-formfield';
 import SelectFormField from '../../form/select-formfield';
-import AddClassFacultyDialogForm from './add-class-add-faculty';
+import AddFacultyDialogForm from './faculty-add-faculty';
+import DeleteFacultyDialogForm from './faculty-delete-faculty';
+import EditFacultyDialogForm from './faculty-edit-faculty';
+import AddClassHourDialogForm from './hours-add-class-hours';
+import DeleteClassHourDialogForm from './hours-delete-class-hours';
+import EditClassHourDialogForm from './hours-edit-class-hours';
+import AddClassResDialogForm from './restrictions-add-restrictions';
+import DeleteClassResDialogForm from './restrictions-delete-restrictions';
+import EditClassResDialogForm from './restrictions-edit-restrictions';
 
 function AddClassUndergrad() {
   const addClassForm = useForm({
@@ -69,68 +77,6 @@ function AddClassUndergrad() {
       ),
       description: <>Changes has been Saved.</>,
     });
-  }
-
-  function EditFacultyUndergrad() {
-    return (
-      <Button variant='outline'>
-        Edit
-        <Edit className='ml-2 h-4 w-4' />
-      </Button>
-    );
-  }
-
-  function DeleteFacultyUndergrad() {
-    return (
-      <Button variant='outline'>
-        Delete
-        <Delete className='ml-2 h-4 w-4' />
-      </Button>
-    );
-  }
-
-  function AddClassHourUndergrad() {
-    return <Button>Add Class Hour</Button>;
-  }
-
-  function EditClassHourUndergrad() {
-    return (
-      <Button variant='outline'>
-        Edit
-        <Edit className='ml-2 h-4 w-4' />
-      </Button>
-    );
-  }
-
-  function DeleteClassHourUndergrad() {
-    return (
-      <Button variant='outline'>
-        Delete
-        <Delete className='ml-2 h-4 w-4' />
-      </Button>
-    );
-  }
-
-  function AddClassResUndergrad() {
-    return <Button classname='font-medium'>Add Class</Button>;
-  }
-
-  function EditClassResUndergrad() {
-    return (
-      <Button variant='outline'>
-        Edit
-        <Edit className='ml-2 h-4 w-4' />
-      </Button>
-    );
-  }
-
-  function DeleteClassResUndergrad() {
-    return (
-      <Button variant='outline'>
-        Delete
-        <Delete className='ml-2 h-4 w-4' />
-      </Button>
-    );
   }
 
   return (
@@ -256,9 +202,9 @@ function AddClassUndergrad() {
                 isFullscreen={false}
                 RightButtons={
                   <>
-                    <DeleteFacultyUndergrad />
-                    <EditFacultyUndergrad />
-                    <AddClassFacultyDialogForm />
+                    <DeleteFacultyDialogForm />
+                    <EditFacultyDialogForm />
+                    <AddFacultyDialogForm />
                   </>
                 }
               />
@@ -377,9 +323,9 @@ function AddClassUndergrad() {
                 isFullscreen={false}
                 RightButtons={
                   <>
-                    <DeleteClassHourUndergrad />
-                    <EditClassHourUndergrad />
-                    <AddClassHourUndergrad />
+                    <DeleteClassHourDialogForm />
+                    <EditClassHourDialogForm />
+                    <AddClassHourDialogForm />
                   </>
                 }
               />
@@ -398,9 +344,9 @@ function AddClassUndergrad() {
                 isFullscreen={false}
                 RightButtons={
                   <>
-                    <DeleteClassResUndergrad />
-                    <EditClassResUndergrad />
-                    <AddClassResUndergrad />
+                    <DeleteClassResDialogForm />
+                    <EditClassResDialogForm />
+                    <AddClassResDialogForm />
                   </>
                 }
               />

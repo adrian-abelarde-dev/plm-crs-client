@@ -36,7 +36,7 @@ const faculty = facultyNames.map((facultyName) => ({
 console.log(faculty);
 [];
 
-function AddClassFacultyDialogForm() {
+function AddFacultyDialogForm() {
   const [open, setOpen] = React.useState();
   const [value, setValue] = React.useState('');
 
@@ -116,4 +116,4 @@ function AddClassFacultyDialogForm() {
   );
 }
 
-export default AddClassFacultyDialogForm;
+export default AddFacultyDialogForm;
