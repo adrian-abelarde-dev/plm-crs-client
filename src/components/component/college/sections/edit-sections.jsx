@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Edit } from 'lucide-react';
 
-import CollegeSectionsEditIndivOrMultiple from './college-sections-edit-content';
+import CollegeSectionsEditIndivOrMultiple from './edit-sections-edit-content';
 
 function EditSectionUndergrad({
   disabled,

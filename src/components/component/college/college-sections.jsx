@@ -10,9 +10,9 @@ import { fakeSectionTemplate } from '@/lib/constants/table-templates/college/col
 import { cn, handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
-import AddSectionUndergrad from './sections/college-sections-add';
-import ArchiveSectionUndergrad from './sections/college-sections-archive';
-import EditSectionUndergrad from './sections/college-sections-edit';
+import AddSectionUndergrad from './sections/add-sections';
+import ArchiveSectionUndergrad from './sections/archive-sections';
+import EditSectionUndergrad from './sections/edit-sections';
 
 function CollegeSectionsPage() {
   const [rowSelection, setRowSelection] = useState({});

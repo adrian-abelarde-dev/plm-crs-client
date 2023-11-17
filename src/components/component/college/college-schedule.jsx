@@ -5,11 +5,11 @@ import { fakeCollegeSchedule } from '@/lib/constants/fake-data/college-schedule'
 import { fakeCollegeScheduleTemplate } from '@/lib/constants/table-templates/college/college-schedule-table';
 import * as React from 'react';
 
-import AddClassUndergrad from './schedule/college-schedule-add-class';
-import ArchiveSchedUndergrad from './schedule/college-schedule-archive-sched';
-import AcadYearFilterUndergrad from './schedule/college-schedule-filter-acad-year';
-import DepartmentFilterUndergrad from './schedule/college-schedule-filter-department';
-import PrintSchedUndergrad from './schedule/college-schedule-print-sched';
+import AddClassUndergrad from './schedule/add-class';
+import ArchiveSchedUndergrad from './schedule/archive-sched';
+import AcadYearFilterUndergrad from './schedule/filter-acad-year';
+import DepartmentFilterUndergrad from './schedule/filter-department';
+import PrintSchedUndergrad from './schedule/print-sched';
 
 function CollegeSchedulePage() {
   return (

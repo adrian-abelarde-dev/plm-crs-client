@@ -48,7 +48,7 @@ import { useForm } from 'react-hook-form';
 
 import InputFormField from '../../form/input-formfield';
 import SelectFormField from '../../form/select-formfield';
-import AddClassFacultyDialogForm from './college-schedule-add-faculty';
+import AddClassFacultyDialogForm from './add-class-add-faculty';
 
 function AddClassUndergrad() {
   const addClassForm = useForm({

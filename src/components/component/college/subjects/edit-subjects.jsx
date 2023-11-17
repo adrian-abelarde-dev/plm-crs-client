@@ -3,7 +3,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Edit } from 'lucide-react';
 import React from 'react';
 
-import CollegeSubjectsEditIndivOrMultiple from './college-subjects-edit-content';
+import CollegeSubjectsEditIndivOrMultiple from './edit-subjects-edit-content';
 
 function EditSubjectsUndergrad({
   disabled,
