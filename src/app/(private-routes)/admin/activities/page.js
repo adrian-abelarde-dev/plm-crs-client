@@ -1,6 +1,6 @@
 import ScheduleOfActivitiesTable from '@/components/component/admin/schedule-of-activities-table';
 
-function ActivitiesPage() {
+function AdminActivitiesPage() {
   return (
     <main className='w-full p-6'>
       <ScheduleOfActivitiesTable />
@@ -8,4 +8,4 @@ function ActivitiesPage() {
   );
 }
 
-export default ActivitiesPage;
+export default AdminActivitiesPage;
