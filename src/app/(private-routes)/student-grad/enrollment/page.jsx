@@ -1,7 +1,8 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
-import CompletedPreview from '@/components/component/student/completed-preview';
+import CompletedPreview from '@/components/component/student/enrollment/completed-preview';
+import EnrollmentHeader from '@/components/component/student/enrollment/header';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Label } from '@/components/ui/label';
@@ -52,18 +53,7 @@ function GradStudentEnrollment() {
   ];
   return (
     <div className='mx-9'>
-      {/* Header */}
-      <div className='mt-32 flex flex-col place-items-center'>
-        <div className='place-self-start mb-[1.88rem]'>
-          <Label className='font-medium text-4xl '>Enrollment</Label>
-        </div>
-        <Label>Current School Year / Term</Label>
-        <div className='mb-[1.88rem]'>
-          <Label className='font-bold'>
-            School Year 2023 - 2024 1st Trimester
-          </Label>
-        </div>
-      </div>
+      <EnrollmentHeader />
       {/* Stepper */}
       <div className='mb-20 '>
         <CustomStepper
@@ -84,7 +74,7 @@ function GradStudentEnrollment() {
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
     <>
-      <Label className='font-medium text-4xl '>Enlist Available Classes</Label>
+      <h1 className='font-medium text-4xl '>Enlist Available Classes</h1>
       <TableMRT
         template={gradEnlistClassesTemplate}
         data={fakeGradEnlistClasses}

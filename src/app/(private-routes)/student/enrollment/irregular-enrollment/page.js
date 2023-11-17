@@ -1,7 +1,8 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
-import CompletedPreview from '@/components/component/student/completed-preview';
+import CompletedPreview from '@/components/component/student/enrollment/completed-preview';
+import EnrollmentHeader from '@/components/component/student/enrollment/header';
 import TableMRT from '@/components/layouts/table-mrt';
 import {
   Table,
@@ -51,12 +52,7 @@ function IrregStudentEnrollmentPage() {
   ];
   return (
     <div className='mx-9'>
-      {/* Header */}
-      <div className='mt-32 flex flex-col place-items-start'>
-        <h1 className='font-medium text-4xl text-left mb-2'>Enrollment</h1>
-        <p className='text-zinc-400'>Current School Year / Term</p>
-        <p className='mb-10'>School Year 2023 - 2024 1st Trimester</p>
-      </div>
+      <EnrollmentHeader />
       {/* Stepper */}
       <div className='mb-20 '>
         <CustomStepper
