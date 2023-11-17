@@ -16,6 +16,15 @@ import { ungradEnlistClassesTemplate } from '@/lib/constants/table-templates/stu
 import { CheckCircle, Download } from 'lucide-react';
 import { useState } from 'react';
 
+const viewEnlistedStepHeaders = [
+  'Class/Section',
+  'Class Title',
+  'Schedule',
+  'Room',
+];
+
+const startOfClasses = 'December 25, 1992';
+
 function IrregStudentEnrollmentPage() {
   const [rowSelection, setRowSelection] = useState({});
 
@@ -90,15 +99,10 @@ function ViewEnlistedStep({ enlistedClasses }) {
 
       <Table className='w-full mt-10'>
         <TableHeader>
-          <TableRow>
-            <TableHead className='font-medium text-black'>
-              Class/Section
-            </TableHead>
-            <TableHead className='font-medium text-black'>
-              Class Title
-            </TableHead>
-            <TableHead className='font-medium text-black'>Schedule</TableHead>
-            <TableHead className='font-medium text-black'>Room</TableHead>
+          <TableRow className='font-medium text-black'>
+            {viewEnlistedStepHeaders.map((header, index) => {
+              return <TableHead key={index}>{header}</TableHead>;
+            })}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -119,8 +123,6 @@ function ViewEnlistedStep({ enlistedClasses }) {
 }
 
 function CompletedPreview() {
-  const startOfClasses = 'December 25, 1992';
-
   return (
     <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
       <CheckCircle className='h-auto w-[100px] mr-2 mb-5 text-green-500' />
