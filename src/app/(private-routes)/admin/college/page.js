@@ -1,5 +1,6 @@
 'use client';
 
+import ProgramsTable from '@/components/component/admin/programs-table';
 import AlertConfirmModal from '@/components/component/alert-dialog';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
@@ -27,8 +28,6 @@ import { Archive, CheckCircle, PlusIcon, View, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-import ProgramsTable from './programs-table';
 
 const fakeColleges = [
   {
