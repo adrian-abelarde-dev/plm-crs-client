@@ -2,7 +2,6 @@
 
 import CustomStepper from '@/components/component/stepper';
 import TableMRT from '@/components/layouts/table-mrt';
-import { Label } from '@/components/ui/label';
 import {
   Table,
   TableBody,
@@ -79,7 +78,7 @@ function IrregStudentEnrollmentPage() {
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
     <>
-      <Label className='font-medium text-4xl '>Enlist Available Classes</Label>
+      <h1 className='font-medium text-4xl '>Enlist Available Classes</h1>
       <TableMRT
         template={ungradEnlistClassesTemplate}
         data={fakeundergradIrregEnlistClasses}
@@ -95,7 +94,7 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
     <div className='flex flex-col'>
-      <Label className='font-medium text-4xl '>View Enlisted Classes</Label>
+      <h1 className='font-medium text-4xl '>View Enlisted Classes</h1>
 
       <Table className='w-full mt-10'>
         <TableHeader>
