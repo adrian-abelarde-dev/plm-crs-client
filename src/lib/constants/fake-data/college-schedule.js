@@ -302,3 +302,42 @@ export const collegeParentClassCode = [
   { label: 'ICC', value: 'icc' },
   { label: 'TCW', value: 'tcw' },
 ];
+
+export const collegeDays = [
+  { label: 'Monday', value: 'monday' },
+  { label: 'Tuesday', value: 'tuesday' },
+  { label: 'Wednesday', value: 'wednesday' },
+  { label: 'Thursday', value: 'thursday' },
+  { label: 'Friday', value: 'friday' },
+  { label: 'Saturday', value: 'saturday' },
+];
+
+export const collegeRooms = [
+  { label: 'GV 301', value: 'gv301' },
+  { label: 'GV 302', value: 'gv302' },
+  { label: 'GV 303', value: 'gv303' },
+  { label: 'GV 304', value: 'gv304' },
+  { label: 'GV 305', value: 'gv305' },
+];
+
+export const collegeMeetTypes = [
+  { label: 'Face To Face', value: 'face-to-face' },
+  { label: 'Synchronous Online', value: 'synchronous-online' },
+  { label: 'Asynchronous Online', value: 'asynchronous-online' },
+  { label: 'Blended', value: 'blended' },
+];
+
+export const collegeRestrictions = [
+  { label: 'Not Sure', value: 'not-sure' },
+  { label: 'No Restrictions', value: 'no-restrictions' },
+  { label: 'With Restrictions', value: 'with-restrictions' },
+];
+
+export const collegeScope = [
+  { label: 'College', value: 'college' },
+  { label: 'Department', value: 'department' },
+  { label: 'Program', value: 'program' },
+  { label: 'Year Level', value: 'year-level' },
+  { label: 'Section', value: 'section' },
+  { label: 'Course', value: 'course' },
+];

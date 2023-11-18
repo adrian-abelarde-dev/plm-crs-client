@@ -29,14 +29,14 @@ import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
 
-const faculty = facultyNames.map((facultyName) => ({
-  label: facultyName,
-  value: facultyName.toLowerCase(),
-}));
-console.log(faculty);
-[];
-
 function AddFacultyDialogForm() {
+  const faculty = facultyNames.map((facultyName) => ({
+    label: facultyName,
+    value: facultyName.toLowerCase(),
+  }));
+
+  console.log(faculty);
+  [];
   const [open, setOpen] = React.useState();
   const [value, setValue] = React.useState('');
 

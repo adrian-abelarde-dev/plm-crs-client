@@ -84,7 +84,7 @@ function AddClassUndergrad() {
       <DialogTrigger asChild>
         <Button>Add Class</Button>
       </DialogTrigger>
-      <DialogContent className='md:max-w-[1024px] h-5/6 overflow-auto'>
+      <DialogContent className='md:max-w-[1280px] h-5/6 overflow-auto'>
         <DialogHeader>
           <DialogTitle className='font-bold text-2xl'>Add Class</DialogTitle>
         </DialogHeader>
@@ -217,7 +217,7 @@ function AddClassUndergrad() {
                     <Label className='font-medium text-sm'>
                       Is the class hours to be announced or unknown yet?
                     </Label>
-                    <span className='text-red-500'> *</span>
+                    <span className='text-red-500 ml-1'> *</span>
                   </div>
                   <div className='flex'>
                     <TooltipProvider>
