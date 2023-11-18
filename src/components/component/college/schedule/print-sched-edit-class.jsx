@@ -4,12 +4,10 @@ import TableMRT from '@/components/layouts/table-mrt';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
-  Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
@@ -31,17 +29,17 @@ import { CheckCircle } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
-import AddSchedClassHours from './add-class-class-hours';
-import AddSchedClassInfo from './add-class-class-info';
 import AddFacultyDialogForm from './faculty-add-faculty';
 import DeleteFacultyDialogForm from './faculty-delete-faculty';
 import EditFacultyDialogForm from './faculty-edit-faculty';
+import EditSchedClassHours from './print-sched-edit-class-hours';
+import EditSchedClassInformation from './print-sched-edit-class-information';
 import AddClassResDialogForm from './restrictions-add-restrictions';
 import DeleteClassResDialogForm from './restrictions-delete-restrictions';
 import EditClassResDialogForm from './restrictions-edit-restrictions';
 
-function AddClassUndergrad() {
-  const addClassForm = useForm({
+function EditClassPrintSched({ selectedSched }) {
+  const editClassForm = useForm({
     resolver: zodResolver(UserSchema),
     defaultValues: {
       userSchemaDefaultValues,
@@ -61,21 +59,20 @@ function AddClassUndergrad() {
     });
   }
 
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Add Class</Button>
-      </DialogTrigger>
+  if (selectedSched === 1) {
+    return (
       <DialogContent className='md:max-w-[1280px] h-5/6 overflow-auto'>
         <DialogHeader>
-          <DialogTitle className='font-bold text-2xl'>Add Class</DialogTitle>
+          <DialogTitle className='font-bold text-2xl'>
+            Edit Individual Class
+          </DialogTitle>
         </DialogHeader>
 
-        <Form {...addClassForm}>
-          <form onSubmit={addClassForm.handleSubmit(onSubmit)}>
+        <Form {...editClassForm}>
+          <form onSubmit={editClassForm.handleSubmit(onSubmit)}>
             {/* Content */}
             <div className='flex flex-col gap-4 mt-3'>
-              <AddSchedClassInfo addClassForm={addClassForm} />
+              <EditSchedClassInformation editClassForm={editClassForm} />
 
               {/* Faculty Table */}
               <TableMRT
@@ -95,7 +92,7 @@ function AddClassUndergrad() {
                   </>
                 }
               />
-              <AddSchedClassHours />
+              <EditSchedClassHours />
 
               {/* Table for Class Restriction*/}
               <TableMRT
@@ -118,7 +115,6 @@ function AddClassUndergrad() {
                   </>
                 }
               />
-
               {/* Checkbox for Confirmation */}
               <div className='items-top flex space-x-4 pt-2'>
                 <Checkbox id='confirm' />
@@ -144,8 +140,10 @@ function AddClassUndergrad() {
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
-  );
+    );
+  } else {
+    return null;
+  }
 }
 
-export default AddClassUndergrad;
+export default EditClassPrintSched;

@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { ArchiveIcon } from 'lucide-react';
 
-function ArchiveSchedUndergrad() {
+function ArchiveSchedUndergrad({ disabled }) {
   return (
     <Button
+      disabled={disabled}
       className='text-zinc-900 justify-between hover:bg-zinc-100'
       variant='outline'
     >
