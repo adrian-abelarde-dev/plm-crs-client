@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { UserSchema } from '@/lib/constants/schema/college/edit-student';
+import { StudentSchema } from '@/lib/constants/schema/student';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from 'lucide-react';
 import { useEffect } from 'react';
@@ -18,7 +18,7 @@ import { useForm } from 'react-hook-form';
 
 function ViewStudentDialogForm({ disabled, selectedStudent }) {
   const editStudentForm = useForm({
-    resolver: zodResolver(UserSchema),
+    resolver: zodResolver(StudentSchema),
   });
 
   useEffect(() => {
@@ -37,8 +37,9 @@ function ViewStudentDialogForm({ disabled, selectedStudent }) {
           className='text-zinc-900 justify-between hover:bg-zinc-100'
           variant='outline'
         >
+          {' '}
+          <User className='w-4 h-4 mr-2' />
           View Profile
-          <User className='w-4 h-4 ml-2' />
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>

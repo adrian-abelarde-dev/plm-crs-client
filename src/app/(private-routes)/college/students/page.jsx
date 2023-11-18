@@ -6,6 +6,7 @@ import { fakeCollegeStudentsTemplate } from '@/lib/constants/table-templates/col
 import { handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
+import AddStudentDialogForm from './add-student-dialog-form';
 import ViewStudentDialogForm from './view-student-profile-dialog-form';
 
 function StudentCollegePage() {
@@ -34,6 +35,13 @@ function StudentCollegePage() {
           <>
             {/* Other buttons go here */}
             <ViewStudentDialogForm
+              selectedStudent={selectedStudent[0]}
+              disabled={
+                Object.keys(selectedStudent).length > 1 ||
+                Object.keys(selectedStudent).length === 0
+              }
+            />
+            <AddStudentDialogForm
               selectedStudent={selectedStudent[0]}
               disabled={
                 Object.keys(selectedStudent).length > 1 ||
