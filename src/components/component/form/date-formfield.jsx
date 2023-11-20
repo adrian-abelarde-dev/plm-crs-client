@@ -34,6 +34,7 @@ export default function DateFormField({
   fieldName,
   className,
   isOptional,
+  disabled,
 }) {
   return (
     <FormField
@@ -46,7 +47,7 @@ export default function DateFormField({
             <RequiredAsterisk isOptional={isOptional} />
           </FormLabel>{' '}
           <Popover>
-            <PopoverTrigger asChild>
+            <PopoverTrigger asChild disabled={disabled}>
               <FormControl>
                 <Button
                   variant={'outline'}
@@ -70,9 +71,6 @@ export default function DateFormField({
                 mode='single'
                 selected={field.value}
                 onSelect={field.onChange}
-                disabled={(date) =>
-                  date > new Date() || date < new Date('1900-01-01')
-                }
                 initialFocus
               />
             </PopoverContent>

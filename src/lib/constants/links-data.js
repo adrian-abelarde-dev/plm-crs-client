@@ -2,17 +2,21 @@ import {
   Activity,
   ArrowLeftRight,
   ArrowUpDown,
+  Book,
   BookOpenText,
   BookText,
   Box,
   Calendar,
+  File,
   GraduationCap,
+  ListTree,
   Mail,
   PencilLine,
   PersonStanding,
   Presentation,
   User,
   User2,
+  UserCog,
   Warehouse,
 } from 'lucide-react';
 
@@ -25,6 +29,24 @@ export const linksStudents = [
   {
     label: 'Enrollment',
     path: '/student/enrollment',
+    subLinks: [
+      {
+        label: 'Regular Enrollment',
+        path: '/student/enrollment/regular-enrollment',
+      },
+      {
+        label: 'Irregular Enrollment',
+        path: '/student/enrollment/irregular-enrollment',
+      },
+      {
+        label: 'PE Enrollment',
+        path: '/student/enrollment/pe-enrollment',
+      },
+      {
+        label: 'NSTP Enrollment',
+        path: '/student/enrollment/nstp-enrollment',
+      },
+    ],
   },
   {
     label: 'Information',
@@ -166,10 +188,50 @@ export const collegeGradLinks = [
         icon: <ArrowUpDown className='mr-0 h-4 w-4 md:mr-2' />,
       },
       {
-        text: 'Teaching Assignment',
+        text: (
+          <span>
+            Teaching
+            <br />
+            Assignment
+          </span>
+        ),
         path: '/college-grad/transactions/teaching-assignment',
-        // icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
+        icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
       },
     ],
+  },
+];
+
+export const collegeLinks = [
+  {
+    icon: <Book className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Subjects',
+    path: '/college/subjects',
+  },
+  {
+    icon: <ListTree className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Sections',
+    path: '/college/sections',
+  },
+  {
+    icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Schedule',
+    path: '/college/schedule',
+  },
+  {
+    icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Students',
+    path: '/college/students',
+  },
+  {
+    icon: <File className='mr-0 h-4 w-4 md:mr-2' />,
+    text: (
+      <span>
+        Teaching
+        <br />
+        Assignment
+      </span>
+    ),
+    path: '/college/teaching-assignments',
   },
 ];

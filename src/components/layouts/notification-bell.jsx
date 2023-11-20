@@ -17,9 +17,9 @@ function NotificationBell() {
         </Label>
 
         {/* Notification List, display dynamically later */}
-        {fakeNotification.map((notification) => (
+        {fakeNotification.map((notification, index) => (
           <NotificationMessage
-            key={notification.id}
+            key={index}
             type={notification.type}
             message={notification.message}
             timePosted={notification.timePosted}
