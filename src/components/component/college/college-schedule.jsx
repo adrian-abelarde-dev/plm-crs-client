@@ -35,10 +35,16 @@ function CollegeSchedulePage() {
         RightButtons={
           <>
             <ArchiveSchedUndergrad
-              disabled={Object.keys(rowSelection).length === 0}
+              disabled={
+                Object.keys(rowSelection).length === 0 ||
+                Object.keys(rowSelection).length > 1
+              }
             />
             <PrintSchedUndergrad
-              disabled={Object.keys(rowSelection).length === 0}
+              disabled={
+                Object.keys(rowSelection).length === 0 ||
+                Object.keys(rowSelection).length > 1
+              }
               selectedSched={Object.keys(rowSelection).length}
             />
             <AddClassUndergrad />

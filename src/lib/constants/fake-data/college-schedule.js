@@ -94,22 +94,22 @@ export const fakeCollegeClassHours = [
   {
     day: 'Monday',
     timeStart: '8:00 AM',
-    timeEnd: '9:30 AM',
+    timeEnd: '9:00 AM',
     room: 'GV 301',
     meetingType: 'Asynchronous Online',
   },
   {
-    day: 'Monday',
-    timeStart: '8:00 AM',
+    day: 'Tuesday',
+    timeStart: '9:00 AM',
     timeEnd: '9:30 AM',
-    room: 'GV 301',
+    room: 'GV 302',
     meetingType: 'Asynchronous Online',
   },
   {
-    day: 'Monday',
-    timeStart: '8:00 AM',
-    timeEnd: '9:30 AM',
-    room: 'GV 301',
+    day: 'Sunday',
+    timeStart: '10:00 AM',
+    timeEnd: '10:30 AM',
+    room: 'GV 303',
     meetingType: 'Asynchronous Online',
   },
   {
@@ -137,15 +137,15 @@ export const fakeCollegeClassHours = [
 
 export const fakeCollegeClassRestrictions = [
   {
-    scope: 'College',
+    scope: 'Computer Science',
     restriction: 'Not Sure',
   },
   {
-    scope: 'College',
+    scope: 'Information Technology',
     restriction: 'Not Sure',
   },
   {
-    scope: 'College',
+    scope: 'Computer Engineering',
     restriction: 'Not Sure',
   },
 ];

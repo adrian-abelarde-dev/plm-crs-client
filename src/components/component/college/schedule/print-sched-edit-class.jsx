@@ -27,6 +27,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle } from 'lucide-react';
 import * as React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import AddFacultyDialogForm from './faculty-add-faculty';
@@ -59,6 +60,9 @@ function EditClassPrintSched({ selectedSched }) {
     });
   }
 
+  const [facultySelection, setFacultySelection] = useState({});
+  const [classResSelection, setClassResSelection] = useState({});
+
   if (selectedSched === 1) {
     return (
       <DialogContent className='md:max-w-[1280px] h-5/6 overflow-auto'>
@@ -83,11 +87,24 @@ function EditClassPrintSched({ selectedSched }) {
                   <Label className='font-semibold text-xl pt-3'>Faculty</Label>
                 }
                 searchPlaceholder='Search faculty...'
+                isCheckBoxVisible={true}
                 isFullscreen={false}
+                rowSelection={facultySelection}
+                setRowSelection={setFacultySelection}
                 RightButtons={
                   <>
-                    <DeleteFacultyDialogForm />
-                    <EditFacultyDialogForm />
+                    <DeleteFacultyDialogForm
+                      disabled={
+                        Object.keys(facultySelection).length === 0 ||
+                        Object.keys(facultySelection).length > 1
+                      }
+                    />
+                    <EditFacultyDialogForm
+                      disabled={
+                        Object.keys(facultySelection).length === 0 ||
+                        Object.keys(facultySelection).length > 1
+                      }
+                    />
                     <AddFacultyDialogForm />
                   </>
                 }
@@ -107,10 +124,22 @@ function EditClassPrintSched({ selectedSched }) {
                 searchPlaceholder='Search restriction...'
                 isCheckBoxVisible={true}
                 isFullscreen={false}
+                rowSelection={classResSelection}
+                setRowSelection={setClassResSelection}
                 RightButtons={
                   <>
-                    <DeleteClassResDialogForm />
-                    <EditClassResDialogForm />
+                    <DeleteClassResDialogForm
+                      disabled={
+                        Object.keys(classResSelection).length === 0 ||
+                        Object.keys(classResSelection).length > 1
+                      }
+                    />
+                    <EditClassResDialogForm
+                      disabled={
+                        Object.keys(classResSelection).length === 0 ||
+                        Object.keys(classResSelection).length > 1
+                      }
+                    />
                     <AddClassResDialogForm />
                   </>
                 }

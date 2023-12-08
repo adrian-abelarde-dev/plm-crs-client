@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Edit } from 'lucide-react';
 
-function EditClassResDialogForm() {
+function EditClassResDialogForm({ disabled }) {
   return (
-    <Button variant='outline'>
+    <Button variant='outline' disabled={disabled}>
       Edit
       <Edit className='ml-2 h-4 w-4' />
     </Button>

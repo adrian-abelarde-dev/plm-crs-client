@@ -13,12 +13,14 @@ import { fakeCollegeClassHours } from '@/lib/constants/fake-data/college-schedul
 import { fakeCollegeClassHoursTemplate } from '@/lib/constants/table-templates/college/college-schedule-table';
 import { HelpCircle } from 'lucide-react';
 import * as React from 'react';
+import { useState } from 'react';
 
 import AddClassHourDialogForm from './hours-add-class-hours';
 import DeleteClassHourDialogForm from './hours-delete-class-hours';
 import EditClassHourDialogForm from './hours-edit-class-hours';
 
 function AddSchedClassHours() {
+  const [classHourSelection, setClassHourSelection] = useState({});
   return (
     <div>
       {/* Class Hours */}
@@ -124,10 +126,22 @@ function AddSchedClassHours() {
         searchPlaceholder='Search schedule...'
         isCheckBoxVisible={true}
         isFullscreen={false}
+        rowSelection={classHourSelection}
+        setRowSelection={setClassHourSelection}
         RightButtons={
           <>
-            <DeleteClassHourDialogForm />
-            <EditClassHourDialogForm />
+            <DeleteClassHourDialogForm
+              disabled={
+                Object.keys(classHourSelection).length === 0 ||
+                Object.keys(classHourSelection).length > 1
+              }
+            />
+            <EditClassHourDialogForm
+              disabled={
+                Object.keys(classHourSelection).length === 0 ||
+                Object.keys(classHourSelection).length > 1
+              }
+            />
             <AddClassHourDialogForm />
           </>
         }
