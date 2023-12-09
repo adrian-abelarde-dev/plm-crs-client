@@ -1,3 +1,5 @@
+'use client';
+
 import ViewRequest from '@/app/(private-routes)/college-grad/transactions/add-drop/view-request';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
