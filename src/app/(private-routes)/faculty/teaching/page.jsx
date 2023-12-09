@@ -1,22 +1,29 @@
 import TableMRT from '@/components/layouts/table-mrt';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { addDropRequestData } from '@/lib/constants/fake-data/grad-add-drop-request';
-import { addDropRequestTemplate } from '@/lib/constants/table-templates/college-grad/add-drop-request';
+import { facultyClassAssingnmentData } from '@/lib/constants/fake-data/faculty-class-assignment';
+import { facultyClassAssignmentTemplate } from '@/lib/constants/table-templates/faculty/current-class-assignment';
+import { computeLoads } from '@/lib/utils';
 import React from 'react';
 
 function FacultyTeaching() {
   return (
-    <main className='p-6'>
+    <main className='p-6 flex flex-col'>
       <div className='mt-12 mb-16'>
         <Label className='text-4xl font-medium'>Current Class Assignment</Label>
       </div>
 
       <TableMRT
-        template={addDropRequestTemplate}
-        data={addDropRequestData}
+        template={facultyClassAssignmentTemplate}
+        data={facultyClassAssingnmentData}
         title='1st Semester A.Y 2023 - 2024'
         searchPlaceholder='Search Class'
       />
+
+      <Button variant='outline' className='cursor-context-menu place-self-end'>
+        Total No. of Credits:{' '}
+        {computeLoads('credits', facultyClassAssingnmentData)}
+      </Button>
     </main>
   );
 }
