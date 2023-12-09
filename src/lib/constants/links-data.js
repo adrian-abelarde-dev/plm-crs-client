@@ -8,6 +8,8 @@ import {
   Box,
   Calendar,
   File,
+  FileSignature,
+  FileSpreadsheet,
   GraduationCap,
   ListTree,
   Mail,
@@ -17,6 +19,7 @@ import {
   User,
   User2,
   UserCog,
+  Users2,
   Warehouse,
 } from 'lucide-react';
 
@@ -136,6 +139,39 @@ export const adminSidebarLinks = [
     icon: <User2 className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Students',
     path: '/admin/students',
+  },
+];
+
+export const facultySidebarLinks = [
+  {
+    icon: <BookText className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Teaching',
+    path: '/faculty/teaching',
+  },
+  {
+    icon: <FileSpreadsheet className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Load Assignment',
+    path: '/faculty/load-assignment',
+  },
+  {
+    icon: <FileSignature className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Encoding of Grades',
+    path: '/faculty/encoding-of-grades',
+  },
+  {
+    icon: <GraduationCap className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'View Grades',
+    path: '/faculty/view-grades',
+  },
+  {
+    icon: <Users2 className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Previous Class',
+    path: '/faculty/previous-class',
+  },
+  {
+    icon: <User2 className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Faculty Profile',
+    path: '/faculty/faculty-profile',
   },
 ];
 
