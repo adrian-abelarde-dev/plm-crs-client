@@ -12,7 +12,7 @@ export const metadata = {
     'PLM - CRS is a computerized registration system for the Pamantasan ng Lungsod ng Maynila. Developed by batch 2023 - 2024 BSCS 4 - 1',
 };
 
-export default function PrivateRouteRootLayoutAdmin({ children }) {
+export default function PrivateRouteRootLayoutFaculty({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
