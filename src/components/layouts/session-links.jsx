@@ -57,7 +57,6 @@ export function SessionLinks() {
         </CollapsibleTrigger>
         <CollapsibleContent>
           {session?.role.map((role, index) => {
-            console.log(role);
             if (!currentPage.includes(role)) {
               // check if path is not the same as access role, to remove role on display
               return (
