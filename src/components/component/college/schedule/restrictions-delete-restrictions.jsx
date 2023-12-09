@@ -3,9 +3,13 @@ import { Delete } from 'lucide-react';
 
 function DeleteClassResDialogForm({ disabled }) {
   return (
-    <Button variant='outline' disabled={disabled}>
+    <Button
+      variant='outline'
+      disabled={disabled}
+      className='bg-red-500 text-white'
+    >
       Delete
-      <Delete className='ml-2 h-4 w-4' />
+      <Delete className='ml-2 h-4 w-4 text-white' />
     </Button>
   );
 }
