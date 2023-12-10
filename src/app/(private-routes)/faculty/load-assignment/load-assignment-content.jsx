@@ -8,6 +8,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { fakeFacultyLoadAssignmentData } from '@/lib/constants/fake-data/faculty-load-assignment';
+import { cn } from '@/lib/utils';
 import React from 'react';
 
 import PrintLayoutTeachingAssignment from './print-teaching-assignment';
@@ -15,7 +16,8 @@ import SignaturesApprovals from './signatures-approvals';
 
 function ContentLoadAssignment({ enablePrintMode }) {
   return (
-    <>
+    <div className={cn(enablePrintMode && 'mx-8')}>
+      {enablePrintMode && <div className='mt-16' />}
       {/* Headers */}
       {/* TODO: Pass enablePrintMode here to display logos */}
       <PrintHeader college={'COLLEGE OF ENGINEERING'} />
@@ -73,7 +75,7 @@ function ContentLoadAssignment({ enablePrintMode }) {
 
       {/* Signatures | Approvals */}
       {enablePrintMode && <SignaturesApprovals />}
-    </>
+    </div>
   );
 }
 

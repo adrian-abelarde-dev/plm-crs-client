@@ -15,7 +15,7 @@ function SignaturesApprovals() {
         />
       </div>
 
-      <Label className='ml-20 font-semibold'>Recommending Approval:</Label>
+      <Label className='font-semibold'>Recommending Approval:</Label>
 
       <div className='flex items-center justify-center mt-8 gap-24'>
         <Signature

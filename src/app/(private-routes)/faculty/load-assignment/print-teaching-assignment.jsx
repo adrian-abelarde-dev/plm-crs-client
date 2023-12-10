@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,11 +13,17 @@ import {
 } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Printer } from 'lucide-react';
-import React from 'react';
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 import ContentLoadAssignment from './load-assignment-content';
 
 function PrintLayoutTeachingAssignment() {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -34,7 +42,7 @@ function PrintLayoutTeachingAssignment() {
         </DialogHeader>
         <ScrollArea className='h-[70vh] w-full'>
           {/* Printable form */}
-          <div className='flex flex-col space-x-2'>
+          <div className='flex flex-col space-x-2' ref={componentRef}>
             <ContentLoadAssignment enablePrintMode />
           </div>
         </ScrollArea>
@@ -46,7 +54,7 @@ function PrintLayoutTeachingAssignment() {
           </DialogClose>
 
           {/* Print Button */}
-          <Button>
+          <Button onClick={handlePrint}>
             Print
             <Printer className='w-4 h-4 ml-2' />
           </Button>
