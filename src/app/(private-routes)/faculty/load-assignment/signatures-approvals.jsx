@@ -1,7 +1,7 @@
 import { Label } from '@/components/ui/label';
 import React from 'react';
 
-import Signature from './signature';
+import Signature from '../../../../components/component/printables/signature';
 
 function SignaturesApprovals() {
   return (

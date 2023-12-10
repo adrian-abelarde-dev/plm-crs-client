@@ -2,6 +2,9 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import React from 'react';
 
+// ? use for printables with signature
+// ? <Signature withDate/> --> to enable date
+// * for reference, see `faculty/load-assignment/signatures-approvals.jsx`
 function Signature({ name, position, withDate }) {
   return (
     <div className='flex gap-4 gap-x-7'>
