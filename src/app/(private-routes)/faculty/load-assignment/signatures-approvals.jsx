@@ -6,7 +6,7 @@ import Signature from './signature';
 function SignaturesApprovals() {
   return (
     <div className='mt-8'>
-      <div className='flex items-center justify-around mb-8'>
+      <div className='flex items-center justify-center mb-8 gap-24'>
         <Signature name={'Thom Yorke'} position={'Instructor'} withDate />
         <Signature
           name={'Lisbon Annika Tamayo'}
@@ -17,7 +17,7 @@ function SignaturesApprovals() {
 
       <Label className='ml-20 font-semibold'>Recommending Approval:</Label>
 
-      <div className='flex items-center justify-around mt-8'>
+      <div className='flex items-center justify-center mt-8 gap-24'>
         <Signature
           name={'Denver Arthur Reyes'}
           position={'Acting Dean'}
