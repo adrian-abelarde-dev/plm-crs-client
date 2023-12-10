@@ -22,6 +22,7 @@ function PrintLayoutTeachingAssignment() {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    suppressErrors: true, // to remove error message in console --> errors are just warnings
   });
 
   return (
