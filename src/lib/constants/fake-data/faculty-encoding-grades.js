@@ -1,6 +1,6 @@
 export const fakeFacultyEncodingGrades = [
   {
-    courseCode: 'CMSC 11',
+    courseCode: 'CMSC-11',
     isExpired: false,
     section: 'A',
     courseTitle: 'Introduction to Computer Science',
@@ -34,7 +34,7 @@ export const fakeFacultyEncodingGrades = [
     ],
   },
   {
-    courseCode: 'ABCD 12',
+    courseCode: 'ABCD-12',
     isExpired: true,
     section: 'B',
     courseTitle: 'Anthropology, Business, Computer, and Disaster Management',
