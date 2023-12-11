@@ -79,7 +79,7 @@ function EncodingGradesPage() {
 
         {/* Note */}
         <div className='mt-8 text-sm flex flex-col items-center gap-4'>
-          <div className='w-[34rem]'>
+          <div className='w-[34rem] max-md:w-auto'>
             <Label className='text-justify'>
               <span className='font-bold'>NOTE:</span> If some of the classes do
               not appear at this list, you may need to call the attention of
