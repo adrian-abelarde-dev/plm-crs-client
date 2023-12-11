@@ -17,7 +17,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { fakeFacultyEncodingGrades } from '@/lib/constants/fake-data/faculty-encoding-grades';
-import { cn } from '@/lib/utils';
+import { cn, generateGradingSheetTitle } from '@/lib/utils';
 import { Printer } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -91,52 +91,64 @@ function EncodingGradesPage() {
             (Encoding of grades for classes in red color has been expired)
           </Label>
 
-          <Label className='text-lg py-8 font-semibold'>
-            GRADING SHEET(S) FOR S.Y 2023 - 2024 1ST SEMESTER
-          </Label>
+          {selectedAysem && (
+            <Label className='text-lg py-8 font-semibold'>
+              {generateGradingSheetTitle(selectedAysem.toString())}
+            </Label>
+          )}
         </div>
       </div>
 
-      {/* Table Layout */}
-      <Table>
-        <TableHeader>
-          <TableRow className='font-bold'>
-            <TableCell>Course Code</TableCell>
-            <TableCell>Section</TableCell>
-            <TableCell>Course Title</TableCell>
-            <TableCell>Class Schedule</TableCell>
-            <TableCell>Instructor</TableCell>
-            <TableCell>Class List</TableCell>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {fakeFacultyEncodingGrades.map((data, index) => {
-            return (
-              <TableRow key={index}>
-                <TableCell
-                  className={cn(
-                    'underline font-bold',
-                    data.isExpired ? 'text-red-500' : 'text-yellow-500',
-                  )}
-                >
-                  <Link href={`/faculty/encoding-grades/${data.courseCode}`}>
-                    {data.courseCode}
-                  </Link>
-                </TableCell>
-                <TableCell>{data.section}</TableCell>
-                <TableCell>{data.courseTitle}</TableCell>
-                <TableCell>{data.classSchedule}</TableCell>
-                <TableCell>{data.instructor}</TableCell>
-                <TableCell>
-                  <Button variant='ghost'>
-                    <Printer className='w-4 h-4 mr-2' />
-                  </Button>
-                </TableCell>
+      {selectedAysem ? (
+        <>
+          {/* Table Layout */}
+          <Table>
+            <TableHeader>
+              <TableRow className='font-bold'>
+                <TableCell>Course Code</TableCell>
+                <TableCell>Section</TableCell>
+                <TableCell>Course Title</TableCell>
+                <TableCell>Class Schedule</TableCell>
+                <TableCell>Instructor</TableCell>
+                <TableCell>Class List</TableCell>
               </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+            </TableHeader>
+            <TableBody>
+              {fakeFacultyEncodingGrades.map((data, index) => {
+                return (
+                  <TableRow key={index}>
+                    <TableCell
+                      className={cn(
+                        'underline font-bold',
+                        data.isExpired ? 'text-red-500' : 'text-yellow-500',
+                      )}
+                    >
+                      <Link
+                        href={`/faculty/encoding-grades/${data.courseCode}`}
+                      >
+                        {data.courseCode}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{data.section}</TableCell>
+                    <TableCell>{data.courseTitle}</TableCell>
+                    <TableCell>{data.classSchedule}</TableCell>
+                    <TableCell>{data.instructor}</TableCell>
+                    <TableCell>
+                      <Button variant='ghost'>
+                        <Printer className='w-4 h-4 mr-2' />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </>
+      ) : (
+        <div className='w-full h-96 flex justify-center place-items-center text-zinc-400'>
+          Please Select AY/SEM
+        </div>
+      )}
     </main>
   );
 }

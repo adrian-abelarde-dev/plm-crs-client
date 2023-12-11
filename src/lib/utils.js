@@ -84,3 +84,14 @@ export function computeLoads(key, data, typeOfLoad) {
     return total;
   }, 0);
 }
+
+// ?used for generating this: GRADING SHEET(S) FOR S.Y 2020 - 2021 2ND SEMESTER
+// * Check `/faculty/encoding-grades` for implementation
+export const generateGradingSheetTitle = (aysem) => {
+  const year = aysem.slice(0, 4);
+  const semester = aysem.slice(4);
+  const academicYear = `S.Y ${year} - ${parseInt(year) + 1}`;
+  const semesterText = `${semester}${semester === '1' ? 'ST' : 'ND'} SEMESTER`;
+  const result = `GRADING SHEET(S) FOR ${academicYear} ${semesterText}`;
+  return result;
+};
