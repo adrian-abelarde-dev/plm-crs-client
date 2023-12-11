@@ -156,7 +156,7 @@ export const facultySidebarLinks = [
   {
     icon: <FileSignature className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Encoding of Grades',
-    path: '/faculty/encoding-of-grades',
+    path: '/faculty/encoding-grades',
   },
   {
     icon: <GraduationCap className='mr-0 h-4 w-4 md:mr-2' />,
