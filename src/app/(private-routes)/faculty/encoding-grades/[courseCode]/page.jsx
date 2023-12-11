@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/table';
 import { fakeFacultyEncodingGrades } from '@/lib/constants/fake-data/faculty-encoding-grades';
 import { Import, Printer } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 function GradesCourseView({ params }) {
@@ -64,15 +65,13 @@ function GradesCourseView({ params }) {
   ];
 
   const remarksData = [
-    { remarks: 'P' },
-    { remarks: 'INC' },
-    { remarks: 'DO' },
-    { remarks: 'DU' },
-    { remarks: 'DC' },
+    { remarks: 'Passed' },
+    { remarks: 'Incomplete' },
+    { remarks: 'Dropped Officially' },
+    { remarks: 'Dropped Unofficially' },
+    { remarks: 'Dropped due to COVID-19' },
   ];
 
-  // write a function that will change the value of the filteredFakeFacultyEncodingGrades[0].students[index].finalGrade
-  // when the user selects a grade from the dropdown
   const changeGrade = (index, grade) => {
     // TODO: Update this later when we have the API
     const updatedFacultyGrades = [...facultyEncodingGrades];
@@ -231,6 +230,14 @@ function GradesCourseView({ params }) {
           })}
         </TableBody>
       </Table>
+
+      {/* Actions */}
+      <div className='mt-4 flex gap-4 justify-center'>
+        <Button variant='outline' asChild>
+          <Link href='/faculty/encoding-grades'>Cancel</Link>
+        </Button>
+        <Button>Save</Button>
+      </div>
     </main>
   );
 }
