@@ -1,6 +1,14 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Table,
   TableBody,
@@ -12,9 +20,29 @@ import { fakeFacultyEncodingGrades } from '@/lib/constants/fake-data/faculty-enc
 import { cn } from '@/lib/utils';
 import { Printer } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 function EncodingGradesPage() {
+  const [selectedAysem, setSelectedAysem] = useState();
+
+  const aysem = [
+    {
+      aysem: 20201,
+    },
+    {
+      aysem: 20202,
+    },
+    {
+      aysem: 20211,
+    },
+    {
+      aysem: 20212,
+    },
+    {
+      aysem: 20221,
+    },
+  ];
+
   return (
     <main className='p-6'>
       <div className='mt-12'>
@@ -26,8 +54,27 @@ function EncodingGradesPage() {
 
         {/* Enter AYSEM */}
         <div className='w-96 mt-4'>
-          <Label htmlFor='aysem'>A.Y. Sem</Label>
-          <Input type='number' id='aysem' placeholder='Enter A.Y. Sem' />
+          <Select onValueChange={setSelectedAysem} defaultValue={selectedAysem}>
+            <Label className='font-semibold'>AY/SEM</Label>
+
+            <SelectTrigger>
+              <SelectValue
+                placeholder={
+                  <Label className='text-zinc-400'>Enter Aysem</Label>
+                }
+              />
+            </SelectTrigger>
+
+            <SelectContent>
+              {aysem.map((year, index) => {
+                return (
+                  <SelectItem key={index} value={year.aysem}>
+                    {year.aysem}
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Note */}
@@ -36,7 +83,7 @@ function EncodingGradesPage() {
             <Label className='text-justify'>
               <span className='font-bold'>NOTE:</span> If some of the classes do
               not appear at this list, you may need to call the attention of
-              ICTO to update the classes' database to mark you as its
+              ICTO to update the classes&apos; database to mark you as its
               instructor.
             </Label>
           </div>
@@ -68,7 +115,7 @@ function EncodingGradesPage() {
               <TableRow key={index}>
                 <TableCell
                   className={cn(
-                    'underline',
+                    'underline font-bold',
                     data.isExpired ? 'text-red-500' : 'text-yellow-500',
                   )}
                 >
