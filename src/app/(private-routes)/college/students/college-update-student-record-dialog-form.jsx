@@ -287,12 +287,12 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   placeholder='Entry Academic Year'
                 />
                 <div className='mt-7' />
-                {/* Scholarstic Status */}
+                {/* Scholastic Status */}
                 <InputFormField
                   form={updateStudentForm}
-                  title='Scholarstic Status'
-                  fieldName='scholarsticStatus'
-                  placeholder='Scholarstic Status'
+                  title='Scholastic Status'
+                  fieldName='scholasticStatus'
+                  placeholder='Scholastic Status'
                 />
                 <div className='mt-7' />
                 <Label>

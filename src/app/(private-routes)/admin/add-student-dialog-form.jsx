@@ -281,12 +281,12 @@ function AddStudentDialogForm() {
                     fieldName='entryAcademicYear'
                   />
                   <div className='mt-7' />
-                  {/* Scholarstic Status */}
+                  {/* Scholastic Status */}
                   <InputFormField
                     form={AddStudentForm}
-                    title='Scholarstic Status'
+                    title='Scholastic Status'
                     placeholder='Paying'
-                    fieldName='scholarsticStatus'
+                    fieldName='scholasticStatus'
                   />
                 </div>
               </div>

@@ -31,7 +31,6 @@ import {
 } from '@/lib/constants/fake-data/add-student';
 import { StudentSchema } from '@/lib/constants/schema/student';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { getPaginationRowModel, useReactTable } from '@tanstack/react-table';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -49,10 +48,6 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
       });
     }
   }, [selectedStudent, updateStudentForm]);
-
-  const table = useReactTable({
-    getPaginationRowModel: getPaginationRowModel(),
-  });
 
   return (
     <DialogContent className='md:max-w-[1350px] h-5/6 overflow-auto'>
@@ -97,22 +92,6 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
                 </TableRow>
               ))}
             </TableBody>
-            <div className='flex items-center justify-end space-x-2 py-4'>
-              <Button
-                variant='outline'
-                size='sm'
-                onClick={() => table.previousPage()}
-              >
-                Previous
-              </Button>
-              <Button
-                variant='outline'
-                size='sm'
-                onClick={() => table.nextPage()}
-              >
-                Next
-              </Button>
-            </div>
           </Table>
           <div className='flex w-full gap-7 mt-12'>
             <div className='flex flex-row w-1/2'>
@@ -186,12 +165,12 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
                   placeholder='Entry Academic Year'
                 />
                 <div className='mt-7' />
-                {/* Scholarstic Status */}
+                {/* Scholastic Status */}
                 <InputFormField
                   form={updateStudentForm}
-                  title='Scholarstic Status'
-                  fieldName='scholarsticStatus'
-                  placeholder='Scholarstic Status'
+                  title='Scholastic Status'
+                  fieldName='scholasticStatus'
+                  placeholder='Scholastic Status'
                 />
               </div>
             </div>
