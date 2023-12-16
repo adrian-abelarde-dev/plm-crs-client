@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -46,22 +45,20 @@ function EncodingGradesPage() {
   return (
     <main className='p-6'>
       <div className='mt-12'>
-        <Label className='text-4xl font-medium'>Encoding of Grades</Label>
+        <h1 className='text-4xl font-medium'>Encoding of Grades</h1>
       </div>
 
       <div className='mt-8 flex flex-col items-center'>
-        <Label className='text-lg font-semibold'>GRADE SHEET INPUT</Label>
+        <h1 className='text-lg font-semibold'>GRADE SHEET INPUT</h1>
 
         {/* Enter AYSEM */}
         <div className='w-96 mt-4'>
           <Select onValueChange={setSelectedAysem} defaultValue={selectedAysem}>
-            <Label className='font-semibold'>AY/SEM</Label>
+            <h1 className='font-semibold'>AY/SEM</h1>
 
             <SelectTrigger>
               <SelectValue
-                placeholder={
-                  <Label className='text-zinc-400'>Enter Aysem</Label>
-                }
+                placeholder={<h1 className='text-zinc-400'>Enter Aysem</h1>}
               />
             </SelectTrigger>
 
@@ -80,21 +77,21 @@ function EncodingGradesPage() {
         {/* Note */}
         <div className='mt-8 text-sm flex flex-col items-center gap-4'>
           <div className='w-[34rem] max-md:w-auto'>
-            <Label className='text-justify'>
+            <h1 className='text-justify'>
               <span className='font-bold'>NOTE:</span> If some of the classes do
               not appear at this list, you may need to call the attention of
               ICTO to update the classes&apos; database to mark you as its
               instructor.
-            </Label>
+            </h1>
           </div>
-          <Label className='text-zinc-500'>
+          <p className='text-zinc-500'>
             (Encoding of grades for classes in red color has been expired)
-          </Label>
+          </p>
 
           {selectedAysem && (
-            <Label className='text-lg py-8 font-semibold'>
+            <h1 className='text-lg py-8 font-semibold'>
               {generateGradingSheetTitle(selectedAysem.toString())}
-            </Label>
+            </h1>
           )}
         </div>
       </div>

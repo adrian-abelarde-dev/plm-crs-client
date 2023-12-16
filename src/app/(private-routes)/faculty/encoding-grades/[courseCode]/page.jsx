@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -89,11 +88,11 @@ function GradesCourseView({ params }) {
   return (
     <main className='p-6'>
       <div className='mt-12'>
-        <Label className='text-4xl font-medium'>Encoding of Grades</Label>
+        <h1 className='text-4xl font-medium'>Encoding of Grades</h1>
       </div>
 
       <div className='mt-8 flex flex-col items-center'>
-        <Label className='text-lg font-semibold'>REPORT OF GRADES</Label>
+        <h1 className='font-semibold'>REPORT OF GRADES</h1>
       </div>
 
       {/* Actions */}
@@ -111,42 +110,42 @@ function GradesCourseView({ params }) {
       {/* Notes */}
       <div className='mt-8 text-sm flex flex-col items-center gap-4'>
         <div className='w-[34rem] max-md:w-auto'>
-          <Label className='text-justify'>
+          <h1 className='text-justify'>
             <span className='font-bold'>** ACCEPTABLE GRADES: </span> 1.00 1.25
             1.50 1.75 2.00 2.25 2.50 2.75 3.00 5.0-5.00
-          </Label>
+          </h1>
         </div>
 
-        <Label>
+        <p>
           P-Passed INC-Incomplete DO-Dropped Officially DU-Dropped Unofficially
           DC-Dropped due to COVID-19 **
-        </Label>
+        </p>
 
-        <Label className='text-zinc-500'>
+        <h1 className='text-zinc-500'>
           [No grade has been temporarily saved OR submitted yet]
-        </Label>
+        </h1>
       </div>
 
       {/* Course Info */}
       <div className='grid grid-cols-4 gap-4 mt-12 mx-24 place-items-center max-md:mx-0 max-md:grid-cols-1 max-md:justify-items-start max-md:p-6 max-md:border max-md:shadow rounded'>
         <div className='flex flex-col gap-2'>
-          <Label className='font-bold text-lg'>Course Code</Label>
-          <Label>{params.courseCode}</Label>
+          <h1 className='font-bold text-lg'>Course Code</h1>
+          <p>{params.courseCode}</p>
         </div>
 
         <div className='flex flex-col gap-2'>
-          <Label className='font-bold text-lg'>Course Title</Label>
-          <Label>CS Elective 2 (lab)</Label>
+          <h1 className='font-bold text-lg'>Course Title</h1>
+          <p>CS Elective 2 (lab)</p>
         </div>
 
         <div className='flex flex-col gap-2'>
-          <Label className='font-bold text-lg'>Units</Label>
-          <Label>3</Label>
+          <h1 className='font-bold text-lg'>Units</h1>
+          <p>3</p>
         </div>
 
         <div className='flex flex-col gap-2'>
-          <Label className='font-bold text-lg'>Term / A.Y</Label>
-          <Label>1 / 2023</Label>
+          <h1 className='font-bold text-lg'>Term / A.Y</h1>
+          <p>1 / 2023</p>
         </div>
       </div>
 
@@ -181,7 +180,7 @@ function GradesCourseView({ params }) {
                     <SelectTrigger>
                       <SelectValue
                         placeholder={
-                          <Label className='text-zinc-400'>Select grade</Label>
+                          <h1 className='text-zinc-400'>Select grade</h1>
                         }
                       />
                     </SelectTrigger>
@@ -207,9 +206,7 @@ function GradesCourseView({ params }) {
                     <SelectTrigger>
                       <SelectValue
                         placeholder={
-                          <Label className='text-zinc-400'>
-                            Select remarks
-                          </Label>
+                          <h1 className='text-zinc-400'>Select remarks</h1>
                         }
                       />
                     </SelectTrigger>
