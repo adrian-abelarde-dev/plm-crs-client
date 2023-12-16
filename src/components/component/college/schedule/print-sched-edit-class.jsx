@@ -83,9 +83,7 @@ function EditClassPrintSched({ selectedSched }) {
                 className='pt-5'
                 template={fakeCollegeFacultyTemplate}
                 data={fakeCollegeFaculty}
-                title={
-                  <Label className='font-semibold text-xl pt-3'>Faculty</Label>
-                }
+                title={<h1 className='font-semibold text-xl pt-3'>Faculty</h1>}
                 searchPlaceholder='Search faculty...'
                 isCheckBoxVisible={true}
                 isFullscreen={false}
@@ -117,9 +115,7 @@ function EditClassPrintSched({ selectedSched }) {
                 template={fakeCollegeClassResTemplate}
                 data={fakeCollegeClassRestrictions}
                 title={
-                  <Label className='font-semibold text-xl'>
-                    Class Restriction
-                  </Label>
+                  <h1 className='font-semibold text-xl'>Class Restriction</h1>
                 }
                 searchPlaceholder='Search restriction...'
                 isCheckBoxVisible={true}
@@ -148,12 +144,12 @@ function EditClassPrintSched({ selectedSched }) {
               <div className='items-top flex space-x-4 pt-2'>
                 <Checkbox id='confirm' />
                 <div className='grid gap-1 leading-none'>
-                  <label
+                  <Label
                     htmlFor='confirm'
                     className='text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
                   >
                     Are you sure?
-                  </label>
+                  </Label>
                   <p className='text-sm text-muted-foreground w-72'>
                     Double check if all inputs are correct to make sure there
                     are no input errors.

@@ -18,7 +18,7 @@ function AddSchedClassInfo({ addClassForm }) {
   return (
     <div>
       {/* Class Information */}
-      <Label className='font-semibold text-xl pt-4'>Class Information</Label>
+      <h1 className='font-semibold text-xl pt-4'>Class Information</h1>
       {/* Schedule ID */}
       <InputFormField
         disabled={true}

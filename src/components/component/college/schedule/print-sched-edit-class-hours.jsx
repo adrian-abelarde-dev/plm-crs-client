@@ -24,7 +24,7 @@ function EditSchedClassHours() {
   return (
     <div>
       {/* Class Hours */}
-      <Label className='font-semibold text-xl pt-2'>Class Hours</Label>
+      <h1 className='font-semibold text-xl pt-2'>Class Hours</h1>
       {/* Class has no definite time and day? */}
       <div className='grid grid-cols-1 mt-4'>
         <div className='flex gap-8 items-center'>
@@ -33,9 +33,9 @@ function EditSchedClassHours() {
               Class has no definite time and day?
               <span className='text-red-500'> *</span>
             </Label>
-            <Label className='font-medium text-sm text-zinc-500 pb-4'>
+            <p className='font-medium text-sm text-zinc-500 pb-4'>
               (e.g. Thesis / Practicum / Field / College of Music)
-            </Label>
+            </p>
           </div>
           <div className='flex'>
             <TooltipProvider>
@@ -64,7 +64,9 @@ function EditSchedClassHours() {
                 id='definiteTimeDayYes'
                 className='text-black'
               />
-              <Label htmlFor='definiteTimeDayYes'>Yes</Label>
+              <p className='font-medium text-sm' htmlFor='definiteTimeDayYes'>
+                Yes
+              </p>
             </div>
             <div className='flex items-center space-x-2'>
               <RadioGroupItem
@@ -72,7 +74,9 @@ function EditSchedClassHours() {
                 id='definiteTimeDayNo'
                 className='text-black'
               />
-              <Label htmlFor='definiteTimeDayNo'>No</Label>
+              <p className='font-medium text-sm' htmlFor='definiteTimeDayNo'>
+                No
+              </p>
             </div>
           </div>
         </RadioGroup>

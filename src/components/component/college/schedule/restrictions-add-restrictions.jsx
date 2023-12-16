@@ -34,8 +34,6 @@ function AddClassResDialogForm() {
       userSchemaDefaultValues,
     },
   });
-  console.log('add class restrictions');
-  [];
 
   return (
     <>

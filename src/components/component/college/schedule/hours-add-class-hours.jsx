@@ -133,19 +133,19 @@ function AddClassHourDialogForm() {
                   />
                 </section>
               </section>
-              <Label className='text-justify text-sm text-muted-foreground leading-normal pt-1'>
+              <p className='text-justify text-sm text-muted-foreground leading-normal pt-1'>
                 This will automatically show all the available time. This is to
                 avoid conflicting schedules.
-              </Label>
+              </p>
               {/* Room */}
               <div className='pt-2 gap-2 pb-2'>
                 <div className='flex'>
                   <Label className='font-medium text-sm'>Room</Label>
                   <span className='text-red-500 ml-1'> *</span>
                 </div>
-                <Label className='text-justify text-sm text-muted-foreground leading-normal'>
+                <p className='text-justify text-sm text-muted-foreground leading-normal'>
                   Consists of existing rooms that was made.
-                </Label>
+                </p>
                 <div className='pt-2'>
                   <Popover
                     open={open}

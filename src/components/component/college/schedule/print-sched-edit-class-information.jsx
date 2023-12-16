@@ -22,7 +22,7 @@ function EditSchedClassInformation({ editClassForm }) {
   return (
     <div>
       {/* Class Information */}
-      <Label className='font-semibold text-xl pt-4'>Class Information</Label>
+      <h1 className='font-semibold text-xl pt-4'>Class Information</h1>
       {/* Schedule ID */}
       <InputFormField
         disabled={true}
@@ -152,11 +152,15 @@ function EditSchedClassInformation({ editClassForm }) {
                   id='nstpYes'
                   className='text-black'
                 />
-                <Label htmlFor='nstpYes'>Yes</Label>
+                <p className='font-medium text-sm' htmlFor='nstpYes'>
+                  Yes
+                </p>
               </div>
               <div className='flex items-center space-x-2'>
                 <RadioGroupItem value='no' id='nstpNo' className='text-black' />
-                <Label htmlFor='nstpNo'>No</Label>
+                <p className='font-medium text-sm' htmlFor='nstpNo'>
+                  No
+                </p>
               </div>
             </div>
           </RadioGroup>
@@ -178,7 +182,9 @@ function EditSchedClassInformation({ editClassForm }) {
                   id='concealedYes'
                   className='text-black'
                 />
-                <Label htmlFor='concealedYes'>Yes</Label>
+                <p className='font-medium text-sm' htmlFor='concealedYes'>
+                  Yes
+                </p>
               </div>
               <div className='flex items-center space-x-2'>
                 <RadioGroupItem
@@ -186,7 +192,9 @@ function EditSchedClassInformation({ editClassForm }) {
                   id='concealedNo'
                   className='text-black'
                 />
-                <Label htmlFor='concealedNo'>No</Label>
+                <p className='font-medium text-sm' htmlFor='concealedNo'>
+                  No
+                </p>
               </div>
             </div>
           </RadioGroup>

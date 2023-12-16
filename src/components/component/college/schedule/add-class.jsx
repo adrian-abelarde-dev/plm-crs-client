@@ -12,7 +12,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import {
   fakeCollegeClassRestrictions,
@@ -27,6 +26,7 @@ import {
   fakeCollegeFacultyTemplate,
 } from '@/lib/constants/table-templates/college/college-schedule-table';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Label } from '@radix-ui/react-label';
 import { CheckCircle } from 'lucide-react';
 import * as React from 'react';
 import { useState } from 'react';
@@ -57,7 +57,7 @@ function AddClassUndergrad() {
       title: (
         <div className='flex flex-row'>
           <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-          <Label>Success!</Label>
+          <h1>Success!</h1>
         </div>
       ),
       description: <>Changes has been Saved.</>,
@@ -85,9 +85,7 @@ function AddClassUndergrad() {
                 className='pt-5'
                 template={fakeCollegeFacultyTemplate}
                 data={fakeCollegeFaculty}
-                title={
-                  <Label className='font-semibold text-xl pt-3'>Faculty</Label>
-                }
+                title={<h1 className='font-semibold text-xl pt-3'>Faculty</h1>}
                 searchPlaceholder='Search faculty...'
                 isCheckBoxVisible={true}
                 isFullscreen={false}
@@ -119,9 +117,7 @@ function AddClassUndergrad() {
                 template={fakeCollegeClassResTemplate}
                 data={fakeCollegeClassRestrictions}
                 title={
-                  <Label className='font-semibold text-xl'>
-                    Class Restriction
-                  </Label>
+                  <h1 className='font-semibold text-xl'>Class Restriction</h1>
                 }
                 searchPlaceholder='Search restriction...'
                 isCheckBoxVisible={true}
@@ -151,12 +147,12 @@ function AddClassUndergrad() {
               <div className='items-top flex space-x-4 pt-2'>
                 <Checkbox id='confirm' />
                 <div className='grid gap-1 leading-none'>
-                  <label
+                  <Label
                     htmlFor='confirm'
                     className='text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
                   >
                     Are you sure?
-                  </label>
+                  </Label>
                   <p className='text-sm text-muted-foreground w-72'>
                     Double check if all inputs are correct to make sure there
                     are no input errors.

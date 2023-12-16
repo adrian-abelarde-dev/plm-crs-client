@@ -54,7 +54,9 @@ function AddFacultyDialogForm() {
           <div className='flex flex-col gap-4'>
             {/* Faculty Name */}
             <section className='w-full flex flex-col gap-2'>
-              <Label htmlFor='activity-name'>Faculty Name</Label>
+              <Label className='font-medium text-sm' htmlFor='activity-name'>
+                Faculty Name
+              </Label>
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                   <Button

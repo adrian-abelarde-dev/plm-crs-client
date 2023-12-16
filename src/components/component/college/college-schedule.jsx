@@ -3,7 +3,6 @@
 import TableMRT from '@/components/layouts/table-mrt';
 import { fakeCollegeSchedule } from '@/lib/constants/fake-data/college-schedule';
 import { fakeCollegeScheduleTemplate } from '@/lib/constants/table-templates/college/college-schedule-table';
-import * as React from 'react';
 import { useState } from 'react';
 
 import AddClassUndergrad from './schedule/add-class';

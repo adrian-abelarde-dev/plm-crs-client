@@ -8,7 +8,7 @@ import {
 } from '@/lib/constants/fake-data/college-sections';
 import { fakeSectionTemplate } from '@/lib/constants/table-templates/college/college-sections-table';
 import { cn, handleRowSelectionChange } from '@/lib/utils';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import AddSectionUndergrad from './sections/add-sections';
 import ArchiveSectionUndergrad from './sections/archive-sections';
