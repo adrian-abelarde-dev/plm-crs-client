@@ -8,6 +8,7 @@ import { handleRowSelectionChange } from '@/lib/utils';
 import { Archive } from 'lucide-react';
 import React, { useState } from 'react';
 
+import AddDropDialogForm from './college-add-drop';
 import UpdateStudentUndergrad from './college-update';
 import ViewStudentDialogForm from './college-view-student-profile-dialog-form';
 
@@ -56,6 +57,15 @@ function StudentCollegeUndergrad() {
               updateIndivMultipleStudents={Object.keys(rowSelection).length}
               selectedStudent={selectedStudent}
               disabled={Object.keys(rowSelection).length === 0}
+            />
+
+            <AddDropDialogForm
+              selectedStudent={selectedStudent[0]}
+              disabled={
+                Object.keys(rowSelection).length === 0 ||
+                Object.keys(rowSelection).length > 1 ||
+                selectedStudent[0].regCode === 'Regular'
+              }
             />
           </>
         }

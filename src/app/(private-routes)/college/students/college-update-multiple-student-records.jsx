@@ -83,7 +83,7 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
             </TableHeader>
             <TableBody>
               {selectedStudent.map((student) => (
-                <TableRow key={student.studentId}>
+                <TableRow key={student.firstName}>
                   <TableCell>{student.studentNo}</TableCell>
                   <TableCell>{student.firstName}</TableCell>
                   <TableCell>{student.middleName}</TableCell>

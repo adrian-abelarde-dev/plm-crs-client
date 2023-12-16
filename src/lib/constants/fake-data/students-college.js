@@ -4,6 +4,7 @@ import { getRandomDate } from '@/lib/utils';
 
 export const fakeCollegeStudents = [
   {
+    /*student 1 */
     // Personal Details
     studentNo: '2020-20212',
     firstName: 'John',
@@ -24,7 +25,7 @@ export const fakeCollegeStudents = [
     block: '1',
     college: 'College of Education',
     yearLevel: '2',
-    program: 'Bachelor of Science in Tourism Management',
+    program: 'BS Mechanical Engineering',
     emailAddress: 'john.doe@plm.edu.ph',
     regCode: 'Irregular',
     enrollmentStatus: 'Enlisted',
@@ -41,11 +42,59 @@ export const fakeCollegeStudents = [
     pstreetAddress: 'Block 1 Tondo Manila',
     pprovince: 'Marinduque',
     pzipCode: '1400',
-
-    // View Student Info
-    studentId: '1001',
+    addDropInfo: [
+      {
+        class: 'CSC 0411 - CS Thesis Writing 1',
+        section: '1',
+        schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0412 - Network and Communications (Lec)',
+        section: '1',
+        schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        class: 'CS Elective 2 (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CS Elective 2 (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
+        credits: '2',
+      },
+      {
+        class: 'CS Elective 3 (Lab)',
+        section: '1',
+        schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CS Elective 3 (Lec)',
+        section: '1',
+        schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        class: 'CS Elective 4 (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CS Elective 4 (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
+        credits: '2',
+      },
+    ],
   },
   {
+    /*student 2 */
     // Personal Details
     studentNo: '2020-20213',
     firstName: 'Jane',
@@ -66,7 +115,7 @@ export const fakeCollegeStudents = [
     block: '1',
     college: 'College of Education',
     yearLevel: '2',
-    program: 'Bachelor of Science in Accountancy',
+    program: 'BS Accountancy',
     emailAddress: 'jane.cruz@plm.edu.ph',
     regCode: 'Irregular',
     enrollmentStatus: 'Enlisted',
@@ -84,10 +133,29 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    // View Student Info
-    studentId: '1002',
+    addDropInfo: [
+      {
+        class: 'CSC 0414.1-1 - CS Elective 3 (Lab)',
+        section: '1',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0414-1 - CS Elective 3 (Lec)',
+        section: '1',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0312- 1 - Programming Language (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
   },
   {
+    /* student 3 */
     // Personal Info
     studentNo: '2020-20214',
     firstName: 'Alex',
@@ -108,7 +176,7 @@ export const fakeCollegeStudents = [
     block: '1',
     college: 'College of Education',
     yearLevel: '2',
-    program: 'Bachelor of Science in Civil Engineering',
+    program: 'BS Civil Engineering',
     emailAddress: 'alex.batumbakal@plm.edu.ph',
     regCode: 'Irregular',
     enrollmentStatus: 'Enlisted',
@@ -126,8 +194,26 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    // View Student Info
-    studentId: '1003',
+    addDropInfo: [
+      {
+        class: 'CSC 0312.1- 1 - Programming Language (Lab)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0322.1-1 - Compiler Design (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
   },
   {
     // Personal Info
@@ -135,7 +221,7 @@ export const fakeCollegeStudents = [
     firstName: 'Emily',
     middleName: 'Quizon',
     lastName: 'Davis',
-    program: 'Bachelor of Science in Accountancy',
+    program: 'BS Accountancy',
     nameExtension: 'N/A',
     maidenName: 'Cruz',
     birthPlace: 'Manila',
@@ -168,8 +254,26 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    // View Student Info
-    studentId: '1004',
+    addDropInfo: [
+      {
+        class: 'CSC 0312.1- 1 - Programming Language (Lab)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0322.1-1 - Compiler Design (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
   },
   {
     // Personal Info
@@ -177,7 +281,7 @@ export const fakeCollegeStudents = [
     firstName: 'Chris',
     middleName: 'Bautista',
     lastName: 'Wilson',
-    program: 'Bachelor of Arts in Political Science',
+    program: 'BS Tourism Management',
     nameExtension: 'N/A',
     maidenName: 'Cruz',
     birthPlace: 'Manila',
@@ -210,8 +314,25 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    // View Student Info
-    studentId: '1005',
+    addDropInfo: [
+      {
+        class: 'CSC 0321-1 - Software Engineering (Lec)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        class: 'CSC 0321.1-1 - Software Engineering (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
   },
-
 ];
