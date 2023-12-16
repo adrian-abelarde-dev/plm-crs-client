@@ -1,6 +1,5 @@
 import TableMRT from '@/components/layouts/table-mrt';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import { facultyClassAssingnmentData } from '@/lib/constants/fake-data/faculty-class-assignment';
 import { facultyClassAssignmentTemplate } from '@/lib/constants/table-templates/faculty/current-class-assignment';
 import { computeLoads } from '@/lib/utils';
@@ -10,7 +9,7 @@ function FacultyTeaching() {
   return (
     <main className='p-6 flex flex-col'>
       <div className='mt-12 mb-16'>
-        <Label className='text-4xl font-medium'>Current Class Assignment</Label>
+        <h1 className='text-4xl font-medium'>Current Class Assignment</h1>
       </div>
 
       <TableMRT
