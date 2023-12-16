@@ -1,5 +1,4 @@
 import PrintHeader from '@/components/component/printables/print-header';
-import { Label } from '@/components/ui/label';
 import {
   Table,
   TableBody,
@@ -23,18 +22,18 @@ function ContentLoadAssignment({ enablePrintMode }) {
       <PrintHeader college={'COLLEGE OF ENGINEERING'} />
 
       <div className='mt-4 flex flex-col place-items-center gap-1'>
-        <Label className='font-semibold'>TEACHING ASSIGNMENTS</Label>
-        <Label className='font-normal text-xs'>1st Sem A.Y. 2023-2024</Label>
+        <h1 className='font-semibold'>TEACHING ASSIGNMENTS</h1>
+        <h2 className='font-normal text-xs'>1st Sem A.Y. 2023-2024</h2>
       </div>
 
       <div className='flex justify-between mt-6'>
         {/* Faculty Name */}
         <div className='flex flex-col gap-1'>
-          <Label className='font-bold text-lg underline'>Thom Yorke</Label>
-          <Label className='font-normal italic'>
+          <h1 className='font-bold text-lg underline'>Thom Yorke</h1>
+          <p className='text-sm text-zinc-500 font-normal italic'>
             This college has considered you to teach the following subject(s)
             for the stipulated term.
-          </Label>
+          </p>
         </div>
 
         {/* Print Button */}

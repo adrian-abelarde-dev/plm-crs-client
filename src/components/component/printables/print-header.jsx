@@ -1,4 +1,3 @@
-import { Label } from '@/components/ui/label';
 import React from 'react';
 
 // ? can be used as a header for printables, etc.
@@ -7,14 +6,10 @@ import React from 'react';
 function PrintHeader({ college }) {
   return (
     <div className='mt-4 flex flex-col place-items-center gap-1'>
-      <Label className='text-base font-bold'>
-        PAMANTASAN NG LUNGSOD NG MAYNILA
-      </Label>
-      <Label className='text-xs italic'>
-        (University of the City of Manila)
-      </Label>
-      <Label className='text-xs'>Intramuros, Manila</Label>
-      <Label className='pt-4 text-base font-bold'>{college}</Label>
+      <h1 className='text-base font-bold'>PAMANTASAN NG LUNGSOD NG MAYNILA</h1>
+      <h2 className='text-xs italic'>(University of the City of Manila)</h2>
+      <h3 className='text-xs'>Intramuros, Manila</h3>
+      <h3 className='pt-4 text-base font-bold'>{college}</h3>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { Label } from '@/components/ui/label';
 import React from 'react';
 
 import Signature from '../../../../components/component/printables/signature';
@@ -15,7 +14,7 @@ function SignaturesApprovals() {
         />
       </div>
 
-      <Label className='font-semibold'>Recommending Approval:</Label>
+      <h1 className='font-semibold'>Recommending Approval:</h1>
 
       <div className='flex items-center justify-center mt-8 gap-24'>
         <Signature
