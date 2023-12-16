@@ -132,7 +132,7 @@ function EncodingGradesPage() {
                     <TableCell>{data.instructor}</TableCell>
                     <TableCell>
                       <Button variant='ghost'>
-                        <Printer className='w-4 h-4 mr-2' />
+                        <Printer className='w-4 h-4' />
                       </Button>
                     </TableCell>
                   </TableRow>
