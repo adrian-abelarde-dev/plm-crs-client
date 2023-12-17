@@ -6,13 +6,19 @@ import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { fakeGradEnlistClasses } from '@/lib/constants/fake-data/grad-enlist-classes';
 import { gradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-grad/enlist-available-classes';
 import { CheckCircle, Download } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-
 
 function GradStudentEnrollment() {
   const [rowSelection, setRowSelection] = useState({});
