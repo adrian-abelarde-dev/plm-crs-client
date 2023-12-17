@@ -83,7 +83,7 @@ function GradStudentEnrollment() {
 function EnrollmentStep({ rowSelection, setRowSelection }) {
   return (
     <>
-      <h1 className='font-medium text-4xl '>Enlist Available Classes</h1>
+      <Label className='font-medium text-4xl '>Enlist Available Classes</Label>
       <TableMRT
         template={gradEnlistClassesTemplate}
         data={fakeGradEnlistClasses}
