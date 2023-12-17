@@ -1,7 +1,7 @@
-import React from 'react';
+import { Container } from '@/components/ui/container';
 
-function Test() {
-  return <div>Test</div>;
-}
+const TestingOnly = () => {
+  return <Container className='py-4'></Container>;
+};
 
-export default Test;
+export default TestingOnly;

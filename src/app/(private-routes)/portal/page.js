@@ -39,7 +39,7 @@ function Portal() {
             <h1 className='text-2xl'>Portal</h1>
 
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenuTrigger asChild>
                 <Button
                   className='relative flex gap-2 px-2 w-fit h-fit p-4 text-left'
                   variant='outline'

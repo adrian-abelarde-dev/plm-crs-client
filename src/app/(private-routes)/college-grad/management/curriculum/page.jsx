@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import AffectedProgram from './affected-program';
 import ListOfCurriculums from './list-of-curriculum';
 
-function CollageGradManagementCurriculum() {
+function CollegeGradManagementCurriculum() {
   return (
     <main className='p-6'>
       <Tabs defaultValue='listOfCurriculums' className='w-full mt-12'>
@@ -30,4 +30,4 @@ function CollageGradManagementCurriculum() {
   );
 }
 
-export default CollageGradManagementCurriculum;
+export default CollegeGradManagementCurriculum;

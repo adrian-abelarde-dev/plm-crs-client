@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 
 import EditFacultyDialogForm from './edit-faculty';
 
-function CollageGradManagementFaculty() {
+function CollegeGradManagementFaculty() {
   const [rowSelection, setRowSelection] = useState({});
 
   async function sampleConfirmFunction(id) {
@@ -164,4 +164,4 @@ function CollageGradManagementFaculty() {
   );
 }
 
-export default CollageGradManagementFaculty;
+export default CollegeGradManagementFaculty;

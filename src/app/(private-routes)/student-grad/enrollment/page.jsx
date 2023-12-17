@@ -1,10 +1,9 @@
 'use client';
 
 import CustomStepper from '@/components/component/stepper';
-import CompletedPreview from '@/components/component/student/enrollment/completed-preview';
-import EnrollmentHeader from '@/components/component/student/enrollment/header';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
@@ -17,7 +16,8 @@ import {
 } from '@/components/ui/table';
 import { fakeGradEnlistClasses } from '@/lib/constants/fake-data/grad-enlist-classes';
 import { gradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-grad/enlist-available-classes';
-import { Download } from 'lucide-react';
+import { CheckCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 function GradStudentEnrollment() {
@@ -53,7 +53,16 @@ function GradStudentEnrollment() {
   ];
   return (
     <div className='mx-9'>
-      <EnrollmentHeader />
+      {/* Header */}
+      <div className='mt-32 flex flex-col place-items-center'>
+        <div className='place-self-start mb-[1.88rem]'>
+          <h1 className='font-medium text-4xl '>Enrollment</h1>
+        </div>
+        <h1>Current School Year / Term</h1>
+        <div className='mb-[1.88rem]'>
+          <h1 className='font-bold'>School Year 2023 - 2024 1st Trimester</h1>
+        </div>
+      </div>
       {/* Stepper */}
       <div className='mb-20 '>
         <CustomStepper
@@ -90,7 +99,7 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
     <div className='flex flex-col'>
-      <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
+      <h1 className='font-medium text-4xl '>View Enlisted Subjects</h1>
 
       <Table className='w-full mt-10'>
         <TableHeader>
@@ -132,7 +141,7 @@ function PaymentStep() {
       </Alert>
 
       <div className='py-5 mt-5 flex justify-center border rounded-t-md'>
-        <Label className='text-base font-bold'>Type of Payment</Label>
+        <h1 className='text-base font-bold'>Type of Payment</h1>
       </div>
 
       <RadioGroup className='border rounded-b-md border-t-0 flex justify-around py-5'>
@@ -146,6 +155,28 @@ function PaymentStep() {
         </div>
       </RadioGroup>
     </>
+  );
+}
+
+function CompletedPreview() {
+  const startOfClasses = 'December 25, 1992';
+
+  return (
+    <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
+      <CheckCircle className='h-[9.375rem] w-[9.375rem] mr-2 mb-5 text-green-400' />
+      <h1 className='text-4xl font-bold'>You&apos;re Successfully Enlisted!</h1>
+      <h1 className='text-xl font-semibold'>
+        and added to your subject&apos;s MS Teams.
+      </h1>
+      <h1 className='text-md mt-4 font-normal'>
+        The start of classes will be on{' '}
+        <span className='font-bold text-lg'>{startOfClasses}</span>
+      </h1>
+
+      <Button className='mt-4' asChild>
+        <Link href='/student-grad'>Back to Dashboard</Link>
+      </Button>
+    </div>
   );
 }
 

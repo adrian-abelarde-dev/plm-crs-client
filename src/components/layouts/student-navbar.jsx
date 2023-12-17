@@ -35,6 +35,7 @@ function StudentNavbar({ linksStudents }) {
           {linksStudents.map((link, index) => {
             // if link has sublinks, return dropdown
             if (link.subLinks) {
+
               return (
                 <DropdownMenu key={index}>
                   <DropdownMenuTrigger
@@ -48,14 +49,14 @@ function StudentNavbar({ linksStudents }) {
                     <ChevronDown className='h-4 w-4 text-zinc-600 mt-1 ml-2' />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className='w-56 z-50'>
-                    {link.label === 'Account' ||
-                      (link.label === 'Accounts' && (
+                    {link.label.includes('Account')
+                      && (
                         <>
                           {/* display SessionLinks when the menu is 'Account' or 'Accounts' */}
                           <SessionLinks />
                           <DropdownMenuSeparator />
                         </>
-                      ))}
+                      )}
 
                     {link.subLinks.map((subLink, index) => {
                       return <SubLinksContent subLink={subLink} key={index} />;
@@ -92,7 +93,8 @@ function StudentNavbar({ linksStudents }) {
   );
 }
 
-function SubLinksContent({ subLink }) {
+
+const SubLinksContent = ({ subLink }) => {
   if (subLink.label === 'Sign out') {
     return (
       <DropdownMenuItem className='cursor-pointer flex justify-between items-center flex-row text-red-500'>

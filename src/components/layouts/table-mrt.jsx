@@ -41,11 +41,6 @@ import { Label } from '../ui/label';
 
 // * RightButtons -> JSX, defines the JSX for the buttons on the right side of the table
 // * LeftButtons -> JSX, defines the JSX for the buttons on the left side of the table
-// * RowActions -> JSX, defines the JSX for the row actions
-// * setRowSelection -> setState function, defines the state for the row selection
-// * rowSelection -> object, defines the selected rows
-// * renderRowActionMenuItems -> function, defines the JSX for the row action menu items
-// ? for `renderRowActionMenuItems` follow /college-grad/management/faculty/page.jsx as an example
 
 // ! to populate the data prop, fetch data from server on the parent component and pass it as a prop to this component
 // TODO: Handle checkbox selection
@@ -83,7 +78,6 @@ function TableMRT({
     // enableGrouping: true, // This is what causing the console error
     enablePinning: true,
     enableRowActions: renderRowActionMenuItems ? true : false,
-
     enableRowSelection: isCheckBoxVisible ? true : false,
     getRowId: (originalRow) =>
       isCheckBoxVisible ? originalRow[template[0].accessorKey] : null,

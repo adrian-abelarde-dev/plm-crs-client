@@ -14,7 +14,7 @@ import AddClassDialogForm from './add-class';
 import EditClassDialogForm from './edit-class';
 import ViewClassDialogForm from './view-class';
 
-function CollageGradManagementClass() {
+function CollegeGradManagementClass() {
   const [rowSelection, setRowSelection] = useState({});
 
   async function sampleConfirmFunction(id) {
@@ -121,4 +121,4 @@ function CollageGradManagementClass() {
   );
 }
 
-export default CollageGradManagementClass;
+export default CollegeGradManagementClass;

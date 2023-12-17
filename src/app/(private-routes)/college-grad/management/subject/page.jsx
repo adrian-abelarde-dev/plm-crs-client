@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import AddSubjectDialogForm from './add-subject';
 import EditSubjectDialogForm from './edit-subject';
 
-function CollageGradManagementSubject() {
+function CollegeGradManagementSubject() {
   const [rowSelection, setRowSelection] = useState({});
 
   const selectedSubject = handleRowSelectionChange(
@@ -47,4 +47,4 @@ function CollageGradManagementSubject() {
   );
 }
 
-export default CollageGradManagementSubject;
+export default CollegeGradManagementSubject;

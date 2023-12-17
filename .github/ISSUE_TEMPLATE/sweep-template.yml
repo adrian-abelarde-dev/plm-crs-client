@@ -1,0 +1,12 @@
+name: Sweep Issue
+title: 'Sweep: '
+description: For small bugs, features, refactors, and tests to be handled by Sweep, an AI-powered junior developer.
+labels: sweep
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Details
+      description: Tell Sweep where and what to edit and provide enough context for a new developer to the codebase
+      placeholder: |
+        Please provide detailed information here.
