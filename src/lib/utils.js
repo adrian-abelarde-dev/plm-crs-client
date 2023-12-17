@@ -75,12 +75,20 @@ export function totalUnits(key, data) {
 }
 
 // used for computing total units for a specific type of load
+// can also be use for computing total credits or units --> ignore `typeOfLoad` parameter if so
 export function computeLoads(key, data, typeOfLoad) {
   return data?.reduce((total, item) => {
-    // Check if the subject's typeOfLoad matches the specified typeOfLoad
-    if (item.typeOfLoad === typeOfLoad) {
-      return total + item[key];
+    if (!typeOfLoad) {
+      // checks if typeOfLoad is undefined --> for computing total credits or units
+      total += parseInt(item[key]);
+    } else {
+      if (item.typeOfLoad === typeOfLoad) {
+        // Check if the subject's typeOfLoad matches the specified typeOfLoad
+
+        return total + parseInt(item[key]);
+      }
     }
+
     return total;
   }, 0);
 }
