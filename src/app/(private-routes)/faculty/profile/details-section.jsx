@@ -16,7 +16,7 @@ function DetailsSection({ data }) {
             <div
               key={index}
               className={cn(
-                'grid mt-4 gap-4 w-full',
+                'grid mt-4 gap-4 w-full max-md:grid-cols-1',
                 `grid-cols-${row.cell.length}`,
               )}
             >
