@@ -69,11 +69,7 @@ function AddDropDialogForm({ selectedStudent }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          selectedStudent={selectedStudent[0]}
-          disabled={Object.keys(selectedStudent).length === 0}
-          className='text-zinc-900 justify-between hover:bg-zinc-100'
-        >
+        <Button className='text-zinc-900 justify-between hover:bg-zinc-100'>
           {' '}
           <Diff className='w-4 h-4 mr-2' />
           Add Drop
@@ -201,24 +197,22 @@ function AddDropDialogForm({ selectedStudent }) {
             <CardContent>
               <div className='justify-left flex flex-row mt-5'>
                 <div className='flex flex-col font-semibold text-sm'>
-                  <div className='mt-1'>Last Name</div>
-                  <div className='mt-1'>First Name</div>
-                  <div className='mt-1'>Middle Name</div>
-                  <div className='mt-1'>Program</div>
-                  <div className='mt-1'>Year Level</div>
-                  <div className='mt-1'>Registration Code</div>
-                  <div className='mt-1'>Status</div>
+                  <p className='mt-1'>Last Name</p>
+                  <p className='mt-1'>First Name</p>
+                  <p className='mt-1'>Middle Name</p>
+                  <p className='mt-1'>Program</p>
+                  <p className='mt-1'>Year Level</p>
+                  <p className='mt-1'>Registration Code</p>
+                  <p className='mt-1'>Status</p>
                 </div>
                 <div className='flex flex-col text-sm ml-10'>
-                  <div className='mt-1'>{selectedStudent?.lastName}</div>
-                  <div className='mt-1'>{selectedStudent?.firstName}</div>
-                  <div className='mt-1'>{selectedStudent?.middleName}</div>
-                  <div className='mt-1'>{selectedStudent?.program}</div>
-                  <div className='mt-1'>{selectedStudent?.yearLevel}</div>
-                  <div className='mt-1'>{selectedStudent?.regCode}</div>
-                  <div className='mt-1'>
-                    {selectedStudent?.enrollmentStatus}
-                  </div>
+                  <p className='mt-1'>{selectedStudent?.lastName}</p>
+                  <p className='mt-1'>{selectedStudent?.firstName}</p>
+                  <p className='mt-1'>{selectedStudent?.middleName}</p>
+                  <p className='mt-1'>{selectedStudent?.program}</p>
+                  <p className='mt-1'>{selectedStudent?.yearLevel}</p>
+                  <p className='mt-1'>{selectedStudent?.regCode}</p>
+                  <p className='mt-1'>{selectedStudent?.enrollmentStatus}</p>
                 </div>
               </div>
             </CardContent>
