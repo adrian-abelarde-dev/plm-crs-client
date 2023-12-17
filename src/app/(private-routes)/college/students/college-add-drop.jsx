@@ -70,8 +70,14 @@ function AddDropDialogForm({ selectedStudent }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          selectedStudent={selectedStudent[0]}
-          disabled={Object.keys(selectedStudent).length === 0}
+          selectedStudent={
+            selectedStudent && selectedStudent.length > 0
+              ? selectedStudent[0]
+              : null
+          }
+          disabled={
+            !selectedStudent || Object.keys(selectedStudent).length === 0
+          }
           className='text-zinc-900 justify-between hover:bg-zinc-100'
         >
           {' '}
