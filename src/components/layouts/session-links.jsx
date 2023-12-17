@@ -61,7 +61,7 @@ export function SessionLinks() {
               // check if path is not the same as access role, to remove role on display
               return (
                 <DropdownMenuItem key={index}>
-                  <Link href={role}>
+                  <Link href={`/${role}`}>
                     {/* Displays 'Login as {role}' */}
                     Login as{' '}
                     {role
