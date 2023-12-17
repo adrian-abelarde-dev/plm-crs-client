@@ -16,7 +16,8 @@ import {
 } from '@/components/ui/table';
 import { fakeGradEnlistClasses } from '@/lib/constants/fake-data/grad-enlist-classes';
 import { gradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-grad/enlist-available-classes';
-import { Download } from 'lucide-react';
+import { CheckCircle, Download } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 function GradStudentEnrollment() {
