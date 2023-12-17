@@ -75,12 +75,31 @@ export function totalUnits(key, data) {
 }
 
 // used for computing total units for a specific type of load
+// can also be use for computing total credits or units --> ignore `typeOfLoad` parameter if so
 export function computeLoads(key, data, typeOfLoad) {
   return data?.reduce((total, item) => {
-    // Check if the subject's typeOfLoad matches the specified typeOfLoad
-    if (item.typeOfLoad === typeOfLoad) {
-      return total + item[key];
+    if (!typeOfLoad) {
+      // checks if typeOfLoad is undefined --> for computing total credits or units
+      total += parseInt(item[key]);
+    } else {
+      if (item.typeOfLoad === typeOfLoad) {
+        // Check if the subject's typeOfLoad matches the specified typeOfLoad
+
+        return total + parseInt(item[key]);
+      }
     }
+
     return total;
   }, 0);
 }
+
+// ?used for generating this: GRADING SHEET(S) FOR S.Y 2020 - 2021 2ND SEMESTER
+// * Check `/faculty/encoding-grades` for implementation
+export const generateGradingSheetTitle = (aysem) => {
+  const year = aysem.slice(0, 4);
+  const semester = aysem.slice(4);
+  const academicYear = `S.Y ${year} - ${parseInt(year) + 1}`;
+  const semesterText = `${semester}${semester === '1' ? 'ST' : 'ND'} SEMESTER`;
+  const result = `GRADING SHEET(S) FOR ${academicYear} ${semesterText}`;
+  return result;
+};
