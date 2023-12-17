@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
 import DetailsSection from './details-section';
@@ -126,8 +127,6 @@ function FacultyProfile() {
     ],
   };
 
-  console.log(address);
-
   return (
     <main className='p-6'>
       <div className='mt-12'>
@@ -144,6 +143,8 @@ function FacultyProfile() {
 
         {/* Current Address */}
         <DetailsSection data={currentAddress} setContactNo={setContactNo} />
+
+        <Button className='mt-4 place-self-end'>Save</Button>
       </div>
     </main>
   );
