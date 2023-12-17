@@ -39,7 +39,7 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import { Diff, MinusCircle, PlusCircle, Printer } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-function AddDropDialogForm({ selectedStudent }) {
+function AddDropDialogForm({ selectedStudent, disabled }) {
   const [selectedSubjects, setSelectedSubjects] = useState([]);
 
   const handleRowSelectionChange = (subject) => {
@@ -69,7 +69,10 @@ function AddDropDialogForm({ selectedStudent }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='text-zinc-900 justify-between hover:bg-zinc-100'>
+        <Button
+          className='text-zinc-900 justify-between hover:bg-zinc-100'
+          disabled={disabled}
+        >
           {' '}
           <Diff className='w-4 h-4 mr-2' />
           Add Drop
@@ -83,6 +86,7 @@ function AddDropDialogForm({ selectedStudent }) {
           <DialogDescription>Add or drop subjects.</DialogDescription>
         </DialogHeader>
         <div className='justify-right flex flex-row ml-auto gap-2 items-center'>
+          {/* Cancel Class */}
           <AlertDialog>
             <AlertDialogTrigger>
               <></>
@@ -138,9 +142,13 @@ function AddDropDialogForm({ selectedStudent }) {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
+
+          {/* Add Class */}
           <Button>
             <PlusCircle className='w-4 h-4 mr-2' /> Add Class
           </Button>
+
+          {/* Print SER, Assessment Form and Generate Print ID */}
           <Popover>
             <PopoverTrigger>
               <Button variant='outline'>
@@ -156,6 +164,7 @@ function AddDropDialogForm({ selectedStudent }) {
             </PopoverContent>
           </Popover>
         </div>
+
         <ScrollArea className='overflow-y-auto flex-grow'>
           <Table className='mt-[-5px]'>
             <TableHeader>
@@ -186,6 +195,8 @@ function AddDropDialogForm({ selectedStudent }) {
               </TableRow>
             ))}
           </Table>
+
+          {/* Student Profile */}
           <div className='mt-10' />
           <Card className='w-1/2'>
             <CardHeader>
