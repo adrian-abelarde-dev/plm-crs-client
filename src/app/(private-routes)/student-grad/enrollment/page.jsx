@@ -18,7 +18,7 @@ import { fakeGradEnlistClasses } from '@/lib/constants/fake-data/grad-enlist-cla
 import { gradEnlistClassesTemplate } from '@/lib/constants/table-templates/student-grad/enlist-available-classes';
 import { CheckCircle, Download } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function GradStudentEnrollment() {
   const [rowSelection, setRowSelection] = useState({});
@@ -56,13 +56,11 @@ function GradStudentEnrollment() {
       {/* Header */}
       <div className='mt-32 flex flex-col place-items-center'>
         <div className='place-self-start mb-[1.88rem]'>
-          <Label className='font-medium text-4xl '>Enrollment</Label>
+          <h1 className='font-medium text-4xl '>Enrollment</h1>
         </div>
-        <Label>Current School Year / Term</Label>
+        <h1>Current School Year / Term</h1>
         <div className='mb-[1.88rem]'>
-          <Label className='font-bold'>
-            School Year 2023 - 2024 1st Trimester
-          </Label>
+          <h1 className='font-bold'>School Year 2023 - 2024 1st Trimester</h1>
         </div>
       </div>
       {/* Stepper */}
@@ -101,7 +99,7 @@ function EnrollmentStep({ rowSelection, setRowSelection }) {
 function ViewEnlistedStep({ enlistedClasses }) {
   return (
     <div className='flex flex-col'>
-      <Label className='font-medium text-4xl '>View Enlisted Subjects</Label>
+      <h1 className='font-medium text-4xl '>View Enlisted Subjects</h1>
 
       <Table className='w-full mt-10'>
         <TableHeader>
@@ -143,7 +141,7 @@ function PaymentStep() {
       </Alert>
 
       <div className='py-5 mt-5 flex justify-center border rounded-t-md'>
-        <Label className='text-base font-bold'>Type of Payment</Label>
+        <h1 className='text-base font-bold'>Type of Payment</h1>
       </div>
 
       <RadioGroup className='border rounded-b-md border-t-0 flex justify-around py-5'>
@@ -166,16 +164,14 @@ function CompletedPreview() {
   return (
     <div className='flex flex-col my-[1.88rem] justify-center place-items-center'>
       <CheckCircle className='h-[9.375rem] w-[9.375rem] mr-2 mb-5 text-green-400' />
-      <Label className='text-4xl font-bold'>
-        You&apos;re Successfully Enrolled!
-      </Label>
-      <Label className='text-xl font-semibold'>
+      <h1 className='text-4xl font-bold'>You&apos;re Successfully Enlisted!</h1>
+      <h1 className='text-xl font-semibold'>
         and added to your subject&apos;s MS Teams.
-      </Label>
-      <Label className='text-md mt-4 font-normal'>
+      </h1>
+      <h1 className='text-md mt-4 font-normal'>
         The start of classes will be on{' '}
         <span className='font-bold text-lg'>{startOfClasses}</span>
-      </Label>
+      </h1>
 
       <Button className='mt-4' asChild>
         <Link href='/student-grad'>Back to Dashboard</Link>
