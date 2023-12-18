@@ -171,7 +171,7 @@ export const facultySidebarLinks = [
   {
     icon: <User2 className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Faculty Profile',
-    path: '/faculty/faculty-profile',
+    path: '/faculty/profile',
   },
 ];
 

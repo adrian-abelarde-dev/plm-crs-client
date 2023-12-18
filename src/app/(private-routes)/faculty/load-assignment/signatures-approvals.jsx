@@ -1,5 +1,4 @@
 import Signature from '@/components/component/printables/signature';
-import React from 'react';
 
 function SignaturesApprovals() {
   return (

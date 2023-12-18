@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ContentLoadAssignment from './load-assignment-content';
 
 function FacultyLoadAssignment() {
