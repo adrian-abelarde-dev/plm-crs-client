@@ -36,8 +36,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { DialogDescription } from '@radix-ui/react-dialog';
-import { Diff, MinusCircle, PlusCircle, Printer } from 'lucide-react';
+import { Diff, MinusCircle, Printer } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import * as React from 'react';
+
+import AddClassDialogForm from './college-add-class';
 
 function AddDropDialogForm({ selectedStudent, disabled }) {
   const [selectedSubjects, setSelectedSubjects] = useState([]);
@@ -88,17 +91,15 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
         <div className='justify-right flex flex-row ml-auto gap-2 items-center'>
           {/* Cancel Class */}
           <AlertDialog>
-            <AlertDialogTrigger>
-              <></>
-              {Object.keys(selectedSubjects).length != 0 ? (
-                <Button
-                  variant='outline'
-                  selectedSubjects={selectedSubjects[0]}
-                >
-                  <MinusCircle className='w-4 h-4 mr-2' />
-                  Cancel Class
-                </Button>
-              ) : null}
+            <AlertDialogTrigger asChild>
+              <Button
+                variant='outline'
+                selectedSubjects={selectedSubjects[0]}
+                disabled={Object.keys(selectedSubjects).length == 0}
+              >
+                <MinusCircle className='w-4 h-4 mr-2' />
+                Cancel Class
+              </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto'>
               <AlertDialogHeader>
@@ -130,7 +131,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                   ))}
                 </Table>
               </ScrollArea>
-              <AlertDialogFooter className='bottom-0 left-0 w-full'>
+              <AlertDialogFooter className='bottom-0 right-0 w-full'>
                 <AlertDialogCancel
                   onClick={() => {
                     setSelectedSubjects([]);
@@ -144,9 +145,10 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
           </AlertDialog>
 
           {/* Add Class */}
-          <Button>
-            <PlusCircle className='w-4 h-4 mr-2' /> Add Class
-          </Button>
+          <AddClassDialogForm
+            selectedSubjects={selectedSubjects[0]}
+            disabled={Object.keys(selectedSubjects).length != 0}
+          />
 
           {/* Print SER, Assessment Form and Generate Print ID */}
           <Popover>

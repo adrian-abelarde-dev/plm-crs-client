@@ -8,9 +8,9 @@ import { handleRowSelectionChange } from '@/lib/utils';
 import { Archive } from 'lucide-react';
 import React, { useState } from 'react';
 
-import AddDropDialogForm from './college-add-drop';
-import UpdateStudentUndergrad from './college-update';
-import ViewStudentDialogForm from './college-view-student-profile-dialog-form';
+import AddDropDialogForm from './add drop/college-add-drop';
+import UpdateStudentUndergrad from './update/college-update';
+import ViewStudentDialogForm from './view profile/college-view-student-profile-dialog-form';
 
 function StudentCollegeUndergrad() {
   const [rowSelection, setRowSelection] = useState({});
