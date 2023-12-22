@@ -23,22 +23,26 @@ function EditSchedClassInformation({ editClassForm }) {
     <div>
       {/* Class Information */}
       <h1 className='font-semibold text-xl pt-4'>Class Information</h1>
-      {/* Schedule ID */}
-      <InputFormField
-        disabled={true}
-        form={editClassForm}
-        title={<Label className='font-medium text-sm'>Schedule ID</Label>}
-        placeholder='CETBSCS0401'
-        fieldName='scheduleId'
-        badge={<Badge variant='outline'>Auto-generated</Badge>}
-      />
-      {/* Subject */}
-      <InputFormField
-        form={editClassForm}
-        title={<Label className='font-medium text-sm'>Subject</Label>}
-        placeholder='Enter subject'
-        fieldName='scheduleSubject'
-      />
+      {/* Schedule ID, Subject */}
+      <section className='w-full grid lg:grid-cols-2 lg:gap-2 '>
+        {/* Schedule ID */}
+        <InputFormField
+          disabled={true}
+          form={editClassForm}
+          title={<Label className='font-medium text-sm'>Schedule ID</Label>}
+          placeholder='CETBSCS0401'
+          fieldName='scheduleId'
+          badge={<Badge variant='outline'>Auto-generated</Badge>}
+        />
+        {/* Subject */}
+        <InputFormField
+          form={editClassForm}
+          title={<Label className='font-medium text-sm'>Subject</Label>}
+          placeholder='Enter subject'
+          fieldName='scheduleSubject'
+        />
+      </section>
+
       {/* Section, Credits, Actual Credits, Alloted Slots */}
       <section className='w-full grid lg:grid-cols-4 lg:gap-2 '>
         {/* Section */}
