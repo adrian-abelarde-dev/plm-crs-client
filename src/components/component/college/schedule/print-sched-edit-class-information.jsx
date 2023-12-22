@@ -40,7 +40,7 @@ function EditSchedClassInformation({ editClassForm }) {
         fieldName='scheduleSubject'
       />
       {/* Section, Credits, Actual Credits, Alloted Slots */}
-      <section className='w-full grid grid-cols-4 gap-2 '>
+      <section className='w-full grid lg:grid-cols-4 lg:gap-2 '>
         {/* Section */}
         <SelectFormField
           form={editClassForm}
@@ -75,7 +75,7 @@ function EditSchedClassInformation({ editClassForm }) {
         />
       </section>
       {/* Parent Class Code, Link Type, Instruction Language */}
-      <section className='w-full grid grid-cols-3 gap-2 '>
+      <section className='w-full grid lg:grid-cols-3 lg:gap-2 '>
         {/* Parent Class Code */}
         <SelectFormField
           form={editClassForm}
@@ -108,7 +108,7 @@ function EditSchedClassInformation({ editClassForm }) {
         />
       </section>
       {/* Minimum Year Level, AY-SEM, College */}
-      <section className='w-full grid grid-cols-3 gap-2 '>
+      <section className='w-full grid lg:grid-cols-3 lg:gap-2 '>
         {/* Minimum Year Level */}
         <SelectFormField
           form={editClassForm}
@@ -137,7 +137,7 @@ function EditSchedClassInformation({ editClassForm }) {
         />
       </section>
       {/* Is NSTP?, Is instructor concealed? */}
-      <section className='w-full grid grid-cols-3 gap-2 '>
+      <section className='w-full grid lg:grid-cols-3 gap-4 '>
         {/* Is NSTP? */}
         <div className='grid grid-cols-1 space-y-2'>
           <div className='flex '>

@@ -19,24 +19,29 @@ function AddSchedClassInfo({ addClassForm }) {
     <div>
       {/* Class Information */}
       <h1 className='font-semibold text-xl pt-4'>Class Information</h1>
-      {/* Schedule ID */}
-      <InputFormField
-        disabled={true}
-        form={addClassForm}
-        title={<Label className='font-medium text-sm'>Schedule ID</Label>}
-        placeholder='CETBSCS0401'
-        fieldName='scheduleId'
-        badge={<Badge variant='outline'>Auto-generated</Badge>}
-      />
-      {/* Subject */}
-      <InputFormField
-        form={addClassForm}
-        title={<Label className='font-medium text-sm'>Subject</Label>}
-        placeholder='Enter subject'
-        fieldName='scheduleSubject'
-      />
+
+      {/* Schedule ID, Subject */}
+      <section className='w-full grid lg:grid-cols-2 lg:gap-2 '>
+        {/* Schedule ID */}
+        <InputFormField
+          disabled={true}
+          form={addClassForm}
+          title={<Label className='font-medium text-sm'>Schedule ID</Label>}
+          placeholder='CETBSCS0401'
+          fieldName='scheduleId'
+          badge={<Badge variant='outline'>Auto-generated</Badge>}
+        />
+        {/* Subject */}
+        <InputFormField
+          form={addClassForm}
+          title={<Label className='font-medium text-sm'>Subject</Label>}
+          placeholder='Enter subject'
+          fieldName='scheduleSubject'
+        />
+      </section>
+
       {/* Section, Credits, Alloted Slots */}
-      <section className='w-full grid grid-cols-3 gap-2 '>
+      <section className='w-full grid lg:grid-cols-3 lg:gap-2 '>
         {/* Section */}
         <SelectFormField
           form={addClassForm}
@@ -71,7 +76,7 @@ function AddSchedClassInfo({ addClassForm }) {
         fieldName='scheduleParentClassCode'
       />
       {/* Minimum Year Level, AY-SEM, College */}
-      <section className='w-full grid grid-cols-3 gap-2 '>
+      <section className='w-full grid lg:grid-cols-3 lg:gap-2 '>
         {/* Minimum Year Level */}
         <SelectFormField
           form={addClassForm}
