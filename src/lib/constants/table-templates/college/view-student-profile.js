@@ -3,27 +3,15 @@ import { cn } from '@/lib/utils';
 
 export const fakeCollegeStudentsTemplate = [
   {
-    accessorKey: 'firstName',
-    id: 'firstName',
-    header: 'First Name',
+    accessorKey: 'studentNo',
+    id: 'studentNo',
+    header: 'Student Number',
     filterVariant: 'fuzzy',
   },
   {
-    accessorKey: 'middleName',
-    id: 'middleName',
-    header: 'Middle Name',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'lastName',
-    id: 'lastName',
-    header: 'Last Name',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'program',
-    id: 'program',
-    header: 'Program',
+    accessorKey: 'fullName',
+    id: 'fullName',
+    header: 'Name',
     filterVariant: 'fuzzy',
   },
   {
@@ -33,9 +21,33 @@ export const fakeCollegeStudentsTemplate = [
     filterVariant: 'fuzzy',
   },
   {
+    accessorKey: 'program',
+    id: 'program',
+    header: 'Program',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'aySem',
+    id: 'aySem',
+    header: 'AY-SEM',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'yearBlock',
+    id: 'yearBlock',
+    header: 'Year & Block',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'studentType',
+    id: 'studentType',
+    header: 'Student Type',
+    filterVariant: 'fuzzy',
+  },
+  {
     accessorKey: 'enrollmentStatus',
     id: 'enrollmentStatus',
-    header: 'Enrollment Status',
+    header: 'Status',
     filterVariant: 'fuzzy',
     Cell: ({ cell }) => {
       return (

@@ -1,6 +1,6 @@
 import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
-import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
+import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,23 +13,16 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import {
+  aySem,
   block,
   departments,
-  entryAcadYear,
   programs,
   regCode,
   studentType,
   yearLevel,
 } from '@/lib/constants/fake-data/add-student';
 import { StudentSchema } from '@/lib/constants/schema/student';
+import { fakeCollegeStudentsTemplate } from '@/lib/constants/table-templates/college/view-student-profile';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -71,108 +64,91 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
             </Badge>
           </div>
           <div className='mt-7' />
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Student Number</TableHead>
-                <TableHead>First Name</TableHead>
-                <TableHead>Middle Name</TableHead>
-                <TableHead>Last Name</TableHead>
-                <TableHead>Registration Code</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {selectedStudent.map((student) => (
-                <TableRow key={student.firstName}>
-                  <TableCell>{student.studentNo}</TableCell>
-                  <TableCell>{student.firstName}</TableCell>
-                  <TableCell>{student.middleName}</TableCell>
-                  <TableCell>{student.lastName}</TableCell>
-                  <TableCell>{student.regCode}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <div className='flex w-full gap-7 mt-12'>
-            <div className='flex flex-row w-1/2'>
-              <div className='justify-between w-96'>
-                {/* Program */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={programs}
-                  title='Program'
-                  fieldName='program'
-                  placeholder='Program'
-                />
-                {/* Student Type */}
-                <div className='mt-7' />
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={studentType}
-                  title='Student Type'
-                  fieldName='studentType'
-                  placeholder='Student Type'
-                />
-                {/* Year and Level */}
-                <div className='mt-7' />
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={yearLevel}
-                  title='Year Level'
-                  fieldName='yearLevel'
-                  placeholder='Year Level'
-                />
-              </div>
+          <div className='w-[79.5rem]'>
+            <TableMRT
+              template={fakeCollegeStudentsTemplate.filter(
+                (column) =>
+                  column.id !== 'enrollmentStatus' && column.id !== 'regCode',
+              )}
+              data={selectedStudent}
+              isFullscreen={false}
+              searchPlaceholder='Search Student'
+            />
+          </div>
+          <div className='mt-10 ' />
+          {/* AY-Sem */}
+          <div className='w-[79.5rem]'>
+            <SelectFormField
+              form={updateStudentForm}
+              title='AY-Sem'
+              content={aySem}
+              placeholder='AY-Sem'
+              fieldName='aySem'
+              description='Update the current academic year and semester to endorse the students'
+            />
+          </div>
+          <div className='flex w-full gap-7 mt-7'>
+            <div className='flex flex-col w-[38.9rem]'>
+              {/* Program */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={programs}
+                title='Program'
+                fieldName='program'
+                placeholder='Program'
+                isOptional={true}
+              />
+              {/* Student Type */}
+              <div className='mt-7' />
+              <SelectFormField
+                form={updateStudentForm}
+                content={studentType}
+                title='Student Type'
+                fieldName='studentType'
+                placeholder='Student Type'
+                isOptional={true}
+              />
+              {/* Year and Level */}
+              <div className='mt-7' />
+              <SelectFormField
+                form={updateStudentForm}
+                content={yearLevel}
+                title='Year Level'
+                fieldName='yearLevel'
+                placeholder='Year Level'
+                isOptional={true}
+              />
             </div>
-            <div className='flex flex-row w-1/2'>
-              <div className='justify-between w-96'>
-                {/* College */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={departments}
-                  title='College'
-                  fieldName='college'
-                  placeholder='College'
-                />
-                <div className='mt-7' />
-                {/* Registration Code */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={regCode}
-                  title='Registration Code'
-                  fieldName='regCode'
-                  placeholder='Registration Code'
-                />
-                <div className='mt-7' />
-                {/* Block */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={block}
-                  title='Block'
-                  fieldName='block'
-                  placeholder='Block'
-                />
-              </div>
-            </div>
-            <div className='flex flex-row w-1/2'>
-              <div className='justify-between w-96'>
-                {/* Entry Acad Year */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={entryAcadYear}
-                  title='Entry Academic Year'
-                  fieldName='entryAcadYear'
-                  placeholder='Entry Academic Year'
-                />
-                <div className='mt-7' />
-                {/* Scholastic Status */}
-                <InputFormField
-                  form={updateStudentForm}
-                  title='Scholastic Status'
-                  fieldName='scholasticStatus'
-                  placeholder='Scholastic Status'
-                />
-              </div>
+            <div className='flex flex-col w-[38.9rem]'>
+              {/* College */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={departments}
+                title='College'
+                fieldName='college'
+                placeholder='College'
+                isOptional={true}
+              />
+              <div className='mt-7' />
+              {/* Registration Code */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={regCode}
+                title='Registration Code'
+                fieldName='regCode'
+                placeholder='Registration Code'
+                isOptional={true}
+              />
+              <div className='mt-7' />
+              {/* Block */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={block}
+                title='Block'
+                fieldName='block'
+                placeholder='Block'
+                isOptional={true}
+              />
             </div>
           </div>
           <div className='mt-12' />

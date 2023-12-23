@@ -16,6 +16,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
+  aySem,
   birthSex,
   block,
   civilStatus,
@@ -38,6 +39,8 @@ function UpdateStudentDialogForm({ selectedStudent }) {
   });
 
   updateStudentForm.watch();
+
+  const studentTypeState = updateStudentForm.watch('studentType');
 
   useEffect(() => {
     if (selectedStudent) {
@@ -198,7 +201,6 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                     fieldName='phoneNum'
                     placeholder='Phone Number'
                     className='w-72'
-                    disabled
                   />
                 </div>
               </div>
@@ -215,6 +217,18 @@ function UpdateStudentDialogForm({ selectedStudent }) {
               Academic Year
             </Badge>
           </div>
+          <div className='mt-5 ' />
+          {/* AY-Sem */}
+          <div className='w-[79.5rem]'>
+            <SelectFormField
+              form={updateStudentForm}
+              title='AY-Sem'
+              content={aySem}
+              placeholder='AY-Sem'
+              fieldName='aySem'
+              description='Update the current academic year and semester to endorse the student'
+            />
+          </div>
           <div className='flex w-full gap-7 mt-7'>
             <div className='flex flex-row w-1/2'>
               <div className='justify-between w-96'>
@@ -225,6 +239,12 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   title='Program'
                   fieldName='program'
                   placeholder='Program'
+                  disabled={
+                    studentTypeState === 'Old' ||
+                    studentTypeState === 'New' ||
+                    studentTypeState === 'Returnee' ||
+                    studentTypeState === 'Transferee'
+                  }
                 />
                 {/* Student Type */}
                 <div className='mt-7' />
@@ -255,6 +275,12 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   title='College'
                   fieldName='college'
                   placeholder='College'
+                  disabled={
+                    studentTypeState === 'Old' ||
+                    studentTypeState === 'New' ||
+                    studentTypeState === 'Returnee' ||
+                    studentTypeState === 'Transferee'
+                  }
                 />
                 <div className='mt-7' />
                 {/* Registration Code */}
@@ -273,6 +299,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   title='Block'
                   fieldName='block'
                   placeholder='Block'
+                  isOptional={true}
                 />
               </div>
             </div>
@@ -285,6 +312,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   title='Entry Academic Year'
                   fieldName='entryAcadYear'
                   placeholder='Entry Academic Year'
+                  disabled
                 />
                 <div className='mt-7' />
                 {/* Scholastic Status */}
@@ -293,6 +321,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   title='Scholastic Status'
                   fieldName='scholasticStatus'
                   placeholder='Scholastic Status'
+                  disabled
                 />
                 <div className='mt-7' />
                 <Label>
