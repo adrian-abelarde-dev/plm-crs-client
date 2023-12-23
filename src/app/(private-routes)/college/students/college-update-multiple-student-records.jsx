@@ -1,5 +1,6 @@
 import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
+import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,14 +13,6 @@ import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import {
   aySem,
   block,
   departments,
@@ -29,6 +22,7 @@ import {
   yearLevel,
 } from '@/lib/constants/fake-data/add-student';
 import { StudentSchema } from '@/lib/constants/schema/student';
+import { fakeCollegeStudentsTemplate } from '@/lib/constants/table-templates/college/view-student-profile';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -70,28 +64,17 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
             </Badge>
           </div>
           <div className='mt-7' />
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Student Number</TableHead>
-                <TableHead>First Name</TableHead>
-                <TableHead>Middle Name</TableHead>
-                <TableHead>Last Name</TableHead>
-                <TableHead>Registration Code</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {selectedStudent.map((student) => (
-                <TableRow key={student.studentId}>
-                  <TableCell>{student.studentNo}</TableCell>
-                  <TableCell>{student.firstName}</TableCell>
-                  <TableCell>{student.middleName}</TableCell>
-                  <TableCell>{student.lastName}</TableCell>
-                  <TableCell>{student.regCode}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <div className='w-[79.5rem]'>
+            <TableMRT
+              template={fakeCollegeStudentsTemplate.filter(
+                (column) =>
+                  column.id !== 'enrollmentStatus' && column.id !== 'regCode',
+              )}
+              data={selectedStudent}
+              isFullscreen={false}
+              searchPlaceholder='Search Student'
+            />
+          </div>
           <div className='mt-10 ' />
           {/* AY-Sem */}
           <div className='w-[79.5rem]'>
