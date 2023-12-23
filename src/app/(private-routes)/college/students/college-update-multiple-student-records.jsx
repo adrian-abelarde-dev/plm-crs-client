@@ -1,5 +1,4 @@
 import CheckBoxFormField from '@/components/component/form/checkbox-formfield';
-import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -21,9 +20,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {
+  aySem,
   block,
   departments,
-  entryAcadYear,
   programs,
   regCode,
   studentType,
@@ -93,86 +92,80 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
               ))}
             </TableBody>
           </Table>
-          <div className='flex w-full gap-7 mt-12'>
-            <div className='flex flex-row w-1/2'>
-              <div className='justify-between w-96'>
-                {/* Program */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={programs}
-                  title='Program'
-                  fieldName='program'
-                  placeholder='Program'
-                />
-                {/* Student Type */}
-                <div className='mt-7' />
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={studentType}
-                  title='Student Type'
-                  fieldName='studentType'
-                  placeholder='Student Type'
-                />
-                {/* Year and Level */}
-                <div className='mt-7' />
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={yearLevel}
-                  title='Year Level'
-                  fieldName='yearLevel'
-                  placeholder='Year Level'
-                />
-              </div>
+          <div className='mt-10 ' />
+          {/* AY-Sem */}
+          <div className='w-[79.5rem]'>
+            <SelectFormField
+              form={updateStudentForm}
+              title='AY-Sem'
+              content={aySem}
+              placeholder='AY-Sem'
+              fieldName='aySem'
+              description='Update the current academic year and semester to endorse the students'
+            />
+          </div>
+          <div className='flex w-full gap-7 mt-7'>
+            <div className='flex flex-col w-[38.9rem]'>
+              {/* Program */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={programs}
+                title='Program'
+                fieldName='program'
+                placeholder='Program'
+                isOptional={true}
+              />
+              {/* Student Type */}
+              <div className='mt-7' />
+              <SelectFormField
+                form={updateStudentForm}
+                content={studentType}
+                title='Student Type'
+                fieldName='studentType'
+                placeholder='Student Type'
+                isOptional={true}
+              />
+              {/* Year and Level */}
+              <div className='mt-7' />
+              <SelectFormField
+                form={updateStudentForm}
+                content={yearLevel}
+                title='Year Level'
+                fieldName='yearLevel'
+                placeholder='Year Level'
+                isOptional={true}
+              />
             </div>
-            <div className='flex flex-row w-1/2'>
-              <div className='justify-between w-96'>
-                {/* College */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={departments}
-                  title='College'
-                  fieldName='college'
-                  placeholder='College'
-                />
-                <div className='mt-7' />
-                {/* Registration Code */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={regCode}
-                  title='Registration Code'
-                  fieldName='regCode'
-                  placeholder='Registration Code'
-                />
-                <div className='mt-7' />
-                {/* Block */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={block}
-                  title='Block'
-                  fieldName='block'
-                  placeholder='Block'
-                />
-              </div>
-            </div>
-            <div className='flex flex-row w-1/2'>
-              <div className='justify-between w-96'>
-                {/* Entry Acad Year */}
-                <SelectFormField
-                  form={updateStudentForm}
-                  content={entryAcadYear}
-                  title='Entry Academic Year'
-                  fieldName='entryAcadYear'
-                  placeholder='Entry Academic Year'
-                />
-                <div className='mt-7' />
-                {/* Scholastic Status */}
-                <InputFormField
-                  form={updateStudentForm}
-                  title='Scholastic Status'
-                  fieldName='scholasticStatus'
-                  placeholder='Scholastic Status'
-                />
-              </div>
+            <div className='flex flex-col w-[38.9rem]'>
+              {/* College */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={departments}
+                title='College'
+                fieldName='college'
+                placeholder='College'
+                isOptional={true}
+              />
+              <div className='mt-7' />
+              {/* Registration Code */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={regCode}
+                title='Registration Code'
+                fieldName='regCode'
+                placeholder='Registration Code'
+                isOptional={true}
+              />
+              <div className='mt-7' />
+              {/* Block */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={block}
+                title='Block'
+                fieldName='block'
+                placeholder='Block'
+                isOptional={true}
+              />
             </div>
           </div>
           <div className='mt-12' />
