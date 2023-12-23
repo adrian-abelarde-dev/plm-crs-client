@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/table';
 import { fakeFacultyLoadAssignmentData } from '@/lib/constants/fake-data/faculty-load-assignment';
 import { cn } from '@/lib/utils';
-import React from 'react';
 
 import PrintLayoutTeachingAssignment from './print-teaching-assignment';
 import SignaturesApprovals from './signatures-approvals';
