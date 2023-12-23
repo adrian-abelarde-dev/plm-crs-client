@@ -80,12 +80,39 @@ export const entryAcadYear = [
 
 export const studentType = [
   {
+    value: 'Old',
+    label: 'Old',
+  },
+  {
     value: 'New',
     label: 'New',
   },
   {
-    value: 'Old',
-    label: 'Old',
+    value: 'Returnee',
+    label: 'Returnee',
+  },
+  {
+    value: 'Transferee',
+    label: 'Transferee',
+  },
+  {
+    value: 'Shifter',
+    label: 'Shifter',
+  },
+];
+
+export const aySem = [
+  {
+    value: '20221',
+    label: '20221',
+  },
+  {
+    value: '20222',
+    label: '20222',
+  },
+  {
+    value: '20231',
+    label: '20231',
   },
 ];
 
