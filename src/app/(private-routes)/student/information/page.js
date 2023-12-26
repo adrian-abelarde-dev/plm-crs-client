@@ -3,7 +3,6 @@
 import { PenSquare } from 'lucide-react';
 import { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/bootstrap.css';
 import 'react-phone-input-2/lib/style.css';
 
 const InputField = ({
@@ -170,11 +169,11 @@ function StudentInformationPage() {
                     Phone Number
                   </label>
                   <PhoneInput
-                    className='flex justify-between'
                     country={'ph'} // default country
                     value={phoneNumber}
                     onChange={setPhoneNumber}
                     disabled={!isFormEnabled}
+                    enableSearch='true'
                   />
                 </div>
               </div>
