@@ -11,9 +11,9 @@ import { fakeSubjectTemplate } from '@/lib/constants/table-templates/college/col
 import { cn, handleRowSelectionChange } from '@/lib/utils';
 import React, { useState } from 'react';
 
-import AddSubjectsUndergrad from './college-subjects-add';
-import ArchiveSubjectsUndergrad from './college-subjects-archive';
-import EditSubjectsUndergrad from './college-subjects-edit';
+import AddSubjectsUndergrad from './subjects/add-subjects';
+import ArchiveSubjectsUndergrad from './subjects/archive-subjects';
+import EditSubjectsUndergrad from './subjects/edit-subjects';
 
 function CollegeSubjectsPage() {
   const [rowSelection, setRowSelection] = useState({});
