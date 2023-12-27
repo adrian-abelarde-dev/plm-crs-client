@@ -6,8 +6,7 @@ export default async function sendEmail({ subject, text, to }) {
     from: process.env.GMAIL_APP_USERNAME,
     to, // The person you want your email to be sent
     subject,
-    text,
-    // You can also add in HTML if you dont want plain text
+    html: text,
   };
 
   return new Promise((resolve, reject) => {
