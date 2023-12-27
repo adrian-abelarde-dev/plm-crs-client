@@ -12,7 +12,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
@@ -59,7 +58,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
       <Form {...updateStudentForm}>
         <ScrollArea className='h-50'>
           <div className='mt-5 '>
-            <Label className='font-semibold text-xl'>Personal Details</Label>
+            <h1 className='font-semibold text-xl'>Personal Details</h1>
           </div>
           {/* Student Number */}
           <div className='mt-5 '>
@@ -208,7 +207,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
           </div>
           <div className='mt-10 ' />
           <div className='flex flex-row space-x-2'>
-            <Label className='font-semibold text-xl'>Student Terms</Label>
+            <h1 className='font-semibold text-xl'>Student Terms</h1>
             <div className='space-x-1' />
             <Badge className='h-5 w-15 mt-1 font-light bg-yellow-50 border-yellow-100 border-2 border-solid text-yellow-500'>
               Semester
@@ -324,7 +323,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   disabled
                 />
                 <div className='mt-7' />
-                <Label>
+                <p>
                   Are they enrolled?
                   <span
                     className='text-red-500 ml-1'
@@ -332,18 +331,18 @@ function UpdateStudentDialogForm({ selectedStudent }) {
                   >
                     *
                   </span>
-                </Label>
+                </p>
                 <div className='mt-2' />
                 <RadioGroup defaultValue='Yes'>
                   <div className='flex flex-row'>
                     <div className='flex items-center space-x-2'>
                       <RadioGroupItem value='yes' id='option1' />
-                      <Label htmlFor='option1'>Yes</Label>
+                      <p htmlFor='option1'>Yes</p>
                     </div>
                     <div className='ml-5' />
                     <div className='flex items-center space-x-2'>
                       <RadioGroupItem value='no' id='option2' />
-                      <Label htmlFor='option2'>No</Label>
+                      <p htmlFor='option2'>No</p>
                     </div>
                   </div>
                 </RadioGroup>
@@ -351,7 +350,7 @@ function UpdateStudentDialogForm({ selectedStudent }) {
             </div>
           </div>
           <div className='mt-10' />
-          <Label className='font-semibold text-xl'>Current Address</Label>
+          <h1 className='font-semibold text-xl'>Current Address</h1>
           <div className='mt-5' />
           <div className='w-[60rem] gap-10 mt-7'>
             {/* Street Address */}
@@ -390,19 +389,19 @@ function UpdateStudentDialogForm({ selectedStudent }) {
             </div>
           </div>
           <div className='mt-10' />
-          <Label className='font-semibold text-xl'>Permanent Address</Label>
+          <h1 className='font-semibold text-xl'>Permanent Address</h1>
           <div className='mt-5' />
           <div className='mt-5' />
           <div className='items-top flex space-x-2'>
             <Checkbox id='address' />
             <div className='grid gap-1 leading-none'>
-              <label
+              <p
                 htmlFor='confirm'
                 className='text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
               >
                 Check if the permanent address is the same as the current
                 address
-              </label>
+              </p>
             </div>
           </div>
           <div className='w-[60rem] gap-10 mt-7'>

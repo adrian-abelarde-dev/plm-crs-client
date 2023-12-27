@@ -8,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { StudentSchema } from '@/lib/constants/schema/student';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -38,11 +37,11 @@ function ViewStudentDialogForm({ disabled, selectedStudent }) {
           variant='outline'
         >
           {' '}
-          <User className='w-4 h-4 mr-2' />
+          <User className='w-4 h-5 mr-2' />
           View Profile
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-[425px]'>
+      <DialogContent className='sm:max-w-[480px]'>
         <DialogTitle>Student Information</DialogTitle>
         {/* Student Information */}
         <Card className='w-full mb-4'>
@@ -57,67 +56,67 @@ function ViewStudentDialogForm({ disabled, selectedStudent }) {
             {/* Student No. */}
             <div className='flex flex-col'>
               <div className='flex flex-col'>
-                <Label className='text-slate-500 font-normal'>
+                <p className='text-slate-500 font-regular text-sm'>
                   Student Number
-                </Label>
-                <Label className='flex mt-[0.44rem]'>
-                  <User className='h-4 w-4 mr-[0.62rem]' />
+                </p>
+                <p className='flex text-sm font-medium'>
+                  <User className='h-5 w-4 mr-[0.62rem]' />
                   {selectedStudent?.studentNo}
-                </Label>
+                </p>
               </div>
 
               {/* Program */}
               <div className='flex flex-col mt-5'>
-                <Label className='text-slate-500 font-normal'> Program</Label>
-                <Label className='flex mt-[0.44rem]'>
-                  <User className='h-4 w-4 mr-[0.62rem]' />
+                <p className='text-slate-500 font-normal text-sm'> Program</p>
+                <p className='flex text-sm font-medium'>
+                  <User className='h-5 w-4 mr-[0.62rem]' />
                   {selectedStudent?.program}
-                </Label>
+                </p>
               </div>
 
               {/* Year & Block */}
               <div className='flex flex-col mt-5'>
-                <Label className='text-slate-500 font-normal'>
+                <p className='text-slate-500 font-normal text-sm'>
                   Year & Block
-                </Label>
-                <Label className='flex mt-[0.44rem]'>
-                  <User className='h-4 w-4 mr-[0.62rem]' />
+                </p>
+                <p className='flex text-sm font-medium'>
+                  <User className='h-5 w-4 mr-[0.62rem]' />
                   {selectedStudent?.yearLevel}-{selectedStudent?.block}
-                </Label>
+                </p>
               </div>
             </div>
 
             {/* Email Address */}
             <div className='flex flex-col mt-5'>
-              <Label className='text-slate-500 font-normal'>
+              <p className='text-slate-500 font-normal text-sm '>
                 Email Address
-              </Label>
-              <Label className='flex mt-[0.44rem]'>
-                <User className='h-4 w-4 mr-[0.62rem]' />
+              </p>
+              <p className='flex text-sm font-medium'>
+                <User className='h-5 w-4 mr-[0.62rem]' />
                 {selectedStudent?.emailAddress}
-              </Label>
+              </p>
             </div>
 
             {/* Registration Code */}
             <div className='flex flex-col mt-5'>
-              <Label className='text-slate-500 font-normal'>
+              <p className='text-slate-500 font-regular text-sm '>
                 Registration Code
-              </Label>
-              <Label className='flex mt-[0.44rem]'>
-                <User className='h-4 w-4 mr-[0.62rem]' />
+              </p>
+              <p className='flex text-sm font-medium'>
+                <User className='h-5 w-4 mr-[0.62rem]' />
                 {selectedStudent?.regCode}
-              </Label>
+              </p>
             </div>
 
             {/* Enrollment Status */}
             <div className='flex flex-col mt-5'>
-              <Label className='text-slate-500 font-normal'>
+              <p className='text-slate-500 font-normal text-sm'>
                 Enrollment Status
-              </Label>
-              <Label className='flex mt-[0.44rem]'>
-                <User className='h-4 w-4 mr-[0.62rem]' />
+              </p>
+              <p className='flex text-sm font-medium'>
+                <User className='h-5 w-4 mr-[0.62rem]' />
                 {selectedStudent?.enrollmentStatus}
-              </Label>
+              </p>
             </div>
           </CardContent>
         </Card>
