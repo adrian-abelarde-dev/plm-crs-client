@@ -148,6 +148,14 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
                 fieldName='block'
                 placeholder='Block'
                 isOptional={true}
+                /* Only enable the updating of blocks when the year level and program are the same */
+                disabled={
+                  !selectedStudent.every(
+                    (student) =>
+                      student.program === selectedStudent[0].program &&
+                      student.yearLevel === selectedStudent[0].yearLevel,
+                  )
+                }
               />
             </div>
           </div>

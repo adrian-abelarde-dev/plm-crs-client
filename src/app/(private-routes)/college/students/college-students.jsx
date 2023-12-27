@@ -9,6 +9,8 @@ import { Archive } from 'lucide-react';
 import React, { useState } from 'react';
 
 import AddDropDialogForm from './add drop/college-add-drop';
+import EnlistStudentUndergrad from './enlistment/enlistment';
+import shouldDisable from './enlistment/enlistment-disable-logic';
 import UpdateStudentUndergrad from './update/college-update';
 import ViewStudentDialogForm from './view profile/college-view-student-profile-dialog-form';
 
@@ -66,6 +68,11 @@ function StudentCollegeUndergrad() {
                 Object.keys(rowSelection).length > 1 ||
                 selectedStudent[0].regCode === 'Regular'
               }
+            />
+            <EnlistStudentUndergrad
+              selectedStudent={selectedStudent}
+              disabled={shouldDisable(selectedStudent, rowSelection)}
+              enlistStudents={Object.keys(rowSelection).length}
             />
           </>
         }

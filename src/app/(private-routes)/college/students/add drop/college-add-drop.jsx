@@ -73,6 +73,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          variant='outline'
           className='text-zinc-900 justify-between hover:bg-zinc-100'
           disabled={disabled}
         >
@@ -81,7 +82,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
           Add Drop
         </Button>
       </DialogTrigger>
-      <DialogContent className='md:max-w-[1000px] h-[700px] overflow-auto'>
+      <DialogContent className='md:max-w-[1000px] h-[700px] flex flex-col overflow-auto'>
         <DialogHeader>
           <DialogTitle className='font-bold text-2xl'>
             Enlistment Form 5A
@@ -131,16 +132,18 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                   ))}
                 </Table>
               </ScrollArea>
-              <AlertDialogFooter className='bottom-0 right-0 w-full'>
-                <AlertDialogCancel
-                  onClick={() => {
-                    setSelectedSubjects([]);
-                  }}
-                >
-                  Exit
-                </AlertDialogCancel>
-                <AlertDialogAction>Cancel Subject/s</AlertDialogAction>
-              </AlertDialogFooter>
+              <div className='mt-auto'>
+                <AlertDialogFooter className='bottom-0 right-0 w-full'>
+                  <AlertDialogCancel
+                    onClick={() => {
+                      setSelectedSubjects([]);
+                    }}
+                  >
+                    Exit
+                  </AlertDialogCancel>
+                  <AlertDialogAction>Cancel Subject/s</AlertDialogAction>
+                </AlertDialogFooter>
+              </div>
             </AlertDialogContent>
           </AlertDialog>
 
@@ -178,7 +181,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                 <TableHead>Credits</TableHead>
               </TableRow>
             </TableHeader>
-            {selectedStudent?.addDropInfo.map((subject, index) => (
+            {selectedStudent?.addDropClassList?.map((subject, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <Checkbox
