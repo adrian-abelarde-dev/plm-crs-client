@@ -79,12 +79,12 @@ function EnlistmentConfirmationDialogForm({ selectedStudent }) {
           </Table>
         </ScrollArea>
         <AlertDialogFooter className='mt-auto justify-center'>
-          <AlertDialogAction>
+          <AlertDialogAction onClick={handleEnlistment}>
             <div
               className='flex justify-center'
               enlistmentStatus={enlistmentStatus}
             >
-              <Button onClick={handleEnlistment}>Enlist Student</Button>
+              Enlist Student
             </div>
           </AlertDialogAction>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
