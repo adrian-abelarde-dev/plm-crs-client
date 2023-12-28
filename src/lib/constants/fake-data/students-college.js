@@ -53,49 +53,49 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0411 - CS Thesis Writing 1',
+        subject: 'CSC 0411 - CS Thesis Writing 1',
         section: '1',
         schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0412 - Network and Communications (Lec)',
+        subject: 'CSC 0412 - Network and Communications (Lec)',
         section: '1',
         schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CS Elective 2 (Lec)',
+        subject: 'CS Elective 2 (Lec)',
         section: '1',
         schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CS Elective 2 (Lab)',
+        subject: 'CS Elective 2 (Lab)',
         section: '1',
         schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
         credits: '2',
       },
       {
-        class: 'CS Elective 3 (Lab)',
+        subject: 'CS Elective 3 (Lab)',
         section: '1',
         schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CS Elective 3 (Lec)',
+        subject: 'CS Elective 3 (Lec)',
         section: '1',
         schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CS Elective 4 (Lec)',
+        subject: 'CS Elective 4 (Lec)',
         section: '1',
         schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CS Elective 4 (Lab)',
+        subject: 'CS Elective 4 (Lab)',
         section: '1',
         schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
         credits: '2',
@@ -150,19 +150,19 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0414.1-1 - CS Elective 3 (Lab)',
+        subject: 'CSC 0414.1 - CS Elective 3 (Lab)',
         section: '1',
         schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0414-1 - CS Elective 3 (Lec)',
+        subject: 'CSC 0414-1 - CS Elective 3 (Lec)',
         section: '1',
         schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CSC 0312- 1 - Programming Language (Lec)',
+        subject: 'CSC 0312-1 - Programming Language (Lec)',
         section: '1',
         schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
@@ -268,19 +268,19 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0312.1- 1 - Programming Language (Lab)',
+        subject: 'CSC 0312.1 - Programming Language (Lab)',
         section: '3',
         schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        subject: 'CSC 0322 - Compiler Design (Lec)',
         section: '4',
         schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CSC 0322.1-1 - Compiler Design (Lab)',
+        subject: 'CSC 0322.1 - Compiler Design (Lab)',
         section: '1',
         schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
@@ -337,19 +337,19 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0312.1- 1 - Programming Language (Lab)',
+        subject: 'CSC 0312.1 - Programming Language (Lab)',
         section: '3',
         schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        subject: 'CSC 0322 - Compiler Design (Lec)',
         section: '4',
         schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CSC 0322.1-1 - Compiler Design (Lab)',
+        subject: 'CSC 0322.1 - Compiler Design (Lab)',
         section: '1',
         schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
@@ -502,19 +502,19 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0321-1 - Software Engineering (Lec)',
+        subject: 'CSC 0321 - Software Engineering (Lec)',
         section: '3',
         schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        subject: 'CSC 0322 - Compiler Design (Lec)',
         section: '4',
         schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CSC 0321.1-1 - Software Engineering (Lab)',
+        subject: 'CSC 0321.1 - Software Engineering (Lab)',
         section: '1',
         schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
@@ -571,21 +571,21 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0323-1 - Database Management Systems (Lec)',
+        subject: 'CSC 0323 - Database Management Systems (Lec)',
         section: '2',
-        schedule: 'Wednesday: 2:00 PM - 4:00 PM (F2F, Classroom)',
+        schedule: 'Wednesday: 2:00 PM - 4:00 PM (F2F, subjectroom)',
         credits: '3',
       },
       {
-        class: 'CSC 0323.1-1 - Database Management Systems (Lab)',
+        subject: 'CSC 0323 - Database Management Systems (Lab)',
         section: '5',
         schedule: 'Friday: 1:00 PM - 3:00 PM (Online)',
         credits: '3',
       },
       {
-        class: 'CSC 0324-1 - Data Structures (Lec)',
+        subject: 'CSC 0324 - Data Structures (Lec)',
         section: '1',
-        schedule: 'Tuesday: 8:00 AM - 10:00 AM (F2F, Classroom)',
+        schedule: 'Tuesday: 8:00 AM - 10:00 AM (F2F, subjectroom)',
         credits: '3',
       },
     ],
@@ -640,33 +640,33 @@ export const fakeCollegeStudents = [
 
     addDropInfo: [
       {
-        class: 'CSC 0325.2-1 - Advanced Web Development (Lec)',
+        subject: 'CSC 0325.2 - Advanced Web Development (Lec)',
         section: '2',
-        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, Classroom)',
+        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, subjectroom)',
         credits: '3',
       },
       {
-        class: 'CSC 0325.2-2 - Advanced Web Development (Lab)',
+        subject: 'CSC 0325.2 - Advanced Web Development (Lab)',
         section: '5',
         schedule: 'Friday: 10:00 AM - 12:00 PM (Online)',
         credits: '3',
       },
       {
-        class: 'CSC 0326-1 - Operating Systems (Lec)',
+        subject: 'CSC 0326 - Operating Systems (Lec)',
         section: '1',
-        schedule: 'Tuesday: 1:00 PM - 3:00 PM (F2F, Classroom)',
+        schedule: 'Tuesday: 1:00 PM - 3:00 PM (F2F, subjectroom)',
         credits: '3',
       },
       {
-        class: 'CSC 0326.1-1 - Operating Systems (Lab)',
+        subject: 'CSC 0326.1 - Operating Systems (Lab)',
         section: '3',
         schedule: 'Thursday: 4:00 PM - 6:00 PM (Online)',
         credits: '3',
       },
       {
-        class: 'CSC 0327-1 - Mobile App Development (Lec)',
+        subject: 'CSC 0327 - Mobile App Development (Lec)',
         section: '4',
-        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, Classroom)',
+        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, subjectroom)',
         credits: '3',
       },
     ],

@@ -32,13 +32,13 @@ import {
 import { subjectAndSchedule } from '@/lib/constants/fake-data/available-sched-of-subjects';
 import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown, PlusCircle } from 'lucide-react';
-import * as React from 'react';
+import { useState } from 'react';
 
 function AddClassDialogForm({ disabled }) {
-  const [open, setOpen] = React.useState(false);
-  const [subjectValue, setSubjectValue] = React.useState('');
-  const [selectedSubjectValue, setSelectedSubjectValue] = React.useState(null);
-  const [addSubject, setAddSubject] = React.useState(null);
+  const [open, setOpen] = useState(false);
+  const [subjectValue, setSubjectValue] = useState('');
+  const [selectedSubjectValue, setSelectedSubjectValue] = useState(null);
+  const [addSubject, setAddSubject] = useState(null);
 
   return (
     <AlertDialog>
@@ -82,6 +82,7 @@ function AddClassDialogForm({ disabled }) {
                     key={framework.subjectValue}
                     subjectValue={framework.subjectValue}
                     onSelect={(currentSubjectValue) => {
+                      setAddSubject(null);
                       setSubjectValue(
                         currentSubjectValue === subjectValue
                           ? ''
@@ -117,7 +118,7 @@ function AddClassDialogForm({ disabled }) {
             <TableHeader>
               <TableRow>
                 <TableHead></TableHead>
-                <TableHead>Class</TableHead>
+                <TableHead>Subject</TableHead>
                 <TableHead>Section</TableHead>
                 <TableHead>Schedule</TableHead>
                 <TableHead>Credits</TableHead>
@@ -158,7 +159,11 @@ function AddClassDialogForm({ disabled }) {
           {/* Add Class */}
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button>Add Class</Button>
+              <Button
+                disabled={Object.keys(subjectValue).length === 0 || !addSubject}
+              >
+                Add Class
+              </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className='md:max-w-[700px] h-[300px] overflow-auto'>
               <AlertDialogHeader>
@@ -171,7 +176,7 @@ function AddClassDialogForm({ disabled }) {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Class</TableHead>
+                    <TableHead>Subject</TableHead>
                     <TableHead>Section</TableHead>
                     <TableHead>Schedule</TableHead>
                     <TableHead>Credits</TableHead>
@@ -192,6 +197,7 @@ function AddClassDialogForm({ disabled }) {
                   onClick={() => {
                     setSubjectValue('');
                     setSelectedSubjectValue(null);
+                    setAddSubject(null);
                   }}
                 >
                   Proceed

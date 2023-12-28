@@ -47,13 +47,13 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
 
   const handleRowSelectionChange = (subject) => {
     const isSubjectSelected = selectedSubjects.some(
-      (selectedSubject) => selectedSubject.class === subject.class,
+      (selectedSubject) => selectedSubject.subject === subject.subject,
     );
 
     if (isSubjectSelected) {
       setSelectedSubjects((prevSelectedSubjects) =>
         prevSelectedSubjects.filter(
-          (selectedSubject) => selectedSubject.class !== subject.class,
+          (selectedSubject) => selectedSubject.subject !== subject.subject,
         ),
       );
     } else {
@@ -101,7 +101,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                 Cancel Class
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto'>
+            <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto flex flex-col'>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -113,16 +113,16 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                 <Table>
                   <TableHeader className='text-black'>
                     <TableRow>
-                      <TableHead>Class</TableHead>
+                      <TableHead>Subject</TableHead>
                       <TableHead>Section</TableHead>
                       <TableHead>Schedule</TableHead>
                       <TableHead>Credits</TableHead>
                     </TableRow>
                   </TableHeader>
                   {selectedSubjects.map((subject) => (
-                    <TableRow key={subject.class}>
+                    <TableRow key={subject.subject}>
                       <TableCell className='font-semibold'>
-                        {subject.class}
+                        {subject.subject}
                       </TableCell>
                       <TableCell>{subject.section}</TableCell>
                       <TableCell>{subject.schedule}</TableCell>
@@ -131,7 +131,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                   ))}
                 </Table>
               </ScrollArea>
-              <AlertDialogFooter className='bottom-0 right-0 w-full'>
+              <AlertDialogFooter className='mt-auto justify-center'>
                 <AlertDialogCancel
                   onClick={() => {
                     setSelectedSubjects([]);
@@ -139,7 +139,13 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                 >
                   Exit
                 </AlertDialogCancel>
-                <AlertDialogAction>Cancel Subject/s</AlertDialogAction>
+                <AlertDialogAction
+                  onClick={() => {
+                    setSelectedSubjects([]);
+                  }}
+                >
+                  Cancel Subject/s
+                </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
@@ -150,7 +156,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
             disabled={Object.keys(selectedSubjects).length != 0}
           />
 
-          {/* Print SER, Assessment Form and Generate Print ID */}
+          {/* Print ERF, Assessment Form and Generate Print ID */}
           <Popover>
             <PopoverTrigger>
               <Button variant='outline'>
@@ -159,10 +165,12 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
             </PopoverTrigger>
             <PopoverContent className='flex flex-col gap-3'>
               <Button variant='no_outline' className='justify-start'>
-                Print SER
+                Print ERF
               </Button>
-              <Button variant='no_outline'>Print Assessment</Button>
-              <Button variant='no_outline'>Generate Print ID</Button>
+              <Button variant='no_outline'>Print Assessment Stub</Button>
+              <Button variant='no_outline' className='justify-start'>
+                Generate Print ID
+              </Button>
             </PopoverContent>
           </Popover>
         </div>
@@ -172,7 +180,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
             <TableHeader>
               <TableRow>
                 <TableHead></TableHead>
-                <TableHead>Class</TableHead>
+                <TableHead>Subject</TableHead>
                 <TableHead>Section</TableHead>
                 <TableHead>Schedule</TableHead>
                 <TableHead>Credits</TableHead>
@@ -185,12 +193,12 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                     className='align-center'
                     checked={selectedSubjects.some(
                       (selectedSubject) =>
-                        selectedSubject.class === subject.class,
+                        selectedSubject.subject === subject.subject,
                     )}
                     onCheckedChange={() => handleRowSelectionChange(subject)}
                   />
                 </TableCell>
-                <TableCell>{subject.class}</TableCell>
+                <TableCell>{subject.subject}</TableCell>
                 <TableCell>{subject.section}</TableCell>
                 <TableCell>{subject.section}</TableCell>
                 <TableCell>{subject.credits}</TableCell>
@@ -210,15 +218,17 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
             <CardContent>
               <div className='justify-left flex flex-row mt-5'>
                 <div className='flex flex-col font-semibold text-sm'>
+                  <p className='mt-1'>Student Number</p>
                   <p className='mt-1'>Last Name</p>
                   <p className='mt-1'>First Name</p>
                   <p className='mt-1'>Middle Name</p>
                   <p className='mt-1'>Program</p>
                   <p className='mt-1'>Year Level</p>
                   <p className='mt-1'>Registration Code</p>
-                  <p className='mt-1'>Status</p>
+                  <p className='mt-1'>Enrollment Status</p>
                 </div>
                 <div className='flex flex-col text-sm ml-10'>
+                  <p className='mt-1'>{selectedStudent?.studentNo}</p>
                   <p className='mt-1'>{selectedStudent?.lastName}</p>
                   <p className='mt-1'>{selectedStudent?.firstName}</p>
                   <p className='mt-1'>{selectedStudent?.middleName}</p>
