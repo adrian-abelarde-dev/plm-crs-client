@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/table';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 
-import IrregularEnlistmentConfirmationDialogForm from './confirmation dialogs/irregular-enlistment-confirmation';
+import IrregularEnlistmentConfirmationDialogForm from './confirmation-dialogs/irregular-enlistment-confirmation';
 
 function IrregularEnlistmentDialogForm({ selectedStudent }) {
   return (

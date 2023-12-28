@@ -23,7 +23,7 @@ import {
 import { blockInformation } from '@/lib/constants/fake-data/block-subjects';
 import { React } from 'react';
 
-import EnlistmentConfirmationDialogForm from './confirmation dialogs/regular-enlistment-confirmation';
+import EnlistmentConfirmationDialogForm from './confirmation-dialogs/regular-enlistment-confirmation';
 
 function EnlistmentDialogForm({ selectedStudent }) {
   return (

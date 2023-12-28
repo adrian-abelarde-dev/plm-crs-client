@@ -17,7 +17,7 @@ import {
 import { blockInformation } from '@/lib/constants/fake-data/block-subjects';
 import { fakeCollegeStudentsTemplate } from '@/lib/constants/table-templates/college/view-student-profile';
 
-import MultipleEnlistmentConfirmationDialogForm from './confirmation dialogs/multiple-enlistment-confirmation';
+import MultipleEnlistmentConfirmationDialogForm from './confirmation-dialogs/multiple-enlistment-confirmation';
 
 function MultipleEnlistmentDialogForm({ selectedStudent }) {
   let prevBlockInfo = null;
