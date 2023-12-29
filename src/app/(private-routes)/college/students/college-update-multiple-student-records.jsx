@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   aySem,
   block,
@@ -43,7 +42,7 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
   }, [selectedStudent, updateStudentForm]);
 
   return (
-    <DialogContent className='md:max-w-[1350px] h-5/6 overflow-auto'>
+    <DialogContent className='md:max-w-[1350px] h-5/6'>
       <DialogHeader>
         <DialogTitle className='font-bold text-2xl'>
           Student Records
@@ -51,7 +50,7 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
         <DialogDescription>Update multiple student terms.</DialogDescription>
       </DialogHeader>
       <Form {...updateStudentForm}>
-        <ScrollArea className='h-50'>
+        <div className='overflow-scroll'>
           <div className='mt-5 ' />
           <div className='flex flex-row space-x-2'>
             <Label className='font-semibold text-xl'>Student Terms</Label>
@@ -87,29 +86,61 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
               description='Update the current academic year and semester to endorse the students'
             />
           </div>
-          <div className='flex w-full gap-7 mt-7'>
-            <div className='flex flex-col w-[38.9rem]'>
+          <div className='flex justify-between w-[79.5rem] mt-7 gap-7'>
+            <div className='w-[39.75rem]'>
               {/* Program */}
               <SelectFormField
                 form={updateStudentForm}
                 content={programs}
                 title='Program'
                 fieldName='program'
+                className='flex-grow'
                 placeholder='Program'
                 isOptional={true}
               />
-              {/* Student Type */}
-              <div className='mt-7' />
+            </div>
+            <div className='w-[39.75rem]'>
+              {/* College */}
               <SelectFormField
                 form={updateStudentForm}
+                content={departments}
+                className='flex-grow'
+                title='College'
+                fieldName='college'
+                placeholder='College'
+                isOptional={true}
+              />
+            </div>
+          </div>
+          <div className='flex justify-between w-[79.5rem] mt-7 gap-7'>
+            <div className='w-[39.75rem]'>
+              {/* Student Type */}
+              <SelectFormField
+                form={updateStudentForm}
+                className='flex-grow'
                 content={studentType}
                 title='Student Type'
                 fieldName='studentType'
                 placeholder='Student Type'
                 isOptional={true}
               />
-              {/* Year and Level */}
-              <div className='mt-7' />
+            </div>
+            <div className='w-[39.75rem]'>
+              {/* Registration Code */}
+              <SelectFormField
+                form={updateStudentForm}
+                content={regCode}
+                className='flex-grow'
+                title='Registration Code'
+                fieldName='regCode'
+                placeholder='Registration Code'
+                isOptional={true}
+              />
+            </div>
+          </div>
+          <div className='flex justify-between w-[79.5rem] mt-7 gap-7'>
+            <div className='w-[39.75rem]'>
+              {/* Year Level */}
               <SelectFormField
                 form={updateStudentForm}
                 content={yearLevel}
@@ -119,27 +150,7 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
                 isOptional={true}
               />
             </div>
-            <div className='flex flex-col w-[38.9rem]'>
-              {/* College */}
-              <SelectFormField
-                form={updateStudentForm}
-                content={departments}
-                title='College'
-                fieldName='college'
-                placeholder='College'
-                isOptional={true}
-              />
-              <div className='mt-7' />
-              {/* Registration Code */}
-              <SelectFormField
-                form={updateStudentForm}
-                content={regCode}
-                title='Registration Code'
-                fieldName='regCode'
-                placeholder='Registration Code'
-                isOptional={true}
-              />
-              <div className='mt-7' />
+            <div className='w-[39.75rem]'>
               {/* Block */}
               <SelectFormField
                 form={updateStudentForm}
@@ -174,7 +185,7 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
               Update Records
             </Button>
           </div>
-        </ScrollArea>
+        </div>
       </Form>
     </DialogContent>
   );

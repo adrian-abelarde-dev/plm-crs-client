@@ -13,6 +13,21 @@ export const genderIdentity = [
   },
 ];
 
+export const enrollmentStatus = [
+  {
+    value: 'Not Enlisted',
+    label: 'Not Enlisted',
+  },
+  {
+    value: 'Enlisted',
+    label: 'Enlisted',
+  },
+  {
+    value: 'Enrolled',
+    label: 'Enrolled',
+  },
+];
+
 export const birthSex = [
   {
     value: 'Female',
@@ -136,6 +151,10 @@ export const block = [
   {
     value: '5',
     label: '5',
+  },
+  {
+    value: 'N/A',
+    label: 'N/A',
   },
 ];
 

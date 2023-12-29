@@ -32,7 +32,7 @@ export const fakeCollegeStudents = [
     program: 'Bachelor of Science in Tourism Management',
     emailAddress: 'john.doe@plm.edu.ph',
     regCode: 'Irregular',
-    enrollmentStatus: 'Enlisted',
+    enrollmentStatus: 'Not Enlisted',
     scholasticStatus: 'Paying',
 
     // Current Address Information
@@ -79,7 +79,7 @@ export const fakeCollegeStudents = [
     program: 'Bachelor of Science in Accountancy',
     emailAddress: 'jane.cruz@plm.edu.ph',
     regCode: 'Irregular',
-    enrollmentStatus: 'Enlisted',
+    enrollmentStatus: 'Enrolled',
     scholasticStatus: 'Paying',
 
     // Current Address Information
@@ -596,7 +596,7 @@ export const fakeCollegeStudents = [
     yearBlock: '4-1',
     emailAddress: 'robert.gomez@plm.edu.ph',
     regCode: 'Regular',
-    enrollmentStatus: 'Enlisted',
+    enrollmentStatus: 'Not Enlisted',
     scholasticStatus: 'Paying',
 
     // Current Address Information
