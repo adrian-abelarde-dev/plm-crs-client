@@ -10,7 +10,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
 import {
   aySem,
   block,
@@ -53,7 +52,7 @@ function UpdateMultipleStudentDialogForm({ selectedStudent }) {
         <div className='overflow-scroll'>
           <div className='mt-5 ' />
           <div className='flex flex-row space-x-2'>
-            <Label className='font-semibold text-xl'>Student Terms</Label>
+            <h1 className='font-semibold text-xl'>Student Terms</h1>
             <div className='space-x-1' />
             <Badge className='h-5 w-15 mt-1 font-light bg-yellow-50 border-yellow-100 border-2 border-solid text-yellow-500'>
               Semester
