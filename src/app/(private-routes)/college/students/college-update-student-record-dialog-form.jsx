@@ -4,6 +4,7 @@ import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   DialogContent,
   DialogDescription,
@@ -39,6 +40,12 @@ function UpdateStudentDialogForm({ selectedStudent }) {
   updateStudentForm.watch();
 
   const studentTypeState = updateStudentForm.watch('studentType');
+  const cstreetAddressState = updateStudentForm.watch('cstreetAddress');
+  const pstreetAddressState = updateStudentForm.watch('pstreetAddress');
+  const pprovinceState = updateStudentForm.watch('pprovince');
+  const cprovinceState = updateStudentForm.watch('cprovince');
+  const pzipCodeState = updateStudentForm.watch('pzipCode');
+  const czipCodeState = updateStudentForm.watch('czipCode');
 
   useEffect(() => {
     if (selectedStudent) {
@@ -395,6 +402,27 @@ function UpdateStudentDialogForm({ selectedStudent }) {
           </div>
           <div className='mt-10' />
           <Label className='font-semibold text-xl'>Permanent Address</Label>
+          <div className='mt-5' />
+          <div className='items-top flex space-x-2'>
+            <Checkbox
+              id='address'
+              checked={
+                cstreetAddressState === pstreetAddressState &&
+                cprovinceState === pprovinceState &&
+                czipCodeState === pzipCodeState
+              }
+              disabled
+            />
+            <div className='grid gap-1 leading-none'>
+              <h1
+                htmlFor='confirm'
+                className='text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+              >
+                Check if the permanent address is the same as the current
+                address
+              </h1>
+            </div>
+          </div>
           <div className='gap-10 mt-7'>
             {/* Street Address */}
             <InputFormField
