@@ -33,7 +33,7 @@ export const fakeCollegeStudents = [
     program: 'Bachelor of Science in Tourism Management',
     emailAddress: 'john.doe@plm.edu.ph',
     regCode: 'Irregular',
-    enrollmentStatus: 'Enlisted',
+    enrollmentStatus: 'Not Enlisted',
     scholasticStatus: 'Paying',
 
     // Current Address Information
@@ -51,7 +51,7 @@ export const fakeCollegeStudents = [
     // View Student Info
     studentId: '1001',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0411 - CS Thesis Writing 1',
         section: '1',
@@ -133,7 +133,7 @@ export const fakeCollegeStudents = [
     program: 'Bachelor of Science in Accountancy',
     emailAddress: 'jane.cruz@plm.edu.ph',
     regCode: 'Irregular',
-    enrollmentStatus: 'Enlisted',
+    enrollmentStatus: 'Enrolled',
     scholasticStatus: 'Paying',
 
     // Current Address Information
@@ -148,7 +148,7 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0414.1 - CS Elective 3 (Lab)',
         section: '1',
@@ -266,7 +266,7 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0312.1 - Programming Language (Lab)',
         section: '3',
@@ -335,7 +335,7 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0312.1 - Programming Language (Lab)',
         section: '3',
@@ -500,7 +500,7 @@ export const fakeCollegeStudents = [
     pprovince: 'Quezon',
     pzipCode: '1500',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0321 - Software Engineering (Lec)',
         section: '3',
@@ -569,7 +569,7 @@ export const fakeCollegeStudents = [
     pprovince: 'Quezon',
     pzipCode: '1500',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0323 - Database Management Systems (Lec)',
         section: '2',
@@ -638,7 +638,7 @@ export const fakeCollegeStudents = [
     pprovince: 'Quezon',
     pzipCode: '1500',
 
-    addDropInfo: [
+    addDropClassList: [
       {
         subject: 'CSC 0325.2 - Advanced Web Development (Lec)',
         section: '2',

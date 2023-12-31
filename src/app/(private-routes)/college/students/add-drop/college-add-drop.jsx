@@ -73,6 +73,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          variant='outline'
           className='text-zinc-900 justify-between hover:bg-zinc-100'
           disabled={disabled}
         >
@@ -175,75 +176,77 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
           </Popover>
         </div>
 
-        <ScrollArea className='overflow-y-auto flex-grow'>
-          <Table className='mt-[-5px]'>
-            <TableHeader>
-              <TableRow>
-                <TableHead></TableHead>
-                <TableHead>Subject</TableHead>
-                <TableHead>Section</TableHead>
-                <TableHead>Schedule</TableHead>
-                <TableHead>Credits</TableHead>
-              </TableRow>
-            </TableHeader>
-            {selectedStudent?.addDropInfo.map((subject, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  <Checkbox
-                    className='align-center'
-                    checked={selectedSubjects.some(
-                      (selectedSubject) =>
-                        selectedSubject.subject === subject.subject,
-                    )}
-                    onCheckedChange={() => handleRowSelectionChange(subject)}
-                  />
-                </TableCell>
-                <TableCell>{subject.subject}</TableCell>
-                <TableCell>{subject.section}</TableCell>
-                <TableCell>{subject.section}</TableCell>
-                <TableCell>{subject.credits}</TableCell>
-              </TableRow>
-            ))}
-          </Table>
+        <div className='overflow-auto'>
+          <div className='w-3/5 min-w-[58.4rem]'>
+            <Table className='mt-[-5px]'>
+              <TableHeader>
+                <TableRow>
+                  <TableHead></TableHead>
+                  <TableHead>Subject</TableHead>
+                  <TableHead>Section</TableHead>
+                  <TableHead>Schedule</TableHead>
+                  <TableHead>Credits</TableHead>
+                </TableRow>
+              </TableHeader>
+              {selectedStudent?.addDropClassList.map((subject, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Checkbox
+                      className='align-center'
+                      checked={selectedSubjects.some(
+                        (selectedSubject) =>
+                          selectedSubject.subject === subject.subject,
+                      )}
+                      onCheckedChange={() => handleRowSelectionChange(subject)}
+                    />
+                  </TableCell>
+                  <TableCell>{subject.subject}</TableCell>
+                  <TableCell>{subject.section}</TableCell>
+                  <TableCell>{subject.section}</TableCell>
+                  <TableCell>{subject.credits}</TableCell>
+                </TableRow>
+              ))}
+            </Table>
 
-          {/* Student Profile */}
-          <div className='mt-10' />
-          <Card className='w-1/2'>
-            <CardHeader>
-              <CardTitle className='justify-left text-xl font-bold'>
-                Student Profile
-              </CardTitle>
-            </CardHeader>
-            <Separator />
-            <CardContent>
-              <div className='justify-left flex flex-row mt-5'>
-                <div className='flex flex-col font-semibold text-sm'>
-                  <p className='mt-1'>Student Number</p>
-                  <p className='mt-1'>Last Name</p>
-                  <p className='mt-1'>First Name</p>
-                  <p className='mt-1'>Middle Name</p>
-                  <p className='mt-1'>Program</p>
-                  <p className='mt-1'>Year Level</p>
-                  <p className='mt-1'>Registration Code</p>
-                  <p className='mt-1'>Enrollment Status</p>
+            {/* Student Profile */}
+            <div className='mt-10' />
+            <Card className='w-3/5'>
+              <CardHeader>
+                <CardTitle className='justify-left text-xl font-bold'>
+                  Student Profile
+                </CardTitle>
+              </CardHeader>
+              <Separator />
+              <CardContent>
+                <div className='justify-left flex flex-row mt-5'>
+                  <div className='flex flex-col font-semibold text-sm'>
+                    <p className='mt-1'>Student Number</p>
+                    <p className='mt-1'>Last Name</p>
+                    <p className='mt-1'>First Name</p>
+                    <p className='mt-1'>Middle Name</p>
+                    <p className='mt-1'>Program</p>
+                    <p className='mt-1'>Year Level</p>
+                    <p className='mt-1'>Registration Code</p>
+                    <p className='mt-1'>Enrollment Status</p>
+                  </div>
+                  <div className='flex flex-col text-sm ml-10'>
+                    <p className='mt-1'>{selectedStudent?.studentNo}</p>
+                    <p className='mt-1'>{selectedStudent?.lastName}</p>
+                    <p className='mt-1'>{selectedStudent?.firstName}</p>
+                    <p className='mt-1'>{selectedStudent?.middleName}</p>
+                    <p className='mt-1'>{selectedStudent?.program}</p>
+                    <p className='mt-1'>{selectedStudent?.yearLevel}</p>
+                    <p className='mt-1'>{selectedStudent?.regCode}</p>
+                    <p className='mt-1'>{selectedStudent?.enrollmentStatus}</p>
+                  </div>
                 </div>
-                <div className='flex flex-col text-sm ml-10'>
-                  <p className='mt-1'>{selectedStudent?.studentNo}</p>
-                  <p className='mt-1'>{selectedStudent?.lastName}</p>
-                  <p className='mt-1'>{selectedStudent?.firstName}</p>
-                  <p className='mt-1'>{selectedStudent?.middleName}</p>
-                  <p className='mt-1'>{selectedStudent?.program}</p>
-                  <p className='mt-1'>{selectedStudent?.yearLevel}</p>
-                  <p className='mt-1'>{selectedStudent?.regCode}</p>
-                  <p className='mt-1'>{selectedStudent?.enrollmentStatus}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <DialogFooter className='w-full flex justify-end mt-4'>
-            <DialogClose asChild></DialogClose>
-          </DialogFooter>
-        </ScrollArea>
+              </CardContent>
+            </Card>
+            <DialogFooter className='w-full flex justify-end mt-4'>
+              <DialogClose asChild></DialogClose>
+            </DialogFooter>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

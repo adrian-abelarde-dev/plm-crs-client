@@ -47,7 +47,7 @@ function AddClassDialogForm({ disabled }) {
           <PlusCircle className='w-4 h-4 mr-2' /> Add Class
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto'>
+      <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto flex flex-col'>
         <AlertDialogHeader>
           <AlertDialogTitle>Add Class</AlertDialogTitle>
           <AlertDialogDescription>
@@ -191,7 +191,7 @@ function AddClassDialogForm({ disabled }) {
                   </TableRow>
                 )}
               </Table>
-              <AlertDialogFooter className='bottom-0 right-0 w-full'>
+              <AlertDialogFooter className='bottom-0 right-0 w-full mt-auto'>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={() => {
