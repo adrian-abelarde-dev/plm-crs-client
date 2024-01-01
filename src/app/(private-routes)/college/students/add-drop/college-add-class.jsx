@@ -61,7 +61,7 @@ function AddClassDialogForm({ disabled }) {
               variant='outline'
               role='combobox'
               aria-expanded={open}
-              className='w-[500px] justify-between'
+              className='w-full justify-between'
             >
               {subjectValue
                 ? subjectAndSchedule.find(
