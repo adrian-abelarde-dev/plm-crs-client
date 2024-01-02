@@ -1,23 +1,24 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { fakeFacultyEncodingGrades } from '@/lib/constants/fake-data/faculty-encoding-grades';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import EditGrades from '../../../encoding-grades/[courseCode]/edit-grades';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 function ViewGrades({ params }) {
   const [viewGrades, setViewGrades] = useState(fakeFacultyEncodingGrades);
 
   useEffect(() => {
-  // Update whenever params.courseCode and params.section changes
-  const filteredData = fakeFacultyEncodingGrades.filter(
-    (data) => data.courseCode === params.courseCode && data.section === params.section
-  );
-  setViewGrades(filteredData);
-}, [params.courseCode, params.section]);
-
+    // Update whenever params.courseCode and params.section changes
+    const filteredData = fakeFacultyEncodingGrades.filter(
+      (data) =>
+        data.courseCode === params.courseCode &&
+        data.section === params.section,
+    );
+    setViewGrades(filteredData);
+  }, [params.courseCode, params.section]);
 
   return (
     <main className='p-6 flex flex-col'>

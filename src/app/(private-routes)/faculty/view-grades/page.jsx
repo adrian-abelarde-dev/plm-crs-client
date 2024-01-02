@@ -14,8 +14,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 function ViewGradesPage() {
-  
-
   const [courseCodeInput, setCourseCodeInput] = useState('');
 
   return (
@@ -52,7 +50,9 @@ function ViewGradesPage() {
                 return (
                   <TableRow key={index}>
                     <TableCell className='underline font-bold text-yellow-500'>
-                      <Link href={`/faculty/view-grades/${data.courseCode}/${data.section}`}>
+                      <Link
+                        href={`/faculty/view-grades/${data.courseCode}/${data.section}`}
+                      >
                         {data.courseCode}
                       </Link>
                     </TableCell>

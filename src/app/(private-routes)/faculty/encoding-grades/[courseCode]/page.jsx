@@ -13,14 +13,13 @@ function GradesCourseView({ params }) {
     fakeFacultyEncodingGrades,
   );
 
- useEffect(() => {
-  // Update the filteredFacultyGrades whenever fakeFacultyEncodingGrades or params.courseCode changes
-  const filteredData = fakeFacultyEncodingGrades.filter(
-    (data) => data.courseCode === params.courseCode,
-  );
-  setFacultyEncodingGrades(filteredData);
-}, [params.courseCode]);
-
+  useEffect(() => {
+    // Update the filteredFacultyGrades whenever fakeFacultyEncodingGrades or params.courseCode changes
+    const filteredData = fakeFacultyEncodingGrades.filter(
+      (data) => data.courseCode === params.courseCode,
+    );
+    setFacultyEncodingGrades(filteredData);
+  }, [params.courseCode]);
 
   return (
     <main className='p-6'>
@@ -95,7 +94,7 @@ function GradesCourseView({ params }) {
       {/* Actions */}
       <div className='mt-4 flex gap-4 justify-center'>
         <Button variant='outline' asChild>
-          <Link href='/faculty/encoding-grades' >Cancel</Link>
+          <Link href='/faculty/encoding-grades'>Cancel</Link>
         </Button>
         {facultyEncodingGrades[0]?.students.length !== 0 && (
           <Button>Save</Button>
