@@ -72,12 +72,12 @@ function AddClassDialogForm({ disabled }) {
               <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[500px] p-0'>
+          <PopoverContent className='w-[650px] p-0'>
             <Command>
               <CommandInput placeholder='Search subject...' />
               <CommandEmpty>No subject found.</CommandEmpty>
               <CommandGroup>
-                {subjectAndSchedule.map((framework) => (
+                {subjectAndSchedule?.map((framework) => (
                   <CommandItem
                     key={framework.subjectValue}
                     subjectValue={framework.subjectValue}
@@ -124,7 +124,7 @@ function AddClassDialogForm({ disabled }) {
                 <TableHead>Credits</TableHead>
               </TableRow>
             </TableHeader>
-            {selectedSubjectValue?.classInformation.map((classInfo, index) => (
+            {selectedSubjectValue?.classInformation?.map((classInfo, index) => (
               <TableRow key={index}>
                 <TableCell>
                   {' '}
@@ -146,7 +146,7 @@ function AddClassDialogForm({ disabled }) {
         ) : (
           <div className='w-full h-36'></div>
         )}
-        <AlertDialogFooter className='bottom-0 left-0 w-full'>
+        <AlertDialogFooter className='bottom-0 left-0 w-full mt-auto'>
           <AlertDialogCancel
             onClick={() => {
               setSubjectValue('');
@@ -165,7 +165,7 @@ function AddClassDialogForm({ disabled }) {
                 Add Class
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className='md:max-w-[700px] h-[300px] overflow-auto'>
+            <AlertDialogContent className='md:max-w-[700px] h-[300px] overflow-auto flex flex-col'>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                 <AlertDialogDescription>

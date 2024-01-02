@@ -120,7 +120,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                       <TableHead>Credits</TableHead>
                     </TableRow>
                   </TableHeader>
-                  {selectedSubjects.map((subject) => (
+                  {selectedSubjects?.map((subject) => (
                     <TableRow key={subject.subject}>
                       <TableCell className='font-semibold'>
                         {subject.subject}
@@ -188,7 +188,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
                   <TableHead>Credits</TableHead>
                 </TableRow>
               </TableHeader>
-              {selectedStudent?.addDropClassList.map((subject, index) => (
+              {selectedStudent?.addDropClassList?.map((subject, index) => (
                 <TableRow key={index}>
                   <TableCell>
                     <Checkbox
