@@ -30,9 +30,6 @@ function PreviousPage() {
     {
       aysem: 20212,
     },
-    {
-      aysem: 20221,
-    },
   ];
 
   return (
