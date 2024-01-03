@@ -58,6 +58,8 @@ export const fakeCollegeStudentsTemplate = [
               cell.getValue() === 'Enlisted',
             'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]':
               cell.getValue() === 'Not Enlisted',
+            'bg-[#FCF4A3] text-[#EAB308] border-[#FFD300]':
+              cell.getValue() === 'Enrolled',
           })}
         >
           {cell.getValue()}

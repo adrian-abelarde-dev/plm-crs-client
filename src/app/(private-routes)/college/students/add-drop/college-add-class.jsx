@@ -32,13 +32,13 @@ import {
 import { subjectAndSchedule } from '@/lib/constants/fake-data/available-sched-of-subjects';
 import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown, PlusCircle } from 'lucide-react';
-import * as React from 'react';
+import { useState } from 'react';
 
 function AddClassDialogForm({ disabled }) {
-  const [open, setOpen] = React.useState(false);
-  const [subjectValue, setSubjectValue] = React.useState('');
-  const [selectedSubjectValue, setSelectedSubjectValue] = React.useState(null);
-  const [addSubject, setAddSubject] = React.useState(null);
+  const [open, setOpen] = useState(false);
+  const [subjectValue, setSubjectValue] = useState('');
+  const [selectedSubjectValue, setSelectedSubjectValue] = useState(null);
+  const [addSubject, setAddSubject] = useState(null);
 
   return (
     <AlertDialog>
@@ -47,7 +47,7 @@ function AddClassDialogForm({ disabled }) {
           <PlusCircle className='w-4 h-4 mr-2' /> Add Class
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto'>
+      <AlertDialogContent className='md:max-w-[700px] h-[380px] overflow-auto flex flex-col'>
         <AlertDialogHeader>
           <AlertDialogTitle>Add Class</AlertDialogTitle>
           <AlertDialogDescription>
@@ -61,7 +61,7 @@ function AddClassDialogForm({ disabled }) {
               variant='outline'
               role='combobox'
               aria-expanded={open}
-              className='w-[500px] justify-between'
+              className='w-full justify-between'
             >
               {subjectValue
                 ? subjectAndSchedule.find(
@@ -72,16 +72,17 @@ function AddClassDialogForm({ disabled }) {
               <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[500px] p-0'>
+          <PopoverContent className='w-[650px] p-0'>
             <Command>
               <CommandInput placeholder='Search subject...' />
               <CommandEmpty>No subject found.</CommandEmpty>
               <CommandGroup>
-                {subjectAndSchedule.map((framework) => (
+                {subjectAndSchedule?.map((framework) => (
                   <CommandItem
                     key={framework.subjectValue}
                     subjectValue={framework.subjectValue}
                     onSelect={(currentSubjectValue) => {
+                      setAddSubject(null);
                       setSubjectValue(
                         currentSubjectValue === subjectValue
                           ? ''
@@ -117,13 +118,13 @@ function AddClassDialogForm({ disabled }) {
             <TableHeader>
               <TableRow>
                 <TableHead></TableHead>
-                <TableHead>Class</TableHead>
+                <TableHead>Subject</TableHead>
                 <TableHead>Section</TableHead>
                 <TableHead>Schedule</TableHead>
                 <TableHead>Credits</TableHead>
               </TableRow>
             </TableHeader>
-            {selectedSubjectValue?.classInformation.map((classInfo, index) => (
+            {selectedSubjectValue?.classInformation?.map((classInfo, index) => (
               <TableRow key={index}>
                 <TableCell>
                   {' '}
@@ -145,7 +146,7 @@ function AddClassDialogForm({ disabled }) {
         ) : (
           <div className='w-full h-36'></div>
         )}
-        <AlertDialogFooter className='bottom-0 left-0 w-full'>
+        <AlertDialogFooter className='bottom-0 left-0 w-full mt-auto'>
           <AlertDialogCancel
             onClick={() => {
               setSubjectValue('');
@@ -158,9 +159,13 @@ function AddClassDialogForm({ disabled }) {
           {/* Add Class */}
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button>Add Class</Button>
+              <Button
+                disabled={Object.keys(subjectValue).length === 0 || !addSubject}
+              >
+                Add Class
+              </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className='md:max-w-[700px] h-[300px] overflow-auto'>
+            <AlertDialogContent className='md:max-w-[700px] h-[300px] overflow-auto flex flex-col'>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -171,7 +176,7 @@ function AddClassDialogForm({ disabled }) {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Class</TableHead>
+                    <TableHead>Subject</TableHead>
                     <TableHead>Section</TableHead>
                     <TableHead>Schedule</TableHead>
                     <TableHead>Credits</TableHead>
@@ -186,12 +191,13 @@ function AddClassDialogForm({ disabled }) {
                   </TableRow>
                 )}
               </Table>
-              <AlertDialogFooter className='bottom-0 right-0 w-full'>
+              <AlertDialogFooter className='bottom-0 right-0 w-full mt-auto'>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={() => {
                     setSubjectValue('');
                     setSelectedSubjectValue(null);
+                    setAddSubject(null);
                   }}
                 >
                   Proceed

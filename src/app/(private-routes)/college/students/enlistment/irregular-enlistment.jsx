@@ -24,6 +24,13 @@ import { Separator } from '@radix-ui/react-dropdown-menu';
 import IrregularEnlistmentConfirmationDialogForm from './confirmation-dialogs/irregular-enlistment-confirmation';
 
 function IrregularEnlistmentDialogForm({ selectedStudent }) {
+  const enrolledStudents =
+    selectedStudent?.filter(
+      (student) =>
+        (student.regCode == 'Irregular' &&
+          student.enrollmentStatus == 'Enrolled') ||
+        student.enrollmentStatus == 'Enlisted',
+    ).length > 0;
   return (
     <DialogContent className='md:max-w-[1350px] h-[42rem] overflow-auto'>
       <DialogHeader>
@@ -33,7 +40,7 @@ function IrregularEnlistmentDialogForm({ selectedStudent }) {
         <DialogDescription>Enlist the student</DialogDescription>
       </DialogHeader>
       <div className='flex flex-row'>
-        <div className='w-2/3 flex flex-col'>
+        <div className='w-2/3 flex flex-col mb-[6rem]'>
           <Card className='h-[23rem] p-6 overflow-auto'>
             <CardTitle>
               Added Classes
@@ -43,17 +50,17 @@ function IrregularEnlistmentDialogForm({ selectedStudent }) {
               <Table className='mt-3 text-xs'>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Class</TableHead>
+                    <TableHead>Subject</TableHead>
                     <TableHead>Section</TableHead>
                     <TableHead>Schedule</TableHead>
                     <TableHead>Credits</TableHead>
                   </TableRow>
                 </TableHeader>
-                {selectedStudent[0]?.addDropClasses?.map((subject) => (
-                  <TableRow key={subject.class}>
-                    <TableCell>{subject.class}</TableCell>
+                {selectedStudent[0]?.addDropSubjects?.map((subject) => (
+                  <TableRow key={subject.subject}>
+                    <TableCell>{subject.subject}</TableCell>
                     <TableCell>{subject.section}</TableCell>
-                    <TableCell>{subject.section}</TableCell>
+                    <TableCell>{subject.schedule}</TableCell>
                     <TableCell>{subject.credits}</TableCell>
                   </TableRow>
                 ))}
@@ -64,14 +71,14 @@ function IrregularEnlistmentDialogForm({ selectedStudent }) {
                 Total Subjects:
                 <p className='font-bold ml-2'>
                   {' '}
-                  {selectedStudent[0]?.addDropClasses?.length}
+                  {selectedStudent[0]?.addDropSubjects?.length}
                 </p>
               </h1>
             </div>
           </Card>
         </div>
         <div className='w-1/3 flex flex-col pl-4'>
-          <Card className=' flex flex-col h-[23rem]'>
+          <Card className=' flex flex-col h-[23rem] '>
             <CardHeader>
               <CardTitle>
                 Student Profile
@@ -126,10 +133,10 @@ function IrregularEnlistmentDialogForm({ selectedStudent }) {
               {/* Block Assignment */}
               <div className='flex flex-row mt-3'>
                 <div className='flex flex-col w-40 break-words'>
-                  <h1 className='text-slate-500 text-xs'>Block Assignment</h1>
+                  <h1 className='text-slate-500 text-xs'>Year</h1>
                 </div>
                 <div className='flex flex-col w-40 break-words'>
-                  <h1 className='text-xs'>{selectedStudent[0]?.yearBlock}</h1>
+                  <h1 className='text-xs'>{selectedStudent[0]?.yearLevel}</h1>
                 </div>
               </div>
 
@@ -157,9 +164,11 @@ function IrregularEnlistmentDialogForm({ selectedStudent }) {
             <div className='mt-auto' />
             <CardFooter className='mt-auto justify-center'>
               <div className='flex justify-center'>
-                <IrregularEnlistmentConfirmationDialogForm
-                  selectedStudent={selectedStudent[0]}
-                />
+                {!enrolledStudents && (
+                  <IrregularEnlistmentConfirmationDialogForm
+                    selectedStudent={selectedStudent[0]}
+                  />
+                )}
               </div>
             </CardFooter>
           </Card>

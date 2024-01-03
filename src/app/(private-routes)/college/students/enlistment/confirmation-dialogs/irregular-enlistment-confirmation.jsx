@@ -49,12 +49,6 @@ function IrregularEnlistmentConfirmationDialogForm({ selectedStudent }) {
           <AlertDialogTitle>Enlistment Overview</AlertDialogTitle>
           <AlertDialogDescription>
             Proceeding will result in the enlistments of the following student/s
-            to{'  '}
-            <strong>
-              {selectedStudent?.programAc} {selectedStudent?.yearLevel} -{' '}
-              {selectedStudent?.block}
-              {'  '}
-            </strong>
             this academic school year.
           </AlertDialogDescription>
         </AlertDialogHeader>

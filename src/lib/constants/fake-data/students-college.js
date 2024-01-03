@@ -33,7 +33,7 @@ export const fakeCollegeStudents = [
     program: 'BS in Psychology',
     programAc: 'BSCS',
     emailAddress: 'john.doe@plm.edu.ph',
-    regCode: 'Regular',
+    regCode: 'Irregular',
     enrollmentStatus: 'Not Enlisted',
     scholasticStatus: 'Paying',
 
@@ -54,42 +54,71 @@ export const fakeCollegeStudents = [
 
     addDropClassList: [
       {
-        class: 'CSC 0411 - CS Thesis Writing 1',
+        subject: 'CSC 0411 - CS Thesis Writing 1',
         section: '1',
         schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0412 - Network and Communications (Lec)',
+        subject: 'CSC 0412 - Network and Communications (Lec)',
         section: '1',
         schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CS Elective 2 (Lec)',
+        subject: 'CS Elective 2 (Lec)',
         section: '1',
         schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CS Elective 2 (Lab)',
+        subject: 'CS Elective 2 (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 3 (Lab)',
+        section: '1',
+        schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 3 (Lec)',
+        section: '1',
+        schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 4 (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 4 (Lab)',
         section: '1',
         schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
         credits: '2',
       },
     ],
-
-    addDropClasses: [
+    addDropSubjects: [
       {
-        class: 'CS Elective 2 (Lec)',
+        subject: 'CSC 0411 - CS Thesis Writing 1',
         section: '1',
-        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
         credits: '2',
       },
       {
-        class: 'CS Elective 2 (Lab)',
+        subject: 'CSC 0412 - Network and Communications (Lec)',
         section: '1',
-        schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
+        schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 2 (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
     ],
@@ -126,7 +155,7 @@ export const fakeCollegeStudents = [
     programAc: 'BSCS',
     emailAddress: 'jane.cruz@plm.edu.ph',
     regCode: 'Irregular',
-    enrollmentStatus: 'Enlisted',
+    enrollmentStatus: 'Enrolled',
     scholasticStatus: 'Paying',
 
     // Current Address Information
@@ -143,33 +172,34 @@ export const fakeCollegeStudents = [
 
     addDropClassList: [
       {
-        class: 'CSC 0414.1-1 - CS Elective 3 (Lab)',
+        subject: 'CSC 0414.1 - CS Elective 3 (Lab)',
         section: '1',
         schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
         credits: '2',
       },
       {
-        class: 'CSC 0414-1 - CS Elective 3 (Lec)',
+        subject: 'CSC 0414-1 - CS Elective 3 (Lec)',
         section: '1',
         schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CSC 0312- 1 - Programming Language (Lec)',
+        subject: 'CSC 0312-1 - Programming Language (Lec)',
         section: '1',
         schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
     ],
 
-    addDropClasses: [
+    addDropSubjects: [
       {
-        class: 'CSC 0312- 1 - Programming Language (Lec)',
+        subject: 'CSC 0312-1 - Programming Language (Lec)',
         section: '1',
         schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
     ],
+
     // View Student Info
     studentId: '1002',
   },
@@ -223,75 +253,33 @@ export const fakeCollegeStudents = [
     // View Student Info
     studentId: '1003',
 
-    addDropClasses: [
+    addDropClassList: [
       {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
+        subject: 'CSC 0321 - Software Engineering (Lec)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0322 - Compiler Design (Lec)',
         section: '4',
         schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
         credits: '2',
       },
       {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
-        credits: '2',
-      },
-      {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
-        credits: '2',
-      },
-      {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
-        credits: '2',
-      },
-      {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
-        credits: '2',
-      },
-      {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
-        credits: '2',
-      },
-      {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
-        credits: '2',
-      },
-      {
-        class: 'CSC 0322-1 - Compiler Design (Lec)',
-        section: '4',
-        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        subject: 'CSC 0321.1 - Software Engineering (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
         credits: '2',
       },
     ],
 
-    addDropClassList: [
+    addDropSubjects: [
       {
-        class: 'CSC 0323-1 - Database Management Systems (Lec)',
-        section: '2',
-        schedule: 'Wednesday: 2:00 PM - 4:00 PM (F2F, Classroom)',
-        credits: '3',
-      },
-      {
-        class: 'CSC 0323.1-1 - Database Management Systems (Lab)',
-        section: '5',
-        schedule: 'Friday: 1:00 PM - 3:00 PM (Online)',
-        credits: '3',
-      },
-      {
-        class: 'CSC 0324-1 - Data Structures (Lec)',
-        section: '1',
-        schedule: 'Tuesday: 8:00 AM - 10:00 AM (F2F, Classroom)',
-        credits: '3',
+        subject: 'CSC 0322-1 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
       },
     ],
   },
@@ -636,58 +624,100 @@ export const fakeCollegeStudents = [
 
     addDropClassList: [
       {
-        class: 'CSC 0325.2-1 - Advanced Web Development (Lec)',
+        subject: 'CSC 0325.2 - Advanced Web Development (Lec)',
         section: '2',
-        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, Classroom)',
+        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, subjectroom)',
         credits: '3',
       },
       {
-        class: 'CSC 0325.2-2 - Advanced Web Development (Lab)',
+        subject: 'CSC 0325.2 - Advanced Web Development (Lab)',
         section: '5',
         schedule: 'Friday: 10:00 AM - 12:00 PM (Online)',
         credits: '3',
       },
       {
-        class: 'CSC 0326-1 - Operating Systems (Lec)',
+        subject: 'CSC 0326 - Operating Systems (Lec)',
         section: '1',
-        schedule: 'Tuesday: 1:00 PM - 3:00 PM (F2F, Classroom)',
+        schedule: 'Tuesday: 1:00 PM - 3:00 PM (F2F, subjectroom)',
         credits: '3',
       },
       {
-        class: 'CSC 0326.1-1 - Operating Systems (Lab)',
+        subject: 'CSC 0326.1 - Operating Systems (Lab)',
         section: '3',
         schedule: 'Thursday: 4:00 PM - 6:00 PM (Online)',
         credits: '3',
       },
       {
-        class: 'CSC 0327-1 - Mobile App Development (Lec)',
+        subject: 'CSC 0327 - Mobile App Development (Lec)',
         section: '4',
-        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, Classroom)',
+        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, subjectroom)',
         credits: '3',
       },
     ],
-
-    addDropClasses: [
+    addDropSubjects: [
       {
-        class: 'CSC 0325.2-1 - Advanced Web Development (Lec)',
+        subject: 'CSC 0325.2 - Advanced Web Development (Lec)',
         section: '2',
-        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, Classroom)',
+        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, subjectroom)',
         credits: '3',
       },
       {
-        class: 'CSC 0325.2-2 - Advanced Web Development (Lab)',
+        subject: 'CSC 0325.2 - Advanced Web Development (Lab)',
         section: '5',
         schedule: 'Friday: 10:00 AM - 12:00 PM (Online)',
-        credits: '3',
-      },
-      {
-        class: 'CSC 0326-1 - Operating Systems (Lec)',
-        section: '1',
-        schedule: 'Tuesday: 1:00 PM - 3:00 PM (F2F, Classroom)',
         credits: '3',
       },
     ],
     // View Student Info
     studentId: '1010',
+  },
+  {
+    /*Student 10*/
+    // Personal Info
+    aySem: '20231',
+    academicYear: '2023-2024',
+    semester: '1',
+    studentNo: '2020-20222',
+    firstName: 'Angel',
+    middleName: 'Ramirez',
+    lastName: 'Garcia',
+    fullName: 'Garcia, Angelica Ramirez',
+    program: 'BS in Computer Science',
+    programAc: 'BSCS',
+    nameExtension: 'N/A',
+    maidenName: 'Cruz',
+    birthPlace: 'Manila',
+    birthSex: 'Female',
+    birthDate: getRandomDate(),
+    genderIdentity: 'she/her',
+    civilStatus: 'Single',
+    phoneNum: '09123456789',
+
+    // Student Terms
+    entryAcadYear: '2023',
+    studentType: 'Returnee',
+    block: '1',
+    college: 'College of Communication',
+    yearLevel: '2',
+    yearBlock: '2-1',
+    emailAddress: 'angelica.garcia@plm.edu.ph',
+    regCode: 'Regular',
+    enrollmentStatus: 'Enrolled',
+    scholasticStatus: 'Paying',
+
+    // Current Address Information
+    cphoneNum: '09123456789',
+    cstreetAddress: 'Block 3 Sampaloc Manila',
+    cprovince: 'Quezon',
+    czipCode: '1500',
+
+    // Permanent Address Information
+    pphoneNum: '09123456789',
+    pstreetAddress: 'Block 3 Sampaloc Manila',
+    pprovince: 'Quezon',
+    pzipCode: '1500',
+
+    // View Student Info
+    studentId: '1011',
   },
 ];

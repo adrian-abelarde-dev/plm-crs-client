@@ -51,8 +51,8 @@ function MultipleEnlistmentDialogForm({ selectedStudent }) {
           }
         />
       </div>
-      <div className='w-full flex flex-col'>
-        {selectedStudent.map((student) => {
+      <div className='w-1/2 flex flex-col'>
+        {selectedStudent?.map((student) => {
           const blockInfo = blockInformation.find(
             (block) =>
               block.block === student.block &&
@@ -100,15 +100,17 @@ function MultipleEnlistmentDialogForm({ selectedStudent }) {
                           <TableHead>Class</TableHead>
                           <TableHead>Section</TableHead>
                           <TableHead>Schedule</TableHead>
+                          <TableHead>Credits</TableHead>
                           <TableHead>Slots</TableHead>
                           <TableHead>Taken Slots</TableHead>
                         </TableRow>
                       </TableHeader>
-                      {blockInfo?.blockSubjects.map((blockSubs) => (
-                        <TableRow key={blockSubs?.class}>
-                          <TableCell>{blockSubs?.class}</TableCell>
+                      {blockInfo?.blockSubjects?.map((blockSubs) => (
+                        <TableRow key={blockSubs?.subject}>
+                          <TableCell>{blockSubs?.subject}</TableCell>
                           <TableCell>{blockSubs?.section}</TableCell>
                           <TableCell>{blockSubs?.schedule}</TableCell>
+                          <TableCell>{blockSubs?.credits}</TableCell>
                           <TableCell>{blockSubs?.subjectSlots}</TableCell>
                           <TableCell>{blockSubs?.takenSlots}</TableCell>
                         </TableRow>
