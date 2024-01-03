@@ -8,6 +8,8 @@ import { handleRowSelectionChange } from '@/lib/utils';
 import { Send } from 'lucide-react';
 import { useState } from 'react';
 
+import { sendEmail } from './email-blast';
+
 const fakeEmailsTemplate = [
   {
     accessorKey: 'userId',
@@ -51,6 +53,33 @@ function AdminEmailPage() {
     rowSelection,
   );
 
+  const handleClick = () => {
+    selectedEmail?.forEach((email) => {
+      sendEmail(email, handleResponse, handleError);
+    });
+  };
+
+  const handleResponse = (data, email) => {
+    if (data.ok) {
+      toast({
+        title: 'Success',
+        description: `Email has been sent to ${email.email}`,
+        status: 'success',
+      });
+    } else {
+      handleError(data, email.fullName);
+    }
+  };
+
+  const handleError = (err, name) => {
+    console.error(err);
+    toast({
+      title: 'Error',
+      description: `There has been a problem with sending email to ${name}`,
+      status: 'destructive',
+    });
+  };
+
   return (
     <main className='w-full p-6'>
       {/* Table: Schedule of Activites */}
@@ -67,23 +96,7 @@ function AdminEmailPage() {
         RightButtons={
           <section className='flex gap-2 items-center'>
             <Button
-              onClick={() => {
-                console.log('rowSelection', selectedEmail);
-
-                if (Object.keys(selectedEmail).length === 0) {
-                  toast({
-                    title: 'Error',
-                    description: 'Please select only one email.',
-                    status: 'destructive',
-                  });
-                } else {
-                  toast({
-                    title: 'Success',
-                    description: 'Email has been sent.',
-                    status: 'success',
-                  });
-                }
-              }}
+              onClick={handleClick}
               disabled={Object.keys(selectedEmail).length === 0}
             >
               <Send className='mr-2 w-4 h-4' /> Send Email Blast
