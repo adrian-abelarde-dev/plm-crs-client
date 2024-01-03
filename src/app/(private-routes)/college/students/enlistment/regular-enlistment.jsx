@@ -35,15 +35,15 @@ function EnlistmentDialogForm({ selectedStudent }) {
           student.enrollmentStatus == 'Enlisted'),
     ).length > 0;
   return (
-    <DialogContent className='md:max-w-[1350px] h-[42rem]'>
+    <DialogContent className='md:min-w-[1350px] h-[42rem] min-w-full'>
       <DialogHeader>
         <DialogTitle className='font-bold text-2xl'>
           Enlistment Form
         </DialogTitle>
         <DialogDescription>Enlist the student</DialogDescription>
       </DialogHeader>
-      <div className='overflow-auto'>
-        <div className='flex flex-row'>
+      <div className='overflow-auto '>
+        <div className='flex flex-row min-w-[1200px]'>
           <div className='w-3/4 flex flex-col'>
             {selectedStudent
               ?.filter(

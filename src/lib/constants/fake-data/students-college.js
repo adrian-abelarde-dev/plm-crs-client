@@ -840,7 +840,7 @@ export const fakeCollegeStudents = [
     program: 'BS in Computer Science',
     programAc: 'BSCS',
     emailAddress: 'john.doe@plm.edu.ph',
-    regCode: 'Irregular',
+    regCode: 'Regular',
     enrollmentStatus: 'Enrolled',
 
     // Current Address Information
@@ -856,46 +856,6 @@ export const fakeCollegeStudents = [
     pzipCode: '1100',
 
     studentId: '1013',
-    addDropClassList: [
-      {
-        subject: 'CSC 0411 - Algorithms and Data Structures',
-        section: '1',
-        schedule: 'Monday: 2:00 PM - 4:00 PM (F2F, Room 201)',
-        credits: '4',
-      },
-      {
-        subject: 'CSC 0412 - Database Management',
-        section: '1',
-        schedule: 'Wednesday: 10:00 AM - 12:00 PM (Online)',
-        credits: '3',
-      },
-      {
-        subject: 'CS Elective 1 (Lec)',
-        section: '1',
-        schedule: 'Friday: 3:30 PM - 5:30 PM (F2F, Room 205)',
-        credits: '3',
-      },
-    ],
-    addDropSubjects: [
-      {
-        subject: 'CSC 0411 - Algorithms and Data Structures',
-        section: '1',
-        schedule: 'Monday: 2:00 PM - 4:00 PM (F2F, Room 201)',
-        credits: '4',
-      },
-      {
-        subject: 'CSC 0412 - Database Management',
-        section: '1',
-        schedule: 'Wednesday: 10:00 AM - 12:00 PM (Online)',
-        credits: '3',
-      },
-      {
-        subject: 'CS Elective 1 (Lec)',
-        section: '1',
-        schedule: 'Friday: 3:30 PM - 5:30 PM (F2F, Room 205)',
-        credits: '3',
-      },
-    ],
   },
   /*Student 14*/
   {
