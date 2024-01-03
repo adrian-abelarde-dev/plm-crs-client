@@ -1,14 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Edit } from 'lucide-react';
-import React from 'react';
 
-import CollegeSubjectsEditIndivOrMultiple from './college-subjects-edit-content';
+import CollegeSectionsEditIndivOrMultiple from './edit-sections-edit-content';
 
-function EditSubjectsUndergrad({
+function EditSectionUndergrad({
   disabled,
-  editIndivMultipleSubjects,
-  selectedSubjects,
+  editIndivMultipleSections,
+  selectedSections,
 }) {
   return (
     <Dialog>
@@ -22,12 +21,12 @@ function EditSubjectsUndergrad({
           Edit
         </Button>
       </DialogTrigger>
-      <CollegeSubjectsEditIndivOrMultiple
-        editIndivMultipleSubjects={editIndivMultipleSubjects}
-        selectedSubjects={selectedSubjects}
+      <CollegeSectionsEditIndivOrMultiple
+        editIndivMultipleSections={editIndivMultipleSections}
+        selectedSections={selectedSections}
       />
     </Dialog>
   );
 }
 
-export default EditSubjectsUndergrad;
+export default EditSectionUndergrad;
