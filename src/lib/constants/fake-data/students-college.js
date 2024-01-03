@@ -672,7 +672,7 @@ export const fakeCollegeStudents = [
     studentId: '1010',
   },
   {
-    /*Student 10*/
+    /*Student 11*/
     // Personal Info
     aySem: '20231',
     academicYear: '2023-2024',
@@ -719,5 +719,364 @@ export const fakeCollegeStudents = [
 
     // View Student Info
     studentId: '1011',
+  },
+
+  /*Student 12*/
+  {
+    // Personal Details
+    aySem: '20231',
+    academicYear: '2022-2023',
+    semester: '2',
+    studentNo: '2020-20223',
+    firstName: 'Jane',
+    middleName: 'Marquez',
+    lastName: 'Smith',
+    fullName: 'Smith, Jane Marquez',
+    nameExtension: 'Sr.',
+    maidenName: 'Garcia',
+    birthPlace: 'Quezon City',
+    birthSex: 'Female',
+    birthDate: getRandomDate(),
+    genderIdentity: 'she/her',
+    civilStatus: 'Single',
+    phoneNum: '09876543210',
+
+    // Student Terms
+    entryAcadYear: '2023',
+    studentType: 'Old',
+    block: '1',
+    college: 'College of Business',
+    yearLevel: '3',
+    yearBlock: '3-1',
+    program: 'BS in Marketing',
+    programAc: 'BSMK',
+    emailAddress: 'jane.smith@plm.edu.ph',
+    regCode: 'Irregular',
+    enrollmentStatus: 'Enlisted',
+
+    // Current Address Information
+    cphoneNum: '09876543210',
+    cstreetAddress: 'Unit 5 Makati City',
+    cprovince: 'Metro Manila',
+    czipCode: '1200',
+
+    // Permanent Address Information
+    pphoneNum: '09876543210',
+    pstreetAddress: 'Unit 5 Makati City',
+    pprovince: 'Metro Manila',
+    pzipCode: '1200',
+
+    // View Student Info
+    studentId: '1012',
+
+    addDropClassList: [
+      {
+        subject: 'MKT 0311 - Marketing Strategies',
+        section: '1',
+        schedule: 'Wednesday: 1:00 PM - 3:00 PM (F2F, Room 102)',
+        credits: '3',
+      },
+      {
+        subject: 'MKT 0312 - Consumer Behavior',
+        section: '1',
+        schedule: 'Friday: 10:00 AM - 12:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'BS Elective 1 (Lec)',
+        section: '1',
+        schedule: 'Tuesday: 3:30 PM - 5:30 PM (F2F, Room 105)',
+        credits: '3',
+      },
+    ],
+    addDropSubjects: [
+      {
+        subject: 'MKT 0311 - Marketing Strategies',
+        section: '1',
+        schedule: 'Wednesday: 1:00 PM - 3:00 PM (F2F, Room 102)',
+        credits: '3',
+      },
+      {
+        subject: 'MKT 0312 - Consumer Behavior',
+        section: '1',
+        schedule: 'Friday: 10:00 AM - 12:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'BS Elective 1 (Lec)',
+        section: '1',
+        schedule: 'Tuesday: 3:30 PM - 5:30 PM (F2F, Room 105)',
+        credits: '3',
+      },
+    ],
+  },
+  /*Student 13*/
+  {
+    // Personal Details
+    aySem: '20222',
+    academicYear: '2022-2023',
+    semester: '2',
+    studentNo: '2020-20224',
+    firstName: 'John',
+    middleName: 'Carlos',
+    lastName: 'Doe',
+    fullName: 'Doe, John Carlos',
+    nameExtension: 'Jr.',
+    maidenName: 'Rodriguez',
+    birthPlace: 'Manila',
+    birthSex: 'Male',
+    birthDate: getRandomDate(),
+    genderIdentity: 'he/him',
+    civilStatus: 'Married',
+    phoneNum: '09123456789',
+
+    // Student Terms
+    entryAcadYear: '2023',
+    studentType: 'Old',
+    block: '1',
+    college: 'College of Engineering',
+    yearLevel: '4',
+    yearBlock: '4-1',
+    program: 'BS in Computer Science',
+    programAc: 'BSCS',
+    emailAddress: 'john.doe@plm.edu.ph',
+    regCode: 'Irregular',
+    enrollmentStatus: 'Enrolled',
+
+    // Current Address Information
+    cphoneNum: '09123456789',
+    cstreetAddress: 'Unit 10 Quezon City',
+    cprovince: 'Metro Manila',
+    czipCode: '1100',
+
+    // Permanent Address Information
+    pphoneNum: '09123456789',
+    pstreetAddress: 'Unit 10 Quezon City',
+    pprovince: 'Metro Manila',
+    pzipCode: '1100',
+
+    studentId: '1013',
+    addDropClassList: [
+      {
+        subject: 'CSC 0411 - Algorithms and Data Structures',
+        section: '1',
+        schedule: 'Monday: 2:00 PM - 4:00 PM (F2F, Room 201)',
+        credits: '4',
+      },
+      {
+        subject: 'CSC 0412 - Database Management',
+        section: '1',
+        schedule: 'Wednesday: 10:00 AM - 12:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'CS Elective 1 (Lec)',
+        section: '1',
+        schedule: 'Friday: 3:30 PM - 5:30 PM (F2F, Room 205)',
+        credits: '3',
+      },
+    ],
+    addDropSubjects: [
+      {
+        subject: 'CSC 0411 - Algorithms and Data Structures',
+        section: '1',
+        schedule: 'Monday: 2:00 PM - 4:00 PM (F2F, Room 201)',
+        credits: '4',
+      },
+      {
+        subject: 'CSC 0412 - Database Management',
+        section: '1',
+        schedule: 'Wednesday: 10:00 AM - 12:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'CS Elective 1 (Lec)',
+        section: '1',
+        schedule: 'Friday: 3:30 PM - 5:30 PM (F2F, Room 205)',
+        credits: '3',
+      },
+    ],
+  },
+  /*Student 14*/
+  {
+    // Personal Details
+    aySem: '20222',
+    academicYear: '2022-2023',
+    semester: '2',
+    studentNo: '2020-20225',
+    firstName: 'John',
+    middleName: 'Michael',
+    lastName: 'Doe',
+    fullName: 'Doe, John Michael',
+    nameExtension: 'Jr.',
+    maidenName: 'Johnson',
+    birthPlace: 'Manila',
+    birthSex: 'Male',
+    birthDate: getRandomDate(),
+    genderIdentity: 'he/him',
+    civilStatus: 'Married',
+    phoneNum: '09876543210',
+
+    // Student Terms
+    entryAcadYear: '2023',
+    studentType: 'Old',
+    block: '1',
+    college: 'College of Engineering',
+    yearLevel: '4',
+    yearBlock: '4-1',
+    program: 'BS in Computer Science',
+    programAc: 'BSCS',
+    emailAddress: 'john.doe@plm.edu.ph',
+    regCode: 'Irregular',
+    enrollmentStatus: 'Not Enlisted',
+
+    // Current Address Information
+    cphoneNum: '09876543210',
+    cstreetAddress: 'Unit 10 Taguig City',
+    cprovince: 'Metro Manila',
+    czipCode: '1630',
+
+    // Permanent Address Information
+    pphoneNum: '09876543210',
+    pstreetAddress: 'Unit 10 Taguig City',
+    pprovince: 'Metro Manila',
+    pzipCode: '1630',
+
+    // View Student Info
+    studentId: '1014',
+
+    addDropClassList: [
+      {
+        subject: 'CSC 0411 - Advanced Algorithms',
+        section: '1',
+        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, Room 201)',
+        credits: '4',
+      },
+      {
+        subject: 'CSC 0412 - Database Systems',
+        section: '2',
+        schedule: 'Wednesday: 10:00 AM - 12:00 PM (Online)',
+        credits: '4',
+      },
+      {
+        subject: 'CS Elective 1 (Lec)',
+        section: '1',
+        schedule: 'Friday: 3:30 PM - 5:30 PM (F2F, Room 305)',
+        credits: '3',
+      },
+    ],
+    addDropSubjects: [
+      {
+        subject: 'CSC 0411 - Advanced Algorithms',
+        section: '1',
+        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, Room 201)',
+        credits: '4',
+      },
+      {
+        subject: 'CSC 0412 - Database Systems',
+        section: '2',
+        schedule: 'Wednesday: 10:00 AM - 12:00 PM (Online)',
+        credits: '4',
+      },
+      {
+        subject: 'CS Elective 1 (Lec)',
+        section: '1',
+        schedule: 'Friday: 3:30 PM - 5:30 PM (F2F, Room 305)',
+        credits: '3',
+      },
+    ],
+  },
+  /*Student 15*/
+  {
+    // Personal Details
+    aySem: '20222',
+    academicYear: '2022-2023',
+    semester: '1',
+    studentNo: '2020-20226',
+    firstName: 'Alice',
+    middleName: 'Elizabeth',
+    lastName: 'Williams',
+    fullName: 'Williams, Alice Elizabeth',
+    nameExtension: '',
+    maidenName: 'Smith',
+    birthPlace: 'Cebu City',
+    birthSex: 'Female',
+    birthDate: getRandomDate(),
+    genderIdentity: 'she/her',
+    civilStatus: 'Single',
+    phoneNum: '09123456789',
+
+    // Student Terms
+    entryAcadYear: '2022',
+    studentType: 'New',
+    block: '2',
+    college: 'College of Arts and Sciences',
+    yearLevel: '1',
+    yearBlock: '1-2',
+    program: 'BA in Psychology',
+    programAc: 'BAPSY',
+    emailAddress: 'alice.williams@plm.edu.ph',
+    regCode: 'Irregular',
+    enrollmentStatus: 'Enrolled',
+
+    // Current Address Information
+    cphoneNum: '09123456789',
+    cstreetAddress: 'Unit 7 Mandaluyong City',
+    cprovince: 'Metro Manila',
+    czipCode: '1550',
+
+    // Permanent Address Information
+    pphoneNum: '09123456789',
+    pstreetAddress: 'Unit 7 Mandaluyong City',
+    pprovince: 'Metro Manila',
+    pzipCode: '1550',
+
+    // View Student Info
+    studentId: '1015',
+  },
+  /*Student 16*/
+  {
+    // Personal Details
+    aySem: '20222',
+    academicYear: '2022-2023',
+    semester: '1',
+    studentNo: '2020-20227',
+    firstName: 'Robert',
+    middleName: 'William',
+    lastName: 'Johnson',
+    fullName: 'Johnson, Robert William',
+    nameExtension: 'III',
+    maidenName: 'Davis',
+    birthPlace: 'Los Angeles',
+    birthSex: 'Male',
+    birthDate: getRandomDate(),
+    genderIdentity: 'he/him',
+    civilStatus: 'Married',
+    phoneNum: '09123456789',
+
+    // Student Terms
+    entryAcadYear: '2022',
+    studentType: 'Old',
+    block: '3',
+    college: 'College of Science',
+    yearLevel: '2',
+    yearBlock: '2-3',
+    program: 'BS in Biology',
+    programAc: 'BSBIO',
+    emailAddress: 'robert.johnson@plm.edu.ph',
+    regCode: 'Regular',
+    enrollmentStatus: 'Enlisted', // Updated enrollment status
+
+    // Current Address Information
+    cphoneNum: '09123456789',
+    cstreetAddress: 'Unit 15 Pasig City',
+    cprovince: 'Metro Manila',
+    czipCode: '1600',
+
+    // Permanent Address Information
+    pphoneNum: '09123456789',
+    pstreetAddress: 'Unit 15 Pasig City',
+    pprovince: 'Metro Manila',
+    pzipCode: '1600',
   },
 ];

@@ -1,6 +1,6 @@
 const currentAysem = '20231';
 
-function shouldDisable(selectedStudent, rowSelection) {
+function DisableEnlistment(selectedStudent, rowSelection) {
   /*multiple irregular students cannot be enlisted */
   const multipleIrregular =
     selectedStudent?.filter((student) => student.regCode === 'Irregular')
@@ -34,4 +34,4 @@ function shouldDisable(selectedStudent, rowSelection) {
     outdatedAysem
   );
 }
-export default shouldDisable;
+export default DisableEnlistment;
