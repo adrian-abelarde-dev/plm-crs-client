@@ -179,66 +179,80 @@ function StudentInformationPage() {
                   disabled={!isFormEnabled}
                   enableSearch='true'
                 />
+                <div className=''>
+                  <div className='w-full md:w-768px sm:w-640px'>
+                    <label className='block text-sm font-bold mb-1'>
+                      Phone Number
+                    </label>
+                    <PhoneInput
+                      country={'ph'} // default country
+                      value={phoneNumber}
+                      onChange={setPhoneNumber}
+                      disabled={!isFormEnabled}
+                      enableSearch='true'
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className='container flex justify-between gap-4'>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Student Type'
-                  value={studentType}
-                  onChange={(e) => setStudentType(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={status}
-                />
+              <div className='container flex justify-between gap-4'>
+                <div className='w-1/4 md:w-768px sm:w-640px'>
+                  <InputField
+                    label='Student Type'
+                    value={studentType}
+                    onChange={(e) => setStudentType(e.target.value)}
+                    disabled={!isFormEnabled || isFormEnabled}
+                    isDropdown={true}
+                    options={status}
+                  />
+                </div>
+                <div className='w-1/4 md:w-768px sm:w-640px'>
+                  <InputField
+                    label='Registration Status'
+                    value={studentStatus}
+                    onChange={(e) => setStudentStatus(e.target.value)}
+                    disabled={!isFormEnabled || isFormEnabled}
+                    isDropdown={true}
+                    options={regstatus}
+                  />
+                </div>
+                <div className='w-1/4 md:w-768px sm:w-640px'>
+                  <InputField
+                    label='Degree Program'
+                    value={studentDegree}
+                    onChange={(e) => setStudentDegree(e.target.value)}
+                    disabled={!isFormEnabled || isFormEnabled}
+                    isDropdown={true}
+                    options={degree}
+                  />
+                </div>
+                <div className='w-1/4 md:w-768px sm:w-640px'>
+                  <InputField
+                    label='Year Level'
+                    value={yearLevel}
+                    onChange={(e) => setYearLevel(e.target.value)}
+                    disabled={!isFormEnabled || isFormEnabled}
+                    isDropdown={true}
+                    options={yearlvl}
+                  />
+                </div>
               </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Registration Status'
-                  value={studentStatus}
-                  onChange={(e) => setStudentStatus(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={regstatus}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Degree Program'
-                  value={studentDegree}
-                  onChange={(e) => setStudentDegree(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={degree}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Year Level'
-                  value={yearLevel}
-                  onChange={(e) => setYearLevel(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={yearlvl}
-                />
-              </div>
-            </div>
-            <div className='container flex justify-between gap-4'>
-              <div className='w-1/2 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Official PLM Email'
-                  value={plmemail}
-                  onChange={(e) => setPLMEmail(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-1/2 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Personal Email'
-                  value={personalemail}
-                  onChange={(e) => setPersonalEmail(e.target.value)}
-                  disabled={!isFormEnabled}
-                />
+              <div className='container flex justify-between gap-4'>
+                <div className='w-1/2 md:w-768px sm:w-640px'>
+                  <InputField
+                    label='Official PLM Email'
+                    value={plmemail}
+                    onChange={(e) => setPLMEmail(e.target.value)}
+                    disabled={!isFormEnabled || isFormEnabled}
+                  />
+                </div>
+                <div className='w-1/2 md:w-768px sm:w-640px'>
+                  <InputField
+                    label='Personal Email'
+                    value={personalemail}
+                    onChange={(e) => setPersonalEmail(e.target.value)}
+                    disabled={!isFormEnabled}
+                  />
+                </div>
               </div>
             </div>
           </div>
