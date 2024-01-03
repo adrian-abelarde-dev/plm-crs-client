@@ -3,7 +3,6 @@
 import { PenSquare } from 'lucide-react';
 import { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/bootstrap.css';
 import 'react-phone-input-2/lib/style.css';
 
 const InputField = ({
@@ -90,63 +89,67 @@ function StudentInformationPage() {
 
   return (
     <div className='container mx-auto mt-8 px-4 lg:px-0'>
-      <h1 className='mb-4 mt-32 font-medium text-3xl'>Information</h1>
-      <h1 className='mb-4 mt-10 font-medium text-2xl'>Student Profile</h1>
-      <div className='container mx-auto mt-8'>
+      <div className='container'>
+        <h1 className='mb-4 mt-32 font-medium text-3xl'>Information</h1>
+        <h1 className='mb-4 mt-10 font-medium text-2xl'>Student Profile</h1>
+      </div>
+      <div className='mx-auto mt-8 ml-5 mr-5'>
         <form className='relative'>
           <div className='flex flex-wrap mb-4 -mx-1'>
-            <div className='w-1/3 md:w-768px sm:w-640px'>
-              <InputField
-                label='Student ID'
-                value={studentId}
-                onChange={(e) => setStudentId(e.target.value)}
-                disabled={!isFormEnabled}
-              />
+            <div className='container'>
+              <div className='w-1/3 md:w-768px sm:w-640px justify-between gap-4'>
+                <InputField
+                  label='Student ID'
+                  value={studentId}
+                  onChange={(e) => setStudentId(e.target.value)}
+                  disabled={!isFormEnabled || isFormEnabled}
+                />
+              </div>
             </div>
-            <div className='flex justify-between gap-5'>
-              <div className='w-full md:w-768px sm:w-640px'>
+            <div className='container flex justify-between gap-5'>
+              <div className='w-1/3 md:w-768px sm:w-640px'>
                 <InputField
                   label='First Name'
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/3 md:w-768px sm:w-640px'>
                 <InputField
                   label='Middle Name'
                   value={middleName}
                   onChange={(e) => setMiddleName(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/3 md:w-768px sm:w-640px'>
                 <InputField
                   label='Last Name'
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
             </div>
-            <div className='flex justify-between gap-5'>
-              <div className='w-full md:w-768px sm:w-640px'>
+            <div className='container flex justify-between gap-3'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Pedigree'
                   value={pedigree}
                   onChange={(e) => setPedigree(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Gender'
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Civil Status'
                   value={civilStatus}
@@ -156,81 +159,80 @@ function StudentInformationPage() {
                   options={civilStatusOptions}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Country of Citizenship'
                   value={countryofcitizen}
                   onChange={(e) => setCountryoCitizen(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
-              <div className=''>
-                <div className='w-full md:w-768px sm:w-640px'>
-                  <label className='block text-sm font-bold mb-1'>
-                    Phone Number
-                  </label>
-                  <PhoneInput
-                    className='flex justify-between'
-                    country={'ph'} // default country
-                    value={phoneNumber}
-                    onChange={setPhoneNumber}
-                    disabled={!isFormEnabled}
-                  />
-                </div>
+              <div className='w-30 md:w-768px sm:w-640px'>
+                <label className='block text-sm font-bold mb-1'>
+                  Phone Number
+                </label>
+                <PhoneInput
+                  className='flex justify-between'
+                  country={'ph'} // default country
+                  value={phoneNumber}
+                  onChange={setPhoneNumber}
+                  disabled={!isFormEnabled}
+                  enableSearch='true'
+                />
               </div>
             </div>
-            <div className='flex justify-between gap-4'>
-              <div className='w-full md:w-768px sm:w-640px'>
+            <div className='container flex justify-between gap-4'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Student Type'
                   value={studentType}
                   onChange={(e) => setStudentType(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                   isDropdown={true}
                   options={status}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Registration Status'
                   value={studentStatus}
                   onChange={(e) => setStudentStatus(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                   isDropdown={true}
                   options={regstatus}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Degree Program'
                   value={studentDegree}
                   onChange={(e) => setStudentDegree(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                   isDropdown={true}
                   options={degree}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/4 md:w-768px sm:w-640px'>
                 <InputField
                   label='Year Level'
                   value={yearLevel}
                   onChange={(e) => setYearLevel(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                   isDropdown={true}
                   options={yearlvl}
                 />
               </div>
             </div>
-            <div className='flex justify-between gap-4'>
-              <div className='w-full md:w-768px sm:w-640px'>
+            <div className='container flex justify-between gap-4'>
+              <div className='w-1/2 md:w-768px sm:w-640px'>
                 <InputField
                   label='Official PLM Email'
                   value={plmemail}
                   onChange={(e) => setPLMEmail(e.target.value)}
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled || isFormEnabled}
                 />
               </div>
-              <div className='w-full md:w-768px sm:w-640px'>
+              <div className='w-1/2 md:w-768px sm:w-640px'>
                 <InputField
                   label='Personal Email'
                   value={personalemail}
