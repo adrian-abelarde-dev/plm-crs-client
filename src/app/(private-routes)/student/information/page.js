@@ -97,7 +97,7 @@ function StudentInformationPage() {
         <form className='relative'>
           <div className='flex flex-wrap mb-4 -mx-1'>
             <div className='container'>
-              <div className='w-1/3 md:w-768px sm:w-640px justify-between gap-4'>
+              <div className='w-1/3 md:w-768px sm:w-640px flex justify-between gap-4'>
                 <InputField
                   label='Student ID'
                   value={studentId}
