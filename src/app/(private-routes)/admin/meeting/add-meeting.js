@@ -27,10 +27,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useToast } from '@/components/ui/use-toast';
 import { collegeDepartments } from '@/lib/constants/fake-data/college-sections';
+import { testPromise } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckCircle, XCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 const meetingTypesContent = [
@@ -64,6 +66,8 @@ const statusContent = [
 ];
 
 export default function AddMeeting() {
+  const { toast } = useToast();
+
   const MeetingSchema = z.object({
     meetingId: z.string().min(1).optional(),
     label: z.string().min(1).optional(),
@@ -85,14 +89,42 @@ export default function AddMeeting() {
     },
   });
 
+  async function sampleConfirmFunction(id) {
+    try {
+      const result = await testPromise(id);
+
+      if (result) {
+        toast({
+          title: (
+            <div className='flex flex-row'>
+              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+              <h1>Success!</h1>
+            </div>
+          ),
+          description: <>Changes have been Saved.</>,
+        });
+      }
+    } catch (error) {
+      console.error({ error });
+
+      toast({
+        variant: 'destructive',
+        title: (
+          <div className='flex flex-row'>
+            <XCircle className='mr-2 h-4 w-4' />
+            <h1>Error!</h1>
+          </div>
+        ),
+        description: <>Error saving your data</>,
+      });
+    }
+  }
+
   function onSubmit(values) {
     // Print all form values
     console.log(values);
 
-    toast({
-      title: 'Scheduled: Catch up',
-      description: 'Friday, February 10, 2023 at 5:57 PM',
-    });
+    sampleConfirmFunction();
   }
 
   return (
