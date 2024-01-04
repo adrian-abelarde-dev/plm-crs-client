@@ -1,5 +1,5 @@
-import CollegeSectionsEditIndividual from './college-sections-edit-indiv';
-import CollegeSectionsEditMultiple from './college-sections-edit-multiple';
+import CollegeSectionsEditIndividual from './edit-content-edit-indiv';
+import CollegeSectionsEditMultiple from './edit-content-edit-multiple';
 
 function CollegeSectionsEditIndivOrMultiple({
   editIndivMultipleSections,

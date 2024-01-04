@@ -42,7 +42,7 @@ export const fakeFacultyEncodingGrades = [
     instructor: 'Prof. John Doe',
     students: [
       {
-        studentNumber: '2018-00001',
+        studentNumber: '2018-00020',
         studentName: 'Juan Dela Cruz',
         course: 'BSCS',
         year: 1,
@@ -50,7 +50,7 @@ export const fakeFacultyEncodingGrades = [
         remarks: '',
       },
       {
-        studentNumber: '2018-00002',
+        studentNumber: '2018-00030',
         studentName: 'Juan Dela Cruz',
         course: 'BSCS',
         year: 1,
@@ -58,7 +58,7 @@ export const fakeFacultyEncodingGrades = [
         remarks: '',
       },
       {
-        studentNumber: '2018-00003',
+        studentNumber: '2018-00040',
         studentName: 'Juan Dela Cruz',
         course: 'BSCS',
         year: 1,
