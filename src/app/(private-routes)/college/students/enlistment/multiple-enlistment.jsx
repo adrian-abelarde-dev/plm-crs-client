@@ -53,7 +53,7 @@ function MultipleEnlistmentDialogForm({ selectedStudent }) {
               }
             />
           </div>
-          <div className='w-1/2 flex flex-col'>
+          <div className='w-full mt-3 flex flex-col'>
             {selectedStudent?.map((student) => {
               const blockInfo = blockInformation.find(
                 (block) =>
