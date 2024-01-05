@@ -1,11 +1,11 @@
-import StudentsCollegeTable from '@/components/component/admin/students-college-table';
+import StudentCollegeUndergrad from './college-students';
 
-function StudentsPage() {
+function StudentCollegeUndergradPage() {
   return (
     <main className='w-full p-6'>
-      <StudentsCollegeTable />
+      <StudentCollegeUndergrad />
     </main>
   );
 }
 
-export default StudentsPage;
+export default StudentCollegeUndergradPage;
