@@ -1,265 +1,486 @@
 'use client';
 
-import { PenSquare } from 'lucide-react';
-import { useState } from 'react';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { toast } from '@/components/ui/use-toast';
+import { countries } from '@/lib/constants/countries';
+import { zodResolver } from '@hookform/resolvers/zod';
+// Import isEqual from lodash to compare objects
+import isEqual from 'lodash/isEqual';
+import { Edit } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
-const InputField = ({
-  label,
-  value,
-  onChange,
-  disabled,
-  isDropdown,
-  options,
-}) => {
-  if (isDropdown) {
-    return (
-      <div className='mb-4'>
-        <label className='block text-sm font-bold mb-1'>{label}</label>
-        <select
-          className='border border-gray-300 px-3 py-2 rounded-md w-full'
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-        >
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
-  } else {
-    return (
-      <div className='mb-4'>
-        <label className='block text-sm font-bold mb-1'>{label}</label>
-        <input
-          type='text'
-          className='border border-gray-300 px-3 py-2 rounded-md w-full'
-          placeholder={`Enter ${label}`}
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-        />
-      </div>
-    );
-  }
-};
+const yearLevelOptions = [
+  '1st Year',
+  '2nd Year',
+  '3rd Year',
+  '4th Year',
+  '5th Year',
+  '6th Year',
+  '7th Year',
+  '8th Year',
+  '9th Year',
+  '10th Year',
+];
 
-function StudentInformationPage() {
-  const [isFormEnabled, setIsFormEnabled] = useState(true);
+const civilStatusOptions = [
+  'Single',
+  'Married',
+  'Divorced',
+  'Widowed',
+  'Other',
+];
 
-  const [studentId, setStudentId] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [middleName, setMiddleName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [pedigree, setPedigree] = useState('');
-  const [gender, setGender] = useState('');
-  const [civilStatus, setCivilStatus] = useState('');
-  const [countryofcitizen, setCountryoCitizen] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [studentType, setStudentType] = useState('');
-  const [studentStatus, setStudentStatus] = useState('');
-  const [studentDegree, setStudentDegree] = useState('');
-  const [yearLevel, setYearLevel] = useState('');
-  const [plmemail, setPLMEmail] = useState('');
-  const [personalemail, setPersonalEmail] = useState('');
-  // ... add another fields
-  const civilStatusOptions = [
-    'Single',
-    'Married',
-    'Divorced',
-    'Widowed',
-    'Other',
-  ];
-  const status = ['new', 'old'];
-  const regstatus = ['regular', 'irregular'];
-  const degree = [
-    'Bachelor of Science in Information Technology',
-    'Bachelor of Science in Computer Science',
-    'Bachelor of Science Information System',
-    'Bachelor of Science in Computer Engineering',
-  ];
-  const yearlvl = ['1st', '2nd', '3rd', '4th', '5th'];
-  const toggleFormEnable = () => {
-    setIsFormEnabled((prevState) => !prevState);
+const status = ['New', 'Old'];
+const regStatus = ['Regular', 'Irregular'];
+const degree = [
+  'Bachelor of Science in Information Technology',
+  'Bachelor of Science in Computer Science',
+  'Bachelor of Science Information System',
+  'Bachelor of Science in Computer Engineering',
+];
+
+const studentInformationSchema = z.object({
+  studentId: z.string().min(2).max(50),
+  firstName: z.string().min(2).max(50),
+  middleName: z.string().min(2).max(50),
+  lastName: z.string().min(2).max(50),
+  pedigree: z.string().min(2).max(50),
+  gender: z.string().min(2).max(50),
+  civilStatus: z.string().min(2).max(50),
+  countryOfCitizen: z.string().min(2).max(50),
+  phoneNumber: z.string().min(2).max(50),
+  studentType: z.string().min(2).max(50),
+  regStatus: z.string().min(2).max(50),
+  degree: z.string().min(2).max(50),
+  yearLevel: z.string().min(2).max(50),
+  plmemail: z.string().min(2).max(50),
+  personalemail: z.string().min(2).max(50),
+});
+
+export default function StudentInformationPage() {
+  const [isEditMode, setEditMode] = useState(false);
+  const [initialValues, setInitialValues] = useState({}); // Store initial values
+
+  const studentInformationForm = useForm({
+    resolver: zodResolver(studentInformationSchema),
+    defaultValues: {
+      studentId: '202010016',
+      firstName: 'Adrian Angelo',
+      middleName: 'Davis',
+      lastName: 'Abelarde',
+      pedigree: 'Filipino',
+      gender: 'male',
+      civilStatus: 'Single',
+      countryOfCitizen: 'Philippines',
+      phoneNumber: '09123456789',
+      studentType: 'Old',
+      regStatus: 'Regular',
+      degree: 'Bachelor of Science in Information Technology',
+      yearLevel: '4th Year',
+      plmemail: 'aadabelarde2020@plm.edu.ph',
+      personalemail: 'abelardeadrianangelo@gmail.com',
+    },
+  });
+
+  const { watch, handleSubmit, reset } = studentInformationForm;
+
+  // Call watch to subscribe to form value changes
+  const watchedValues = watch();
+
+  useEffect(() => {
+    // On first render, set the initial values
+    setInitialValues(studentInformationForm.getValues());
+  }, [studentInformationForm.getValues, studentInformationForm]);
+
+  // Compare watched values with initial values to check for changes
+  const hasChanges = !isEqual(watchedValues, initialValues);
+
+  // Toggle edit mode and reset form if cancelled
+  const toggleEditMode = () => {
+    if (isEditMode) {
+      reset(initialValues); // Reset to initial values if changes are discarded
+    } else {
+      setEditMode(true);
+    }
   };
 
+  function onSubmit(values) {
+    console.log({ values });
+    toast({
+      title: 'Success!',
+      description: 'Your information has been updated.',
+    });
+    setInitialValues(values); // Update initial values with submitted values
+    setEditMode(false); // Turn off edit mode after submitting
+  }
+
   return (
-    <div className='container mx-auto mt-8 px-4 lg:px-0'>
-      <div className='container'>
-        <h1 className='mb-4 mt-32 font-medium text-3xl'>Information</h1>
-        <h1 className='mb-4 mt-10 font-medium text-2xl'>Student Profile</h1>
-      </div>
-      <div className='mx-auto mt-8 ml-5 mr-5'>
-        <form className='relative'>
-          <div className='flex flex-wrap mb-4 -mx-1'>
-            <div className='container'>
-              <div className='w-1/3 md:w-768px sm:w-640px flex justify-between gap-4'>
-                <InputField
-                  label='Student ID'
-                  value={studentId}
-                  onChange={(e) => setStudentId(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-            </div>
-            <div className='container flex justify-between gap-5'>
-              <div className='w-1/3 md:w-768px sm:w-640px'>
-                <InputField
-                  label='First Name'
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-1/3 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Middle Name'
-                  value={middleName}
-                  onChange={(e) => setMiddleName(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-1/3 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Last Name'
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-            </div>
-            <div className='container flex justify-between gap-3'>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Pedigree'
-                  value={pedigree}
-                  onChange={(e) => setPedigree(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Gender'
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Civil Status'
-                  value={civilStatus}
-                  onChange={(e) => setCivilStatus(e.target.value)}
-                  disabled={!isFormEnabled}
-                  isDropdown={true}
-                  options={civilStatusOptions}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Country of Citizenship'
-                  value={countryofcitizen}
-                  onChange={(e) => setCountryoCitizen(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-30 md:w-768px sm:w-640px'>
-                <div className=''>
-                  <div className='w-full md:w-768px sm:w-640px'>
-                    <label className='block text-sm font-bold mb-1'>
-                      Phone Number
-                    </label>
-                    <PhoneInput
-                      country={'ph'} // default country
-                      value={phoneNumber}
-                      onChange={setPhoneNumber}
-                      disabled={!isFormEnabled}
-                      enableSearch='true'
+    <Container className>
+      <h1 className='mb-4 mt-32 font-medium text-3xl'>Information</h1>
+
+      <Form {...studentInformationForm}>
+        <form
+          onSubmit={studentInformationForm.handleSubmit(onSubmit)}
+          className='space-y-4 mb-10'
+        >
+          <section className='w-full flex justify-between gap-4 py-6 items-start'>
+            <h1 className='font-medium text-2xl'>Student Profile</h1>
+
+            {!isEditMode && (
+              <Button onClick={toggleEditMode}>
+                <Edit className='w-4 h-4 mr-2' /> Edit Information
+              </Button>
+            )}
+            {isEditMode && (
+              <Button
+                type='submit'
+                onClick={handleSubmit(onSubmit)}
+                disabled={!hasChanges} // Button is disabled if there are no changes
+              >
+                Save Changes
+              </Button>
+            )}
+          </section>
+
+          <FormField
+            control={studentInformationForm.control}
+            name='studentId'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Student ID</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={!isEditMode}
+                    placeholder='Student ID'
+                  />
+                </FormControl>
+                <FormDescription>
+                  This is your `Student Number`.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <section className='flex gap-4 items-center w-full'>
+            <FormField
+              control={studentInformationForm.control}
+              name='firstName'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={!isEditMode}
+                      placeholder='First Name'
                     />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='container flex justify-between gap-4'>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Student Type'
-                  value={studentType}
-                  onChange={(e) => setStudentType(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={status}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Registration Status'
-                  value={studentStatus}
-                  onChange={(e) => setStudentStatus(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={regstatus}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Degree Program'
-                  value={studentDegree}
-                  onChange={(e) => setStudentDegree(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={degree}
-                />
-              </div>
-              <div className='w-1/4 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Year Level'
-                  value={yearLevel}
-                  onChange={(e) => setYearLevel(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                  isDropdown={true}
-                  options={yearlvl}
-                />
-              </div>
-            </div>
-            <div className='container flex justify-between gap-4'>
-              <div className='w-1/2 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Official PLM Email'
-                  value={plmemail}
-                  onChange={(e) => setPLMEmail(e.target.value)}
-                  disabled={!isFormEnabled || isFormEnabled}
-                />
-              </div>
-              <div className='w-1/2 md:w-768px sm:w-640px'>
-                <InputField
-                  label='Personal Email'
-                  value={personalemail}
-                  onChange={(e) => setPersonalEmail(e.target.value)}
-                  disabled={!isFormEnabled}
-                />
-              </div>
-            </div>
-          </div>
-          <div className='relative'>
-            <button
-              type='button'
-              className={`px-4 py-2 rounded-md absolute right-0 flex justify-between  ${
-                isFormEnabled ? 'bg-yellow-500' : 'bg-yellow-500'
-              }`}
-              onClick={toggleFormEnable}
-            >
-              <PenSquare className='h-6 w-4 mr-2' />
-              {isFormEnabled ? 'Save Changes' : 'Edit Profile'}
-            </button>
-          </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={studentInformationForm.control}
+              name='middleName'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Middle Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={!isEditMode}
+                      placeholder='Middle Name'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={studentInformationForm.control}
+              name='lastName'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={!isEditMode}
+                      placeholder='Last Name'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </section>
+          <section className='flex gap-4 items-center w-full'>
+            <FormField
+              control={studentInformationForm.control}
+              name='pedigree'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Pedigree</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={!isEditMode}
+                      placeholder='Pedigree'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={studentInformationForm.control}
+              name='gender'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Gender</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select gender' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value='male'>Male</SelectItem>
+                      <SelectItem value='female'>Female</SelectItem>
+                      <SelectItem value='prefernottosay'>
+                        Prefer not to say
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={studentInformationForm.control}
+              name='civilStatus'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Civil Status</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select civil status' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {civilStatusOptions.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={studentInformationForm.control}
+              name='countryOfCitizen'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Country of Status</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select country of status' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {countries.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={studentInformationForm.control}
+              name='phoneNumber'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type='tel'
+                      disabled={!isEditMode}
+                      placeholder='Phone Number'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </section>
+          <section className='flex gap-4 items-center w-full'>
+            <FormField
+              control={studentInformationForm.control}
+              name='studentType'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Student Type</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select student type' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {status.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={studentInformationForm.control}
+              name='regStatus'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Registration Status</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select registration status' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {regStatus.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </section>
+
+          <section className='flex gap-4 items-center w-full'>
+            <FormField
+              control={studentInformationForm.control}
+              name='degree'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Degree</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select degree' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {degree.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={studentInformationForm.control}
+              name='yearLevel'
+              render={({ field }) => (
+                <FormItem className='w-full'>
+                  <FormLabel>Year Level</FormLabel>
+                  <Select
+                    disabled={!isEditMode}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select year level' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {yearLevelOptions.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </section>
         </form>
-      </div>
-    </div>
+      </Form>
+    </Container>
   );
 }
-export default StudentInformationPage;
