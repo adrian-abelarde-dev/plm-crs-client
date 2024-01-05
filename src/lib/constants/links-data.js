@@ -111,11 +111,6 @@ export const adminSidebarLinks = [
     path: '/admin/users',
   },
   {
-    icon: <Warehouse className='mr-0 h-4 w-4 md:mr-2' />,
-    text: 'Rooms',
-    path: '/admin/rooms',
-  },
-  {
     icon: <Presentation className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Meeting',
     path: '/admin/meeting',
@@ -258,6 +253,11 @@ export const collegeLinks = [
     icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Students',
     path: '/college/students',
+  },
+  {
+    icon: <Warehouse className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Rooms',
+    path: '/college/rooms',
   },
   {
     icon: <File className='mr-0 h-4 w-4 md:mr-2' />,
