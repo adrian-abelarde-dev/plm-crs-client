@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CollegeSubjectsEditIndividual from './college-subjects-edit-indiv';
-import CollegeSubjectsEditMultiple from './college-subjects-edit-multiple';
+import CollegeSubjectsEditIndividual from './edit-content-edit-indiv';
+import CollegeSubjectsEditMultiple from './edit-content-edit-multiple';
 
 function CollegeSubjectsEditIndivOrMultiple({
   editIndivMultipleSubjects,

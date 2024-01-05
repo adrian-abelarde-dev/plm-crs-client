@@ -26,7 +26,9 @@ export default function PrivateRouteRootLayoutAdmin({ children }) {
               </section>
 
               {/* Adds margin left based on sidebar width */}
-              <div className='flex-grow ml-[48px] md:ml-52'>{children}</div>
+              <div className='flex-grow ml-[3rem] md:ml-[14rem]'>
+                {children}
+              </div>
             </section>
           </AuthProvider>
         </Providers>

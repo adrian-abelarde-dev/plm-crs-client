@@ -67,6 +67,7 @@ export default function SelectFormField({
                   />
                 </SelectTrigger>
               </FormControl>
+
               <SelectContent>
                 <ScrollArea className={content.length >= 10 && 'h-96'}>
                   {content.map((item) => {

@@ -4,7 +4,9 @@ import { getRandomDate } from '@/lib/utils';
 
 export const fakeCollegeStudents = [
   {
+
     /*Student 1*/
+
     // Personal Details
     aySem: '20222',
     academicYear: '2022-2023',
@@ -50,6 +52,7 @@ export const fakeCollegeStudents = [
 
     // View Student Info
     studentId: '1001',
+
 
     addDropClassList: [
       {
@@ -174,6 +177,7 @@ export const fakeCollegeStudents = [
   },
 
   {
+
     /*Student 3*/
     // Personal Info
     aySem: '20231',
@@ -223,6 +227,7 @@ export const fakeCollegeStudents = [
   },
   {
     /*Student 4*/
+
     // Personal Info
     aySem: '20222',
     academicYear: '2022-2023',
@@ -286,7 +291,6 @@ export const fakeCollegeStudents = [
         credits: '2',
       },
     ],
-
     // View Student Info
     studentId: '1004',
   },
@@ -634,6 +638,7 @@ export const fakeCollegeStudents = [
 
     // Permanent Address Information
     pphoneNum: '09123456789',
+
     pstreetAddress: 'Block 3 Sampaloc Manila',
     pprovince: 'Quezon',
     pzipCode: '1500',

@@ -31,7 +31,7 @@ import { CheckCircle } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import SelectFormField from '../form/select-formfield';
+import SelectFormField from '../../form/select-formfield';
 
 function CollegeSubjectsEditMultiple({ selectedSubjects }) {
   const [defaultSubjectType, setDefaultSubjectType] = useState('');

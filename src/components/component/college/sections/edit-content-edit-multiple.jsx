@@ -32,7 +32,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-import SelectFormField from '../form/select-formfield';
+import SelectFormField from '../../form/select-formfield';
 
 function CollegeSectionsEditMultiple({ selectedSections }) {
   const editSectionForm = useForm({
