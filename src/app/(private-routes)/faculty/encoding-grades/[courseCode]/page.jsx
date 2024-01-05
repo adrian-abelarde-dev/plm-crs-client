@@ -1,24 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { fakeFacultyEncodingGrades } from '@/lib/constants/fake-data/faculty-encoding-grades';
 import { Import, Printer } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+
+import EditGrades from './edit-grades';
 
 function GradesCourseView({ params }) {
   const [facultyEncodingGrades, setFacultyEncodingGrades] = useState(
@@ -32,58 +20,6 @@ function GradesCourseView({ params }) {
     );
     setFacultyEncodingGrades(filteredData);
   }, [params.courseCode]);
-
-  const grades = [
-    {
-      grade: '1.00',
-    },
-    {
-      grade: '1.25',
-    },
-    {
-      grade: '1.75',
-    },
-    {
-      grade: '2.00',
-    },
-    {
-      grade: '2.25',
-    },
-    {
-      grade: '2.50',
-    },
-    {
-      grade: '2.75',
-    },
-    {
-      grade: '3.00',
-    },
-    {
-      grade: '5.00 - 5.00',
-    },
-  ];
-
-  const remarksData = [
-    { remarks: 'Passed' },
-    { remarks: 'Incomplete' },
-    { remarks: 'Dropped Officially' },
-    { remarks: 'Dropped Unofficially' },
-    { remarks: 'Dropped due to COVID-19' },
-  ];
-
-  const changeGrade = (index, grade) => {
-    // TODO: Update this later when we have the API
-    const updatedFacultyGrades = [...facultyEncodingGrades];
-    updatedFacultyGrades[0].students[index].finalGrade = grade;
-    setFacultyEncodingGrades(updatedFacultyGrades);
-  };
-
-  const changeRemarks = (index, remarks) => {
-    // TODO: Update this later when we have the API
-    const updatedFacultyGrades = [...facultyEncodingGrades];
-    updatedFacultyGrades[0].students[index].remarks = remarks;
-    setFacultyEncodingGrades(updatedFacultyGrades);
-  };
 
   return (
     <main className='p-6'>
@@ -150,90 +86,19 @@ function GradesCourseView({ params }) {
       </div>
 
       {/* Table */}
-      <Table className='mt-4'>
-        <TableHeader>
-          <TableRow className='font-bold'>
-            <TableCell>Count</TableCell>
-            <TableCell>Student Number</TableCell>
-            <TableCell>Student Name</TableCell>
-            <TableCell>Course</TableCell>
-            <TableCell>Year</TableCell>
-            <TableCell>Final Grade</TableCell>
-            <TableCell>Remarks</TableCell>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {facultyEncodingGrades[0].students?.map((data, index) => {
-            return (
-              <TableRow key={index}>
-                <TableCell>{index + 1}.</TableCell>
-                <TableCell>{data.studentNumber}</TableCell>
-                <TableCell>{data.studentName}</TableCell>
-                <TableCell>{data.course}</TableCell>
-                <TableCell>{data.year}</TableCell>
-                {/* Final Grade Encoding */}
-                <TableCell className='w-40'>
-                  <Select
-                    onValueChange={(grade) => changeGrade(index, grade)}
-                    defaultValue={data.finalGrade}
-                  >
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder={
-                          <h1 className='text-zinc-400'>Select grade</h1>
-                        }
-                      />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      {grades.map((grade, index) => {
-                        return (
-                          <SelectItem key={index} value={grade.grade}>
-                            {grade.grade}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </TableCell>
-
-                {/* Final Grade Encoding */}
-                <TableCell>
-                  <Select
-                    onValueChange={(remarks) => changeRemarks(index, remarks)}
-                    defaultValue={data.remarks}
-                  >
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder={
-                          <h1 className='text-zinc-400'>Select remarks</h1>
-                        }
-                      />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      {remarksData.map((remarks, index) => {
-                        return (
-                          <SelectItem key={index} value={remarks.remarks}>
-                            {remarks.remarks}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      <EditGrades
+        studentsData={facultyEncodingGrades}
+        setGrades={setFacultyEncodingGrades}
+      />
 
       {/* Actions */}
       <div className='mt-4 flex gap-4 justify-center'>
         <Button variant='outline' asChild>
           <Link href='/faculty/encoding-grades'>Cancel</Link>
         </Button>
-        <Button>Save</Button>
+        {facultyEncodingGrades[0]?.students.length !== 0 && (
+          <Button>Save</Button>
+        )}
       </div>
     </main>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 
 import {
@@ -29,6 +31,8 @@ function AlertConfirmModal({
   confirmFunction,
   className,
   triggerIcon,
+  triggerVariant,
+  triggerDisabled,
 }) {
   return (
     <AlertDialog>
@@ -41,7 +45,8 @@ function AlertConfirmModal({
               'text-zinc-900 justify-between hover:bg-zinc-100',
               className,
             )}
-            variant='ghost'
+            variant={triggerVariant || 'ghost'}
+            disabled={triggerDisabled}
           >
             {label}
             {triggerIcon}

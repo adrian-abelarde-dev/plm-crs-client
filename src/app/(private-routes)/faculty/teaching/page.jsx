@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { facultyClassAssingnmentData } from '@/lib/constants/fake-data/faculty-class-assignment';
 import { facultyClassAssignmentTemplate } from '@/lib/constants/table-templates/faculty/current-class-assignment';
 import { computeLoads } from '@/lib/utils';
-import React from 'react';
 
 function FacultyTeaching() {
   return (

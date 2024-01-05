@@ -1,6 +1,8 @@
 import AuthProvider from '@/components/component/auth';
 import Providers from '@/components/component/providers';
 import { Sidebar } from '@/components/layouts/sidebar';
+import { Toaster as ToasterSonner } from '@/components/ui/sonner';
+import { Toaster } from '@/components/ui/toaster';
 import { adminSidebarLinks } from '@/lib/constants/links-data';
 import { Inter } from 'next/font/google';
 
@@ -32,6 +34,9 @@ export default function PrivateRouteRootLayoutAdmin({ children }) {
             </section>
           </AuthProvider>
         </Providers>
+
+        <Toaster />
+        <ToasterSonner />
       </body>
     </html>
   );

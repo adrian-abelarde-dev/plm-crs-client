@@ -5,122 +5,102 @@ import TableMRT from '@/components/layouts/table-mrt';
 import { useToast } from '@/components/ui/use-toast';
 import { testPromise } from '@/lib/utils';
 import { ArchiveIcon, CheckCircle, XCircle } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
-import AddBlock from './add-block';
+import AddRoom from './add-room';
 
-const fakeBlocks = [
+const fakeRooms = [
   {
-    blockId: 'AYSEM20231001',
-    block: 'BSCS 4-2',
-    collegeId: 'CET',
-    slots: '50',
-    enlisted: '50',
+    roomId: 'GCA 106',
+    roomName: 'Accenture Room',
+    building: 'Gusaling Villegas',
     dateCreated: '2023-08-17 : 12:00 AM',
   },
   {
-    blockId: 'AYSEM20231002',
-    block: 'BSCS 2-1',
-    collegeId: 'CET',
-    slots: '40',
-    enlisted: '35',
+    roomId: 'MKT 202',
+    roomName: 'Marketing Meeting Room',
+    building: 'Smith Building',
     dateCreated: '2023-09-05 : 10:30 AM',
   },
   {
-    blockId: 'AYSEM20231003',
-    block: 'BSEE 3-2',
-    collegeId: 'CET',
-    slots: '45',
-    enlisted: '42',
-    dateCreated: '2023-09-12 : 2:15 PM',
+    roomId: 'ENG 101',
+    roomName: 'Engineering Lab',
+    building: 'Science Center',
+    dateCreated: '2023-07-20 : 03:45 PM',
   },
   {
-    blockId: 'AYSEM20231004',
-    block: 'BSCpE 1-1',
-    collegeId: 'CET',
-    slots: '30',
-    enlisted: '28',
-    dateCreated: '2023-09-20 : 4:45 PM',
+    roomId: 'LIB 301',
+    roomName: 'Library Study Room',
+    building: 'Main Library',
+    dateCreated: '2023-08-10 : 09:15 AM',
   },
   {
-    blockId: 'AYSEM20231005',
-    block: 'BSIT 2-2',
-    collegeId: 'CET',
-    slots: '35',
-    enlisted: '33',
-    dateCreated: '2023-10-02 : 9:00 AM',
+    roomId: 'ART 201',
+    roomName: 'Art Studio',
+    building: 'Creative Arts Building',
+    dateCreated: '2023-09-15 : 02:00 PM',
   },
   {
-    blockId: 'AYSEM20231006',
-    block: 'BSCS 3-1',
-    collegeId: 'CET',
-    slots: '42',
-    enlisted: '40',
-    dateCreated: '2023-10-15 : 3:30 PM',
+    roomId: 'CONF 102',
+    roomName: 'Conference Room B',
+    building: 'Corporate Tower',
+    dateCreated: '2023-07-30 : 11:45 AM',
   },
   {
-    blockId: 'AYSEM20231007',
-    block: 'BSEE 4-2',
-    collegeId: 'CET',
-    slots: '48',
-    enlisted: '46',
-    dateCreated: '2023-10-28 : 11:15 AM',
+    roomId: 'LIT 202',
+    roomName: 'Literature Classroom',
+    building: 'Humanities Building',
+    dateCreated: '2023-09-12 : 04:20 PM',
   },
   {
-    blockId: 'AYSEM20231008',
-    block: 'BSCpE 2-1',
-    collegeId: 'CET',
-    slots: '37',
-    enlisted: '34',
-    dateCreated: '2023-11-09 : 5:00 PM',
+    roomId: 'SCI 301',
+    roomName: 'Science Lecture Hall',
+    building: 'Science Center',
+    dateCreated: '2023-07-25 : 01:30 PM',
   },
   {
-    blockId: 'AYSEM20231009',
-    block: 'BSIT 4-2',
-    collegeId: 'CET',
-    slots: '50',
-    enlisted: '50',
-    dateCreated: '2023-11-22 : 8:45 AM',
+    roomId: 'CONF 301',
+    roomName: 'Executive Conference Room',
+    building: 'Corporate Tower',
+    dateCreated: '2023-08-05 : 10:00 AM',
   },
   {
-    blockId: 'AYSEM20231010',
-    block: 'BSCS 1-1',
-    collegeId: 'CET',
-    slots: '30',
-    enlisted: '28',
-    dateCreated: '2023-12-05 : 1:30 PM',
+    roomId: 'MATH 101',
+    roomName: 'Mathematics Classroom',
+    building: 'Mathematics Building',
+    dateCreated: '2023-09-20 : 09:45 AM',
   },
 ];
 
-const fakeBlocksTemplate = [
+const fakeRoomsTemplate = [
   {
-    accessorKey: 'blockId',
-    id: 'blockId',
-    header: 'Block ID',
+    accessorKey: 'roomId',
+    id: 'roomId',
+    header: 'Room ID',
+    filterVariant: 'fuzzy',
+    Cell: ({ cell }) => {
+      const value = cell.getValue().replace(/\s/g, '-');
+      return (
+        <Link
+          className='underline hover:text-gray-600'
+          href={`/college/rooms/${value}`}
+        >
+          {cell.getValue()}
+        </Link>
+      );
+    },
+  },
+  {
+    accessorKey: 'roomName',
+    id: 'roomName',
+    header: 'Room Name',
     filterVariant: 'fuzzy',
   },
   {
-    accessorKey: 'block',
-    id: 'block',
-    header: 'Block',
-    filterVarient: 'fuzzy',
-  },
-  {
-    accessorKey: 'collegeId',
-    id: 'collegeId',
-    header: 'College ID',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'slots',
-    id: 'slots',
-    header: 'Slots',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'enlisted',
-    id: 'enlisted',
-    header: 'Enlisted',
+    accessorKey: 'building',
+    id: 'building',
+    header: 'Building',
     filterVariant: 'fuzzy',
   },
   {
@@ -131,7 +111,7 @@ const fakeBlocksTemplate = [
   },
 ];
 
-function BlockPage() {
+export default function RoomPage() {
   const [rowSelection, setRowSelection] = useState({});
   const { toast } = useToast();
 
@@ -171,18 +151,18 @@ function BlockPage() {
       <TableMRT
         isCheckBoxVisible
         enableRowSelection
-        template={fakeBlocksTemplate}
-        data={fakeBlocks}
-        title='Blocks'
-        searchPlaceholder='Search Blocks...'
+        template={fakeRoomsTemplate}
+        data={fakeRooms}
+        title='Rooms'
+        searchPlaceholder='Search Rooms...'
         rowSelection={rowSelection}
         setRowSelection={setRowSelection}
         RightButtons={
           <>
             <AlertConfirmModal
               label='Archive'
-              title='Are you sure you want to archive this block?'
-              description='You can still undo this action. This will only archive the block and not delete it.'
+              title='Are you sure you want to archive this room?'
+              description='You can still undo this action. This will only archive the room and not delete it.'
               cancelLabel='Cancel'
               confirmLabel='Archive'
               confirmFunction={() => {
@@ -195,12 +175,10 @@ function BlockPage() {
               }
               className='w-full items-start justify-between text-left flex text-destructive hover:text-destructive/90'
             />
-            <AddBlock />
+            <AddRoom />
           </>
         }
       />
     </main>
   );
 }
-
-export default BlockPage;
