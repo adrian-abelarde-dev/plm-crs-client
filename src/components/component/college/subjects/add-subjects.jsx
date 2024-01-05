@@ -26,8 +26,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-import InputFormField from '../form/input-formfield';
-import SelectFormField from '../form/select-formfield';
+import InputFormField from '../../form/input-formfield';
+import SelectFormField from '../../form/select-formfield';
 
 function AddSubjectsUndergrad() {
   const addSubjectForm = useForm({
