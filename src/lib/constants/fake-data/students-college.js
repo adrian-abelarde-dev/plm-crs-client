@@ -4,6 +4,9 @@ import { getRandomDate } from '@/lib/utils';
 
 export const fakeCollegeStudents = [
   {
+
+    /*Student 1*/
+
     // Personal Details
     aySem: '20222',
     academicYear: '2022-2023',
@@ -49,8 +52,62 @@ export const fakeCollegeStudents = [
 
     // View Student Info
     studentId: '1001',
+
+
+    addDropClassList: [
+      {
+        subject: 'CSC 0411 - CS Thesis Writing 1',
+        section: '1',
+        schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0412 - Network and Communications (Lec)',
+        section: '1',
+        schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 2 (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 2 (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 3 (Lab)',
+        section: '1',
+        schedule: 'Monday: 7:00 AM - 8:30 AM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 3 (Lec)',
+        section: '1',
+        schedule: 'Friday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 4 (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CS Elective 4 (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (F2F, CompLab 3)',
+        credits: '2',
+      },
+    ],
   },
+
   {
+    /*Student 2*/
     // Personal Details
     aySem: '20231',
     academicYear: '2023',
@@ -94,10 +151,34 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
+    addDropClassList: [
+      {
+        subject: 'CSC 0414.1 - CS Elective 3 (Lab)',
+        section: '1',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0414-1 - CS Elective 3 (Lec)',
+        section: '1',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0312-1 - Programming Language (Lec)',
+        section: '1',
+        schedule: 'Friday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
+
     // View Student Info
     studentId: '1002',
   },
+
   {
+
+    /*Student 3*/
     // Personal Info
     aySem: '20231',
     academicYear: '2023-2024',
@@ -145,6 +226,8 @@ export const fakeCollegeStudents = [
     studentId: '1003',
   },
   {
+    /*Student 4*/
+
     // Personal Info
     aySem: '20222',
     academicYear: '2022-2023',
@@ -171,7 +254,7 @@ export const fakeCollegeStudents = [
     college: 'College of Education',
     yearLevel: '2',
     yearBlock: '2-1',
-    emailAddress: 'jane.cruz@plm.edu.ph',
+    emailAddress: 'emily.quizon@plm.edu.ph',
     regCode: 'Regular',
     enrollmentStatus: 'Not Enlisted',
     scholasticStatus: 'Paying',
@@ -188,10 +271,31 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
+    addDropClassList: [
+      {
+        subject: 'CSC 0312.1 - Programming Language (Lab)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0322 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0322.1 - Compiler Design (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
     // View Student Info
     studentId: '1004',
   },
   {
+    /*Student 5*/
     // Personal Info
     aySem: '20231',
     academicYear: '2023',
@@ -235,10 +339,32 @@ export const fakeCollegeStudents = [
     pprovince: 'Marinduque',
     pzipCode: '1400',
 
+    addDropClassList: [
+      {
+        subject: 'CSC 0312.1 - Programming Language (Lab)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0322 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0322.1 - Compiler Design (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
+
     // View Student Info
     studentId: '1005',
   },
   {
+    /*Student 6*/
     // Personal Details
     aySem: '20231',
     academicYear: '2023',
@@ -283,9 +409,10 @@ export const fakeCollegeStudents = [
     pzipCode: '1500',
 
     // View Student Info
-    studentId: '1003',
+    studentId: '1006',
   },
   {
+    /*Student 7*/
     // Personal Info
     aySem: '20222',
     academicYear: '2022-2023',
@@ -330,9 +457,10 @@ export const fakeCollegeStudents = [
     pzipCode: '1400',
 
     // View Student Info
-    studentId: '1004',
+    studentId: '1007',
   },
   {
+    /*Student 8*/
     // Personal Info
     aySem: '20231',
     academicYear: '2023',
@@ -376,10 +504,32 @@ export const fakeCollegeStudents = [
     pprovince: 'Quezon',
     pzipCode: '1500',
 
+    addDropClassList: [
+      {
+        subject: 'CSC 0321 - Software Engineering (Lec)',
+        section: '3',
+        schedule: 'Monday: 10:00 AM - 12:00 PM (Online)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0322 - Compiler Design (Lec)',
+        section: '4',
+        schedule: 'Thursday: 9:30 AM - 11:30 AM (F2F, Field)',
+        credits: '2',
+      },
+      {
+        subject: 'CSC 0321.1 - Software Engineering (Lab)',
+        section: '1',
+        schedule: 'Saturday: 7:00 AM - 9:00 AM (Online)',
+        credits: '2',
+      },
+    ],
+
     // View Student Info
-    studentId: '1005',
+    studentId: '1008',
   },
   {
+    /*Student 9*/
     // Personal Info
     aySem: '20231',
     academicYear: '2023',
@@ -423,10 +573,32 @@ export const fakeCollegeStudents = [
     pprovince: 'Quezon',
     pzipCode: '1500',
 
+    addDropClassList: [
+      {
+        subject: 'CSC 0323 - Database Management Systems (Lec)',
+        section: '2',
+        schedule: 'Wednesday: 2:00 PM - 4:00 PM (F2F, subjectroom)',
+        credits: '3',
+      },
+      {
+        subject: 'CSC 0323 - Database Management Systems (Lab)',
+        section: '5',
+        schedule: 'Friday: 1:00 PM - 3:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'CSC 0324 - Data Structures (Lec)',
+        section: '1',
+        schedule: 'Tuesday: 8:00 AM - 10:00 AM (F2F, subjectroom)',
+        credits: '3',
+      },
+    ],
+
     // View Student Info
-    studentId: '1006',
+    studentId: '1009',
   },
   {
+    /*Student 10*/
     // Personal Info
     aySem: '20222',
     academicYear: '2022-2023',
@@ -466,150 +638,43 @@ export const fakeCollegeStudents = [
 
     // Permanent Address Information
     pphoneNum: '09123456789',
+
     pstreetAddress: 'Block 3 Sampaloc Manila',
     pprovince: 'Quezon',
     pzipCode: '1500',
 
-    // View Student Info
-    studentId: '1007',
-  },
-  {
-    // Personal Info
-    aySem: '20223',
-    academicYear: '2022-2023',
-    semester: '3',
-    studentNo: '2020-20222',
-    firstName: 'Miguel',
-    middleName: 'Torres',
-    lastName: 'Lopez',
-    fullName: 'Lopez, Miguel Torres',
-    program: 'Bachelor of Science in Nursing',
-    nameExtension: 'N/A',
-    maidenName: 'Cruz',
-    birthPlace: 'Manila',
-    birthSex: 'Male',
-    birthDate: getRandomDate(),
-    genderIdentity: 'he/him',
-    civilStatus: 'Single',
-    phoneNum: '09123456789',
-
-    // Student Terms
-    entryAcadYear: '2023',
-    studentType: 'New',
-    block: '4',
-    college: 'College of Nursing',
-    yearLevel: '1',
-    yearBlock: '1-4',
-    emailAddress: 'miguel.lopez@plm.edu.ph',
-    regCode: 'Regular',
-    enrollmentStatus: 'Not Enlisted',
-    scholasticStatus: 'Paying',
-
-    // Current Address Information
-    cphoneNum: '09123456789',
-    cstreetAddress: 'Block 4 Sampaloc Manila',
-    cprovince: 'Quezon',
-    czipCode: '1500',
-
-    // Permanent Address Information
-    pphoneNum: '09123456789',
-    pstreetAddress: 'Block 4 Sampaloc Manila',
-    pprovince: 'Quezon',
-    pzipCode: '1500',
-
-    // View Student Info
-    studentId: '1008',
-  },
-  {
-    // Personal Info
-    aySem: '20223',
-    academicYear: '2022-2023',
-    semester: '3',
-    studentNo: '2020-20223',
-    firstName: 'Grace',
-    middleName: 'Velasquez',
-    lastName: 'Martinez',
-    fullName: 'Martinez, Grace Velasquez',
-    program: 'Bachelor of Arts in Psychology',
-    nameExtension: 'N/A',
-    maidenName: 'Cruz',
-    birthPlace: 'Manila',
-    birthSex: 'Female',
-    birthDate: getRandomDate(),
-    genderIdentity: 'she/her',
-    civilStatus: 'Single',
-    phoneNum: '09123456789',
-
-    // Student Terms
-    entryAcadYear: '2023',
-    studentType: 'Transferree',
-    block: '5',
-    college: 'College of Psychology',
-    yearLevel: '2',
-    yearBlock: '2-5',
-    emailAddress: 'grace.martinez@plm.edu.ph',
-    regCode: 'Regular',
-    enrollmentStatus: 'Enlisted',
-    scholasticStatus: 'Paying',
-
-    // Current Address Information
-    cphoneNum: '09123456789',
-    cstreetAddress: 'Block 5 Sampaloc Manila',
-    cprovince: 'Quezon',
-    czipCode: '1500',
-
-    // Permanent Address Information
-    pphoneNum: '09123456789',
-    pstreetAddress: 'Block 5 Sampaloc Manila',
-    pprovince: 'Quezon',
-    pzipCode: '1500',
-
-    // View Student Info
-    studentId: '1009',
-  },
-  {
-    // Personal Info
-    aySem: '20224',
-    academicYear: '2022-2023',
-    semester: '4',
-    studentNo: '2020-20224',
-    firstName: 'Robert',
-    middleName: 'Santos',
-    lastName: 'Gomez',
-    fullName: 'Gomez, Robert Santos',
-    program: 'Bachelor of Science in Information Technology',
-    nameExtension: 'N/A',
-    maidenName: 'Cruz',
-    birthPlace: 'Manila',
-    birthSex: 'Male',
-    birthDate: getRandomDate(),
-    genderIdentity: 'he/him',
-    civilStatus: 'Single',
-    phoneNum: '09123456789',
-
-    // Student Terms
-    entryAcadYear: '2023',
-    studentType: 'Old',
-    block: '1',
-    college: 'College of Computer Studies',
-    yearLevel: '4',
-    yearBlock: '4-1',
-    emailAddress: 'robert.gomez@plm.edu.ph',
-    regCode: 'Regular',
-    enrollmentStatus: 'Not Enlisted',
-    scholasticStatus: 'Paying',
-
-    // Current Address Information
-    cphoneNum: '09123456789',
-    cstreetAddress: 'Block 1 Sampaloc Manila',
-    cprovince: 'Quezon',
-    czipCode: '1500',
-
-    // Permanent Address Information
-    pphoneNum: '09123456789',
-    pstreetAddress: 'Block 1 Sampaloc Manila',
-    pprovince: 'Quezon',
-    pzipCode: '1500',
+    addDropClassList: [
+      {
+        subject: 'CSC 0325.2 - Advanced Web Development (Lec)',
+        section: '2',
+        schedule: 'Wednesday: 3:00 PM - 5:00 PM (F2F, subjectroom)',
+        credits: '3',
+      },
+      {
+        subject: 'CSC 0325.2 - Advanced Web Development (Lab)',
+        section: '5',
+        schedule: 'Friday: 10:00 AM - 12:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'CSC 0326 - Operating Systems (Lec)',
+        section: '1',
+        schedule: 'Tuesday: 1:00 PM - 3:00 PM (F2F, subjectroom)',
+        credits: '3',
+      },
+      {
+        subject: 'CSC 0326.1 - Operating Systems (Lab)',
+        section: '3',
+        schedule: 'Thursday: 4:00 PM - 6:00 PM (Online)',
+        credits: '3',
+      },
+      {
+        subject: 'CSC 0327 - Mobile App Development (Lec)',
+        section: '4',
+        schedule: 'Monday: 1:00 PM - 3:00 PM (F2F, subjectroom)',
+        credits: '3',
+      },
+    ],
 
     // View Student Info
     studentId: '1010',
