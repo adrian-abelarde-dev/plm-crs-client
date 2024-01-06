@@ -59,7 +59,6 @@ export const authOptions = {
           });
 
           session.role = roles;
-          console.log(roles);
         } else {
           console.error('Error fetching user roles');
         }
