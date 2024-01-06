@@ -82,7 +82,7 @@ function AddDropDialogForm({ selectedStudent, disabled }) {
           Add Drop
         </Button>
       </DialogTrigger>
-      <DialogContent className='md:max-w-[1000px] h-[700px] overflow-auto'>
+      <DialogContent className='md:max-w-[1000px] h-[700px] flex flex-col overflow-auto'>
         <DialogHeader>
           <DialogTitle className='font-bold text-2xl'>
             Enlistment Form 5A
