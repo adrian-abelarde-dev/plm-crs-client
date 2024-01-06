@@ -1,5 +1,10 @@
-function CollegeTeachingAssignments() {
-  return <></>;
-}
+import CollegeUndergradTeachingAssignment from './undergrad-teaching-assignment';
 
-export default CollegeTeachingAssignments;
+function TeachingAssignmentUndergradPage() {
+  return (
+    <main className='w-full p-6'>
+      <CollegeUndergradTeachingAssignment />
+    </main>
+  );
+}
+export default TeachingAssignmentUndergradPage;
