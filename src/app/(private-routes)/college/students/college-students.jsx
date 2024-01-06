@@ -8,9 +8,12 @@ import { handleRowSelectionChange } from '@/lib/utils';
 import { Archive } from 'lucide-react';
 import React, { useState } from 'react';
 
-import AddDropDialogForm from './add drop/college-add-drop';
+import DisableAddDrop from './add-drop/add-drop-disable-logic';
+import AddDropDialogForm from './add-drop/college-add-drop';
+import EnlistStudentUndergrad from './enlistment/enlistment';
+import DisableEnlistment from './enlistment/enlistment-disable-logic';
 import UpdateStudentUndergrad from './update/college-update';
-import ViewStudentDialogForm from './view profile/college-view-student-profile-dialog-form';
+import ViewStudentDialogForm from './view-profile/college-view-student-profile-dialog-form';
 
 function StudentCollegeUndergrad() {
   const [rowSelection, setRowSelection] = useState({});
@@ -61,11 +64,12 @@ function StudentCollegeUndergrad() {
 
             <AddDropDialogForm
               selectedStudent={selectedStudent[0]}
-              disabled={
-                Object.keys(rowSelection).length === 0 ||
-                Object.keys(rowSelection).length > 1 ||
-                selectedStudent[0].regCode === 'Regular'
-              }
+              disabled={DisableAddDrop(selectedStudent, rowSelection)}
+            />
+            <EnlistStudentUndergrad
+              selectedStudent={selectedStudent}
+              disabled={DisableEnlistment(selectedStudent, rowSelection)}
+              enlistStudents={Object.keys(rowSelection).length}
             />
           </>
         }

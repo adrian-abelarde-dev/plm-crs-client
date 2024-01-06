@@ -13,6 +13,21 @@ export const genderIdentity = [
   },
 ];
 
+export const enrollmentStatus = [
+  {
+    value: 'Not Enlisted',
+    label: 'Not Enlisted',
+  },
+  {
+    value: 'Enlisted',
+    label: 'Enlisted',
+  },
+  {
+    value: 'Enrolled',
+    label: 'Enrolled',
+  },
+];
+
 export const birthSex = [
   {
     value: 'Female',
@@ -80,12 +95,39 @@ export const entryAcadYear = [
 
 export const studentType = [
   {
+    value: 'Old',
+    label: 'Old',
+  },
+  {
     value: 'New',
     label: 'New',
   },
   {
-    value: 'Old',
-    label: 'Old',
+    value: 'Returnee',
+    label: 'Returnee',
+  },
+  {
+    value: 'Transferee',
+    label: 'Transferee',
+  },
+  {
+    value: 'Shifter',
+    label: 'Shifter',
+  },
+];
+
+export const aySem = [
+  {
+    value: '20221',
+    label: '20221',
+  },
+  {
+    value: '20222',
+    label: '20222',
+  },
+  {
+    value: '20231',
+    label: '20231',
   },
 ];
 
@@ -109,6 +151,10 @@ export const block = [
   {
     value: '5',
     label: '5',
+  },
+  {
+    value: 'N/A',
+    label: 'N/A',
   },
 ];
 
