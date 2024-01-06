@@ -44,8 +44,8 @@ function Portal() {
                   className='relative flex gap-2 px-2 w-fit h-fit p-4 text-left'
                   variant='outline'
                 >
-                  <span class='absolute rounded-full h-3 w-3 bg-green-500 animate-ping -top-1 -right-1'></span>
-                  <span class='absolute rounded-full h-3 w-3 bg-green-500 -top-1 -right-1'></span>
+                  <span className='absolute rounded-full h-3 w-3 bg-green-500 animate-ping -top-1 -right-1'></span>
+                  <span className='absolute rounded-full h-3 w-3 bg-green-500 -top-1 -right-1'></span>
                   <Image
                     src={session?.user?.image}
                     alt='profile picture'
