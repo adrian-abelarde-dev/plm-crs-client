@@ -81,7 +81,7 @@ function Portal() {
             to the page.
           </p>
           <div className='flex flex-wrap gap-2 max-w-[400px]'>
-            {session?.role.map((role) => {
+            {session?.role?.map((role) => {
               return (
                 <Button className='w-50 h-50' key={role} variant='outline'>
                   <Link href={role}>
