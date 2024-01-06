@@ -61,7 +61,7 @@ export const program = [
 // gender / sex
 export const sex = [
   { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Demale' },
+  { value: 'female', label: 'Female' },
   { value: 'others', label: 'Others' },
   { value: 'not', label: 'Prefer not to state' },
 ];

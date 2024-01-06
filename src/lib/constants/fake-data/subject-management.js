@@ -1,82 +1,52 @@
 export const collegeGradSubjectManagementData = [
   {
-    subjectCode: 'GYM-123',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'ICT-100',
+    subjectName: 'Introduction to Computing',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-456',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'MATH-200',
+    subjectName: 'Advanced Mathematics',
+    units: '1.0',
+  },
+  {
+    subjectCode: 'ENG-150',
+    subjectName: 'English Literature',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-789',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'PHY-300',
+    subjectName: 'Physics for Engineers',
+    units: '1.0',
+  },
+  {
+    subjectCode: 'CHEM-250',
+    subjectName: 'Organic Chemistry',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-123',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'HIS-120',
+    subjectName: 'World History',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-456',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'BUS-220',
+    subjectName: 'Business Ethics',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-789',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'ART-180',
+    subjectName: 'Introduction to Art History',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-123',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'PSY-240',
+    subjectName: 'Introduction to Psychology',
     units: '3.0',
   },
   {
-    subjectCode: 'GYM-456',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-789',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-123',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-456',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-789',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-123',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-456',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-789',
-    subjectName: 'Juan Dela Cruz',
-    units: '3.0',
-  },
-  {
-    subjectCode: 'GYM-123',
-    subjectName: 'Juan Dela Cruz',
+    subjectCode: 'SOC-260',
+    subjectName: 'Sociology: An Introduction',
     units: '3.0',
   },
 ];

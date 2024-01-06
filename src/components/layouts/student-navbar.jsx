@@ -1,11 +1,6 @@
 'use client';
 
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -13,17 +8,16 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import { CaretSortIcon } from '@radix-ui/react-icons';
 import { ChevronDown, LogOut } from 'lucide-react';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, usePathname } from 'next/navigation';
 import React from 'react';
 
 import PLMLogo from '../../assets/plm-logo.png';
-import { Button } from '../ui/button';
 import NotificationBell from './notification-bell';
+import { SessionLinks } from './session-links';
 
 function StudentNavbar({ linksStudents }) {
   const currentPage = usePathname();
@@ -41,6 +35,7 @@ function StudentNavbar({ linksStudents }) {
           {linksStudents.map((link, index) => {
             // if link has sublinks, return dropdown
             if (link.subLinks) {
+
               return (
                 <DropdownMenu key={index}>
                   <DropdownMenuTrigger
@@ -54,8 +49,15 @@ function StudentNavbar({ linksStudents }) {
                     <ChevronDown className='h-4 w-4 text-zinc-600 mt-1 ml-2' />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className='w-56 z-50'>
-                    <SessionLinks />
-                    <DropdownMenuSeparator />
+                    {link.label.includes('Account')
+                      && (
+                        <>
+                          {/* display SessionLinks when the menu is 'Account' or 'Accounts' */}
+                          <SessionLinks />
+                          <DropdownMenuSeparator />
+                        </>
+                      )}
+
                     {link.subLinks.map((subLink, index) => {
                       return <SubLinksContent subLink={subLink} key={index} />;
                     })}
@@ -91,78 +93,8 @@ function StudentNavbar({ linksStudents }) {
   );
 }
 
-export function SessionLinks() {
-  // session
-  const { data: session, status } = useSession();
-  const currentPage = usePathname();
 
-  if (status === 'authenticated') {
-    // minus 1 since you are already logged in as one role
-    if (session.role.length - 1 <= 2) {
-      return (
-        <>
-          {session?.role.map((role, index) => {
-            if (!currentPage.includes(role)) {
-              // check if path is not the same as access role, to remove role on display
-              return (
-                <DropdownMenuItem key={index}>
-                  <Link href={role}>
-                    {/* Displays 'Login as {role}' */}
-                    Login as{' '}
-                    {role
-                      .replace('-', ' ')
-                      .replace(/\w\S*/g, (w) =>
-                        w.replace(/^\w/, (c) => c.toUpperCase()),
-                      )}
-                  </Link>
-                </DropdownMenuItem>
-              );
-            }
-          })}
-        </>
-      );
-    } else {
-      // displays collapsible portal if user has more than 3 roles
-      return (
-        <Collapsible>
-          <CollapsibleTrigger className='w-full' asChild>
-            <Button
-              variant='ghost'
-              className='p-0 m-0 w-full flex flex-row justify-between px-2'
-            >
-              Portal
-              <CaretSortIcon />
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            {session?.role.map((role, index) => {
-              if (!currentPage.includes(role)) {
-                // check if path is not the same as access role, to remove role on display
-                return (
-                  <DropdownMenuItem key={index}>
-                    <Link href={role}>
-                      {/* Displays 'Login as {role}' */}
-                      Login as{' '}
-                      {role
-                        .replace('-', ' ')
-                        .replace(/\w\S*/g, (w) =>
-                          w.replace(/^\w/, (c) => c.toUpperCase()),
-                        )}
-                    </Link>
-                  </DropdownMenuItem>
-                );
-              }
-            })}
-          </CollapsibleContent>
-        </Collapsible>
-      );
-    }
-  }
-
-  return <></>;
-}
-
-function SubLinksContent({ subLink }) {
+const SubLinksContent = ({ subLink }) => {
   if (subLink.label === 'Sign out') {
     return (
       <DropdownMenuItem className='cursor-pointer flex justify-between items-center flex-row text-red-500'>

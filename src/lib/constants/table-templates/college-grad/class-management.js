@@ -1,49 +1,49 @@
 import { Badge } from '@/components/ui/badge';
-
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 export const collegeClassManagementTemplate = [
   {
     accessorKey: 'subjectCode',
     id: 'subjectCode',
-    header: 'subjectCode',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'subjectName',
-    id: 'subjectName',
-    header: 'subjectName',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'yearTerm',
-    id: 'yearTerm',
-    header: 'yearTerm',
-    filterVariant: 'fuzzy',
-  },
-  {
-    accessorKey: 'professor',
-    id: 'professor',
-    header: 'professor',
+    header: 'Subject Code',
     filterVariant: 'fuzzy',
   },
   {
     accessorKey: 'status',
     id: 'status',
-    header: 'status',
+    header: 'Status',
     filterVariant: 'fuzzy',
-    Cell: ({ value }) => {
+    Cell: ({ cell }) => {
       return (
         <Badge
+          variant='outline'
           className={cn(
-            value === 'Active'
-              ? 'bg-green-500 text-green-500'
-              : 'bg-red-500 text-red-500',
+            cell.getValue() === 'Active'
+              ? 'bg-[#c0e6dc] text-[#00b983] border-[#00b983]'
+              : 'bg-[#fef2f3] text-[#eb4045] border-[#eb4045]',
           )}
         >
-          {value}
+          {cell.getValue()}
         </Badge>
       );
     },
+  },
+  {
+    accessorKey: 'subjectName',
+    id: 'subjectName',
+    header: 'Subject Name',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'yearTerm',
+    id: 'yearTerm',
+    header: 'Year/Term',
+    filterVariant: 'fuzzy',
+  },
+  {
+    accessorKey: 'professor',
+    id: 'professor',
+    header: 'Professor',
+    filterVariant: 'fuzzy',
   },
 ];

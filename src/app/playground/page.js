@@ -1,5 +1,3 @@
-function UsersPage() {
-  return <main className='w-full p-6'></main>;
+export default function PlaygroundPage() {
+  return <h1>Playground Page</h1>;
 }
-
-export default UsersPage;

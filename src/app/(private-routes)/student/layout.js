@@ -1,6 +1,7 @@
 import AuthProvider from '@/components/component/auth';
 import Providers from '@/components/component/providers';
 import StudentNavbar from '@/components/layouts/student-navbar';
+import { Container } from '@/components/ui/container';
 import { linksStudents } from '@/lib/constants/links-data';
 import { Inter } from 'next/font/google';
 
@@ -20,7 +21,7 @@ export default function PrivateRouteRootLayoutStudent({ children }) {
         <Providers>
           <AuthProvider accessType='student' accessLevel='private'>
             <StudentNavbar linksStudents={linksStudents} />
-            {children}
+            <Container>{children}</Container>
           </AuthProvider>
         </Providers>
       </body>

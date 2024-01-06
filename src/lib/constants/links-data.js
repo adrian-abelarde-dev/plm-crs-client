@@ -2,17 +2,24 @@ import {
   Activity,
   ArrowLeftRight,
   ArrowUpDown,
+  Book,
   BookOpenText,
   BookText,
   Box,
   Calendar,
+  File,
+  FileSignature,
+  FileSpreadsheet,
   GraduationCap,
+  ListTree,
   Mail,
   PencilLine,
   PersonStanding,
   Presentation,
   User,
   User2,
+  UserCog,
+  Users2,
   Warehouse,
 } from 'lucide-react';
 
@@ -25,6 +32,24 @@ export const linksStudents = [
   {
     label: 'Enrollment',
     path: '/student/enrollment',
+    subLinks: [
+      {
+        label: 'Regular Enrollment',
+        path: '/student/enrollment/regular-enrollment',
+      },
+      {
+        label: 'Irregular Enrollment',
+        path: '/student/enrollment/irregular-enrollment',
+      },
+      {
+        label: 'PE Enrollment',
+        path: '/student/enrollment/pe-enrollment',
+      },
+      {
+        label: 'NSTP Enrollment',
+        path: '/student/enrollment/nstp-enrollment',
+      },
+    ],
   },
   {
     label: 'Information',
@@ -86,11 +111,6 @@ export const adminSidebarLinks = [
     path: '/admin/users',
   },
   {
-    icon: <Warehouse className='mr-0 h-4 w-4 md:mr-2' />,
-    text: 'Rooms',
-    path: '/admin/rooms',
-  },
-  {
     icon: <Presentation className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Meeting',
     path: '/admin/meeting',
@@ -114,6 +134,39 @@ export const adminSidebarLinks = [
     icon: <User2 className='mr-0 h-4 w-4 md:mr-2' />,
     text: 'Students',
     path: '/admin/students',
+  },
+];
+
+export const facultySidebarLinks = [
+  {
+    icon: <BookText className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Teaching',
+    path: '/faculty/teaching',
+  },
+  {
+    icon: <FileSpreadsheet className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Load Assignment',
+    path: '/faculty/load-assignment',
+  },
+  {
+    icon: <FileSignature className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Encoding of Grades',
+    path: '/faculty/encoding-grades',
+  },
+  {
+    icon: <GraduationCap className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'View Grades',
+    path: '/faculty/view-grades',
+  },
+  {
+    icon: <Users2 className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Previous Class',
+    path: '/faculty/previous-class',
+  },
+  {
+    icon: <User2 className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Faculty Profile',
+    path: '/faculty/profile',
   },
 ];
 
@@ -166,10 +219,55 @@ export const collegeGradLinks = [
         icon: <ArrowUpDown className='mr-0 h-4 w-4 md:mr-2' />,
       },
       {
-        text: 'Teaching Assignment',
+        text: (
+          <span>
+            Teaching
+            <br />
+            Assignment
+          </span>
+        ),
         path: '/college-grad/transactions/teaching-assignment',
-        // icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
+        icon: <UserCog className='mr-0 h-4 w-4 md:mr-2' />,
       },
     ],
+  },
+];
+
+export const collegeLinks = [
+  {
+    icon: <Book className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Subjects',
+    path: '/college/subjects',
+  },
+  {
+    icon: <ListTree className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Sections',
+    path: '/college/sections',
+  },
+  {
+    icon: <Calendar className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Schedule',
+    path: '/college/schedule',
+  },
+  {
+    icon: <PersonStanding className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Students',
+    path: '/college/students',
+  },
+  {
+    icon: <Warehouse className='mr-0 h-4 w-4 md:mr-2' />,
+    text: 'Rooms',
+    path: '/college/rooms',
+  },
+  {
+    icon: <File className='mr-0 h-4 w-4 md:mr-2' />,
+    text: (
+      <span>
+        Teaching
+        <br />
+        Assignment
+      </span>
+    ),
+    path: '/college/teaching-assignments',
   },
 ];
