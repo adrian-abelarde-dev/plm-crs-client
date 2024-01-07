@@ -36,9 +36,9 @@ import {
   MousePointerSquare,
   XCircle,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { addActivity } from './admin-api-functions';
+import { addActivity, getAllActivities } from './admin-api-functions';
 import EncodingOfClassesTable from './encoding-of-classes-table';
 
 function AddActivityDialogForm() {
@@ -241,6 +241,23 @@ function AddActivityDialogForm() {
 
 function ScheduleOfActivitiesTable() {
   const [opened, { open, close }] = useDisclosure(false);
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllActivities();
+        // Do something with the data
+        setActivities((prev) => {
+          return [...prev, ...data];
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const fakeActivitiesTemplate = [
     {
@@ -325,7 +342,7 @@ function ScheduleOfActivitiesTable() {
       {/* Table: Schedule of Activites */}
       <TableMRT
         template={fakeActivitiesTemplate}
-        data={fakeActivities}
+        data={activities}
         title='Schedule of Activities'
         description='Add, edit, and delete activities.'
         searchPlaceholder='Search Activities'

@@ -45,3 +45,51 @@ export async function addActivity(
     return null;
   }
 }
+
+// getAllActivities function : `/activities/all`
+export async function getAllActivities() {
+  try {
+    const response = await fetch(`${API}/activities/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    const updatedActivities = data?.activities.map((activity) => {
+      const parsedDateRange = activity.dateRange
+        ? JSON.parse(activity.dateRange)
+        : null;
+
+      return {
+        ...data,
+        activities: activity.activityName,
+        dateCreated: new Date(activity.created_at).toLocaleString(),
+        scheduleStart: `${new Date(
+          parsedDateRange.from,
+        ).toLocaleDateString()} - ${activity.startTime}`,
+        scheduleEnd: `${new Date(parsedDateRange.to).toLocaleDateString()} - ${
+          activity.endTime
+        }`,
+        status: activity.status,
+        aysem: activity.aysem,
+        id: activity.id,
+      };
+    });
+
+    return updatedActivities;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getAllActivities error:', error);
+    return null;
+  }
+}
