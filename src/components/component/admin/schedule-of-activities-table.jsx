@@ -22,10 +22,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { toast } from '@/components/ui/use-toast';
-import {
-  fakeActivities,
-  fakeActivitiesRowActions,
-} from '@/lib/constants/fake-data/activities';
+import { fakeActivitiesRowActions } from '@/lib/constants/fake-data/activities';
 import { cn } from '@/lib/utils';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -282,7 +279,7 @@ function ScheduleOfActivitiesTable() {
       accessorKey: 'status',
       id: 'status',
       header: 'Status',
-      filterVariant: 'fuzzy',
+      filterVariant: 'select',
       Cell: ({ cell }) => {
         return (
           <Badge
@@ -299,7 +296,7 @@ function ScheduleOfActivitiesTable() {
       accessorKey: 'aysem',
       id: 'aysem',
       header: 'AY-SEM',
-      filterVariant: 'fuzzy',
+      filterVariant: 'select',
     },
     {
       accessorKey: 'scheduleStart',
