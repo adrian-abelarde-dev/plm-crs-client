@@ -36,7 +36,6 @@ export async function addActivity(
     }
 
     const data = await response.json();
-    console.log(activityName, date, startTime, endTime, aysem);
 
     return data;
   } catch (error) {
@@ -82,7 +81,7 @@ export async function getAllActivities() {
         }`,
         status: activity.status,
         aysem: activity.aysem,
-        id: activity.id,
+        activityId: activity.id,
       };
     });
 
@@ -90,6 +89,62 @@ export async function getAllActivities() {
   } catch (error) {
     // Handle fetch errors, JSON parsing errors, or server errors
     console.error('getAllActivities error:', error);
+    return null;
+  }
+}
+
+// addParticipant function : `/api/participants/1` -> inserts {participantType, participants, participantName, aysem, dateRange, startTime, endTime, activityId}
+export async function addParticipant(
+  participantType,
+  participants,
+  participantName,
+  aysem,
+  date,
+  startTime,
+  endTime,
+  activityId,
+) {
+  try {
+    const response = await fetch(`${API}/participants/1`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        participantType,
+        participants,
+        participantName,
+        aysem,
+        dateRange: JSON.stringify(date),
+        startTime,
+        endTime,
+        activityId,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+    console.log(
+      participantType,
+      participants,
+      participantName,
+      aysem,
+      date,
+      startTime,
+      endTime,
+      activityId,
+    );
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('addParticipant error:', error);
     return null;
   }
 }

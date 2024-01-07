@@ -239,6 +239,7 @@ function AddActivityDialogForm() {
 function ScheduleOfActivitiesTable() {
   const [opened, { open, close }] = useDisclosure(false);
   const [activities, setActivities] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -256,6 +257,14 @@ function ScheduleOfActivitiesTable() {
     fetchData();
   }, []);
 
+  // filter the activities array to get the selected activity
+  const handleSelectedActivityData = (id) => {
+    const selectedActivity = activities.find(
+      (activity) => activity.activityId === id,
+    );
+    setSelectedActivity(selectedActivity);
+  };
+
   const activitiesTemplate = [
     {
       accessorKey: 'activities',
@@ -263,12 +272,15 @@ function ScheduleOfActivitiesTable() {
       header: 'Activities',
       filterVariant: 'fuzzy',
       size: 320,
-      Cell: ({ cell }) => {
+      Cell: ({ cell, row }) => {
         return (
           <Button
             variant='ghost'
             className='flex gap-2 items-center text-left text-zinc-900 hover:bg-transparent hover:text-zinc-400'
-            onClick={open}
+            onClick={() => {
+              handleSelectedActivityData(row.original.activityId);
+              open();
+            }}
           >
             {cell.getValue()} <MousePointerSquare className='h-4 w-4' />
           </Button>
@@ -324,7 +336,7 @@ function ScheduleOfActivitiesTable() {
       <Modal
         opened={opened}
         onClose={close}
-        title='Encoding of Classes'
+        title={selectedActivity?.activities} // activityName
         radius={'md'}
         zIndex={50}
         overlayProps={{
@@ -333,7 +345,7 @@ function ScheduleOfActivitiesTable() {
         // Make width and height 100% of the screen
         size='100%'
       >
-        {<EncodingOfClassesTable />}
+        {<EncodingOfClassesTable selectedActivity={selectedActivity} />}
       </Modal>
 
       {/* Table: Schedule of Activites */}
