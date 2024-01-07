@@ -32,15 +32,48 @@ import { format } from 'date-fns';
 import { CalendarIcon, MousePointerSquare } from 'lucide-react';
 import { useState } from 'react';
 
+import { addActivity } from './admin-api-functions';
 import EncodingOfClassesTable from './encoding-of-classes-table';
 
 function AddActivityDialogForm() {
   const [date, setDate] = useState({
-    from: new Date(2021, 8, 1, 8, 0),
-    to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
+    from: new Date(),
+    to: new Date(),
   });
-  const [startTime, setStartTime] = useState('08:00');
-  const [endTime, setEndTime] = useState('17:00');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [activityName, setActivityName] = useState('');
+  const [aysem, setAysem] = useState('');
+
+  const handleSaveActivity = async () => {
+    console.log({
+      activityName,
+      aysem,
+      dateRange: date,
+      startTime,
+      endTime,
+      status: 'Active',
+    });
+    try {
+      // Call the addActivity function with the required parameters
+      const data = await addActivity(
+        activityName,
+        date,
+        startTime,
+        endTime,
+        aysem,
+      );
+
+      // Check if the addActivity function was successful
+      if (data) {
+        console.log(data); // Log the response data from the server
+      } else {
+        console.error('Error adding activity');
+      }
+    } catch (error) {
+      console.error('error:', error); // Handle any errors that occur during the process
+    }
+  };
 
   return (
     <Dialog>
@@ -58,13 +91,21 @@ function AddActivityDialogForm() {
           {/* Activity Name */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='activity-name'>Activity Name</Label>
-            <Input id='activity-name' placeholder='Enter activity name' />
+            <Input
+              id='activity-name'
+              placeholder='Enter activity name'
+              onChange={(e) => setActivityName(e.target.value)}
+            />
           </section>
 
           {/* AY-SEM */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='ay-sem'>AY-SEM</Label>
-            <Input id='ay-sem' placeholder='Enter AY-SEM' />
+            <Input
+              id='ay-sem'
+              placeholder='Enter AY-SEM'
+              onChange={(e) => setAysem(e.target.value)}
+            />
           </section>
 
           {/* Date: Start and End */}
@@ -82,13 +123,13 @@ function AddActivityDialogForm() {
                 >
                   <CalendarIcon className='mr-2 h-4 w-4' />
                   {date?.from ? (
-                    date.to ? (
+                    date?.to ? (
                       <>
-                        {format(date.from, 'LLL dd, y HH:mm')} -{' '}
-                        {format(date.to, 'LLL dd, y HH:mm')}
+                        {format(date?.from, 'LLL dd, y HH:mm')} -{' '}
+                        {format(date?.to, 'LLL dd, y HH:mm')}
                       </>
                     ) : (
-                      format(date.from, 'LLL dd, y HH:mm')
+                      format(date?.from, 'LLL dd, y HH:mm')
                     )
                   ) : (
                     <span>Pick a date</span>
@@ -163,7 +204,9 @@ function AddActivityDialogForm() {
           <DialogClose asChild>
             <Button variant='outline'>Cancel</Button>
           </DialogClose>
-          <Button type='submit'>Save Activity</Button>
+          <Button type='submit' onClick={handleSaveActivity}>
+            Save Activity
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
