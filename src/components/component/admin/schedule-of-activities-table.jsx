@@ -21,6 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { toast } from '@/components/ui/use-toast';
 import {
   fakeActivities,
   fakeActivitiesRowActions,
@@ -29,7 +30,12 @@ import { cn } from '@/lib/utils';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { format } from 'date-fns';
-import { CalendarIcon, MousePointerSquare } from 'lucide-react';
+import {
+  CalendarIcon,
+  CheckCircle,
+  MousePointerSquare,
+  XCircle,
+} from 'lucide-react';
 import { useState } from 'react';
 
 import { addActivity } from './admin-api-functions';
@@ -46,14 +52,6 @@ function AddActivityDialogForm() {
   const [aysem, setAysem] = useState('');
 
   const handleSaveActivity = async () => {
-    console.log({
-      activityName,
-      aysem,
-      dateRange: date,
-      startTime,
-      endTime,
-      status: 'Active',
-    });
     try {
       // Call the addActivity function with the required parameters
       const data = await addActivity(
@@ -66,12 +64,40 @@ function AddActivityDialogForm() {
 
       // Check if the addActivity function was successful
       if (data) {
-        console.log(data); // Log the response data from the server
+        toast({
+          title: (
+            <div className='flex flex-row'>
+              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+              <h1>Success!</h1>
+            </div>
+          ),
+          description: <>{data.message}</>,
+        });
       } else {
+        toast({
+          variant: 'destructive',
+          title: (
+            <div className='flex flex-row'>
+              <XCircle className='mr-2 h-4 w-4' />
+              <h1>Error!</h1>
+            </div>
+          ),
+          description: <>Error saving your data</>,
+        });
         console.error('Error adding activity');
       }
     } catch (error) {
-      console.error('error:', error); // Handle any errors that occur during the process
+      toast({
+        variant: 'destructive',
+        title: (
+          <div className='flex flex-row'>
+            <XCircle className='mr-2 h-4 w-4' />
+            <h1>Error!</h1>
+          </div>
+        ),
+        description: <>Error saving your data</>,
+      });
+      console.error('error:', error);
     }
   };
 
