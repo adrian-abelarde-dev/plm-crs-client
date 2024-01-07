@@ -256,7 +256,7 @@ function ScheduleOfActivitiesTable() {
     fetchData();
   }, []);
 
-  const fakeActivitiesTemplate = [
+  const activitiesTemplate = [
     {
       accessorKey: 'activities',
       id: 'activities',
@@ -338,7 +338,7 @@ function ScheduleOfActivitiesTable() {
 
       {/* Table: Schedule of Activites */}
       <TableMRT
-        template={fakeActivitiesTemplate}
+        template={activitiesTemplate}
         data={activities}
         title='Schedule of Activities'
         description='Add, edit, and delete activities.'
