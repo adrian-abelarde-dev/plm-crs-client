@@ -1,6 +1,5 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -28,10 +27,7 @@ import {
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from '@/components/ui/use-toast';
-import {
-  fakeParticipants,
-  fakeParticipantsRowActions,
-} from '@/lib/constants/fake-data/participants';
+import { fakeParticipantsRowActions } from '@/lib/constants/fake-data/participants';
 import { participantTypes } from '@/lib/constants/participant-types';
 import {
   participantsIfCollege,
@@ -47,7 +43,7 @@ import { CalendarIcon, CheckCircle, CheckIcon, XCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import TableMRT from '../../layouts/table-mrt';
-import { addParticipant } from './admin-api-functions';
+import { addParticipant, getAllParticipants } from './admin-api-functions';
 
 function AddParticipantDialogForm({ activityId }) {
   const [participantTypeOpen, setParticipantTypeOpen] = useState(false);
@@ -405,29 +401,29 @@ function AddParticipantDialogForm({ activityId }) {
 }
 
 function EncodingOfClassesTable({ selectedActivity }) {
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllParticipants(selectedActivity.activityId);
+        setParticipants((prev) => {
+          return [...prev, ...data];
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [selectedActivity.activityId]);
+
   const fakeParticipantsTemplate = [
     {
       accessorKey: 'participant',
       id: 'participant',
       header: 'Participant',
       filterVariant: 'fuzzy',
-    },
-    {
-      accessorKey: 'status',
-      id: 'status',
-      header: 'Status',
-      filterVariant: 'fuzzy',
-      Cell: ({ cell }) => {
-        return (
-          <Badge
-            variant={
-              cell.getValue() === 'Active' ? 'outlinePrimary' : 'outline'
-            }
-          >
-            {cell.getValue()}
-          </Badge>
-        );
-      },
     },
     {
       accessorKey: 'aysem',
@@ -458,7 +454,7 @@ function EncodingOfClassesTable({ selectedActivity }) {
   return (
     <TableMRT
       template={fakeParticipantsTemplate}
-      data={fakeParticipants}
+      data={participants}
       title={selectedActivity.activities} // activityName
       description='Add, edit, and delete participants.'
       searchPlaceholder='Search Participants'

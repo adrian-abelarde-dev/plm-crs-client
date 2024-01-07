@@ -245,7 +245,6 @@ function ScheduleOfActivitiesTable() {
     const fetchData = async () => {
       try {
         const data = await getAllActivities();
-        // Do something with the data
         setActivities((prev) => {
           return [...prev, ...data];
         });

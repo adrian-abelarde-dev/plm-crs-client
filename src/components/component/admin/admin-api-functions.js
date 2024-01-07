@@ -148,3 +148,52 @@ export async function addParticipant(
     return null;
   }
 }
+
+// getAllParticipants function : `/participants/all`
+export async function getAllParticipants( activityId ) {
+  try {
+    const response = await fetch(`${API}/participants/all/${activityId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    const updatedParticipants = data?.participants.map((participant) => {
+      const parsedDateRange = participant.dateRange
+        ? JSON.parse(participant.dateRange)
+        : null;
+
+      return {
+        ...data,
+        participant: `${participant.participantType} - ${participant.participants}`,
+        participantName: participant.participantName,
+        aysem: participant.aysem,
+        scheduleStart: `${new Date(
+          parsedDateRange.from,
+        ).toLocaleDateString()} - ${participant.startTime}`,
+        scheduleEnd: `${new Date(parsedDateRange.to).toLocaleDateString()} - ${
+          participant.endTime
+        }`,
+        dateCreated: participant.created_at,
+        activityId: participant.activityId,
+        participantId: participant.id,
+      };
+    });
+
+    return updatedParticipants;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getAllParticipants error:', error);
+    return null;
+  }
+}
