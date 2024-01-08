@@ -53,6 +53,7 @@ export async function getAllActivities() {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: 'no-store',
     });
 
     if (!response.ok) {
@@ -157,6 +158,7 @@ export async function getAllParticipants(activityId) {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: 'no-store',
     });
 
     if (!response.ok) {
@@ -248,6 +250,7 @@ export async function getAllUsers() {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: 'no-store',
     });
 
     if (!response.ok) {
@@ -275,6 +278,75 @@ export async function getAllUsers() {
   } catch (error) {
     // Handle fetch errors, JSON parsing errors, or server errors
     console.error('getAllUsers error:', error);
+    return null;
+  }
+}
+
+// getOneUser function : `/user/1/{userId}`
+export async function getOneUser(userId) {
+  try {
+    const response = await fetch(`${API}/user/1/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getOneUser error:', error);
+    return null;
+  }
+}
+
+// updateUser function : `/user/1/{userId}` -> updates userType[array], firstname, middlename, lastname, emailAddress
+export async function updateUser(
+  userId,
+  userType,
+  firstName,
+  middleName,
+  lastName,
+  emailAddress,
+) {
+  try {
+    const response = await fetch(`${API}/user/1/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userType: [userType],
+        firstName,
+        middleName,
+        lastName,
+        plmEmail: emailAddress,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('updateUser error:', error);
     return null;
   }
 }

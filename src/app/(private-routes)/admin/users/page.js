@@ -3,6 +3,8 @@
 import {
   addUser,
   getAllUsers,
+  getOneUser,
+  updateUser,
 } from '@/components/component/admin/admin-api-functions';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
@@ -20,10 +22,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import {
-  UserSchema,
-  userSchemaDefaultValues,
-} from '@/lib/constants/schema/user';
+import { UserSchema } from '@/lib/constants/schema/user';
 import { usersTemplate } from '@/lib/constants/table-templates/admin/users';
 import { onError, onSuccess } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -185,19 +184,58 @@ function AddUserDialogForm() {
   );
 }
 
-function EditUserDialogForm({ disabled }) {
+function EditUserDialogForm({ disabled, userId }) {
+  const [userData, setUserData] = useState({});
   const editUserForm = useForm({
     resolver: zodResolver(UserSchema),
-    defaultValues: {
-      userSchemaDefaultValues,
+    values: {
+      userId: userId,
+      userType: userData.userType ? userData.userType[0] : '',
+      firstName: userData.firstName,
+      middleName: userData.middleName,
+      lastName: userData.lastName,
+      emailAddress: userData.plmEmail,
     },
   });
 
-  function onSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values) {
+    try {
+      const data = await updateUser(
+        values.userId,
+        values.userType,
+        values.firstName,
+        values.middleName,
+        values.lastName,
+        values.emailAddress,
+      );
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError('Error Saving Data!');
+      }
+    } catch (error) {
+      console.error('Error editting user:', error);
+      throw error;
+    }
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getOneUser(userId);
+
+        if (data) {
+          setUserData(data.user);
+        }
+      } catch (error) {
+        console.error('Error editing user:', error);
+        // Handle error as needed, e.g., display an error message or log it
+        throw error;
+      }
+    };
+
+    fetchData(); // Call the async function immediately
+  }, [userId]);
 
   return (
     <Dialog>
@@ -228,6 +266,7 @@ function EditUserDialogForm({ disabled }) {
                 placeholder='John'
                 fieldName='userId'
                 badge={<Badge variant='outline'>Auto-generated</Badge>}
+                disabled
               />
 
               <SelectFormField
@@ -292,10 +331,6 @@ function UsersPage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log({ selectedUser });
-  }, [selectedUser]);
-
-  useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getAllUsers();
@@ -328,6 +363,7 @@ function UsersPage() {
                 Object.keys(selectedUser).length > 1 ||
                 Object.keys(selectedUser).length === 0
               }
+              userId={Object.keys(selectedUser)[0]}
             />
             <AddUserDialogForm />
           </div>
