@@ -150,7 +150,7 @@ export async function addParticipant(
 }
 
 // getAllParticipants function : `/participants/all`
-export async function getAllParticipants( activityId ) {
+export async function getAllParticipants(activityId) {
   try {
     const response = await fetch(`${API}/participants/all/${activityId}`, {
       method: 'GET',
