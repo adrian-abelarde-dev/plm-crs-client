@@ -26,7 +26,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { toast } from '@/components/ui/use-toast';
 import { fakeParticipantsRowActions } from '@/lib/constants/fake-data/participants';
 import { participantTypes } from '@/lib/constants/participant-types';
 import {
@@ -36,10 +35,10 @@ import {
   participantsIfStudent,
   participantsIfYearLevel,
 } from '@/lib/constants/participants';
-import { cn } from '@/lib/utils';
+import { cn, onError, onSuccess } from '@/lib/utils';
 import { CaretSortIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
-import { CalendarIcon, CheckCircle, CheckIcon, XCircle } from 'lucide-react';
+import { CalendarIcon, CheckIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import TableMRT from '../../layouts/table-mrt';
@@ -103,16 +102,7 @@ function AddParticipantDialogForm({ activityId }) {
 
       // Check if the addParticipant function was successful
       if (data) {
-        toast({
-          variant: 'success',
-          title: (
-            <div className='flex flex-row z-50'>
-              <CheckCircle className='mr-2 h-4 w-4' />
-              <h1>Success!</h1>
-            </div>
-          ),
-          description: <>{data.message}</>,
-        });
+        onSuccess(data.message);
 
         // Close the dialog
         setParticipantTypeValue(null);
@@ -127,16 +117,7 @@ function AddParticipantDialogForm({ activityId }) {
         setEndTime('');
       }
     } catch (err) {
-      toast({
-        variant: 'destructive',
-        title: (
-          <div className='flex flex-row'>
-            <XCircle className='mr-2 h-4 w-4' />
-            <h1>Error!</h1>
-          </div>
-        ),
-        description: <>Error saving your data</>,
-      });
+      onError('Error adding participant.');
       console.error('error:', err);
     }
   };

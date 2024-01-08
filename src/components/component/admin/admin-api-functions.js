@@ -197,3 +197,84 @@ export async function getAllParticipants(activityId) {
     return null;
   }
 }
+
+// addUser function : `/user` -> inserts userId, array of userType, firstname, middlename, lastname, emailAddress
+export async function addUser(
+  userId,
+  userType,
+  firstName,
+  middleName,
+  lastName,
+  emailAddress,
+) {
+  try {
+    const response = await fetch(`${API}/user/1/${userId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userType: [userType],
+        firstName,
+        middleName,
+        lastName,
+        plmEmail: emailAddress,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('addUser error:', error);
+    return null;
+  }
+}
+
+// getAllUsers function : `/user/all`
+export async function getAllUsers() {
+  try {
+    const response = await fetch(`${API}/user/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    const updatedUsers = data?.users.map((user) => {
+      return {
+        ...data,
+        userid: user.id,
+        type: user.userType.toString(),
+        fullname: `${user.firstName} ${user.middleName} ${user.lastName}`,
+        email: user.plmEmail,
+        status: user.status,
+        datecreated: new Date(user.created_at).toLocaleString(),
+      };
+    });
+
+    return updatedUsers;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getAllUsers error:', error);
+    return null;
+  }
+}
