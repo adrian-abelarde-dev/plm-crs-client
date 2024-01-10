@@ -1,6 +1,9 @@
 'use client';
 
-import { addCollege } from '@/components/component/admin/admin-api-functions';
+import {
+  addCollege,
+  getAllCollege,
+} from '@/components/component/admin/admin-api-functions';
 import ProgramsTable from '@/components/component/admin/programs-table';
 import AlertConfirmModal from '@/components/component/alert-dialog';
 import InputFormField from '@/components/component/form/input-formfield';
@@ -30,7 +33,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Archive, CheckCircle, PlusIcon, View, XCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -212,6 +215,7 @@ function AdminCollegePage() {
   const [rowSelection, setRowSelection] = useState([]);
   const [opened, { open, close }] = useDisclosure(false);
   const [addCollegeDialogFormOpen, setCollegeDialogFormOpen] = useState(false);
+  const [colleges, setColleges] = useState([]);
 
   const fakeCollegesTemplate = [
     {
@@ -251,6 +255,20 @@ function AdminCollegePage() {
     fakeCollegesTemplate,
     rowSelection,
   );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getAllCollege();
+        setColleges(result);
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Error fetching college:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   async function sampleConfirmFunction(id) {
     try {
@@ -301,7 +319,7 @@ function AdminCollegePage() {
 
       <TableMRT
         template={fakeCollegesTemplate}
-        data={fakeColleges}
+        data={colleges}
         title='College'
         searchPlaceholder='Search College...'
         isCheckBoxVisible={true}

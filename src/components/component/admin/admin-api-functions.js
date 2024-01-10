@@ -492,3 +492,43 @@ export async function addCollege(collegeName, type, collegeId) {
     return null;
   }
 }
+
+// getAllCollege function : `/colleges/all`
+export async function getAllCollege() {
+  try {
+    const response = await fetch(`${API}/colleges/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    const updatedColleges = data?.map((college) => {
+      return {
+        collegeId: college.collegeId,
+        college: college.collegeName,
+        type: college.type,
+        status: college.status,
+        dateCreated: new Date(college.created_at).toLocaleString(),
+        programsListed: college.programsListed,
+      };
+    });
+
+    return updatedColleges;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getAllCollege error:', error);
+    return null;
+  }
+}
