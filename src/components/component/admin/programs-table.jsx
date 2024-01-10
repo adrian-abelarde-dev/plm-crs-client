@@ -3,7 +3,6 @@
 import AlertConfirmModal from '@/components/component/alert-dialog';
 import InputFormField from '@/components/component/form/input-formfield';
 import TableMRT from '@/components/layouts/table-mrt';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -16,11 +15,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
-import { toast } from '@/components/ui/use-toast';
-import { onError, onSuccess, testPromise } from '@/lib/utils';
+import { onError, onSuccess } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Archive, CheckCircle, PlusIcon, XCircle } from 'lucide-react';
+import { Archive, PlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -32,13 +29,12 @@ const ProgramSchema = z.object({
   program: z.string(),
 });
 
-function AddProjectDialogForm({ open, setOpen, selectedCollege}) {
+function AddProjectDialogForm({ open, setOpen, selectedCollege }) {
   const addProjectForm = useForm({
     resolver: zodResolver(ProgramSchema),
-
   });
 
-    async function onSubmit() {
+  async function onSubmit() {
     try {
       const data = await addProgram(
         addProjectForm.getValues().program,
@@ -48,10 +44,10 @@ function AddProjectDialogForm({ open, setOpen, selectedCollege}) {
       if (data) {
         onSuccess(data.message);
       } else {
-        onError("Failed to add program");
+        onError('Failed to add program');
       }
     } catch (error) {
-      onError("Failed to add program");
+      onError('Failed to add program');
       console.log(error);
       throw error;
     }
@@ -97,7 +93,9 @@ function AddProjectDialogForm({ open, setOpen, selectedCollege}) {
               <DialogClose asChild>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button type='submit' onClick={ onSubmit}>Add Program</Button>
+              <Button type='submit' onClick={onSubmit}>
+                Add Program
+              </Button>
             </DialogFooter>
           </DialogContent>
         </form>
@@ -108,7 +106,7 @@ function AddProjectDialogForm({ open, setOpen, selectedCollege}) {
 
 export default function ProgramsTable({ selectedCollege }) {
   const [addProgramDialogOpen, setProgramDialogOpen] = useState(false);
-  const [programs, setPrograms] = useState([])
+  const [programs, setPrograms] = useState([]);
 
   const fakeProgramsTemplate = [
     {
@@ -137,11 +135,13 @@ export default function ProgramsTable({ selectedCollege }) {
     },
   ];
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getAllProgramsByCollege([selectedCollege[0].collegeId]);
-        setPrograms(result)
+        const result = await getAllProgramsByCollege([
+          selectedCollege[0].collegeId,
+        ]);
+        setPrograms(result);
       } catch (error) {
         // Handle errors if needed
         console.error('Error fetching users:', error);
@@ -149,7 +149,7 @@ export default function ProgramsTable({ selectedCollege }) {
     };
 
     fetchData();
-  }, [selectedCollege[0].collegeId]);
+  }, [selectedCollege]);
 
   return (
     <TableMRT
@@ -159,8 +159,6 @@ export default function ProgramsTable({ selectedCollege }) {
       searchPlaceholder='Search Programs...'
       enableRowActions={true}
       renderRowActionMenuItems={({ row }) => {
-        const { programId } = row.original;
-
         return (
           <div className='flex flex-col w-[14.75rem] z-10'>
             {/* Archive Alert */}
