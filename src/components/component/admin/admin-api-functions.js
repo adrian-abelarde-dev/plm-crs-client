@@ -594,3 +594,44 @@ export async function addProgram(programName, collegeId, programId) {
     return null;
   }
 }
+
+// getAllProgramsByCollege function : `/programs/by-college/{collegeId}`
+export async function getAllProgramsByCollege(collegeId) {
+  try {
+    const response = await fetch(`${API}/programs/by-college/${collegeId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    const updatedPrograms = data?.map((program) => {
+      return {
+        programId: program.programId,
+        program: program.programName,
+        collegeId: collegeId,
+        status: program.status,
+        studentsEnlisted: program.studentEnlisted,
+        dateCreated: new Date(program.created_at).toLocaleString(),
+      };
+    });
+
+    return updatedPrograms;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getAllProgramsByCollege error:', error);
+    return null;
+  }
+}
+

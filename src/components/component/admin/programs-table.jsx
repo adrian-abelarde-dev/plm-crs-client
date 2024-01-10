@@ -21,11 +21,11 @@ import { toast } from '@/components/ui/use-toast';
 import { onError, onSuccess, testPromise } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Archive, CheckCircle, PlusIcon, XCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { addProgram } from './admin-api-functions';
+import { addProgram, getAllProgramsByCollege } from './admin-api-functions';
 
 const ProgramSchema = z.object({
   programId: z.string(),
@@ -108,6 +108,7 @@ function AddProjectDialogForm({ open, setOpen, selectedCollege}) {
 
 export default function ProgramsTable({ selectedCollege }) {
   const [addProgramDialogOpen, setProgramDialogOpen] = useState(false);
+  const [programs, setPrograms] = useState([])
 
   const fakeProgramsTemplate = [
     {
@@ -136,69 +137,24 @@ export default function ProgramsTable({ selectedCollege }) {
     },
   ];
 
-  const fakePrograms = [
-    {
-      programId: 'AYSEM20231002',
-      program: 'Bachelor of Arts in English',
-      studentsEnlisted: '8',
-      dateCreated: '2023-08-17 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231003',
-      program: 'Bachelor of Arts in Psychology',
-      studentsEnlisted: '6',
-      dateCreated: '2023-08-18 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231004',
-      program: 'Bachelor of Science in Accountancy',
-      studentsEnlisted: '4',
-      dateCreated: '2023-08-19 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231005',
-      program: 'Bachelor of Science in Business Administration',
-      studentsEnlisted: '3',
-      dateCreated: '2023-08-20 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231006',
-      program: 'Bachelor of Science in Entrepreneurship',
-      studentsEnlisted: '2',
-      dateCreated: '2023-08-21 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231007',
-      program: 'Bachelor of Science in Marketing',
-      studentsEnlisted: '7',
-      dateCreated: '2023-08-22 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231008',
-      program: 'Bachelor of Science in Management',
-      studentsEnlisted: '5',
-      dateCreated: '2023-08-23 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231009',
-      program: 'Bachelor of Science in Management Accounting',
-      studentsEnlisted: '4',
-      dateCreated: '2023-08-24 : 12:00 AM',
-    },
-    {
-      programId: 'AYSEM20231010',
-      program: 'Bachelor of Science in Mathematics',
-      studentsEnlisted: '3',
-      dateCreated: '2023-08-25 : 12:00 AM',
-    },
-  ];
+    useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getAllProgramsByCollege([selectedCollege[0].collegeId]);
+        setPrograms(result)
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Error fetching users:', error);
+      }
+    };
 
-
+    fetchData();
+  }, [selectedCollege[0].collegeId]);
 
   return (
     <TableMRT
       template={fakeProgramsTemplate}
-      data={fakePrograms}
+      data={programs}
       title={`${selectedCollege[0]?.college} Programs`}
       searchPlaceholder='Search Programs...'
       enableRowActions={true}
