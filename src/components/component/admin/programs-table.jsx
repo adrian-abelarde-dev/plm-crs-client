@@ -18,31 +18,43 @@ import {
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
-import { testPromise } from '@/lib/utils';
+import { onError, onSuccess, testPromise } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Archive, CheckCircle, PlusIcon, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { addProgram } from './admin-api-functions';
+
 const ProgramSchema = z.object({
   programId: z.string(),
   program: z.string(),
 });
 
-function AddProjectDialogForm({ open, setOpen }) {
+function AddProjectDialogForm({ open, setOpen, selectedCollege}) {
   const addProjectForm = useForm({
     resolver: zodResolver(ProgramSchema),
-    defaultValues: {
-      programId: 'AYSEM20231002',
-      program: '',
-    },
+
   });
 
-  function onAddProgramSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    async function onSubmit() {
+    try {
+      const data = await addProgram(
+        addProjectForm.getValues().program,
+        selectedCollege.collegeId.toString(),
+        addProjectForm.getValues().programId,
+      );
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError("Failed to add program");
+      }
+    } catch (error) {
+      onError("Failed to add program");
+      console.log(error);
+      throw error;
+    }
   }
 
   return (
@@ -55,7 +67,7 @@ function AddProjectDialogForm({ open, setOpen }) {
       </DialogTrigger>
 
       <Form {...addProjectForm}>
-        <form onSubmit={addProjectForm.handleSubmit(onAddProgramSubmit)}>
+        <form onSubmit={addProjectForm.handleSubmit(onSubmit)}>
           <DialogContent className='xsm:max-w-[26.5625rem]'>
             <DialogHeader>
               <DialogTitle>Add Program</DialogTitle>
@@ -70,8 +82,6 @@ function AddProjectDialogForm({ open, setOpen }) {
                 form={addProjectForm}
                 title='Program ID'
                 fieldName='programId'
-                badge={<Badge variant='outline'>Auto-generated</Badge>}
-                disabled={true}
               />
 
               {/* College */}
@@ -87,7 +97,7 @@ function AddProjectDialogForm({ open, setOpen }) {
               <DialogClose asChild>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button type='submit'>Add College</Button>
+              <Button type='submit' onClick={ onSubmit}>Add Program</Button>
             </DialogFooter>
           </DialogContent>
         </form>
@@ -183,42 +193,13 @@ export default function ProgramsTable({ selectedCollege }) {
     },
   ];
 
-  async function sampleConfirmFunction(id) {
-    try {
-      const result = await testPromise(id);
 
-      if (result) {
-        toast({
-          title: (
-            <div className='flex flex-row'>
-              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-              <Label>Success!</Label>
-            </div>
-          ),
-          description: <>Changes have been Saved.</>,
-        });
-      }
-    } catch (error) {
-      console.error({ error });
-
-      toast({
-        variant: 'destructive',
-        title: (
-          <div className='flex flex-row'>
-            <XCircle className='mr-2 h-4 w-4' />
-            <Label>Error!</Label>
-          </div>
-        ),
-        description: <>Error saving your data</>,
-      });
-    }
-  }
 
   return (
     <TableMRT
       template={fakeProgramsTemplate}
       data={fakePrograms}
-      title={`${selectedCollege[0].college} Programs`}
+      title={`${selectedCollege[0]?.college} Programs`}
       searchPlaceholder='Search Programs...'
       enableRowActions={true}
       renderRowActionMenuItems={({ row }) => {
@@ -233,7 +214,7 @@ export default function ProgramsTable({ selectedCollege }) {
               description='You can still undo this action. This will only archive the program and not delete it.'
               cancelLabel='Cancel'
               confirmLabel='Archive'
-              confirmFunction={() => sampleConfirmFunction(programId)}
+              confirmFunction={() => {}}
               triggerIcon={<Archive className='w-4 h-4' />}
               className='w-full items-start justify-between text-left flex text-destructive hover:text-destructive/90'
             />
@@ -245,6 +226,7 @@ export default function ProgramsTable({ selectedCollege }) {
           <AddProjectDialogForm
             open={addProgramDialogOpen}
             setOpen={setProgramDialogOpen}
+            selectedCollege={selectedCollege[0]}
           />
         </section>
       }

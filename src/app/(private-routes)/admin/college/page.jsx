@@ -251,7 +251,7 @@ function AdminCollegePage() {
   ];
 
   const selectedCollege = handleRowSelectionChange(
-    fakeColleges,
+    colleges,
     fakeCollegesTemplate,
     rowSelection,
   );
@@ -347,6 +347,7 @@ function AdminCollegePage() {
         }}
         RightButtons={
           <section className='flex gap-2 items-center'>
+            {/* Code commented since there's no UI for adding programs */}
             <Button
               variant='outline'
               onClick={open}

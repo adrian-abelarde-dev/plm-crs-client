@@ -532,3 +532,65 @@ export async function getAllCollege() {
     return null;
   }
 }
+
+// toggleCollegeStatus function : `/college/toggle-status/{collegeId}` -> updates status
+export async function toggleCollegeStatus(collegeId) {
+  try {
+    const response = await fetch(`${API}/college/toggle-status/${collegeId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('toggleCollegeStatus error:', error);
+    return null;
+  }
+}
+
+// addProgram function : `/programs/1/{programId}` -> inserts programName, collegeId, status = 'Active'
+export async function addProgram(programName, collegeId, programId) {
+  try {
+    const response = await fetch(`${API}/programs/1/${programId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        programName,
+        collegeId,
+        status: 'Active',
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('addProgram error:', error);
+    return null;
+  }
+}
