@@ -459,3 +459,36 @@ export async function toggleStatus(meetingId) {
     return null;
   }
 }
+
+// addCollege function : `/college/1/{collegeId}` -> inserts collegeName, type, status = 'Active'
+export async function addCollege(collegeName, type, collegeId) {
+  try {
+    const response = await fetch(`${API}/colleges/1/${collegeId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        collegeName,
+        type,
+        status: 'Active',
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('addCollege error:', error);
+    return null;
+  }
+}

@@ -1,11 +1,11 @@
 'use client';
 
+import { addCollege } from '@/components/component/admin/admin-api-functions';
 import ProgramsTable from '@/components/component/admin/programs-table';
 import AlertConfirmModal from '@/components/component/alert-dialog';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
 import TableMRT from '@/components/layouts/table-mrt';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,7 +20,12 @@ import {
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
-import { handleRowSelectionChange, testPromise } from '@/lib/utils';
+import {
+  handleRowSelectionChange,
+  onError,
+  onSuccess,
+  testPromise,
+} from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -116,25 +121,30 @@ const collegeTypes = [
 const CollegeSchema = z.object({
   collegeId: z.string(),
   college: z.string(),
-  programsListed: z.string(),
   type: z.string(),
-  dateCreated: z.string(),
 });
 
 function AddCollegeDialogForm({ open, setOpen }) {
   const addCollegeForm = useForm({
     resolver: zodResolver(CollegeSchema),
-    defaultValues: {
-      collegeId: 'AYSEM20231002',
-      college: '',
-      type: '',
-    },
   });
 
-  function onAddCollegeSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onAddCollegeSubmit() {
+    try {
+      const data = await addCollege(
+        addCollegeForm.getValues().college,
+        addCollegeForm.getValues().type,
+        addCollegeForm.getValues().collegeId,
+      );
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError('Failed to add college');
+      }
+    } catch (error) {
+      onError('Failed to add college');
+      throw error;
+    }
   }
 
   return (
@@ -162,8 +172,6 @@ function AddCollegeDialogForm({ open, setOpen }) {
                 form={addCollegeForm}
                 title='College ID'
                 fieldName='collegeId'
-                badge={<Badge variant='outline'>Auto-generated</Badge>}
-                disabled={true}
               />
 
               {/* College */}
@@ -171,7 +179,7 @@ function AddCollegeDialogForm({ open, setOpen }) {
                 form={addCollegeForm}
                 title='College'
                 fieldName='college'
-                placeholder='College of Arts and Sciences'
+                placeholder='College'
               />
 
               {/* College Types */}
@@ -189,7 +197,9 @@ function AddCollegeDialogForm({ open, setOpen }) {
               <DialogClose asChild>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button type='submit'>Add College</Button>
+              <Button type='submit' onClick={onAddCollegeSubmit}>
+                Add College
+              </Button>
             </DialogFooter>
           </DialogContent>
         </form>
