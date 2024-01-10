@@ -430,3 +430,32 @@ export async function getAllMeetings() {
     return null;
   }
 }
+
+// toggleStatus function : `/meeting/toggle-status/{meetingId}` -> updates status
+export async function toggleStatus(meetingId) {
+  try {
+    const response = await fetch(`${API}/meeting/toggle-status/${meetingId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('toggleStatus error:', error);
+    return null;
+  }
+}

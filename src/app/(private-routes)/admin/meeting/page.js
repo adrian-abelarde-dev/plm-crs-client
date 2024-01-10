@@ -1,12 +1,14 @@
 'use client';
 
-import { getAllMeetings } from '@/components/component/admin/admin-api-functions';
+import {
+  getAllMeetings,
+  toggleStatus,
+} from '@/components/component/admin/admin-api-functions';
 import AlertConfirmModal from '@/components/component/alert-dialog';
 import TableMRT from '@/components/layouts/table-mrt';
 import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/components/ui/use-toast';
-import { testPromise } from '@/lib/utils';
-import { ArchiveIcon, CheckCircle, XCircle } from 'lucide-react';
+import { onError, onSuccess } from '@/lib/utils';
+import { ArchiveIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import AddMeeting from './add-meeting';
@@ -62,36 +64,20 @@ const fakeMeetingsTemplate = [
 function MeetingPage() {
   const [rowSelection, setRowSelection] = useState({});
   const [meeting, setMeeting] = useState([]);
-  const { toast } = useToast();
 
-  async function sampleConfirmFunction(id) {
+  async function updateArchive() {
     try {
-      const result = await testPromise(id);
-
-      if (result) {
-        toast({
-          title: (
-            <div className='flex flex-row'>
-              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-              <h1>Success!</h1>
-            </div>
-          ),
-          description: <>Changes have been Saved.</>,
-        });
+      const data = await toggleStatus(Object.keys(rowSelection)[0]);
+      console.log(Object.keys(rowSelection)[0]);
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError('Failed updating status');
       }
     } catch (error) {
-      console.error({ error });
-
-      toast({
-        variant: 'destructive',
-        title: (
-          <div className='flex flex-row'>
-            <XCircle className='mr-2 h-4 w-4' />
-            <h1>Error!</h1>
-          </div>
-        ),
-        description: <>Error saving your data</>,
-      });
+      onError('Failed updating status');
+      console.log(error);
+      throw error;
     }
   }
 
@@ -102,16 +88,14 @@ function MeetingPage() {
 
         if (data) {
           setMeeting(data);
-          console.log(data);
         }
       } catch (error) {
         console.error('Error editing user:', error);
-        // Handle error as needed, e.g., display an error message or log it
         throw error;
       }
     };
 
-    fetchData(); // Call the async function immediately
+    fetchData();
   }, []);
 
   return (
@@ -134,7 +118,7 @@ function MeetingPage() {
               cancelLabel='Cancel'
               confirmLabel='Archive'
               confirmFunction={() => {
-                sampleConfirmFunction('test');
+                updateArchive();
               }}
               triggerIcon={<ArchiveIcon className='w-4 h-4 ml-2' />}
               triggerVariant='outline'

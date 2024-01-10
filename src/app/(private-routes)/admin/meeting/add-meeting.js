@@ -75,10 +75,6 @@ export default function AddMeeting() {
 
   const addMeetingForm = useForm({
     resolver: zodResolver(MeetingSchema),
-
-    // values: {
-    //   meetingId: 'CET 0123.1-2',
-    // },
   });
 
   async function onSubmit(values) {
