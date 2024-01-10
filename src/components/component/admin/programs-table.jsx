@@ -158,7 +158,7 @@ export default function ProgramsTable({ selectedCollege }) {
       title={`${selectedCollege[0]?.college} Programs`}
       searchPlaceholder='Search Programs...'
       enableRowActions={true}
-      renderRowActionMenuItems={({ row }) => {
+      renderRowActionMenuItems={() => {
         return (
           <div className='flex flex-col w-[14.75rem] z-10'>
             {/* Archive Alert */}
