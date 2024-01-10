@@ -350,3 +350,43 @@ export async function updateUser(
     return null;
   }
 }
+
+// addMeeting function : `/meeting/1/{meetingId}` --> inserts label, meetingType, college, status
+export async function addMeeting(
+  meetingId,
+  label,
+  meetingType,
+  college,
+  status,
+) {
+  try {
+    const response = await fetch(`${API}/meeting/1/${meetingId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        label,
+        meetingType,
+        college,
+        status,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+      
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('addMeeting error:', error);
+    return null;
+  }
+}
