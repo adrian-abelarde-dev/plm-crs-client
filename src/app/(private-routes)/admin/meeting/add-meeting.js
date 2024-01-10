@@ -56,11 +56,11 @@ const meetingTypesContent = [
 const statusContent = [
   {
     label: 'Active',
-    value: 'active',
+    value: 'Active',
   },
   {
     label: 'Inactive',
-    value: 'inactive',
+    value: 'Inactive',
   },
 ];
 
@@ -252,9 +252,7 @@ export default function AddMeeting() {
               <DialogClose className='flex gap-2' asChild>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button type='submit'>
-                Add Meeting
-              </Button>
+              <Button type='submit'>Add Meeting</Button>
             </DialogFooter>
           </form>
         </Form>

@@ -378,7 +378,6 @@ export async function addMeeting(
       throw new Error(
         `HTTP error! Status: ${response.status}. Details: ${errorText}`,
       );
-      
     }
     const data = await response.json();
     console.log(data);
@@ -387,6 +386,47 @@ export async function addMeeting(
   } catch (error) {
     // Handle fetch errors, JSON parsing errors, or server errors
     console.error('addMeeting error:', error);
+    return null;
+  }
+}
+
+// getAllMeetings function : `/meeting/all`
+export async function getAllMeetings() {
+  try {
+    const response = await fetch(`${API}/meeting/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Get error details from the response
+      console.log(errorText);
+      throw new Error(
+        `HTTP error! Status: ${response.status}. Details: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    const updatedMeetings = data?.data.map((meeting) => {
+      return {
+        ...data,
+        meetingId: meeting.meetingId,
+        label: meeting.label,
+        meetingType: meeting.meetingType,
+        college: meeting.college,
+        status: meeting.status,
+        dateCreated: new Date(meeting.created_at).toLocaleString(),
+      };
+    });
+
+    return updatedMeetings;
+  } catch (error) {
+    // Handle fetch errors, JSON parsing errors, or server errors
+    console.error('getAllMeetings error:', error);
     return null;
   }
 }
