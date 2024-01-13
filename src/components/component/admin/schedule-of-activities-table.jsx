@@ -21,82 +21,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { toast } from '@/components/ui/use-toast';
-import { fakeActivitiesRowActions } from '@/lib/constants/fake-data/activities';
+import {
+  fakeActivities,
+  fakeActivitiesRowActions,
+} from '@/lib/constants/fake-data/activities';
 import { cn } from '@/lib/utils';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { format } from 'date-fns';
-import {
-  CalendarIcon,
-  CheckCircle,
-  MousePointerSquare,
-  XCircle,
-} from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { CalendarIcon, MousePointerSquare } from 'lucide-react';
+import { useState } from 'react';
 
-import { addActivity, getAllActivities } from './admin-api-functions';
 import EncodingOfClassesTable from './encoding-of-classes-table';
 
 function AddActivityDialogForm() {
   const [date, setDate] = useState({
-    from: new Date(),
-    to: new Date(),
+    from: new Date(2021, 8, 1, 8, 0),
+    to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
   });
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [activityName, setActivityName] = useState('');
-  const [aysem, setAysem] = useState('');
-
-  const handleSaveActivity = async () => {
-    try {
-      // Call the addActivity function with the required parameters
-      const data = await addActivity(
-        activityName,
-        date,
-        startTime,
-        endTime,
-        aysem,
-      );
-
-      // Check if the addActivity function was successful
-      if (data) {
-        toast({
-          title: (
-            <div className='flex flex-row'>
-              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-              <h1>Success!</h1>
-            </div>
-          ),
-          description: <>{data.message}</>,
-        });
-      } else {
-        toast({
-          variant: 'destructive',
-          title: (
-            <div className='flex flex-row'>
-              <XCircle className='mr-2 h-4 w-4' />
-              <h1>Error!</h1>
-            </div>
-          ),
-          description: <>Error saving your data</>,
-        });
-        console.error('Error adding activity');
-      }
-    } catch (error) {
-      toast({
-        variant: 'destructive',
-        title: (
-          <div className='flex flex-row'>
-            <XCircle className='mr-2 h-4 w-4' />
-            <h1>Error!</h1>
-          </div>
-        ),
-        description: <>Error saving your data</>,
-      });
-      console.error('error:', error);
-    }
-  };
+  const [startTime, setStartTime] = useState('08:00');
+  const [endTime, setEndTime] = useState('17:00');
 
   return (
     <Dialog>
@@ -114,21 +58,13 @@ function AddActivityDialogForm() {
           {/* Activity Name */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='activity-name'>Activity Name</Label>
-            <Input
-              id='activity-name'
-              placeholder='Enter activity name'
-              onChange={(e) => setActivityName(e.target.value)}
-            />
+            <Input id='activity-name' placeholder='Enter activity name' />
           </section>
 
           {/* AY-SEM */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='ay-sem'>AY-SEM</Label>
-            <Input
-              id='ay-sem'
-              placeholder='Enter AY-SEM'
-              onChange={(e) => setAysem(e.target.value)}
-            />
+            <Input id='ay-sem' placeholder='Enter AY-SEM' />
           </section>
 
           {/* Date: Start and End */}
@@ -146,13 +82,13 @@ function AddActivityDialogForm() {
                 >
                   <CalendarIcon className='mr-2 h-4 w-4' />
                   {date?.from ? (
-                    date?.to ? (
+                    date.to ? (
                       <>
-                        {format(date?.from, 'LLL dd, y HH:mm')} -{' '}
-                        {format(date?.to, 'LLL dd, y HH:mm')}
+                        {format(date.from, 'LLL dd, y HH:mm')} -{' '}
+                        {format(date.to, 'LLL dd, y HH:mm')}
                       </>
                     ) : (
-                      format(date?.from, 'LLL dd, y HH:mm')
+                      format(date.from, 'LLL dd, y HH:mm')
                     )
                   ) : (
                     <span>Pick a date</span>
@@ -227,9 +163,7 @@ function AddActivityDialogForm() {
           <DialogClose asChild>
             <Button variant='outline'>Cancel</Button>
           </DialogClose>
-          <Button type='submit' onClick={handleSaveActivity}>
-            Save Activity
-          </Button>
+          <Button type='submit'>Save Activity</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -238,48 +172,20 @@ function AddActivityDialogForm() {
 
 function ScheduleOfActivitiesTable() {
   const [opened, { open, close }] = useDisclosure(false);
-  const [activities, setActivities] = useState([]);
-  const [selectedActivity, setSelectedActivity] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getAllActivities();
-        setActivities((prev) => {
-          return [...prev, ...data];
-        });
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // filter the activities array to get the selected activity
-  const handleSelectedActivityData = (id) => {
-    const selectedActivity = activities.find(
-      (activity) => activity.activityId === id,
-    );
-    setSelectedActivity(selectedActivity);
-  };
-
-  const activitiesTemplate = [
+  const fakeActivitiesTemplate = [
     {
       accessorKey: 'activities',
       id: 'activities',
       header: 'Activities',
       filterVariant: 'fuzzy',
       size: 320,
-      Cell: ({ cell, row }) => {
+      Cell: ({ cell }) => {
         return (
           <Button
             variant='ghost'
             className='flex gap-2 items-center text-left text-zinc-900 hover:bg-transparent hover:text-zinc-400'
-            onClick={() => {
-              handleSelectedActivityData(row.original.activityId);
-              open();
-            }}
+            onClick={open}
           >
             {cell.getValue()} <MousePointerSquare className='h-4 w-4' />
           </Button>
@@ -290,7 +196,7 @@ function ScheduleOfActivitiesTable() {
       accessorKey: 'status',
       id: 'status',
       header: 'Status',
-      filterVariant: 'select',
+      filterVariant: 'fuzzy',
       Cell: ({ cell }) => {
         return (
           <Badge
@@ -307,7 +213,7 @@ function ScheduleOfActivitiesTable() {
       accessorKey: 'aysem',
       id: 'aysem',
       header: 'AY-SEM',
-      filterVariant: 'select',
+      filterVariant: 'fuzzy',
     },
     {
       accessorKey: 'scheduleStart',
@@ -335,7 +241,7 @@ function ScheduleOfActivitiesTable() {
       <Modal
         opened={opened}
         onClose={close}
-        title={selectedActivity?.activities} // activityName
+        title='Encoding of Classes'
         radius={'md'}
         zIndex={50}
         overlayProps={{
@@ -344,13 +250,13 @@ function ScheduleOfActivitiesTable() {
         // Make width and height 100% of the screen
         size='100%'
       >
-        {<EncodingOfClassesTable selectedActivity={selectedActivity} />}
+        {<EncodingOfClassesTable />}
       </Modal>
 
       {/* Table: Schedule of Activites */}
       <TableMRT
-        template={activitiesTemplate}
-        data={activities}
+        template={fakeActivitiesTemplate}
+        data={fakeActivities}
         title='Schedule of Activities'
         description='Add, edit, and delete activities.'
         searchPlaceholder='Search Activities'
