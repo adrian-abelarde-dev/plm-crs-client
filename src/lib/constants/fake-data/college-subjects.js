@@ -86,6 +86,13 @@ export const fakeSubjects = [
   },
 ];
 
+export const fakeSubjectsUndergrad = fakeSubjects.filter(
+  (subject) => subject.underGrad === 'Undergrad',
+);
+export const fakeSubjectsGrad = fakeSubjects.filter(
+  (subject) => subject.underGrad === 'Graduate',
+);
+
 export const collegeSubjectName = [
   {
     label: 'Synchronization and Concurrency',
