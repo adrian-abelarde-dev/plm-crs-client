@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: true,
+  // swcMinify: true,
   reactStrictMode: false,
 };
 
-module.exports = nextConfig;
+module.exports = nextConfig;git 
