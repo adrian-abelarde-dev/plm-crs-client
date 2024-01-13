@@ -1,6 +1,9 @@
 'use client';
 
+<<<<<<< HEAD
 import { addMeeting } from '@/components/component/admin/admin-api-functions';
+=======
+>>>>>>> origin/main
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -28,9 +31,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+<<<<<<< HEAD
 import { collegeDepartments } from '@/lib/constants/fake-data/college-sections';
 import { onError, onSuccess } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+=======
+import { useToast } from '@/components/ui/use-toast';
+import { collegeDepartments } from '@/lib/constants/fake-data/college-sections';
+import { testPromise } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckCircle, XCircle } from 'lucide-react';
+>>>>>>> origin/main
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -56,25 +67,45 @@ const meetingTypesContent = [
 const statusContent = [
   {
     label: 'Active',
+<<<<<<< HEAD
     value: 'Active',
   },
   {
     label: 'Inactive',
     value: 'Inactive',
+=======
+    value: 'active',
+  },
+  {
+    label: 'Inactive',
+    value: 'inactive',
+>>>>>>> origin/main
   },
 ];
 
 export default function AddMeeting() {
+<<<<<<< HEAD
   const MeetingSchema = z.object({
     meetingId: z.string().min(1),
     label: z.string().min(1),
     meetingType: z.string().min(1),
     college: z.string().min(1),
     status: z.string().min(1),
+=======
+  const { toast } = useToast();
+
+  const MeetingSchema = z.object({
+    meetingId: z.string().min(1).optional(),
+    label: z.string().min(1).optional(),
+    meetingType: z.string().min(1).optional(),
+    college: z.string().min(1).optional(),
+    status: z.string().min(1).optional(),
+>>>>>>> origin/main
   });
 
   const addMeetingForm = useForm({
     resolver: zodResolver(MeetingSchema),
+<<<<<<< HEAD
   });
 
   async function onSubmit(values) {
@@ -98,6 +129,57 @@ export default function AddMeeting() {
     }
   }
 
+=======
+    defaultValues: {
+      label: '',
+      meetingType: '',
+      college: '',
+      status: '',
+    },
+    values: {
+      meetingId: 'CET 0123.1-2',
+    },
+  });
+
+  async function sampleConfirmFunction(id) {
+    try {
+      const result = await testPromise(id);
+
+      if (result) {
+        toast({
+          title: (
+            <div className='flex flex-row'>
+              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+              <h1>Success!</h1>
+            </div>
+          ),
+          description: <>Changes have been Saved.</>,
+        });
+      }
+    } catch (error) {
+      console.error({ error });
+
+      toast({
+        variant: 'destructive',
+        title: (
+          <div className='flex flex-row'>
+            <XCircle className='mr-2 h-4 w-4' />
+            <h1>Error!</h1>
+          </div>
+        ),
+        description: <>Error saving your data</>,
+      });
+    }
+  }
+
+  function onSubmit(values) {
+    // Print all form values
+    console.log(values);
+
+    sampleConfirmFunction();
+  }
+
+>>>>>>> origin/main
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -117,7 +199,15 @@ export default function AddMeeting() {
                   <FormItem>
                     <FormLabel>Meeting ID</FormLabel>
                     <FormControl>
+<<<<<<< HEAD
                       <Input placeholder='Enter Meeting ID...' {...field} />
+=======
+                      <Input
+                        disabled
+                        placeholder='Enter Meeting ID...'
+                        value={field.value}
+                      />
+>>>>>>> origin/main
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -211,7 +301,11 @@ export default function AddMeeting() {
 
               <FormField
                 control={addMeetingForm.control}
+<<<<<<< HEAD
                 name='status'
+=======
+                name='college'
+>>>>>>> origin/main
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Status</FormLabel>

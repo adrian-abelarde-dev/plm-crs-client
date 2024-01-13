@@ -114,21 +114,29 @@ function AddActivityDialogForm() {
           {/* Activity Name */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='activity-name'>Activity Name</Label>
+<<<<<<< HEAD
             <Input
               id='activity-name'
               placeholder='Enter activity name'
               onChange={(e) => setActivityName(e.target.value)}
             />
+=======
+            <Input id='activity-name' placeholder='Enter activity name' />
+>>>>>>> origin/main
           </section>
 
           {/* AY-SEM */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='ay-sem'>AY-SEM</Label>
+<<<<<<< HEAD
             <Input
               id='ay-sem'
               placeholder='Enter AY-SEM'
               onChange={(e) => setAysem(e.target.value)}
             />
+=======
+            <Input id='ay-sem' placeholder='Enter AY-SEM' />
+>>>>>>> origin/main
           </section>
 
           {/* Date: Start and End */}
@@ -146,6 +154,7 @@ function AddActivityDialogForm() {
                 >
                   <CalendarIcon className='mr-2 h-4 w-4' />
                   {date?.from ? (
+<<<<<<< HEAD
                     date?.to ? (
                       <>
                         {format(date?.from, 'LLL dd, y HH:mm')} -{' '}
@@ -153,6 +162,15 @@ function AddActivityDialogForm() {
                       </>
                     ) : (
                       format(date?.from, 'LLL dd, y HH:mm')
+=======
+                    date.to ? (
+                      <>
+                        {format(date.from, 'LLL dd, y HH:mm')} -{' '}
+                        {format(date.to, 'LLL dd, y HH:mm')}
+                      </>
+                    ) : (
+                      format(date.from, 'LLL dd, y HH:mm')
+>>>>>>> origin/main
                     )
                   ) : (
                     <span>Pick a date</span>
@@ -227,9 +245,13 @@ function AddActivityDialogForm() {
           <DialogClose asChild>
             <Button variant='outline'>Cancel</Button>
           </DialogClose>
+<<<<<<< HEAD
           <Button type='submit' onClick={handleSaveActivity}>
             Save Activity
           </Button>
+=======
+          <Button type='submit'>Save Activity</Button>
+>>>>>>> origin/main
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -107,6 +107,7 @@ export const generateGradingSheetTitle = (aysem) => {
   const result = `GRADING SHEET(S) FOR ${academicYear} ${semesterText}`;
   return result;
 };
+<<<<<<< HEAD
 
 // toast onError:
 export const onError = (errorMessage) => {
@@ -134,3 +135,5 @@ export const onSuccess = (successMessage) => {
     description: <>{successMessage}</>,
   });
 };
+=======
+>>>>>>> origin/main

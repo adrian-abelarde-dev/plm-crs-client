@@ -60,4 +60,5 @@ function AuthProvider({ children, accessType, accessLevel }) {
   return children;
 }
 
+
 export default AuthProvider;

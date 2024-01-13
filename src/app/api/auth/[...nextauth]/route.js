@@ -29,12 +29,28 @@ export const authOptions = {
     },
 
     async session({ session, token }) {
+<<<<<<< HEAD
       try {
         // Use await to wait for the asynchronous operation to complete
         session.idToken = token.idToken;
 
         // Use await to wait for the asynchronous getUserRoles function
         const data = await getUserRoles({ plmEmail: session.user.email });
+=======
+      // IMPORTANT: Add the token to the session as a property
+      // ! request token from backend
+      session.idToken = token.idToken;
+
+      // add api call that will lookup if the user matches the access that it needs
+      session.role = [
+        'admin',
+        'faculty',
+        'student-grad',
+        'college-grad',
+        'student', // for undergrad students
+        'college', // for undergrad colleges
+      ];
+>>>>>>> origin/main
 
         if (data) {
           // Use map directly on the array and store it in roles

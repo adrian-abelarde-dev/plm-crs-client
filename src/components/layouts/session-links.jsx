@@ -22,7 +22,11 @@ export function SessionLinks() {
     if (session.role.length - 1 <= 2) {
       return (
         <>
+<<<<<<< HEAD
           {session?.role?.map((role, index) => {
+=======
+          {session?.role.map((role, index) => {
+>>>>>>> origin/main
             if (!currentPage.includes(role)) {
               // Check if path is not the same as access role, to remove role on display
               return (
@@ -56,7 +60,11 @@ export function SessionLinks() {
           </Button>
         </CollapsibleTrigger>
         <CollapsibleContent>
+<<<<<<< HEAD
           {session?.role?.map((role, index) => {
+=======
+          {session?.role.map((role, index) => {
+>>>>>>> origin/main
             if (!currentPage.includes(role)) {
               // check if path is not the same as access role, to remove role on display
               return (

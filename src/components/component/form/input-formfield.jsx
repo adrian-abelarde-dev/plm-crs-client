@@ -51,7 +51,11 @@ export default function InputFormField({
               className={className}
               disabled={disabled}
               type={type}
+<<<<<<< HEAD
               onChange={onChange ? onChange : field.onChange} // ? if onChange is passed, use that, else use the default onChange from useForm()
+=======
+              onChange={onChange}
+>>>>>>> origin/main
               value={value || field.value}
             />
           </FormControl>
