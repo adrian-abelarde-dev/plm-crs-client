@@ -1,6 +1,8 @@
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+export const API = 'http://localhost:8000/api';
+
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

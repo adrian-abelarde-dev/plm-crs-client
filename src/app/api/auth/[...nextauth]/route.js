@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth';
 import AzureADProvider from 'next-auth/providers/azure-ad';
 
+import { getUserRoles } from './get-user-roles';
+
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -27,21 +29,45 @@ export const authOptions = {
     },
 
     async session({ session, token }) {
-      // IMPORTANT: Add the token to the session as a property
-      // ! request token from backend
-      session.idToken = token.idToken;
+      try {
+        // Use await to wait for the asynchronous operation to complete
+        session.idToken = token.idToken;
 
-      // add api call that will lookup if the user matches the access that it needs
-      session.role = [
-        'admin',
-        'faculty',
-        'student-grad',
-        'college-grad',
-        'student', // for undergrad students
-        'college', // for undergrad colleges
-      ];
+        // Use await to wait for the asynchronous getUserRoles function
+        const data = await getUserRoles({ plmEmail: session.user.email });
 
-      return session;
+        if (data) {
+          // Use map directly on the array and store it in roles
+          const roles = data.userTypes.map((userType) => {
+            // Convert to lowercase
+            userType = userType.toLowerCase();
+
+            // Apply specific transformations
+            switch (userType) {
+              case 'chairpersongrad':
+                userType = 'college-grad';
+                break;
+              case 'chairpersonundergrad':
+                userType = 'college';
+                break;
+              case 'studentgrad':
+                userType = 'student-grad';
+                break;
+            }
+
+            return userType;
+          });
+
+          session.role = roles;
+        } else {
+          console.error('Error fetching user roles');
+        }
+
+        return session;
+      } catch (error) {
+        console.error('session error:', error);
+        return session; // or throw the error if you want to propagate it
+      }
     },
   },
 };
