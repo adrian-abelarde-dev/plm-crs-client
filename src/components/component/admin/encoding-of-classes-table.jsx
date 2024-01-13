@@ -1,5 +1,6 @@
 'use client';
 
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -26,7 +27,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { fakeParticipantsRowActions } from '@/lib/constants/fake-data/participants';
+import {
+  fakeParticipants,
+  fakeParticipantsRowActions,
+} from '@/lib/constants/fake-data/participants';
 import { participantTypes } from '@/lib/constants/participant-types';
 import {
   participantsIfCollege,
@@ -35,32 +39,28 @@ import {
   participantsIfStudent,
   participantsIfYearLevel,
 } from '@/lib/constants/participants';
-import { cn, onError, onSuccess } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { CaretSortIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
 import { CalendarIcon, CheckIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import TableMRT from '../../layouts/table-mrt';
-import { addParticipant, getAllParticipants } from './admin-api-functions';
 
-function AddParticipantDialogForm({ activityId }) {
+function AddParticipantDialogForm() {
   const [participantTypeOpen, setParticipantTypeOpen] = useState(false);
   const [participantTypeValue, setParticipantTypeValue] = useState(null);
 
   const [participantOpen, setParticipantOpen] = useState(false);
   const [participantValue, setParticipantValue] = useState(null);
 
-  const [participantName, setParticipantName] = useState('');
-  const [aysem, setAysem] = useState('');
-
   const [date, setDate] = useState({
-    from: new Date(),
-    to: new Date(),
+    from: new Date(2021, 8, 1, 8, 0),
+    to: new Date(2021, 8, 1, 17, 0), // 2021-09-01 17:00
   });
 
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const [startTime, setStartTime] = useState('08:00');
+  const [endTime, setEndTime] = useState('17:00');
 
   function getParticipants() {
     switch (participantTypeValue) {
@@ -86,41 +86,6 @@ function AddParticipantDialogForm({ activityId }) {
   useEffect(() => {
     setParticipantValue(null);
   }, [participantTypeValue]);
-
-  const handleSaveParticipant = async () => {
-    try {
-      const data = await addParticipant(
-        participantTypeValue,
-        participantValue,
-        participantName,
-        aysem,
-        date,
-        startTime,
-        endTime,
-        activityId,
-      );
-
-      // Check if the addParticipant function was successful
-      if (data) {
-        onSuccess(data.message);
-
-        // Close the dialog
-        setParticipantTypeValue(null);
-        setParticipantValue(null);
-        setParticipantName('');
-        setAysem('');
-        setDate({
-          from: new Date(),
-          to: new Date(),
-        });
-        setStartTime('');
-        setEndTime('');
-      }
-    } catch (err) {
-      onError('Error adding participant.');
-      console.error('error:', err);
-    }
-  };
 
   return (
     <Dialog>
@@ -257,21 +222,13 @@ function AddParticipantDialogForm({ activityId }) {
           {/* Participant Name */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='participant-name'>Participant Name</Label>
-            <Input
-              id='participant-name'
-              placeholder='Enter participant name'
-              onChange={(e) => setParticipantName(e.target.value)}
-            />
+            <Input id='participant-name' placeholder='Enter participant name' />
           </section>
 
           {/* AY-SEM */}
           <section className='w-full flex flex-col gap-2'>
             <Label htmlFor='ay-sem'>AY-SEM</Label>
-            <Input
-              id='ay-sem'
-              placeholder='Enter AY-SEM'
-              onChange={(e) => setAysem(e.target.value)}
-            />
+            <Input id='ay-sem' placeholder='Enter AY-SEM' />
           </section>
 
           {/* Date: Start and End */}
@@ -370,41 +327,37 @@ function AddParticipantDialogForm({ activityId }) {
           <DialogClose asChild>
             <Button variant='outline'>Cancel</Button>
           </DialogClose>
-          <DialogClose asChild>
-            <Button type='submit' onClick={handleSaveParticipant}>
-              Save Participant
-            </Button>
-          </DialogClose>
+          <Button type='submit'>Save Participant</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
 
-function EncodingOfClassesTable({ selectedActivity }) {
-  const [participants, setParticipants] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getAllParticipants(selectedActivity.activityId);
-        setParticipants((prev) => {
-          return [...prev, ...data];
-        });
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [selectedActivity.activityId]);
-
+function EncodingOfClassesTable() {
   const fakeParticipantsTemplate = [
     {
       accessorKey: 'participant',
       id: 'participant',
       header: 'Participant',
       filterVariant: 'fuzzy',
+    },
+    {
+      accessorKey: 'status',
+      id: 'status',
+      header: 'Status',
+      filterVariant: 'fuzzy',
+      Cell: ({ cell }) => {
+        return (
+          <Badge
+            variant={
+              cell.getValue() === 'Active' ? 'outlinePrimary' : 'outline'
+            }
+          >
+            {cell.getValue()}
+          </Badge>
+        );
+      },
     },
     {
       accessorKey: 'aysem',
@@ -435,13 +388,16 @@ function EncodingOfClassesTable({ selectedActivity }) {
   return (
     <TableMRT
       template={fakeParticipantsTemplate}
-      data={participants}
-      title={selectedActivity.activities} // activityName
+      data={fakeParticipants}
+      title='Encoding of Classes'
       description='Add, edit, and delete participants.'
       searchPlaceholder='Search Participants'
       isFullscreen={false}
-      RightButtons={
-        <AddParticipantDialogForm activityId={selectedActivity.activityId} />
+      RightButtons={<AddParticipantDialogForm />}
+      LeftButtons={
+        <Button className='text-[#0F172A]' variant='outline'>
+          Click
+        </Button>
       }
       RowActions={
         <>

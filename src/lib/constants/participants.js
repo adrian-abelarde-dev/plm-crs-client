@@ -3,7 +3,7 @@ export const participantsIfCollege = [
   { label: 'College of Business and Accountancy', value: 'cba' },
   { label: 'College of Computer Studies', value: 'ccs' },
   { label: 'College of Criminal Justice Education', value: 'ccje' },
-  { label: 'College of Education', value: 'coed' },
+  { label: 'College of Education', value: 'coe' },
   { label: 'College of Engineering', value: 'coe' },
   { label: 'College of Hospitality and Tourism Management', value: 'cht' },
   { label: 'College of Law', value: 'col' },
@@ -15,6 +15,7 @@ export const participantsIfCollege = [
   { label: 'Graduate School', value: 'gs' },
   { label: 'Institute of Physical Education and Sports', value: 'ipes' },
   { label: 'Institute of Public Service', value: 'ips' },
+  { label: 'Senior High School', value: 'shs' },
 ];
 
 export const participantsIfCourse = [
@@ -48,6 +49,8 @@ export const participantsIfCourse = [
   { label: 'Bachelor of Science in Criminology', value: 'bscrim' },
   { label: 'Bachelor of Science in Education', value: 'bse' },
   { label: 'Bachelor of Science in Secondary Education', value: 'bsse' },
+  { label: 'Bachelor of Science in Hospitality Management', value: 'bshm' },
+  { label: 'Bachelor of Science in Tourism Management', value: 'bstm' },
   { label: 'Bachelor of Science in Nursing', value: 'bsn' },
 ];
 
