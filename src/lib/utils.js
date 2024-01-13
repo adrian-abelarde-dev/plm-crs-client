@@ -1,4 +1,6 @@
+import { toast } from '@/components/ui/use-toast';
 import { clsx } from 'clsx';
+import { CheckCircle, XCircle } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 export const API = 'http://localhost:8000/api';
@@ -104,4 +106,31 @@ export const generateGradingSheetTitle = (aysem) => {
   const semesterText = `${semester}${semester === '1' ? 'ST' : 'ND'} SEMESTER`;
   const result = `GRADING SHEET(S) FOR ${academicYear} ${semesterText}`;
   return result;
+};
+
+// toast onError:
+export const onError = (errorMessage) => {
+  toast({
+    variant: 'destructive',
+    title: (
+      <div className='flex flex-row'>
+        <XCircle className='mr-2 h-4 w-4' />
+        <h1>Error!</h1>
+      </div>
+    ),
+    description: <>{errorMessage}</>,
+  });
+};
+
+// toast onSuccess:
+export const onSuccess = (successMessage) => {
+  toast({
+    title: (
+      <div className='flex flex-row'>
+        <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
+        <h1>Success!</h1>
+      </div>
+    ),
+    description: <>{successMessage}</>,
+  });
 };

@@ -1,5 +1,11 @@
 'use client';
 
+import {
+  addUser,
+  getAllUsers,
+  getOneUser,
+  updateUser,
+} from '@/components/component/admin/admin-api-functions';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
 import TableMRT from '@/components/layouts/table-mrt';
@@ -16,22 +22,21 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
-import { fakeUsers } from '@/lib/constants/fake-data/users';
-import {
-  UserSchema,
-  userSchemaDefaultValues,
-} from '@/lib/constants/schema/user';
+import { UserSchema } from '@/lib/constants/schema/user';
 import { usersTemplate } from '@/lib/constants/table-templates/admin/users';
+import { onError, onSuccess } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Edit, PlusCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const userTypes = [
-  { label: 'Admin', value: 'admin' },
-  { label: 'Faculty', value: 'faculty' },
-  { label: 'College Admin', value: 'coladmin' },
-  { label: 'Student', value: 'student' },
+  { label: 'Admin', value: 'Admin' },
+  { label: 'Faculty', value: 'Faculty' },
+  { label: 'College Admin', value: 'ChairpersonUndergrad' },
+  { label: 'College Grad Admin', value: 'ChairpersonGrad' },
+  { label: 'Student', value: 'Student' },
+  { label: 'Student Grad', value: 'StudentGrad' },
 ];
 
 export const units = [
@@ -41,14 +46,18 @@ export const units = [
 
 function CustomUserTypesBadges({ value }) {
   switch (value) {
-    case 'admin':
+    case 'Admin':
       return <Badge variant='outlinePrimary'>Admin</Badge>;
-    case 'faculty':
+    case 'Faculty':
       return <Badge variant='outlineBlue'>Faculty</Badge>;
-    case 'coladmin':
+    case 'ChairpersonUndergrad':
       return <Badge variant='outlineIndigo'>College Admin</Badge>;
-    case 'student':
+    case 'Student':
       return <Badge variant='outlineGreen'>Student</Badge>;
+    case 'ChairpersonGrad':
+      return <Badge variant='outlineIndigo'>College Admin</Badge>;
+    case 'StudentGrad':
+      return <Badge variant='outlineGreen'>Student Grad</Badge>;
     default:
       return <Badge variant='outline'>Unknown</Badge>;
   }
@@ -57,15 +66,32 @@ function CustomUserTypesBadges({ value }) {
 function AddUserDialogForm() {
   const addUserForm = useForm({
     resolver: zodResolver(UserSchema),
-    defaultValues: {
-      userSchemaDefaultValues,
-    },
   });
 
-  function onSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values) {
+    try {
+      const data = await addUser(
+        values.userId,
+        values.userType,
+        values.firstName,
+        values.middleName,
+        values.lastName,
+        values.emailAddress,
+      );
+      if (data) {
+        // if data.message includes `exists` use onError(data.message) else onSuccess(data.message)
+        if (data.message.includes('exists')) {
+          onError(data.message);
+        } else {
+          onSuccess(data.message);
+        }
+      } else {
+        onError('Error Saving Data!');
+      }
+    } catch (error) {
+      console.error('Error adding user:', error);
+      throw error;
+    }
   }
 
   return (
@@ -83,7 +109,11 @@ function AddUserDialogForm() {
         </DialogHeader>
 
         <Form {...addUserForm}>
-          <form onSubmit={addUserForm.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={addUserForm.handleSubmit(onSubmit, () =>
+              onError('Input Error!'),
+            )}
+          >
             {/* Content */}
             <div className='flex flex-col gap-2'>
               {/* User ID */}
@@ -143,7 +173,9 @@ function AddUserDialogForm() {
               <DialogClose asChild>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button type='submit'>Save User</Button>
+              <DialogClose asChild>
+                <Button type='submit'>Save User</Button>
+              </DialogClose>
             </DialogFooter>
           </form>
         </Form>
@@ -152,19 +184,58 @@ function AddUserDialogForm() {
   );
 }
 
-function EditUserDialogForm({ disabled }) {
+function EditUserDialogForm({ disabled, userId }) {
+  const [userData, setUserData] = useState({});
   const editUserForm = useForm({
     resolver: zodResolver(UserSchema),
-    defaultValues: {
-      userSchemaDefaultValues,
+    values: {
+      userId: userId,
+      userType: userData.userType ? userData.userType[0] : '',
+      firstName: userData.firstName,
+      middleName: userData.middleName,
+      lastName: userData.lastName,
+      emailAddress: userData.plmEmail,
     },
   });
 
-  function onSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values) {
+    try {
+      const data = await updateUser(
+        values.userId,
+        values.userType,
+        values.firstName,
+        values.middleName,
+        values.lastName,
+        values.emailAddress,
+      );
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError('Error Saving Data!');
+      }
+    } catch (error) {
+      console.error('Error editting user:', error);
+      throw error;
+    }
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getOneUser(userId);
+
+        if (data) {
+          setUserData(data.user);
+        }
+      } catch (error) {
+        console.error('Error editing user:', error);
+        // Handle error as needed, e.g., display an error message or log it
+        throw error;
+      }
+    };
+
+    fetchData(); // Call the async function immediately
+  }, [userId]);
 
   return (
     <Dialog>
@@ -195,6 +266,7 @@ function EditUserDialogForm({ disabled }) {
                 placeholder='John'
                 fieldName='userId'
                 badge={<Badge variant='outline'>Auto-generated</Badge>}
+                disabled
               />
 
               <SelectFormField
@@ -256,16 +328,27 @@ function EditUserDialogForm({ disabled }) {
 
 function UsersPage() {
   const [selectedUser, setSelectedUser] = useState({});
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log({ selectedUser });
-  }, [selectedUser]);
+    const fetchData = async () => {
+      try {
+        const result = await getAllUsers();
+        setUsers(result);
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <main className='w-full p-6'>
       <TableMRT
         template={usersTemplate}
-        data={fakeUsers}
+        data={users}
         title='Users'
         description='Add, edit, and archive users.'
         searchPlaceholder='Search User'
@@ -280,6 +363,7 @@ function UsersPage() {
                 Object.keys(selectedUser).length > 1 ||
                 Object.keys(selectedUser).length === 0
               }
+              userId={Object.keys(selectedUser)[0]}
             />
             <AddUserDialogForm />
           </div>

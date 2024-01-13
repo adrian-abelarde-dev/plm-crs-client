@@ -1,11 +1,14 @@
 'use client';
 
+import {
+  addCollege,
+  getAllCollege,
+} from '@/components/component/admin/admin-api-functions';
 import ProgramsTable from '@/components/component/admin/programs-table';
 import AlertConfirmModal from '@/components/component/alert-dialog';
 import InputFormField from '@/components/component/form/input-formfield';
 import SelectFormField from '@/components/component/form/select-formfield';
 import TableMRT from '@/components/layouts/table-mrt';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,87 +23,19 @@ import {
 import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
-import { handleRowSelectionChange, testPromise } from '@/lib/utils';
+import {
+  handleRowSelectionChange,
+  onError,
+  onSuccess,
+  testPromise,
+} from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Archive, CheckCircle, PlusIcon, View, XCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-const fakeColleges = [
-  {
-    collegeId: 'AYSEM20231002',
-    college: 'College of Arts and Sciences',
-    programsListed: '8',
-    type: 'Undergraduate',
-    dateCreated: '2023-08-17 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231003',
-    college: 'College of Business Administration',
-    programsListed: '6',
-    type: 'Graduate',
-    dateCreated: '2023-08-18 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231004',
-    college: 'College of Education',
-    programsListed: '4',
-    type: 'Undergraduate',
-    dateCreated: '2023-08-19 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231005',
-    college: 'College of Nursing',
-    programsListed: '3',
-    type: 'Graduate',
-    dateCreated: '2023-08-20 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231006',
-    college: 'College of Fine Arts',
-    programsListed: '2',
-    type: 'Undergraduate',
-    dateCreated: '2023-08-21 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231007',
-    college: 'College of Social Sciences',
-    programsListed: '7',
-    type: 'Graduate',
-    dateCreated: '2023-08-22 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231008',
-    college: 'College of Health Sciences',
-    programsListed: '5',
-    type: 'Undergraduate',
-    dateCreated: '2023-08-23 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231009',
-    college: 'College of Information Technology',
-    programsListed: '4',
-    type: 'Graduate',
-    dateCreated: '2023-08-24 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231010',
-    college: 'College of Architecture',
-    programsListed: '3',
-    type: 'Undergraduate',
-    dateCreated: '2023-08-25 : 12:00 AM',
-  },
-  {
-    collegeId: 'AYSEM20231011',
-    college: 'College of Agriculture',
-    programsListed: '6',
-    type: 'Graduate',
-    dateCreated: '2023-08-26 : 12:00 AM',
-  },
-];
 
 const collegeTypes = [
   {
@@ -116,25 +51,30 @@ const collegeTypes = [
 const CollegeSchema = z.object({
   collegeId: z.string(),
   college: z.string(),
-  programsListed: z.string(),
   type: z.string(),
-  dateCreated: z.string(),
 });
 
 function AddCollegeDialogForm({ open, setOpen }) {
   const addCollegeForm = useForm({
     resolver: zodResolver(CollegeSchema),
-    defaultValues: {
-      collegeId: 'AYSEM20231002',
-      college: '',
-      type: '',
-    },
   });
 
-  function onAddCollegeSubmit(values) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onAddCollegeSubmit() {
+    try {
+      const data = await addCollege(
+        addCollegeForm.getValues().college,
+        addCollegeForm.getValues().type,
+        addCollegeForm.getValues().collegeId,
+      );
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError('Failed to add college');
+      }
+    } catch (error) {
+      onError('Failed to add college');
+      throw error;
+    }
   }
 
   return (
@@ -162,8 +102,6 @@ function AddCollegeDialogForm({ open, setOpen }) {
                 form={addCollegeForm}
                 title='College ID'
                 fieldName='collegeId'
-                badge={<Badge variant='outline'>Auto-generated</Badge>}
-                disabled={true}
               />
 
               {/* College */}
@@ -171,7 +109,7 @@ function AddCollegeDialogForm({ open, setOpen }) {
                 form={addCollegeForm}
                 title='College'
                 fieldName='college'
-                placeholder='College of Arts and Sciences'
+                placeholder='College'
               />
 
               {/* College Types */}
@@ -189,7 +127,9 @@ function AddCollegeDialogForm({ open, setOpen }) {
               <DialogClose asChild>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button type='submit'>Add College</Button>
+              <Button type='submit' onClick={onAddCollegeSubmit}>
+                Add College
+              </Button>
             </DialogFooter>
           </DialogContent>
         </form>
@@ -202,6 +142,7 @@ function AdminCollegePage() {
   const [rowSelection, setRowSelection] = useState([]);
   const [opened, { open, close }] = useDisclosure(false);
   const [addCollegeDialogFormOpen, setCollegeDialogFormOpen] = useState(false);
+  const [colleges, setColleges] = useState([]);
 
   const fakeCollegesTemplate = [
     {
@@ -237,10 +178,24 @@ function AdminCollegePage() {
   ];
 
   const selectedCollege = handleRowSelectionChange(
-    fakeColleges,
+    colleges,
     fakeCollegesTemplate,
     rowSelection,
   );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getAllCollege();
+        setColleges(result);
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Error fetching college:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   async function sampleConfirmFunction(id) {
     try {
@@ -291,7 +246,7 @@ function AdminCollegePage() {
 
       <TableMRT
         template={fakeCollegesTemplate}
-        data={fakeColleges}
+        data={colleges}
         title='College'
         searchPlaceholder='Search College...'
         isCheckBoxVisible={true}
@@ -319,6 +274,7 @@ function AdminCollegePage() {
         }}
         RightButtons={
           <section className='flex gap-2 items-center'>
+            {/* Code commented since there's no UI for adding programs */}
             <Button
               variant='outline'
               onClick={open}
