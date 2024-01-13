@@ -25,19 +25,19 @@ function AuthProvider({ children, accessType, accessLevel }) {
     // ? Authenticated
     if (status === 'authenticated') {
       // ? Redirect to portal if user is already logged in and has multiple roles
-      if (pathname.includes('/login') && session?.role?.length > 1) {
+      if (pathname.includes('/login') && session?.role.length > 1) {
         redirect('/portal');
       }
 
       // ? Redirect to role page if user is already logged in and has only one role
-      if (session?.role?.length === 1 && pathname.includes('/login')) {
+      if (session?.role.length === 1 && pathname.includes('/login')) {
         redirect(`/${session?.role[0]}`);
       }
 
       // ? Redirect to portal if user accessing a route that is not allowed for their role
       if (
         accessLevel === 'private' &&
-        !session?.role?.includes(accessType) &&
+        !session?.role.includes(accessType) &&
         !pathname.includes('portal')
       ) {
         redirect('/portal');
@@ -59,5 +59,6 @@ function AuthProvider({ children, accessType, accessLevel }) {
 
   return children;
 }
+
 
 export default AuthProvider;
