@@ -1,5 +1,6 @@
 'use client';
 
+import { addMeeting } from '@/components/component/admin/admin-api-functions';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -27,11 +28,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useToast } from '@/components/ui/use-toast';
 import { collegeDepartments } from '@/lib/constants/fake-data/college-sections';
-import { testPromise } from '@/lib/utils';
+import { onError, onSuccess } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle, XCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -57,74 +56,46 @@ const meetingTypesContent = [
 const statusContent = [
   {
     label: 'Active',
-    value: 'active',
+    value: 'Active',
   },
   {
     label: 'Inactive',
-    value: 'inactive',
+    value: 'Inactive',
   },
 ];
 
 export default function AddMeeting() {
-  const { toast } = useToast();
-
   const MeetingSchema = z.object({
-    meetingId: z.string().min(1).optional(),
-    label: z.string().min(1).optional(),
-    meetingType: z.string().min(1).optional(),
-    college: z.string().min(1).optional(),
-    status: z.string().min(1).optional(),
+    meetingId: z.string().min(1),
+    label: z.string().min(1),
+    meetingType: z.string().min(1),
+    college: z.string().min(1),
+    status: z.string().min(1),
   });
 
   const addMeetingForm = useForm({
     resolver: zodResolver(MeetingSchema),
-    defaultValues: {
-      label: '',
-      meetingType: '',
-      college: '',
-      status: '',
-    },
-    values: {
-      meetingId: 'CET 0123.1-2',
-    },
   });
 
-  async function sampleConfirmFunction(id) {
+  async function onSubmit(values) {
     try {
-      const result = await testPromise(id);
-
-      if (result) {
-        toast({
-          title: (
-            <div className='flex flex-row'>
-              <CheckCircle className='mr-2 h-4 w-4 text-green-400' />
-              <h1>Success!</h1>
-            </div>
-          ),
-          description: <>Changes have been Saved.</>,
-        });
+      const data = await addMeeting(
+        values.meetingId,
+        values.label,
+        values.meetingType,
+        values.college,
+        values.status,
+      );
+      if (data) {
+        onSuccess(data.message);
+      } else {
+        onError("Couldn't add meeting");
       }
     } catch (error) {
-      console.error({ error });
-
-      toast({
-        variant: 'destructive',
-        title: (
-          <div className='flex flex-row'>
-            <XCircle className='mr-2 h-4 w-4' />
-            <h1>Error!</h1>
-          </div>
-        ),
-        description: <>Error saving your data</>,
-      });
+      onError("Couldn't add meeting");
+      console.log(error);
+      throw error;
     }
-  }
-
-  function onSubmit(values) {
-    // Print all form values
-    console.log(values);
-
-    sampleConfirmFunction();
   }
 
   return (
@@ -146,11 +117,7 @@ export default function AddMeeting() {
                   <FormItem>
                     <FormLabel>Meeting ID</FormLabel>
                     <FormControl>
-                      <Input
-                        disabled
-                        placeholder='Enter Meeting ID...'
-                        value={field.value}
-                      />
+                      <Input placeholder='Enter Meeting ID...' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -244,7 +211,7 @@ export default function AddMeeting() {
 
               <FormField
                 control={addMeetingForm.control}
-                name='college'
+                name='status'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Status</FormLabel>
