@@ -5,7 +5,6 @@ import TableMRT from '@/components/layouts/table-mrt';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Table,
   TableBody,
@@ -132,29 +131,65 @@ function ViewEnlistedStep({ enlistedClasses }) {
 }
 
 function PaymentStep() {
+  const [paymentType, setPaymentType] = useState('full-payment');
+  const totalFee = 10000; // Assuming total fee is 10000 for demonstration
+
+  const calculatePayment = () => {
+    let parts;
+    if (paymentType === 'full-payment') {
+      parts = 1;
+    } else {
+      // Extracting the number of parts from the paymentType string
+      parts = parseInt(paymentType.split('-')[0]);
+    }
+    return Math.ceil(totalFee / parts);
+  };
+
+  const amountToPay = calculatePayment();
+
   return (
-    <>
+    <div>
       <Alert className='bg-yellow-500 flex justify-center'>
         <AlertTitle className='font-bold text-lg'>
-          Choose Type of Payment and Print EAF (Enrollment Assessment Form)
+          Choose Type of Payment
         </AlertTitle>
       </Alert>
-
-      <div className='py-5 mt-5 flex justify-center border rounded-t-md'>
-        <h1 className='text-base font-bold'>Type of Payment</h1>
+      <div className='grid grid-cols-3 gap-4 mt-4'>
+        <div className='border p-4 rounded-lg flex items-center'>
+          <input
+            type='radio'
+            className='form-radio h-5 w-5 text-yellow-600'
+            id='full-payment'
+            name='paymentType'
+            value='full-payment'
+            checked={paymentType === 'full-payment'}
+            onChange={(e) => setPaymentType(e.target.value)}
+          />
+          <label htmlFor='full-payment' className='ml-2 text-gray-700'>
+            Full Payment
+          </label>
+        </div>
+        {Array.from({ length: 4 }, (_, i) => (
+          <div className='border p-4 rounded-lg flex items-center' key={i}>
+            <input
+              type='radio'
+              className='form-radio h-5 w-5 text-yellow-600'
+              id={`${i + 2}-partial`}
+              name='paymentType'
+              value={`${i + 2}-partial`}
+              checked={paymentType === `${i + 2}-partial`}
+              onChange={(e) => setPaymentType(e.target.value)}
+            />
+            <label htmlFor={`${i + 2}-partial`} className='ml-2 text-gray-700'>
+              {i + 2} - Partial
+            </label>
+          </div>
+        ))}
       </div>
-
-      <RadioGroup className='border rounded-b-md border-t-0 flex justify-around py-5'>
-        <div className='flex items-center space-x-2 p-4 rounded-2xl border-yellow-400 border-2'>
-          <RadioGroupItem value='onsitePayment' id='onsitePayment' />
-          <Label htmlFor='onsitePayment'>Onsite Payment</Label>
-        </div>
-        <div className='flex items-center space-x-2 p-4 rounded-2xl border-yellow-400 border-2'>
-          <RadioGroupItem value='linkBiz' id='linkBiz' />
-          <Label htmlFor='linkBiz'>Pay with LinkBiz</Label>
-        </div>
-      </RadioGroup>
-    </>
+      <div className='mt-6 text-center text-2xl font-semibold'>
+        Amount to Pay: <span className='text-yellow-600'>₱{amountToPay}</span>
+      </div>
+    </div>
   );
 }
 

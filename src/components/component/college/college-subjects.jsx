@@ -4,7 +4,7 @@ import TableMRT from '@/components/layouts/table-mrt';
 import { Button } from '@/components/ui/button';
 import {
   fakeSubjectRowActions,
-  fakeSubjects,
+  fakeSubjectsUndergrad,
 } from '@/lib/constants/fake-data/college-subjects';
 import '@/lib/constants/schema/user';
 import { fakeSubjectTemplate } from '@/lib/constants/table-templates/college/college-subjects-table';
@@ -19,7 +19,7 @@ function CollegeSubjectsPage() {
   const [rowSelection, setRowSelection] = useState({});
 
   const selectedSubjects = handleRowSelectionChange(
-    fakeSubjects,
+    fakeSubjectsUndergrad,
     fakeSubjectTemplate,
     rowSelection,
   );
@@ -28,7 +28,7 @@ function CollegeSubjectsPage() {
     <main className='w-full p-6'>
       <TableMRT
         template={fakeSubjectTemplate}
-        data={fakeSubjects}
+        data={fakeSubjectsUndergrad}
         title='Subjects'
         searchPlaceholder='Search subjects...'
         isCheckBoxVisible={true}
