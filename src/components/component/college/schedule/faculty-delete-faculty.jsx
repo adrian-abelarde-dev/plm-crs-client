@@ -8,7 +8,7 @@ function DeleteFacultyDialogForm({ disabled }) {
       disabled={disabled}
       className='bg-red-500 text-white hover:bg-red-500/80 hover:text-white'
     >
-      Delete
+      Archive
       <Delete className='ml-2 h-4 w-4 text-white hover:bg-red-500/80' />
     </Button>
   );
